@@ -1,49 +1,67 @@
 {
-    "id": "enhanced-todo-1760696546958-lqqe6gdmd",
+    "id": "enhanced-todo-1760706658649-vuefjfy4j",
     "type": "todo",
     "x": 4260,
     "y": 60,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Collect and review all relevant radiology data for Sarah Miller",
+    "description": "Comprehensive analysis of Sarah Miller's differential diagnosis to rule out other potential causes of liver injury, including viral and autoimmune etiologies.",
     "todoData": {
-        "title": "Radiology Data Retrieval Workflow",
-        "description": "Collect and review all relevant radiology data for Sarah Miller",
+        "title": "Analyze Differential Diagnosis for Sarah Miller",
+        "description": "Comprehensive analysis of Sarah Miller's differential diagnosis to rule out other potential causes of liver injury, including viral and autoimmune etiologies.",
         "todos": [
             {
-                "agent": "Radiology Agent",
                 "status": "pending",
+                "agent": "Lab Analyst",
+                "id": "task-101",
+                "text": "Review Viral Serologies",
+                "subTodos": [
+                    {
+                        "text": "Check Hepatitis A, B, C serologies",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Evaluate for other viral causes",
+                        "status": "pending"
+                    }
+                ]
+            },
+            {
                 "subTodos": [
                     {
                         "status": "pending",
-                        "text": "Liver Ultrasound Reports"
+                        "text": "Check ANA, anti-smooth muscle antibody"
                     },
                     {
-                        "status": "pending",
-                        "text": "CT Scans Reports"
+                        "text": "Evaluate for autoimmune hepatitis",
+                        "status": "pending"
                     }
                 ],
-                "id": "task-1",
-                "text": "Check for existing radiology reports"
-            },
-            {
-                "text": "Retrieve outside radiology imaging and reports",
-                "agent": "Radiology Agent",
-                "id": "task-2",
-                "subTodos": [],
+                "id": "task-102",
+                "text": "Assess Autoimmune Markers",
+                "agent": "Immunology Agent",
                 "status": "pending"
             },
             {
-                "id": "task-3",
-                "agent": "Radiology Agent",
-                "subTodos": [],
-                "text": "Collate and summarize all radiology findings",
-                "status": "pending"
+                "status": "pending",
+                "subTodos": [
+                    {
+                        "text": "Correlate lab findings with clinical presentation",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Review medication history",
+                        "status": "pending"
+                    }
+                ],
+                "text": "Clinical Correlation",
+                "id": "task-103",
+                "agent": "General Practitioner"
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-17T10:22:26.961Z",
-    "updatedAt": "2025-10-17T10:22:26.961Z"
+    "createdAt": "2025-10-17T13:10:58.665Z",
+    "updatedAt": "2025-10-17T13:10:58.665Z"
 }

@@ -1,7 +1,7 @@
 {
     "success": true,
     "message": "Focus event broadcasted",
-    "itemId": "dashboard-item-lab-results-2025",
+    "itemId": "raw-ice-lab-data-encounter-5",
     "subElement": null,
     "focusOptions": {
         "zoom": 1.8,
