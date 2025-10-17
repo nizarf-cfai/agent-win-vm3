@@ -15,9 +15,7 @@ import socket
 import threading
 import warnings
 # Import RAG functions from chroma_script
-from chroma_db.chroma_script import rag_from_json
-# Import canvas operations
-from canvas_ops import get_canvas_item_id
+from chroma_db.chroma_script import query_chroma_collection, rag_from_json
 load_dotenv()
 
 # Suppress Gemini warnings about non-text parts
@@ -40,55 +38,46 @@ MODEL = "models/gemini-2.0-flash-live-001"
 CONFIG = {"response_modalities": ["AUDIO"]}
 
 # System prompt for Gemini
-SYSTEM_PROMPT = """
+SYSTEM_PROMPT = f"""
 You are Medforce Agent — a professional clinical assistant integrated into a shared screen canvas system.
 Your purpose is to assist users in analyzing and managing medical data for patient Sarah Miller (DILI case context).
 All responses and actions must remain focused on this patient. YOU ONLY SPEAK ENGLISH.
 
-You only communicate in **English**. Do not speak other language excet english.
+You only communicate in **English**.
 
 ---
 
 ### CORE BEHAVIOR RULES
 
 1. **ANSWER MEDICAL QUESTIONS**
-   - When the user asks about Sarah Miller's condition, diagnosis, lab results, or treatment:
-     → **Call `get_canvas_objects`** with the query text to find relevant medical data on the canvas.
-     → **Automatically navigate to the most relevant object** found in the results.
+   - When the user asks about Sarah Miller’s condition, diagnosis, lab results, or treatment:
+     → **Call `query_chroma_collection`** with the query text.
    - Use the returned information to provide a **complete, medically accurate** response.
-   - Use all available EHR, lab, and historical data from canvas objects.
+   - Use all available EHR, lab, and historical data.
    - Never ask for clarification — always infer the most complete and reasonable medical answer.
    - Do not mention any technical identifiers (IDs, database names, etc.) in the response.
-   - **Always navigate to relevant objects** to show the user the specific data being referenced.
 
 2. **CANVAS OPERATIONS**
    - For any canvas-related user request (navigation, focusing, creating a to-do, etc.):
      → **First call `get_canvas_objects`** with a descriptive query to find the relevant object(s).
      → Then, use the returned objectId(s) to perform the next action:
-       - For movement or focus: **`navigate_canvas`** with optional `subElement` for precise targeting
+       - For movement or focus: **`navigate_canvas`**
        - For creating a new task: **`generate_task`**
    - Never ask the user for object IDs — always resolve them via `get_canvas_objects`.
-   - Use `subElement` parameter for precise navigation (e.g., "medications.methotrexate", "lab-results.alt").
-   - When the action completes, briefly explain what was done (e.g., "Focused on the patient summary section.").
+   - When the action completes, briefly explain what was done (e.g., “Focused on the patient summary section.”).
 
 3. **TASK CREATION**
    - When the user asks to create a task ("create/make/add a task…"):
      → **First, ask for user confirmation** before creating the task.
-     → Present the proposed task workflow details (title, description, structured todos with agents and status) to the user.
+     → Present the proposed task details (title, content, items) to the user.
      → Wait for user approval before calling `generate_task`.
    - If user confirms, then call `get_canvas_objects` if needed (to identify context), then **`generate_task`**.
-   - Populate structured fields:
-       - `title`: short, clear summary of the workflow goal.
-       - `description`: comprehensive description of the task workflow.
-       - `todos`: array of main tasks with:
-         - `id`: unique identifier for each task
-         - `text`: task description
-         - `status`: current status (pending, executing, finished)
-         - `agent`: responsible agent for the task
-         - `subTodos`: array of sub-tasks with text and status
-   - **Always ask for confirmation before creating task workflows.**
-   - After user confirms, explain that the task workflow was successfully created.
-
+   - Populate `title`, `content`, and `items` fields:
+       - `title`: short, clear summary of the goal.
+       - `content`: concise yet informative task description.
+       - `items`: step-by-step, actionable subtasks.
+   - **Always ask for confirmation before creating tasks.**
+   - After user confirms, explain that the task was successfully created.
 
 4. **LAB RESULTS**
    - When the user requests or discusses a lab parameter:
@@ -111,10 +100,9 @@ You only communicate in **English**. Do not speak other language excet english.
 
 | User Intent | Function(s) to Call | Notes |
 |--------------|--------------------|-------|
-| Ask about Sarah Miller's condition or diagnosis | `get_canvas_objects` → `navigate_canvas` | Find relevant objects and navigate to them |
+| Ask about Sarah Miller’s condition or diagnosis | `query_chroma_collection` | Use query result to answer comprehensively |
 | Ask for lab result | `generate_lab_result` | Use realistic medical data if missing |
 | Navigate / show specific data on canvas | `get_canvas_objects` → `navigate_canvas` | Find the relevant objectId first |
-| Navigate to specific sub-element | `get_canvas_objects` → `navigate_canvas` with `subElement` | Use subElement for precise targeting |
 | Create a to-do / task | Ask for confirmation → `get_canvas_objects` (if needed) → `generate_task` | Present task details, get approval, then create |
 | Inspect available canvas items | `get_canvas_objects` | Return list or summary of items |
 
@@ -135,54 +123,33 @@ You only communicate in **English**. Do not speak other language excet english.
 ### TASK EXECUTION FLOW EXAMPLES (Conceptual)
 
 **Question:**
-> "What's the probable cause of Sarah Miller's elevated ALT levels?"
+> “What’s the probable cause of Sarah Miller’s elevated ALT levels?”
 
-→ Call `get_canvas_objects(query="Probable cause of elevated ALT in Sarah Miller")`
-→ Extract objectId from the most relevant result
-→ Call `navigate_canvas(objectId=...)` to show the relevant data
+→ Call `query_chroma_collection(query="Probable cause of elevated ALT in Sarah Miller")`
 → Interpret response medically and explain.
 
 **Navigation:**
-> "Show me Sarah Miller's medication history on the canvas."
+> “Show me Sarah Miller’s medication history on the canvas.”
 
 → Call `get_canvas_objects(query="medication history")`
 → Extract `objectId` → Call `navigate_canvas(objectId=...)`
 → Confirm navigation to the user.
 
-**Precise Navigation:**
-> "Show me Sarah Miller's methotrexate medication specifically."
-
-→ Call `get_canvas_objects(query="medications methotrexate")`
-→ Extract `objectId` → Call `navigate_canvas(objectId="dashboard-item-medications-1234", subElement="medications.methotrexate")`
-→ Confirm precise navigation to the user.
-
 **Task:**
 > "Create a task to review her latest liver biopsy results."
 
-→ **First, ask for confirmation**: "I'd like to create a task workflow to review Sarah Miller's latest liver biopsy results. Here's what I propose:
-   - Title: 'Liver Biopsy Analysis Workflow'
-   - Description: 'Comprehensive analysis of liver biopsy results with detailed sub-tasks'
-   - Todos: [
-       {
-         'id': 'task-101',
-         'text': 'Initial Biopsy Review',
-         'status': 'executing',
-         'agent': 'Pathology Agent',
-         'subTodos': [
-           {'text': 'Examine tissue samples', 'status': 'finished'},
-           {'text': 'Document histological findings', 'status': 'executing'},
-           {'text': 'Compare with previous results', 'status': 'pending'}
-         ]
-       }
-     ]
+→ **First, ask for confirmation**: "I'd like to create a task to review Sarah Miller's latest liver biopsy results. Here's what I propose:
+   - Title: 'Review liver biopsy results'
+   - Content: 'Analyze and summarize findings from the latest liver biopsy'
+   - Items: [list of step-by-step items]
    
-   Should I proceed with creating this task workflow?"
+   Should I proceed with creating this task?"
 
 → **Wait for user confirmation**
 
 → **If confirmed**: Call `get_canvas_objects(query="liver biopsy results")` if needed
-→ Then call `generate_task(title="Liver Biopsy Analysis Workflow", description="Comprehensive analysis...", todos=[...])`
-→ Confirm completion to the user. And say the task workflow will execute in the background by specialized agents.
+→ Then call `generate_task(title="Review liver biopsy results", content="Analyze and summarize findings", items=[...])`
+→ Confirm completion to the user. And say the task will execute in the background by a Data Analyst Agent.
 
 ---
 """
@@ -192,17 +159,13 @@ You only communicate in **English**. Do not speak other language excet english.
 FUNCTION_DECLARATIONS = [
     {
         "name": "navigate_canvas",
-        "description": "Navigate canvas to item with optional sub-element targeting for precise navigation",
+        "description": "Navigate canvas to item. Use objectId from canvas item list",
         "parameters": {
             "type": "object",
             "properties": {
                 "objectId": {
                     "type": "string",
-                    "description": "Object id to navigate to (e.g., 'dashboard-item-patientcontext-1234')"
-                },
-                "subElement": {
-                    "type": "string",
-                    "description": "Optional sub-element within the object to focus on (e.g., 'medications.methotrexate', 'lab-results.alt', 'vitals.blood-pressure')"
+                    "description": "Object id to navigate"
                 }
             },
             "required": ["objectId"]
@@ -210,66 +173,27 @@ FUNCTION_DECLARATIONS = [
     },
     {
         "name": "generate_task",
-        "description": "Generate a comprehensive task workflow with structured todos, sub-tasks, agents, and status tracking",
+        "description": "Generate a task with title, content, and step-by-step items",
         "parameters": {
             "type": "object",
             "properties": {
                 "title": {
                     "type": "string",
-                    "description": "Main title of the task workflow"
+                    "description": "Title of the task"
                 },
-                "description": {
+                "content": {
                     "type": "string",
-                    "description": "Comprehensive description of the task workflow"
+                    "description": "Description of the task"
                 },
-                "todos": {
+                "items": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string",
-                                "description": "Unique identifier for the task"
-                            },
-                            "text": {
-                                "type": "string",
-                                "description": "Task description"
-                            },
-                            "status": {
-                                "type": "string",
-                                "enum": ["pending", "executing", "finished"],
-                                "description": "Current status of the task"
-                            },
-                            "agent": {
-                                "type": "string",
-                                "description": "Agent responsible for executing this task"
-                            },
-                            "subTodos": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "text": {
-                                            "type": "string",
-                                            "description": "Sub-task description"
-                                        },
-                                        "status": {
-                                            "type": "string",
-                                            "enum": ["pending", "executing", "finished"],
-                                            "description": "Status of the sub-task"
-                                        }
-                                    },
-                                    "required": ["text", "status"]
-                                },
-                                "description": "Array of sub-tasks for this main task"
-                            }
-                        },
-                        "required": ["id", "text", "status", "agent", "subTodos"]
+                        "type": "string"
                     },
-                    "description": "Array of main tasks with their sub-tasks, agents, and status"
+                    "description": "Step by step task items"
                 }
             },
-            "required": ["title", "description", "todos"]
+            "required": ["title", "content", "items"]
         }
     },
     {
@@ -326,14 +250,28 @@ FUNCTION_DECLARATIONS = [
         }
     },
     {
-        "name": "get_canvas_objects",
-        "description": "Get canvas items details for canvas operations and answering questions",
+        "name": "query_chroma_collection",
+        "description": "Query the medical database to answer questions about patient medical data, lab results, diagnosis, and treatment history",
         "parameters": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Query to find specific canvas objectsId or items for answering questions or canvas operations"
+                    "description": "The medical question or query about the patient's condition, lab results, diagnosis, or treatment"
+                }
+            },
+            "required": ["query"]
+        }
+    },
+    {
+        "name": "get_canvas_objects",
+        "description": "Get canvas items details for navigation and canvas operations",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Query to find specific canvas objects or items"
                 }
             },
             "required": ["query"]
@@ -409,8 +347,22 @@ class AudioOnlyGeminiCable:
                 # Save the function call to file (non-blocking)
                 asyncio.create_task(self.save_function_call(arguments))
                 
-                # Create function response with actual canvas processing
-                if fc.name == "get_canvas_objects":
+                # Create function response with actual RAG processing
+                if fc.name == "query_chroma_collection":
+                    query = arguments.get('query', '')
+                    rag_result = self.query_medical_database(query)
+                    print("RAG Result :",rag_result[:200])
+                    fun_res = {
+                        "result": {
+                            "status": "Medical query processed",
+                            "action": "Retrieved medical information",
+                            "query": query,
+                            "medical_data": rag_result,
+                            "message": f"I've retrieved relevant medical information for your query: '{query}'. Here's what I found: {rag_result}",
+                            "explanation": f"Medical query '{query}' processed successfully. Retrieved relevant patient medical data, lab results, and clinical information."
+                        }
+                    }
+                elif fc.name == "get_canvas_objects":
                     query = arguments.get('query', '')
                     canvas_result = self.get_canvas_objects(query)
                     print("RAG Result Canvas:",canvas_result[:200])
@@ -418,11 +370,11 @@ class AudioOnlyGeminiCable:
                     fun_res = {
                         "result": {
                             "status": "Canvas objects retrieved",
-                            "action": "Retrieved canvas items and will navigate to most relevant",
+                            "action": "Retrieved canvas items",
                             "query": query,
                             "canvas_data": canvas_result,
-                            "message": f"I've retrieved relevant canvas objects for your query: '{query}'. I'll now navigate to the most relevant object to show you the specific data. Here's what I found: {canvas_result}",
-                            "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and will automatically navigate to the most relevant object."
+                            "message": f"I've retrieved relevant canvas objects for your query: '{query}'. Here's what I found: {canvas_result}",
+                            "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and objects for navigation."
                         }
                     }
                 else:
@@ -466,30 +418,14 @@ class AudioOnlyGeminiCable:
 
     def get_function_response(self, arguments):
         if 'objectId' in arguments:
-            object_id = arguments.get('objectId', '')
-            sub_element = arguments.get('subElement', '')
-            
-            if sub_element:
-                return { 
-                    "result": {
-                        "status": "Canvas navigation completed with sub-element focus",
-                        "action": "Moved viewport to target object and focused on specific sub-element",
-                        "objectId": object_id,
-                        "subElement": sub_element,
-                        "message": f"I've successfully navigated to the requested canvas object and focused on the specific sub-element '{sub_element}'. The viewport has been moved to show this precise information.",
-                        "explanation": f"Navigation completed successfully to object '{object_id}' with focus on sub-element '{sub_element}'. The canvas view has been updated to show the specific requested data."
-                    }
+            return { 
+                "result": {
+                    "status": "Canvas navigation completed",
+                    "action": "Moved viewport to target object",
+                    "message": "I've successfully navigated to the requested canvas object. The viewport has been moved to focus on this item. You can now see the relevant information displayed on the canvas.",
+                    "explanation": "Navigation completed successfully. The canvas view has been updated to show the requested object with all relevant details."
                 }
-            else:
-                return { 
-                    "result": {
-                        "status": "Canvas navigation completed",
-                        "action": "Moved viewport to target object",
-                        "objectId": object_id,
-                        "message": "I've successfully navigated to the requested canvas object. The viewport has been moved to focus on this item. You can now see the relevant information displayed on the canvas.",
-                        "explanation": "Navigation completed successfully. The canvas view has been updated to show the requested object with all relevant details."
-                    }
-                }
+            }
         elif 'parameter' in arguments:
             return { 
                 "result": {
@@ -538,13 +474,19 @@ class AudioOnlyGeminiCable:
                 }
             }
 
+    def query_medical_database(self, query):
+        """Query the medical database using RAG"""
+        try:
+            result = query_chroma_collection(query, persist_dir="./chroma_db/chroma_store", top_k=3)
+            return result if result else "No relevant medical information found for this query."
+        except Exception as e:
+            print(f"Error querying medical database: {e}")
+            return f"Error retrieving medical information: {str(e)}"
 
     def get_canvas_objects(self, query):
         """Get canvas objects using RAG from JSON"""
         try:
-            print(f"🔍 Getting canvas objects for query: {query}")
             result = rag_from_json("./chroma_db/boardItems.json", query, top_k=3)
-            print(f"🔍 Canvas objects retrieved: {result[:200]}")
             return result if result else "No relevant canvas objects found for this query."
         except Exception as e:
             print(f"Error getting canvas objects: {e}")
@@ -596,18 +538,8 @@ class AudioOnlyGeminiCable:
         if not action_data:
             return
         if 'objectId' in action_data:
-            object_id = action_data["objectId"]
-            sub_element = action_data.get("subElement", "")
-            
-            if sub_element:
-                print(f"  🎯 Navigating to object {object_id} with sub-element focus: {sub_element}")
-                # For now, we'll use the basic focus_item, but this could be enhanced
-                # to support sub-element navigation in the future
-                focus_res = await canvas_ops.focus_item(object_id,sub_element)
-                print(f"  🎯 Navigation completed with sub-element focus: {sub_element}", focus_res)
-            else:
-                focus_res = await canvas_ops.focus_item(object_id)
-                print(f"  🎯 Navigation completed", focus_res)
+            focus_res = await canvas_ops.focus_item(action_data["objectId"])
+            print(f"  🎯 Navigation completed")
         elif 'parameter' in action_data:
             lab_res = await canvas_ops.create_lab(action_data)
             await asyncio.sleep(2)
@@ -615,38 +547,16 @@ class AudioOnlyGeminiCable:
             focus_res = await canvas_ops.focus_item(labId)
             print(f"  🧪 Lab result created")
         elif 'query' in action_data and len(action_data) == 1:
-            # Handle canvas object queries with navigation
+            # Handle RAG function calls
             query = action_data.get('query', '')
-            print(f"  🔍 Canvas query processed: {query[:50]}...")
-            
-            # Get canvas objects and navigate to the most relevant one
-            try:
-                canvas_result = self.get_canvas_objects(query)
-                print(f"  🔍 Canvas objects retrieved: {canvas_result[:100]}...")
-                
-                # Parse the result to extract objectId for navigation
-                # The rag_from_json result should contain objectId information
-                # For now, we'll trigger navigation after a short delay
-                await asyncio.sleep(1)
-                
-                # Try to extract objectId from the canvas result
-                # This is a simplified approach - in practice, you'd parse the JSON result
-                print(f"  🎯 Will navigate to relevant object based on query results")
-                
-            except Exception as e:
-                print(f"  ❌ Error processing canvas query: {e}")
+            print(f"  🔍 RAG query processed: {query[:50]}...")
+            # The actual RAG processing will be handled by the function response
         else:
             action_data['area'] = "planning-zone"
-            with open("action_data.json", "w", encoding="utf-8") as f:
-                json.dump(action_data, f, ensure_ascii=False, indent=4)
             task_res = await canvas_ops.create_todo(action_data)
-            with open("action_data_response.json", "w", encoding="utf-8") as f:
-                json.dump(task_res, f, ensure_ascii=False, indent=4)
             await asyncio.sleep(3)
             boxId = task_res['id']
             focus_res = await canvas_ops.focus_item(boxId)
-            with open("action_data_focus.json", "w", encoding="utf-8") as f:
-                json.dump(focus_res, f, ensure_ascii=False, indent=4)
             print(f"  📝 Task created")
 
             # Trigger agent processing in background
@@ -751,7 +661,53 @@ class AudioOnlyGeminiCable:
                             print("🔧 TOOL CALL DETECTED!")
                             await self.handle_tool_call(response.tool_call)
                             function_call_detected = True
- 
+                        # else:
+                        #     print("🔍 tool_call exists but is None/False")
+                    
+                    # Method 2: Check function_calls attribute
+                    # if not function_call_detected and hasattr(response, 'function_calls') and response.function_calls:
+                    #     print("🔧 FUNCTION CALLS DETECTED!")
+                    #     # Handle function calls if they exist
+                    #     for fc in response.function_calls:
+                    #         # Create a mock tool_call object if needed
+                    #         if hasattr(fc, 'name') and hasattr(fc, 'args'):
+                    #             mock_tool_call = type('MockToolCall', (), {
+                    #                 'function_calls': [fc]
+                    #             })()
+                    #             await self.handle_tool_call(mock_tool_call)
+                    #             function_call_detected = True
+                    
+                    # # Method 3: Check for any function-related attributes
+                    # if not function_call_detected and hasattr(response, '__dict__'):
+                    #     response_attrs = [attr for attr in dir(response) if not attr.startswith('_')]
+                    #     if any(attr in response_attrs for attr in ['tool_call', 'function_calls', 'function_call']):
+                    #         print(f"🔍 Response has function attributes: {response_attrs}")
+                    #         # Print all non-None attributes for debugging
+                    #         for attr in response_attrs:
+                    #             try:
+                    #                 value = getattr(response, attr)
+                    #                 if value is not None and 'function' in attr.lower():
+                    #                     print(f"🔍 {attr}: {value}")
+                    #             except:
+                    #                 pass
+                    
+                    # # Session health check - if no function calls detected for a while, log it
+                    # if not function_call_detected and self.last_function_call_time:
+                    #     time_since_last_call = datetime.datetime.now() - self.last_function_call_time
+                    #     if time_since_last_call.total_seconds() > 30:  # 30 seconds
+                    #         print(f"⚠️ No function calls detected for {time_since_last_call.total_seconds():.1f} seconds")
+                    #         print(f"📊 Total function calls processed: {self.function_call_count}")
+                    #         # Reset the timer to avoid spam
+                    #         self.last_function_call_time = datetime.datetime.now()
+                            
+                    #         # Try to reset session state if no function calls for too long
+                    #         if time_since_last_call.total_seconds() > 120:  # 2 minutes
+                    #             try:
+                    #                 await self.session.send(input="Session reset. Ready for function calls.")
+                    #                 print("🔄 Forced session reset")
+                    #             except Exception as force_reset_error:
+                    #                 print(f"⚠️ Force reset failed: {force_reset_error}")
+                
                 # Clear audio queue on turn completion to prevent overlap
                 while not self.audio_in_queue.empty():
                     self.audio_in_queue.get_nowait()

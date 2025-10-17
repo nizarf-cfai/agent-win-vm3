@@ -1,0 +1,12 @@
+{
+    "success": true,
+    "message": "Focusing on item: dashboard-item-1759906300004-single-encounter-4",
+    "objectId": "dashboard-item-1759906300004-single-encounter-4",
+    "subElement": "",
+    "focusOptions": {
+        "zoom": 1.8,
+        "highlight": true,
+        "duration": 2000,
+        "scrollIntoView": true
+    }
+}

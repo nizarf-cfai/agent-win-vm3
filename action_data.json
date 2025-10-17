@@ -1,0 +1,55 @@
+{
+    "description": "Gather all available information about Sarah Miller from various sources.",
+    "title": "Gather All Sarah Miller's Information",
+    "todos": [
+        {
+            "agent": "Medical Records Agent",
+            "status": "pending",
+            "text": "Collect patient history",
+            "subTodos": [
+                {
+                    "text": "Review medical history",
+                    "status": "pending"
+                },
+                {
+                    "text": "Summarize key findings",
+                    "status": "pending"
+                }
+            ],
+            "id": "task-1"
+        },
+        {
+            "subTodos": [
+                {
+                    "text": "Analyze recent lab data",
+                    "status": "pending"
+                },
+                {
+                    "text": "Identify abnormal values",
+                    "status": "pending"
+                }
+            ],
+            "id": "task-2",
+            "text": "Review lab results",
+            "status": "pending",
+            "agent": "Lab Analysis Agent"
+        },
+        {
+            "id": "task-3",
+            "agent": "Pharmacist Agent",
+            "status": "pending",
+            "text": "Assess current medications",
+            "subTodos": [
+                {
+                    "text": "Check for drug interactions",
+                    "status": "pending"
+                },
+                {
+                    "text": "Verify dosages",
+                    "status": "pending"
+                }
+            ]
+        }
+    ],
+    "area": "planning-zone"
+}

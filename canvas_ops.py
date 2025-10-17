@@ -5,7 +5,7 @@ import aiohttp
 import helper_model
 
 # BASE_URL = "http://localhost:3001"
-BASE_URL = "https://patientcanvas-ai.vercel.app"
+BASE_URL = "https://cameraman-phi.vercel.app"
 AGENT_URL = "http://localhost:8000"
 
 async def get_agent_answer(todo):
@@ -61,51 +61,50 @@ def get_canvas_item_id():
     return json.dumps(item_desc, indent=4)
 
 
-async def focus_item(item_id):
-    # url = BASE_URL + "/api/focus-item"
-    # payload = {
-    # "itemId": item_id  # change to the ID of an existing box
-    # }
+async def focus_item(item_id, sub_element=""):
+
     url = BASE_URL + "/api/focus"
     payload = {
-        "objectId": item_id 
+        "objectId": item_id,
+        "subElement" : sub_element,
+        "focusOptions": {
+            "zoom": 1.8,
+            "highlight": True
+        }
     }
 
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as response:
+            with open("focus_payload.json", "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=4)
             data = await response.json()
+            with open("focus_response.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
             return data
 
 async def create_todo(payload_body):
-    # url = BASE_URL + "/api/add-box"
+
+
+    # url = BASE_URL + "/api/todos"
+    url = BASE_URL + "/api/enhanced-todo"
     # real_payload = {}
     # real_payload['title'] = payload_body['title']
-    # real_payload['content'] = payload_body['content']
-    # real_payload['area'] = payload_body['area']
-    # real_payload['items'] = []
+    # real_payload['description'] = payload_body['content']
+    # real_payload['todo_items'] = []
+
     # for i in payload_body['items']:
-    #     real_payload['items'].append({
-    #         "id": "",
-    #         "text": i,
-    #         "status": "active",
-    #         "priority":"high"
-    #     })
+    #     real_payload['todo_items'].append(i)
 
-    url = BASE_URL + "/api/todos"
-    real_payload = {}
-    real_payload['title'] = payload_body['title']
-    real_payload['description'] = payload_body['content']
-    real_payload['todo_items'] = []
-
-    for i in payload_body['items']:
-        real_payload['todo_items'].append(i)
-
-    payload = real_payload
+    payload = payload_body
 
     # response = requests.post(url, json=payload)
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as response:
+            with open("todo_payload.json", "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=4)
             data = await response.json()
+            with open("todo_response.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
             return data
     
 async def create_lab(payload_body):

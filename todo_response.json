@@ -1,0 +1,67 @@
+{
+    "id": "enhanced-todo-1760691595410-fpm1nra90",
+    "type": "todo",
+    "x": 1063.4895331482287,
+    "y": 429.6057496444049,
+    "width": 450,
+    "height": "auto",
+    "color": "#ffffff",
+    "description": "Gather all available information about Sarah Miller from various sources.",
+    "todoData": {
+        "title": "Gather All Sarah Miller's Information",
+        "description": "Gather all available information about Sarah Miller from various sources.",
+        "todos": [
+            {
+                "agent": "Medical Records Agent",
+                "status": "pending",
+                "text": "Collect patient history",
+                "subTodos": [
+                    {
+                        "text": "Review medical history",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Summarize key findings",
+                        "status": "pending"
+                    }
+                ],
+                "id": "task-1"
+            },
+            {
+                "subTodos": [
+                    {
+                        "text": "Analyze recent lab data",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Identify abnormal values",
+                        "status": "pending"
+                    }
+                ],
+                "id": "task-2",
+                "text": "Review lab results",
+                "status": "pending",
+                "agent": "Lab Analysis Agent"
+            },
+            {
+                "id": "task-3",
+                "agent": "Pharmacist Agent",
+                "status": "pending",
+                "text": "Assess current medications",
+                "subTodos": [
+                    {
+                        "text": "Check for drug interactions",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Verify dosages",
+                        "status": "pending"
+                    }
+                ]
+            }
+        ]
+    },
+    "rotation": 0,
+    "createdAt": "2025-10-17T08:59:55.410Z",
+    "updatedAt": "2025-10-17T08:59:55.410Z"
+}

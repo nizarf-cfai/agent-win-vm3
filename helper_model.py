@@ -4,7 +4,7 @@ import requests
 
 
 
-BASE_URL = "http://localhost:3001"
+BASE_URL = "https://cameraman-phi.vercel.app"
 
 def load_ehr():
     url = BASE_URL + "/api/board-items"
