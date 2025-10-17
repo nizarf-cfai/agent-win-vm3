@@ -5,7 +5,7 @@ import aiohttp
 import helper_model
 
 # BASE_URL = "http://localhost:3001"
-BASE_URL = "https://cameraman-phi.vercel.app"
+BASE_URL = "https://board-v2-ten.vercel.app"
 AGENT_URL = "http://localhost:8000"
 
 async def get_agent_answer(todo):

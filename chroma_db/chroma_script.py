@@ -8,7 +8,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
 load_dotenv()
 
-BASE_URL = "https://cameraman-phi.vercel.app"
+BASE_URL = "https://board-v2-ten.vercel.app"
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
@@ -18,6 +18,51 @@ def get_board_items():
     response = requests.get(url)
     data = response.json()
     return data
+
+def start_easl(question: str):
+    print(f"Starting EASL for question: {question}")
+    url = "https://inference-dili-16771232505.us-central1.run.app/generate-answers"
+
+    data = {
+        "questions": [
+            {
+                "question": question,
+                "question_id": "q1"
+            }
+        ],
+        "model_type": "reasoning_model"
+    }
+
+    response = requests.post(url, json=data)
+    return response
+
+def get_easl_answer(question: str):
+    answer = ""
+    init_response = start_easl(question)
+    print(f"Initial response: {init_response.status_code}")
+    if init_response.status_code == 200:
+        task_id = init_response.text.replace('"','')
+        print(f"Task ID: {task_id}")
+        retries = 0
+        while True:
+            print(f"Checking status of EASL. Retries: {retries}")
+            status_response = requests.get(f"https://inference-dili-16771232505.us-central1.run.app/generate-answers/status/{task_id}")
+            print(f"Status response: {status_response.status_code}")
+            if status_response.status_code == 200:
+                status_data = status_response.json()
+                print(f"Status data: {status_data}")
+                if status_data['status'] == 'completed':
+                    print(f"EASL completed. Getting result.")
+                    result_response = requests.get(f"https://inference-dili-16771232505.us-central1.run.app/generate-answers/result/{task_id}")
+                    result_data = result_response.json()
+                    answer = result_data['results'][0]['llm_answer']
+                    break
+            time.sleep(3)
+            retries += 1
+            if retries > 5:
+                break
+    return answer
+
 
 # ----------------------------
 # Common embedding helper
@@ -111,7 +156,12 @@ def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", col
         # Extract and return the documents
         if results["documents"] and results["documents"][0]:
             context = "\n".join(results["documents"][0])
-            return context
+            easl_question = f"Question: {query}\nContext: {context}"
+            easl_answer = get_easl_answer(easl_question)
+
+            rag_res = f"RAG Result: {context}\nEASL Answer: {easl_answer}"
+
+            return rag_res
         else:
             return []
             
@@ -124,14 +174,44 @@ def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", col
 # 2️⃣ RAG from JSON file (no DB)
 # ----------------------------
 # ---------- Helper: JSON → Markdown ----------
+# def json_to_markdown(obj: dict, index: int = 0) -> str:
+#     """
+#     Convert one JSON object into flat Markdown text.
+#     - Only a single '# Record {index}' heading.
+#     - No nested or secondary headings.
+#     - Nested dicts/lists flattened into simple key paths.
+#     """
+#     lines = [f"# Object Record {index + 1}"]
+
 def json_to_markdown(obj: dict, index: int = 0) -> str:
     """
     Convert one JSON object into flat Markdown text.
-    - Only a single '# Record {index}' heading.
-    - No nested or secondary headings.
-    - Nested dicts/lists flattened into simple key paths.
+    Enhanced with RAG-optimized metadata for better search relevance.
     """
     lines = [f"# Object Record {index + 1}"]
+    
+    # Add RAG optimization metadata for summary items
+    component_type = obj.get('componentType', '')
+    item_type = obj.get('type', '')
+    
+    # Boost summary/overview components with extra searchable keywords
+    if component_type == 'PatientContext':
+        lines.append("**SUMMARY ITEM - HIGH PRIORITY**")
+        lines.append("**Search Keywords:** patient summary, patient overview, patient context, sarah miller overview, demographics, primary diagnosis, patient profile, medical summary, patient snapshot, quick view, patient information, about patient")
+        lines.append("**Item Type:** PRIMARY PATIENT SUMMARY")
+    elif component_type == 'AdverseEventAnalytics':
+        lines.append("**SUMMARY ITEM - HIGH PRIORITY**")
+        lines.append("**Search Keywords:** adverse events summary, DILI summary, liver injury overview, event analysis, safety summary, adverse reactions overview")
+        lines.append("**Item Type:** ADVERSE EVENT SUMMARY")
+    elif component_type == 'EncounterTimeline':
+        lines.append("**DETAILED DATA ITEM**")
+        lines.append("**Search Keywords:** detailed timeline, full encounter history, complete medical history")
+        lines.append("**Item Type:** DETAILED ENCOUNTER DATA")
+    elif component_type == 'DifferentialDiagnosis':
+        lines.append("**DETAILED DATA ITEM**")
+        lines.append("**Search Keywords:** detailed differential, complete diagnosis list, full diagnostic analysis")
+        lines.append("**Item Type:** DETAILED DIAGNOSTIC DATA")
+
 
     def flatten(prefix, value):
         if isinstance(value, dict):
@@ -237,8 +317,12 @@ def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
         # Query
         results = collection.query(query_texts=[query], n_results=top_k)
         context = "\n".join(results["documents"][0])
+        easl_question = f"Question: {query}\nContext: {context}"
+        easl_answer = get_easl_answer(easl_question)
 
-        return context
+        rag_res = f"RAG Result: {context}\nEASL Answer: {easl_answer}"
+
+        return rag_res
         
     finally:
         # Clean up: delete the temporary collection

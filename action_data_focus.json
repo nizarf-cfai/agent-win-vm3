@@ -1,8 +1,8 @@
 {
     "success": true,
-    "message": "Focusing on item: enhanced-todo-1760691595410-fpm1nra90",
-    "objectId": "enhanced-todo-1760691595410-fpm1nra90",
-    "subElement": "",
+    "message": "Focus event broadcasted",
+    "itemId": "enhanced-todo-1760696546958-lqqe6gdmd",
+    "subElement": null,
     "focusOptions": {
         "zoom": 1.8,
         "highlight": true,

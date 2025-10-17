@@ -1,55 +1,37 @@
 {
-    "description": "Gather all available information about Sarah Miller from various sources.",
-    "title": "Gather All Sarah Miller's Information",
     "todos": [
         {
-            "agent": "Medical Records Agent",
+            "agent": "Radiology Agent",
             "status": "pending",
-            "text": "Collect patient history",
             "subTodos": [
                 {
-                    "text": "Review medical history",
-                    "status": "pending"
+                    "status": "pending",
+                    "text": "Liver Ultrasound Reports"
                 },
                 {
-                    "text": "Summarize key findings",
-                    "status": "pending"
+                    "status": "pending",
+                    "text": "CT Scans Reports"
                 }
             ],
-            "id": "task-1"
+            "id": "task-1",
+            "text": "Check for existing radiology reports"
         },
         {
-            "subTodos": [
-                {
-                    "text": "Analyze recent lab data",
-                    "status": "pending"
-                },
-                {
-                    "text": "Identify abnormal values",
-                    "status": "pending"
-                }
-            ],
+            "text": "Retrieve outside radiology imaging and reports",
+            "agent": "Radiology Agent",
             "id": "task-2",
-            "text": "Review lab results",
-            "status": "pending",
-            "agent": "Lab Analysis Agent"
+            "subTodos": [],
+            "status": "pending"
         },
         {
             "id": "task-3",
-            "agent": "Pharmacist Agent",
-            "status": "pending",
-            "text": "Assess current medications",
-            "subTodos": [
-                {
-                    "text": "Check for drug interactions",
-                    "status": "pending"
-                },
-                {
-                    "text": "Verify dosages",
-                    "status": "pending"
-                }
-            ]
+            "agent": "Radiology Agent",
+            "subTodos": [],
+            "text": "Collate and summarize all radiology findings",
+            "status": "pending"
         }
     ],
+    "description": "Collect and review all relevant radiology data for Sarah Miller",
+    "title": "Radiology Data Retrieval Workflow",
     "area": "planning-zone"
 }

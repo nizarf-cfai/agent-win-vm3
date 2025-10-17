@@ -1,67 +1,49 @@
 {
-    "id": "enhanced-todo-1760691595410-fpm1nra90",
+    "id": "enhanced-todo-1760696546958-lqqe6gdmd",
     "type": "todo",
-    "x": 1063.4895331482287,
-    "y": 429.6057496444049,
+    "x": 4260,
+    "y": 60,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Gather all available information about Sarah Miller from various sources.",
+    "description": "Collect and review all relevant radiology data for Sarah Miller",
     "todoData": {
-        "title": "Gather All Sarah Miller's Information",
-        "description": "Gather all available information about Sarah Miller from various sources.",
+        "title": "Radiology Data Retrieval Workflow",
+        "description": "Collect and review all relevant radiology data for Sarah Miller",
         "todos": [
             {
-                "agent": "Medical Records Agent",
+                "agent": "Radiology Agent",
                 "status": "pending",
-                "text": "Collect patient history",
                 "subTodos": [
                     {
-                        "text": "Review medical history",
-                        "status": "pending"
+                        "status": "pending",
+                        "text": "Liver Ultrasound Reports"
                     },
                     {
-                        "text": "Summarize key findings",
-                        "status": "pending"
+                        "status": "pending",
+                        "text": "CT Scans Reports"
                     }
                 ],
-                "id": "task-1"
+                "id": "task-1",
+                "text": "Check for existing radiology reports"
             },
             {
-                "subTodos": [
-                    {
-                        "text": "Analyze recent lab data",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Identify abnormal values",
-                        "status": "pending"
-                    }
-                ],
+                "text": "Retrieve outside radiology imaging and reports",
+                "agent": "Radiology Agent",
                 "id": "task-2",
-                "text": "Review lab results",
-                "status": "pending",
-                "agent": "Lab Analysis Agent"
+                "subTodos": [],
+                "status": "pending"
             },
             {
                 "id": "task-3",
-                "agent": "Pharmacist Agent",
-                "status": "pending",
-                "text": "Assess current medications",
-                "subTodos": [
-                    {
-                        "text": "Check for drug interactions",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Verify dosages",
-                        "status": "pending"
-                    }
-                ]
+                "agent": "Radiology Agent",
+                "subTodos": [],
+                "text": "Collate and summarize all radiology findings",
+                "status": "pending"
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-17T08:59:55.410Z",
-    "updatedAt": "2025-10-17T08:59:55.410Z"
+    "createdAt": "2025-10-17T10:22:26.961Z",
+    "updatedAt": "2025-10-17T10:22:26.961Z"
 }
