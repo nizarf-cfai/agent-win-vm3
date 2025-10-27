@@ -1,12 +1,13 @@
 {
     "success": true,
     "message": "Focus event broadcasted",
-    "itemId": "raw-ice-lab-data-encounter-5",
+    "itemId": "dashboard-item-1759906300004-single-encounter-6",
     "subElement": null,
     "focusOptions": {
         "zoom": 1.8,
         "highlight": true,
-        "duration": 2000,
-        "scrollIntoView": true
+        "duration": 500,
+        "scrollIntoView": true,
+        "smooth": true
     }
 }

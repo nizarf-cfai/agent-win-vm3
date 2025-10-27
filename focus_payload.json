@@ -1,8 +1,10 @@
 {
-    "objectId": "raw-ice-lab-data-encounter-5",
+    "objectId": "dashboard-item-1759906300004-single-encounter-6",
     "subElement": "",
     "focusOptions": {
         "zoom": 1.8,
-        "highlight": true
+        "highlight": true,
+        "smooth": true,
+        "duration": 500
     }
 }

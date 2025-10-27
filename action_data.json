@@ -1,55 +1,31 @@
 {
+    "title": "Gather All Sarah Miller Radiology Results",
+    "description": "Gather all of Sarah Miller's radiology results and review imaging reports",
     "todos": [
         {
-            "status": "pending",
-            "agent": "Lab Analyst",
-            "id": "task-101",
-            "text": "Review Viral Serologies",
             "subTodos": [
                 {
-                    "text": "Check Hepatitis A, B, C serologies",
-                    "status": "pending"
-                },
-                {
-                    "text": "Evaluate for other viral causes",
+                    "text": "Search for and collect all radiology reports",
                     "status": "pending"
                 }
-            ]
+            ],
+            "status": "pending",
+            "text": "Collect radiology reports",
+            "agent": "Radiology Agent",
+            "id": "task-1"
         },
         {
+            "agent": "Radiology Agent",
+            "id": "task-2",
+            "text": "Review imaging reports",
             "subTodos": [
                 {
                     "status": "pending",
-                    "text": "Check ANA, anti-smooth muscle antibody"
-                },
-                {
-                    "text": "Evaluate for autoimmune hepatitis",
-                    "status": "pending"
+                    "text": "Summarize findings and relevant images"
                 }
             ],
-            "id": "task-102",
-            "text": "Assess Autoimmune Markers",
-            "agent": "Immunology Agent",
             "status": "pending"
-        },
-        {
-            "status": "pending",
-            "subTodos": [
-                {
-                    "text": "Correlate lab findings with clinical presentation",
-                    "status": "pending"
-                },
-                {
-                    "text": "Review medication history",
-                    "status": "pending"
-                }
-            ],
-            "text": "Clinical Correlation",
-            "id": "task-103",
-            "agent": "General Practitioner"
         }
     ],
-    "description": "Comprehensive analysis of Sarah Miller's differential diagnosis to rule out other potential causes of liver injury, including viral and autoimmune etiologies.",
-    "title": "Analyze Differential Diagnosis for Sarah Miller",
     "area": "planning-zone"
 }
