@@ -3,14 +3,17 @@ import json
 import time
 import aiohttp
 import helper_model
+import os
 
 # BASE_URL = "http://localhost:3001"
-BASE_URL = "https://cameraman-phi.vercel.app"
-AGENT_URL = "http://localhost:8000"
+# BASE_URL = "https://cameraman-phi.vercel.app"
+
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
+
 
 async def get_agent_answer(todo):
     data = await helper_model.generate_response(todo)
-    # data = await response.json()
+
     result = {}
     result['content'] = data.get('answer', '')
     if todo.get('title'):
@@ -19,21 +22,7 @@ async def get_agent_answer(todo):
     return result
 
 def get_canvas_item_id():
-    # with open("canvas-data.json", "r", encoding="utf-8") as f:
-    #     data = json.load(f)
 
-    # items_data = []
-    # for d in data['boxes']:
-    #     items_data.append(
-    #         {
-    #             'id': d['id'],
-    #             'name': d['title'],
-    #             "content": d['content'],
-    #             "items": d.get('items', [])
-    #         }
-    #     )
-    
-    # return json.dumps(items_data, indent=4)
     url = BASE_URL + "/api/board-items"
     
     response = requests.get(url)
@@ -68,7 +57,7 @@ async def focus_item(item_id, sub_element=""):
         "objectId": item_id,
         "subElement" : sub_element,
         "focusOptions": {
-            "zoom": 1.8,
+            "zoom": 0.8,
             "highlight": True
         }
     }
@@ -84,16 +73,7 @@ async def focus_item(item_id, sub_element=""):
 
 async def create_todo(payload_body):
 
-
-    # url = BASE_URL + "/api/todos"
     url = BASE_URL + "/api/enhanced-todo"
-    # real_payload = {}
-    # real_payload['title'] = payload_body['title']
-    # real_payload['description'] = payload_body['content']
-    # real_payload['todo_items'] = []
-
-    # for i in payload_body['items']:
-    #     real_payload['todo_items'].append(i)
 
     payload = payload_body
 

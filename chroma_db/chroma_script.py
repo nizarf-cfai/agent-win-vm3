@@ -7,17 +7,149 @@ import google.generativeai as genai
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
 load_dotenv()
+import time
+import asyncio
+import httpx
+from typing import Optional
+from bs4 import BeautifulSoup
+import json, re
 
-BASE_URL = "https://cameraman-phi.vercel.app"
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 
+EASL_BASE_URL = "https://inference-dili-16771232505.us-central1.run.app"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+_client: Optional[httpx.AsyncClient] = None
+
+
+CITE_PATTERN = re.compile(r"\[cite:.*?\]")
+
+def strip_citations(text: str) -> str:
+    return CITE_PATTERN.sub("", text).strip()
+
+def parse_kin(text: str):
+    # Use XML parser to preserve tag names and whitespace handling
+    soup = BeautifulSoup(text, "html.parser")
+
+    short_el = soup.find("short_answer")
+    detailed_el = soup.find("detailed_answer")
+    refs_el = soup.find("guideline_references")
+
+    result = {
+        "short_answer": strip_citations(short_el.get_text(" ", strip=True)) if short_el else None,
+        "detailed_answer": strip_citations(detailed_el.get_text(" ", strip=True)) if detailed_el else None,
+        "guideline_references": []
+    }
+
+    if refs_el:
+        inner = refs_el.get_text().strip()
+
+        # First try: treat inner text as a comma-separated sequence of JSON objects -> wrap with []
+        try:
+            refs = json.loads(f"[{inner}]")
+        except json.JSONDecodeError:
+            # Fallback: extract each {...} block and parse individually
+            refs = []
+            for block in re.findall(r"\{.*?\}", inner, flags=re.S):
+                try:
+                    refs.append(json.loads(block))
+                except json.JSONDecodeError:
+                    # Soft-clean smart quotes, keep raw on failure
+                    cleaned = (block
+                               .replace("“", '"').replace("”", '"')
+                               .replace("’", "'").replace("‘", "'"))
+                    try:
+                        refs.append(json.loads(cleaned))
+                    except json.JSONDecodeError:
+                        refs.append({"raw": block})
+
+        result["guideline_references"] = refs
+
+    return result
+
+def get_client() -> httpx.AsyncClient:
+    global _client
+    if _client is None:
+        _client = httpx.AsyncClient(timeout=httpx.Timeout(30.0, connect=10.0))
+    return _client
+
 
 def get_board_items():
     url = BASE_URL + "/api/board-items"
     
     response = requests.get(url)
     data = response.json()
-    return data
+    result_data = []
+    for d in data:
+        if 'raw' in d.get('id',''):
+            pass
+        elif 'encounter' in d.get('id',''):
+            pass
+        else:
+            result_data.append(d)
+
+    with open("board_items.json", "w", encoding="utf-8") as f:
+        json.dump(result_data, f, indent=4)   # indent=4 makes it pretty
+    return result_data
+
+
+async def start_easl_async(question: str, client: Optional[httpx.AsyncClient] = None) -> str:
+    """
+    Kick off the EASL job and return task_id.
+    Raises httpx.HTTPStatusError on non-2xx.
+    """
+    client = client or get_client()
+    payload = {
+        "questions": [{"question": question, "question_id": "q1"}],
+        "model_type": "reasoning_model",
+    }
+    r = await client.post(f"{EASL_BASE_URL}/generate-answers", json=payload)
+    r.raise_for_status()
+    # API returns a quoted string task id, e.g. "abc123"
+    return r.text.strip().strip('"')
+
+async def poll_easl_status(task_id: str, *, interval: float = 3.0, max_retries: int = 5,
+                           client: Optional[httpx.AsyncClient] = None) -> bool:
+    """
+    Poll job status until completed or retries exhausted.
+    Returns True if completed, False otherwise.
+    """
+    client = client or get_client()
+    for attempt in range(max_retries + 1):
+        r = await client.get(f"{EASL_BASE_URL}/generate-answers/status/{task_id}")
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("status") == "completed":
+                return True
+        # Optional: small exponential backoff
+        await asyncio.sleep(interval * (1.2 ** attempt))
+    return False
+
+async def fetch_easl_result(task_id: str, client: Optional[httpx.AsyncClient] = None) -> str:
+    """
+    Fetch the completed result and return the first LLM answer.
+    """
+    client = client or get_client()
+    r = await client.get(f"{EASL_BASE_URL}/generate-answers/result/{task_id}")
+    r.raise_for_status()
+    data = r.json()
+    return parse_kin(data["results"][0]["llm_answer"])
+
+async def get_easl_answer_async(question: str, *,
+                                interval: float = 60.0,
+                                max_retries: int = 5,
+                                client: Optional[httpx.AsyncClient] = None) -> str:
+    """
+    Full async pipeline: start -> poll -> fetch.
+    Returns "" if not completed within retries.
+    """
+    client = client or get_client()
+    task_id = await start_easl_async(question, client=client)
+    completed = await poll_easl_status(task_id, interval=interval, max_retries=max_retries, client=client)
+    if not completed:
+        return ""
+    return await fetch_easl_result(task_id, client=client)
+
 
 # ----------------------------
 # Common embedding helper
@@ -111,13 +243,19 @@ def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", col
         # Extract and return the documents
         if results["documents"] and results["documents"][0]:
             context = "\n".join(results["documents"][0])
-            return context
+            easl_question = f"Question: {query}\nContext: {context}"
+            easl_answer = get_easl_answer(easl_question)
+
+
+            rag_res = f"RAG Result: {context}\nEASL Answer: {easl_answer}"
+
+            return rag_res
         else:
-            return []
+            return ""
             
     except Exception as e:
         print(f"Error querying ChromaDB collection: {e}")
-        return []
+        return ""
 
 
 # ----------------------------
@@ -131,7 +269,8 @@ def json_to_markdown(obj: dict, index: int = 0) -> str:
     - No nested or secondary headings.
     - Nested dicts/lists flattened into simple key paths.
     """
-    lines = [f"# Object Record {index + 1}"]
+    except_keys = ['x', 'y', 'width', 'height','color']
+    lines = [f"# Object Record {index}"]
 
     def flatten(prefix, value):
         if isinstance(value, dict):
@@ -144,16 +283,20 @@ def json_to_markdown(obj: dict, index: int = 0) -> str:
                 flatten(new_key, v)
         else:
             key_clean = prefix.replace("_", " ")
-            if key_clean == 'id':
+            if key_clean in except_keys:
+                pass
+            elif key_clean == 'id':
                 key_clean = 'objectId'
-            lines.append(f"**{key_clean}:** {value}")
+                lines.append(f"**{key_clean}:** {value}")
+            else:
+                lines.append(f"**{key_clean}:** {value}")
 
     flatten("", obj)
     return "\n".join(lines)
 
 
 # ---------- Main Function ----------
-def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
+async def rag_from_json(query: str="", top_k: int = 3):
     """
     Load JSON (list of objects), convert each record to Markdown,
     embed chunks in memory, and perform semantic RAG search.
@@ -165,9 +308,7 @@ def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
     client = chromadb.Client(Settings(anonymized_telemetry=False))
     
     # Create a unique collection name based on JSON path and timestamp
-    json_hash = hashlib.md5(json_path.encode()).hexdigest()[:8]
-    timestamp = str(int(time.time() * 1000))[-6:]  # Last 6 digits of timestamp
-    collection_name = f"temp_json_rag_{json_hash}_{timestamp}"
+    collection_name = f"temp_json_rag"
     
     try:
         # Create a custom embedding function for queries
@@ -192,9 +333,7 @@ def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
             embedding_function=CustomEmbeddingFunction()
         )
 
-        # Load JSON data
-        # with open(json_path, "r", encoding="utf-8") as f:
-        #     data = json.load(f)
+
         data = get_board_items()
 
         # Normalize: list of dicts
@@ -202,14 +341,11 @@ def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
             data = [data]
 
         # Convert each object to Markdown string
-        md_blocks = [json_to_markdown(obj) for obj in data]
+        md_blocks = [json_to_markdown(obj, i) for i,obj in enumerate(data)]
 
-        # Chunk each Markdown block
-        # splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        # chunks = []
-        # for block in md_blocks:
-        #     chunks.extend(splitter.split_text(block))
+        # Use each md_block as a single chunk to preserve objectId integrity
         chunks = md_blocks
+
         # Embed and store in Chroma
         embeddings = embed_texts(chunks)
         ids = [f"chunk_{i}" for i in range(len(chunks))]
@@ -236,8 +372,11 @@ def rag_from_json(json_path: str="", query: str="", top_k: int = 3):
 
         # Query
         results = collection.query(query_texts=[query], n_results=top_k)
-        context = "\n".join(results["documents"][0])
+        context = "\n\n".join(results["documents"][0])
 
+        # easl_answer = await get_easl_answer_async(f"Question: {query}\nContext: {context}")
+        # easl_answer = ""
+        # full_result = f"RAG Result: \n{context}\nEASL Answer: \n{easl_answer}"
         return context
         
     finally:

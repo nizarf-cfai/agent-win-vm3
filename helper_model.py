@@ -4,7 +4,8 @@ import requests
 
 
 
-BASE_URL = "https://cameraman-phi.vercel.app"
+
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 
 def load_ehr():
     url = BASE_URL + "/api/board-items"

@@ -1,0 +1,580 @@
+[
+    {
+        "id": "dashboard-item-1759853783245-patient-context",
+        "type": "component",
+        "x": 100,
+        "y": 100,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "PatientContext",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Patient Context",
+            "component": "PatientContext",
+            "props": {
+                "patientData": {
+                    "patient": {
+                        "name": "Sarah Miller",
+                        "date_of_birth": "1962-03-15",
+                        "age": 63,
+                        "sex": "Female",
+                        "age_at_first_encounter": 53,
+                        "identifiers": {
+                            "mrn": "MC-001001"
+                        }
+                    },
+                    "riskLevel": "high",
+                    "primaryDiagnosis": "Rheumatoid arthritis",
+                    "problem_list": [
+                        {
+                            "name": "Rheumatoid arthritis",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Essential hypertension",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Mild chronic kidney disease",
+                            "status": "active"
+                        }
+                    ],
+                    "medication_timeline": [
+                        {
+                            "name": "Methotrexate",
+                            "dose": "20 mg",
+                            "route": "PO",
+                            "frequency": "weekly",
+                            "start": "2018-09-05"
+                        },
+                        {
+                            "name": "Folic Acid",
+                            "dose": "5 mg",
+                            "route": "PO",
+                            "frequency": "weekly",
+                            "start": "2015-08-10"
+                        },
+                        {
+                            "name": "Lisinopril",
+                            "dose": "10 mg",
+                            "route": "PO",
+                            "frequency": "daily",
+                            "start": "2018-09-05"
+                        },
+                        {
+                            "name": "Trimethoprim-Sulfamethoxazole",
+                            "dose": "800/160 mg",
+                            "route": "PO",
+                            "frequency": "BID",
+                            "start": "2025-06-15",
+                            "end": "2025-06-25"
+                        }
+                    ],
+                    "allergies": [
+                        "Penicillin (rash)"
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:16:23.245Z",
+        "updatedAt": "2025-10-14T16:16:23.245Z"
+    },
+    {
+        "id": "dashboard-item-1759906219477-adverse-event-analytics",
+        "type": "component",
+        "x": 100,
+        "y": 700,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "AdverseEventAnalytics",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Adverse Event Analytics",
+            "component": "AdverseEventAnalytics",
+            "props": {
+                "patientData": {
+                    "adverseEvents": [
+                        {
+                            "event": "Drug-Induced Liver Injury (DILI)",
+                            "severity": "Severe",
+                            "description": "Acute hepatocellular injury with jaundice and encephalopathy following TMP-SMX initiation in patient on chronic MTX"
+                        },
+                        {
+                            "event": "Hepatic Encephalopathy",
+                            "severity": "4",
+                            "description": "Asterixis, disorientation to time/place, GCS 13 (E4 V3 M6)"
+                        },
+                        {
+                            "event": "Acute Liver Failure",
+                            "severity": "4",
+                            "description": "ALT/AST >20\u00d7 ULN, INR elevated, bilirubin \u22653\u00d7 ULN with clinical jaundice"
+                        },
+                        {
+                            "event": "Methotrexate Toxicity",
+                            "severity": "Severe",
+                            "description": "Synergistic hepatotoxicity with TMP-SMX; oral mucosal ulcerations present"
+                        }
+                    ],
+                    "riskAssessment": {
+                        "keyRiskFactors": [
+                            "The patient developed acute jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX (started June 15; symptoms June 20; presentation June 21), a timeline that strongly fits idiosyncratic hepatocellular DILI",
+                            "Mechanistically, TMP-SMX can raise free methotrexate levels and impair folate metabolism; in an older patient with alcohol use (and possible CKD), this pharmacologic interaction plausibly potentiates hepatocellular necrosis",
+                            "The clinical pattern is hepatocellular (expected ALT > AST \u226b ALP) and the presence of encephalopathy with presumed INR >1.5 and elevated bilirubin meets criteria for non-acetaminophen acute liver failure",
+                            "RUCAM totals 7 (Probable), with TMP-SMX as the primary culprit and methotrexate as a significant co-factor",
+                            "Immediate management includes withdrawal of both agents, initiation of N-acetylcysteine, aggressive supportive care, and ICU-level monitoring"
+                        ]
+                    }
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:19.477Z",
+        "updatedAt": "2025-10-14T16:50:19.477Z"
+    },
+    {
+        "id": "dashboard-item-1759906246155-lab-table",
+        "type": "component",
+        "x": 1750,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabTable",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Findings",
+            "component": "LabTable",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "meta": {
+                            "ui_risk_color": "amber"
+                        }
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "meta": {
+                            "ui_risk_color": "red",
+                            "event_tags": [
+                                "Suspected DILI",
+                                "Potential MTX toxicity",
+                                "Acute liver failure risk"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.155Z",
+        "updatedAt": "2025-10-14T16:50:46.155Z"
+    },
+    {
+        "id": "dashboard-item-1759906246156-lab-chart",
+        "type": "component",
+        "x": 2300,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabChart",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Trends",
+            "component": "LabChart",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "meta": {
+                            "ui_risk_color": "amber"
+                        }
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "meta": {
+                            "ui_risk_color": "red",
+                            "event_tags": [
+                                "Suspected DILI",
+                                "Potential MTX toxicity"
+                            ]
+                        }
+                    }
+                ],
+                "medicationTimeline": [
+                    {
+                        "name": "Methotrexate",
+                        "start": "2015-08-10",
+                        "dose": "10mg weekly"
+                    },
+                    {
+                        "name": "Methotrexate",
+                        "start": "2018-09-05",
+                        "dose": "20mg weekly"
+                    },
+                    {
+                        "name": "Lisinopril",
+                        "start": "2018-09-05",
+                        "dose": "10mg daily"
+                    },
+                    {
+                        "name": "Trimethoprim-Sulfamethoxazole",
+                        "start": "2025-06-15",
+                        "end": "2025-06-25",
+                        "dose": "800/160mg BID"
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.156Z",
+        "updatedAt": "2025-10-14T16:50:46.156Z"
+    },
+    {
+        "id": "dashboard-item-1759906246157-differential-diagnosis",
+        "type": "component",
+        "x": 2850,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "DifferentialDiagnosis",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Differential Diagnosis",
+            "component": "DifferentialDiagnosis",
+            "props": {
+                "patientData": {
+                    "encounters": [
+                        {
+                            "encounter_no": 6,
+                            "assessment": {
+                                "impression": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
+                                "differential": [
+                                    "Severe methotrexate toxicity (\u00b1 pancytopenia, hepatic/renal injury)",
+                                    "TMP-SMX\u2013induced DILI",
+                                    "Acute viral hepatitis",
+                                    "Acute decompensation of undiagnosed chronic liver disease",
+                                    "Sepsis with multiorgan dysfunction"
+                                ]
+                            },
+                            "rucam_ctcae_analysis": {
+                                "rucam": {
+                                    "rows": [
+                                        [
+                                            "5",
+                                            "Exclusion of non-drug causes",
+                                            "viral hepatitis pending",
+                                            "+2",
+                                            "Awaiting serology"
+                                        ]
+                                    ]
+                                },
+                                "reasoning": "no autoimmune or metabolic history; no fever or hemodynamic instability"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.157Z",
+        "updatedAt": "2025-10-14T16:50:46.157Z"
+    },
+    {
+        "id": "enhanced-todo-1761633779383-ss1tfvv1h",
+        "type": "todo",
+        "x": 4260,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Comprehensive patient admission process with detailed sub-tasks",
+        "todoData": {
+            "title": "Patient Admission Workflow",
+            "description": "Comprehensive patient admission process with detailed sub-tasks",
+            "todos": [
+                {
+                    "id": "task-101",
+                    "text": "Initial Patient Assessment",
+                    "status": "executing",
+                    "agent": "Assessment Agent",
+                    "subTodos": [
+                        {
+                            "text": "Check vital signs",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Review medical history",
+                            "status": "executing"
+                        },
+                        {
+                            "text": "Document chief complaint",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-102",
+                    "text": "Laboratory Testing",
+                    "status": "pending",
+                    "agent": "Lab Coordination Agent",
+                    "subTodos": [
+                        {
+                            "text": "Order blood work",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Schedule imaging studies",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Collect urine sample",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-103",
+                    "text": "Treatment Planning",
+                    "status": "finished",
+                    "agent": "Treatment Planning Agent",
+                    "subTodos": [
+                        {
+                            "text": "Consult with specialists",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Develop care plan",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Set treatment goals",
+                            "status": "finished"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-28T06:42:59.390Z",
+        "updatedAt": "2025-10-28T06:42:59.390Z"
+    },
+    {
+        "id": "enhanced-todo-1761633783811-4y74tly0m",
+        "type": "todo",
+        "x": 4840,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Comprehensive patient admission process with detailed sub-tasks",
+        "todoData": {
+            "title": "Patient Admission Workflow",
+            "description": "Comprehensive patient admission process with detailed sub-tasks",
+            "todos": [
+                {
+                    "id": "task-101",
+                    "text": "Initial Patient Assessment",
+                    "status": "executing",
+                    "agent": "Assessment Agent",
+                    "subTodos": [
+                        {
+                            "text": "Check vital signs",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Review medical history",
+                            "status": "executing"
+                        },
+                        {
+                            "text": "Document chief complaint",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-102",
+                    "text": "Laboratory Testing",
+                    "status": "pending",
+                    "agent": "Lab Coordination Agent",
+                    "subTodos": [
+                        {
+                            "text": "Order blood work",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Schedule imaging studies",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Collect urine sample",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-103",
+                    "text": "Treatment Planning",
+                    "status": "finished",
+                    "agent": "Treatment Planning Agent",
+                    "subTodos": [
+                        {
+                            "text": "Consult with specialists",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Develop care plan",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Set treatment goals",
+                            "status": "finished"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-28T06:43:03.813Z",
+        "updatedAt": "2025-10-28T06:43:03.813Z"
+    },
+    {
+        "id": "enhanced-todo-1761633788717-72f99sacz",
+        "type": "todo",
+        "x": 5420,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Comprehensive patient admission process with detailed sub-tasks",
+        "todoData": {
+            "title": "Patient Admission Workflow",
+            "description": "Comprehensive patient admission process with detailed sub-tasks",
+            "todos": [
+                {
+                    "id": "task-101",
+                    "text": "Initial Patient Assessment",
+                    "status": "executing",
+                    "agent": "Assessment Agent",
+                    "subTodos": [
+                        {
+                            "text": "Check vital signs",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Review medical history",
+                            "status": "executing"
+                        },
+                        {
+                            "text": "Document chief complaint",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-102",
+                    "text": "Laboratory Testing",
+                    "status": "pending",
+                    "agent": "Lab Coordination Agent",
+                    "subTodos": [
+                        {
+                            "text": "Order blood work",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Schedule imaging studies",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Collect urine sample",
+                            "status": "pending"
+                        }
+                    ]
+                },
+                {
+                    "id": "task-103",
+                    "text": "Treatment Planning",
+                    "status": "finished",
+                    "agent": "Treatment Planning Agent",
+                    "subTodos": [
+                        {
+                            "text": "Consult with specialists",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Develop care plan",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Set treatment goals",
+                            "status": "finished"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-28T06:43:08.719Z",
+        "updatedAt": "2025-10-28T06:43:08.719Z"
+    }
+]

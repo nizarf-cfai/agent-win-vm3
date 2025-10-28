@@ -1,55 +1,67 @@
 {
-    "description": "Gather all available information about Sarah Miller from various sources.",
-    "title": "Gather All Sarah Miller's Information",
+    "description": "Comprehensive diagnostic workflow for Sarah Miller including detailed sub-tasks",
     "todos": [
         {
-            "agent": "Medical Records Agent",
-            "status": "pending",
-            "text": "Collect patient history",
-            "subTodos": [
-                {
-                    "text": "Review medical history",
-                    "status": "pending"
-                },
-                {
-                    "text": "Summarize key findings",
-                    "status": "pending"
-                }
-            ],
-            "id": "task-1"
-        },
-        {
-            "subTodos": [
-                {
-                    "text": "Analyze recent lab data",
-                    "status": "pending"
-                },
-                {
-                    "text": "Identify abnormal values",
-                    "status": "pending"
-                }
-            ],
-            "id": "task-2",
-            "text": "Review lab results",
-            "status": "pending",
-            "agent": "Lab Analysis Agent"
-        },
-        {
-            "id": "task-3",
-            "agent": "Pharmacist Agent",
-            "status": "pending",
-            "text": "Assess current medications",
+            "text": "Review patient history and current medications",
+            "id": "task-101",
+            "agent": "Pharmacist",
             "subTodos": [
                 {
                     "text": "Check for drug interactions",
+                    "status": "finished"
+                },
+                {
+                    "text": "Assess methotrexate and TMP-SMX usage",
+                    "status": "executing"
+                },
+                {
+                    "status": "pending",
+                    "text": "Evaluate penicillin allergy"
+                }
+            ],
+            "status": "executing"
+        },
+        {
+            "status": "pending",
+            "text": "Order comprehensive lab tests",
+            "subTodos": [
+                {
+                    "status": "pending",
+                    "text": "Request liver function panel"
+                },
+                {
+                    "text": "Order viral hepatitis serology",
                     "status": "pending"
                 },
                 {
-                    "text": "Verify dosages",
+                    "text": "Check complete blood count",
+                    "status": "pending"
+                }
+            ],
+            "agent": "Lab Coordinator",
+            "id": "task-102"
+        },
+        {
+            "status": "pending",
+            "agent": "Hepatologist",
+            "id": "task-103",
+            "text": "Consult with specialist",
+            "subTodos": [
+                {
+                    "text": "Discuss complex case details",
+                    "status": "pending"
+                },
+                {
+                    "status": "pending",
+                    "text": "Consider liver biopsy"
+                },
+                {
+                    "text": "Review potential alternative diagnoses",
                     "status": "pending"
                 }
             ]
         }
     ],
+    "title": "Deeper Diagnosis Workflow for Sarah Miller",
     "area": "planning-zone"
 }
