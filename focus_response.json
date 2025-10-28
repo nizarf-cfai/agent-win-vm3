@@ -1,13 +1,12 @@
 {
     "success": true,
     "message": "Focus event broadcasted",
-    "itemId": "dashboard-item-1759906300004-single-encounter-6",
+    "itemId": "enhanced-todo-1761617093970-a1f8d2zbs",
     "subElement": null,
     "focusOptions": {
-        "zoom": 1.8,
-        "highlight": true,
-        "duration": 500,
-        "scrollIntoView": true,
-        "smooth": true
+        "zoom": 0.8,
+        "highlight": false,
+        "duration": 2000,
+        "scrollIntoView": true
     }
 }

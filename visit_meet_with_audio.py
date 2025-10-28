@@ -19,8 +19,6 @@ from DrissionPage import ChromiumPage, ChromiumOptions
 import pyautogui
 from PIL import Image, ImageDraw
 
-CANVAS_PAGE = "http://localhost:3000"
-# Google Meet link
 # MEET_LINK = "https://meet.google.com/xdt-graq-fcm"
 MEET_LINK = "https://meet.google.com/vqh-jfsc-vid"
  
@@ -39,146 +37,6 @@ def create_chrome_options():
     
     return co
 
-def open_new_tab_and_visit(page, url):
-
-    try:
-        print(f"Opening new tab and visiting: {url}")
-        
-        # Use JavaScript to open a new tab with the URL
-        # page.run_js(f"window.open('{url}', '_blank');")
-        page.new_tab(url=url, background=True)
-        print(f"✓ New tab opened and navigated to: {url}")
-        
-        # Wait a moment for the page to load
-        time.sleep(2)
-        # tabs = page.get_tabs()
-        # print(tabs[0].tab_id)
-        # page.tab_id = tabs[0].tab_id
-        # page.activate_tab(tabs[0])
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error opening new tab and visiting {url}: {e}")
-        return False
-
-def check_coordinate(x, y, save_path="coordinate_check.png"):
-    """
-    Take a screenshot and mark the specified coordinate with a red dot
-    
-    Args:
-        x (int): X coordinate
-        y (int): Y coordinate  
-        save_path (str): Path to save the screenshot with red dot
-    
-    Returns:
-        str: Path to the saved image
-    """
-    print(f"🎯 Checking coordinate ({x}, {y})...")
-    
-    try:
-        # Take a screenshot
-        screenshot = pyautogui.screenshot()
-        
-        # screenshot is already a PIL Image, no need to convert
-        img = screenshot
-        draw = ImageDraw.Draw(img)
-        
-        # Draw a red dot at the coordinate
-        dot_radius = 10
-        draw.ellipse([
-            x - dot_radius, y - dot_radius, 
-            x + dot_radius, y + dot_radius
-        ], fill='red', outline='darkred', width=3)
-        
-        # Draw crosshairs for better visibility
-        crosshair_size = 20
-        draw.line([x - crosshair_size, y, x + crosshair_size, y], fill='red', width=2)
-        draw.line([x, y - crosshair_size, x, y + crosshair_size], fill='red', width=2)
-        
-        # Add text label
-        draw.text((x + 15, y - 25), f"({x}, {y})", fill='red')
-        
-        # Save the image
-        img.save(save_path)
-        print(f"✓ Screenshot saved with red dot at ({x}, {y}): {save_path}")
-        
-        return save_path
-        
-    except Exception as e:
-        print(f"❌ Error taking screenshot: {e}")
-        return None
-
-def handle_chrome_dialog():
-    """
-    Handle Chrome screen sharing dialog using screen automation
-    """
-    print("🎯 Automating Chrome screen sharing dialog...")
-    
-    # Wait for dialog to appear
-    time.sleep(2)
-    
-    try:
-        # Look for "Chrome Tab" option and click it
-        print("Looking for 'Chrome Tab' option...")
-        pyautogui.click(730, 230)
-        
-        time.sleep(1)
-        pyautogui.click(1130, 630)
-        
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error automating Chrome dialog: {e}")
-
-        return False
-
-def meet_ops(page):
-    tabs = page.get_tabs()
-    print(f"Tab ID: {tabs[1].tab_id}")
-    first_tab = tabs[1]
-    
-    # Get the title of the first tab
-    try:
-        title = first_tab.title
-        print(f"Tab Title: {title}")
-    except Exception as e:
-        print(f"Could not get tab title: {e}")
-    
-    # Also try to get the URL
-    try:
-        url = first_tab.url
-        print(f"Tab URL: {url}")
-    except Exception as e:
-        print(f"Could not get tab URL: {e}")
-    
-    # Look for button with data-promo-anchor-id="hNGZQc"
-    print("Looking for button with data-promo-anchor-id='hNGZQc'...")
-    try:
-        button_element = first_tab.ele('@data-promo-anchor-id=hNGZQc', timeout=5)
-        if button_element:
-            print("✓ Found button with data-promo-anchor-id='hNGZQc'")
-            print(f"Button text: {button_element.text}")
-            print(f"Button tag: {button_element.tag}")
-            button_element.click()
-            print("✓ Clicked button")
-            
-            # Use screen automation to handle the Chrome dialog
-            success = handle_chrome_dialog()
-            
-            if success:
-                print("✓ Screen sharing automation completed!")
-            else:
-                print("⚠️ Screen automation failed, manual intervention may be required")
-                
-        else:
-            print("○ Button with data-promo-anchor-id='hNGZQc' not found")
-    except Exception as e:
-        print(f"○ Could not find button: {e}")
-
-    time.sleep(1)
-    
 
 
 def main(MEET_LINK):
@@ -267,10 +125,7 @@ def main(MEET_LINK):
                 print("○ Button with data-promo-anchor-id='w5gBed' not found")
         except Exception as e:
             print(f"○ Could not find or click button: {e}")
-        #data-promo-anchor-id="hNGZQc"
 
-
-        # open_new_tab_and_visit(page, CANVAS_PAGE)
         time.sleep(1)
         
         # Test coordinate checking function
@@ -278,18 +133,7 @@ def main(MEET_LINK):
         print("You can now test coordinates by calling: check_coordinate(x, y)")
         print("Example: check_coordinate(400, 300)")
         # meet_ops(page)
-        
-        # Uncomment the line below to test a specific coordinate
-        # check_coordinate(1130, 630, "test_coordinate.png")
-        
-        # Example: Test multiple coordinates for Chrome dialog
-        # check_coordinate(400, 300, "chrome_tab_option.png")  # Chrome Tab option
-        # check_coordinate(400, 400, "tab_selection.png")      # Tab selection area
-        # check_coordinate(400, 500, "audio_checkbox.png")    # Audio checkbox
-        # check_coordinate(500, 600, "share_button.png")      # Share button
-        
 
-        
         # Keep the browser open
         print("\n🔄 Meeting is now active with audio bridge integration!")
         print("Press Ctrl+C to close the meeting and stop the audio bridge...")

@@ -7,8 +7,7 @@ import os
 import asyncio
 from typing import Optional, Dict, Any
 
-BASE_URL = os.getenv("CANVAS_BASE_URL", "https://board-v2-ten.vercel.app")
-AGENT_URL = "http://localhost:8000"
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 
 print(f"🌐 Canvas Operations configured with BASE_URL: {BASE_URL}")
 
@@ -119,13 +118,13 @@ async def focus_item(item_id: str, sub_element: str = "", max_retries: int = MAX
         payload = {
             "objectId": item_id,
             "subElement": sub_element,
-            "focusOptions": {
-                "zoom": 1.8,
-                "highlight": True,
-                "smooth": True,  # Enable smooth transitions
-                "duration": 500   # Animation duration in ms
-            }
+            # "focusOptions": {
+            #     "zoom": 1.8,
+            #     "highlight": True,
+            #     "duration": 500   # Animation duration in ms
+            # }
         }
+
         
         timeout = aiohttp.ClientTimeout(total=10)
         
@@ -177,7 +176,7 @@ async def create_todo(payload_body: Dict[Any, Any]) -> Dict[Any, Any]:
         
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.post(url, json=payload_body) as response:
-                if response.status != 200:
+                if response.status != 201:
                     error_text = await response.text()
                     raise Exception(f"Todo API returned {response.status}: {error_text}")
                 
@@ -258,7 +257,7 @@ async def create_result(agent_result: Dict[Any, Any]) -> Dict[Any, Any]:
         
         async with aiohttp.ClientSession(timeout=timeout) as session:
             async with session.post(url, json=agent_result) as response:
-                if response.status != 200:
+                if response.status != 201:
                     error_text = await response.text()
                     raise Exception(f"Agent API returned {response.status}: {error_text}")
                 

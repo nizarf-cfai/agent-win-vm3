@@ -1,11 +1,11 @@
 {
     "success": true,
     "message": "Focus event broadcasted",
-    "itemId": "enhanced-todo-1761040023213-0q2rvw0f2",
+    "itemId": "enhanced-todo-1761617093970-a1f8d2zbs",
     "subElement": null,
     "focusOptions": {
-        "zoom": 0.9,
-        "highlight": true,
+        "zoom": 0.8,
+        "highlight": false,
         "duration": 2000,
         "scrollIntoView": true
     }

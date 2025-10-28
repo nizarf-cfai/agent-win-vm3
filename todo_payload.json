@@ -1,55 +1,31 @@
 {
-    "description": "Comprehensive radiology data retrieval, comparison, and summary for Sarah Miller.",
     "todos": [
         {
-            "status": "executing",
-            "id": "task-101",
-            "agent": "Radiology Agent",
-            "subTodos": [
-                {
-                    "text": "Retrieve latest radiology reports",
-                    "status": "finished"
-                },
-                {
-                    "status": "executing",
-                    "text": "Compile all available imaging data"
-                }
-            ],
-            "text": "Gather Imaging Reports"
-        },
-        {
-            "agent": "Radiology Agent",
-            "id": "task-102",
-            "subTodos": [
-                {
-                    "text": "Compare current and prior imaging",
-                    "status": "pending"
-                },
-                {
-                    "text": "Identify any changes or abnormalities",
-                    "status": "pending"
-                }
-            ],
-            "text": "Compare to Previous Studies",
-            "status": "pending"
-        },
-        {
-            "id": "task-103",
-            "agent": "Radiology Agent",
-            "subTodos": [
-                {
-                    "status": "pending",
-                    "text": "Document key findings in report"
-                },
-                {
-                    "text": "Highlight any clinically significant changes",
-                    "status": "pending"
-                }
-            ],
+            "id": "1",
             "status": "pending",
-            "text": "Summarize Key Findings"
+            "text": "Review patient history and current symptoms",
+            "agent": "Physician"
+        },
+        {
+            "id": "2",
+            "status": "pending",
+            "agent": "Physician",
+            "text": "Analyze recent lab results for liver function and MTX levels"
+        },
+        {
+            "status": "pending",
+            "id": "3",
+            "text": "Consider differential diagnoses: DILI, MTX toxicity, viral hepatitis",
+            "agent": "Physician"
+        },
+        {
+            "agent": "Physician",
+            "id": "4",
+            "text": "Consult with specialist if needed (hepatologist, rheumatologist)",
+            "status": "pending"
         }
     ],
-    "title": "Radiology Data Retrieval Workflow",
+    "title": "Confirm diagnosis for Sarah Miller",
+    "description": "Review all available data and lab results to confirm the diagnosis.",
     "area": "planning-zone"
 }

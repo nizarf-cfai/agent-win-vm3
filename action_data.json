@@ -1,31 +1,31 @@
 {
-    "title": "Gather All Sarah Miller Radiology Results",
-    "description": "Gather all of Sarah Miller's radiology results and review imaging reports",
     "todos": [
         {
-            "subTodos": [
-                {
-                    "text": "Search for and collect all radiology reports",
-                    "status": "pending"
-                }
-            ],
+            "id": "1",
             "status": "pending",
-            "text": "Collect radiology reports",
-            "agent": "Radiology Agent",
-            "id": "task-1"
+            "text": "Review patient history and current symptoms",
+            "agent": "Physician"
         },
         {
-            "agent": "Radiology Agent",
-            "id": "task-2",
-            "text": "Review imaging reports",
-            "subTodos": [
-                {
-                    "status": "pending",
-                    "text": "Summarize findings and relevant images"
-                }
-            ],
+            "id": "2",
+            "status": "pending",
+            "agent": "Physician",
+            "text": "Analyze recent lab results for liver function and MTX levels"
+        },
+        {
+            "status": "pending",
+            "id": "3",
+            "text": "Consider differential diagnoses: DILI, MTX toxicity, viral hepatitis",
+            "agent": "Physician"
+        },
+        {
+            "agent": "Physician",
+            "id": "4",
+            "text": "Consult with specialist if needed (hepatologist, rheumatologist)",
             "status": "pending"
         }
     ],
+    "title": "Confirm diagnosis for Sarah Miller",
+    "description": "Review all available data and lab results to confirm the diagnosis.",
     "area": "planning-zone"
 }

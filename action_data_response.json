@@ -1,67 +1,43 @@
 {
-    "id": "enhanced-todo-1761040023213-0q2rvw0f2",
+    "id": "enhanced-todo-1761617093970-a1f8d2zbs",
     "type": "todo",
     "x": 4260,
     "y": 60,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Comprehensive radiology data retrieval, comparison, and summary for Sarah Miller.",
+    "description": "Review all available data and lab results to confirm the diagnosis.",
     "todoData": {
-        "title": "Radiology Data Retrieval Workflow",
-        "description": "Comprehensive radiology data retrieval, comparison, and summary for Sarah Miller.",
+        "title": "Confirm diagnosis for Sarah Miller",
+        "description": "Review all available data and lab results to confirm the diagnosis.",
         "todos": [
             {
-                "status": "executing",
-                "id": "task-101",
-                "agent": "Radiology Agent",
-                "subTodos": [
-                    {
-                        "text": "Retrieve latest radiology reports",
-                        "status": "finished"
-                    },
-                    {
-                        "status": "executing",
-                        "text": "Compile all available imaging data"
-                    }
-                ],
-                "text": "Gather Imaging Reports"
-            },
-            {
-                "agent": "Radiology Agent",
-                "id": "task-102",
-                "subTodos": [
-                    {
-                        "text": "Compare current and prior imaging",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Identify any changes or abnormalities",
-                        "status": "pending"
-                    }
-                ],
-                "text": "Compare to Previous Studies",
-                "status": "pending"
-            },
-            {
-                "id": "task-103",
-                "agent": "Radiology Agent",
-                "subTodos": [
-                    {
-                        "status": "pending",
-                        "text": "Document key findings in report"
-                    },
-                    {
-                        "text": "Highlight any clinically significant changes",
-                        "status": "pending"
-                    }
-                ],
+                "id": "1",
                 "status": "pending",
-                "text": "Summarize Key Findings"
+                "text": "Review patient history and current symptoms",
+                "agent": "Physician"
+            },
+            {
+                "id": "2",
+                "status": "pending",
+                "agent": "Physician",
+                "text": "Analyze recent lab results for liver function and MTX levels"
+            },
+            {
+                "status": "pending",
+                "id": "3",
+                "text": "Consider differential diagnoses: DILI, MTX toxicity, viral hepatitis",
+                "agent": "Physician"
+            },
+            {
+                "agent": "Physician",
+                "id": "4",
+                "text": "Consult with specialist if needed (hepatologist, rheumatologist)",
+                "status": "pending"
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-21T09:47:03.216Z",
-    "updatedAt": "2025-10-21T09:47:03.216Z"
+    "createdAt": "2025-10-28T02:04:53.972Z",
+    "updatedAt": "2025-10-28T02:04:53.972Z"
 }
