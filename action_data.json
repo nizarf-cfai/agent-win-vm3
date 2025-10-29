@@ -1,28 +1,59 @@
 {
     "todos": [
         {
-            "subTodos": [],
-            "status": "pending",
-            "agent": "Radiology Data Collector",
             "id": "1",
-            "text": "Collect all radiology reports for Sarah Miller"
+            "status": "pending",
+            "subTodos": [
+                {
+                    "text": "Confirm ultrasound has been performed",
+                    "status": "pending"
+                }
+            ],
+            "text": "Check for new radiology results for Sarah Miller",
+            "agent": "Medforce Agent"
         },
         {
-            "agent": "Radiology Report Analyzer",
             "status": "pending",
-            "text": "Summarize key findings from each report",
             "id": "2",
-            "subTodos": []
+            "agent": "Radiology System",
+            "text": "Retrieve radiology images and reports",
+            "subTodos": [
+                {
+                    "status": "pending",
+                    "text": "Access Sarah Miller's radiology records"
+                },
+                {
+                    "status": "pending",
+                    "text": "Download images in DICOM format"
+                },
+                {
+                    "status": "pending",
+                    "text": "Download associated reports in PDF format"
+                }
+            ]
         },
         {
-            "subTodos": [],
-            "status": "pending",
-            "agent": "EHR Integrator",
             "id": "3",
-            "text": "Integrate results into patient record"
+            "subTodos": [
+                {
+                    "text": "Log into the designated portal with appropriate credentials",
+                    "status": "pending"
+                },
+                {
+                    "status": "pending",
+                    "text": "Upload DICOM images and PDF reports to Sarah Miller's patient record"
+                },
+                {
+                    "status": "pending",
+                    "text": "Verify successful upload and data integrity"
+                }
+            ],
+            "agent": "Portal System",
+            "status": "pending",
+            "text": "Upload data to the portal"
         }
     ],
-    "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
-    "title": "Radiology Results Retrieval Workflow",
+    "title": "Pull Radiology Data to Portal",
+    "description": "Retrieve Sarah Miller's radiology data and upload it to the designated portal.",
     "area": "planning-zone"
 }

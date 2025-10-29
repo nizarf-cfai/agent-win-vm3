@@ -83,7 +83,9 @@ def get_board_items():
     for d in data:
         if 'raw' in d.get('id',''):
             pass
-        elif 'encounter' in d.get('id',''):
+        elif 'single-encounter' in d.get('id',''):
+            pass
+        elif 'iframe' in d.get('id',''):
             pass
         else:
             result_data.append(d)

@@ -1,124 +1,228 @@
 [
     {
-        "id": "enhanced-todo-1761646614343-09hi07k4l",
-        "type": "todo",
-        "x": 4260,
-        "y": 60,
+        "id": "doctor-note-1761709174698",
+        "type": "doctor-note",
+        "x": 4250,
+        "y": -2250,
         "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Collect and consolidate all radiology results for Sarah Miller.",
-        "todoData": {
-            "title": "Radiology Results Collection Workflow",
-            "description": "Collect and consolidate all radiology results for Sarah Miller.",
-            "todos": [
-                {
-                    "text": "Collect all radiology reports",
-                    "subTodos": [],
-                    "status": "pending",
-                    "id": "1",
-                    "agent": "Radiology Technician"
-                },
-                {
-                    "agent": "Radiologist",
-                    "text": "Review radiology reports",
-                    "id": "2",
-                    "status": "pending",
-                    "subTodos": []
-                },
-                {
-                    "text": "Summarize key findings",
-                    "agent": "Primary Care Physician",
-                    "id": "3",
-                    "subTodos": [],
-                    "status": "pending"
-                },
-                {
-                    "subTodos": [],
-                    "agent": "Medical Records Clerk",
-                    "status": "pending",
-                    "id": "4",
-                    "text": "Integrate results into patient record"
-                }
-            ]
+        "height": 600,
+        "noteData": {
+            "content": "",
+            "timestamp": "2025-10-29T03:39:34.698Z"
         },
-        "rotation": 0,
-        "createdAt": "2025-10-28T10:16:54.347Z",
-        "updatedAt": "2025-10-28T10:16:54.347Z"
+        "createdAt": "2025-10-29T03:39:34.698Z",
+        "updatedAt": "2025-10-29T03:39:34.698Z"
     },
     {
-        "id": "item-1761646625531-h8hatl",
-        "type": "agent",
+        "id": "doctor-note-1761709210530",
+        "type": "doctor-note",
+        "x": 4720,
+        "y": -2250,
+        "width": 450,
+        "height": 600,
+        "noteData": {
+            "content": "",
+            "timestamp": "2025-10-29T03:40:10.530Z"
+        },
+        "createdAt": "2025-10-29T03:40:10.530Z",
+        "updatedAt": "2025-10-29T03:40:10.530Z"
+    },
+    {
+        "id": "doctor-note-1761709886059",
+        "type": "doctor-note",
+        "x": 5190,
+        "y": -2250,
+        "width": 450,
+        "height": 600,
+        "noteData": {
+            "content": "Hello this is saving the data, Test test test test",
+            "timestamp": "2025-10-29T03:51:52.942Z"
+        },
+        "createdAt": "2025-10-29T03:51:26.059Z",
+        "updatedAt": "2025-10-29T03:51:53.320Z"
+    },
+    {
+        "id": "item-1761720207057-9fks0l",
+        "type": "lab-result",
         "x": 4260,
         "y": -4540,
-        "width": 520,
-        "height": 1109,
-        "content": " \n## Sarah Miller: Radiology Results Collection Workflow\n\n### 1. Collect all radiology reports\n\n*   **Colonoscopy (2023-11-10, Medilogik EMS):**\n    *   Indication: Iron-deficiency anemia and screening given age/methotrexate use.\n    *   Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable.\n    *   Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology.\n    *   Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):**\n    *   Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%.\n    *   Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Review radiology reports\n\n*   **Colonoscopy (2023-11-10):**\n    *   Sigmoid polyp removed; histology pending.\n    *   Recommend surveillance colonoscopy in 10 years.\n*   **IVC Ultrasound (2025-06-21):**\n    *   Normal to increased intravascular volume.\n\n### 3. Summarize key findings\n\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted.\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume.\n\n### 4. Integrate results into patient record\n\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n",
+        "width": 400,
+        "height": 280,
+        "content": "White Blood Cell Count",
         "color": "#ffffff",
         "rotation": 0,
-        "agentData": {
-            "title": "Radiology results collection workflow",
-            "markdown": " \n## Sarah Miller: Radiology Results Collection Workflow\n\n### 1. Collect all radiology reports\n\n*   **Colonoscopy (2023-11-10, Medilogik EMS):**\n    *   Indication: Iron-deficiency anemia and screening given age/methotrexate use.\n    *   Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable.\n    *   Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology.\n    *   Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):**\n    *   Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%.\n    *   Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Review radiology reports\n\n*   **Colonoscopy (2023-11-10):**\n    *   Sigmoid polyp removed; histology pending.\n    *   Recommend surveillance colonoscopy in 10 years.\n*   **IVC Ultrasound (2025-06-21):**\n    *   Normal to increased intravascular volume.\n\n### 3. Summarize key findings\n\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted.\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume.\n\n### 4. Integrate results into patient record\n\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n"
+        "labResultData": {
+            "parameter": "White Blood Cell Count",
+            "value": "12000",
+            "unit": "cells/microliter",
+            "status": "warning",
+            "range": {
+                "min": 4500,
+                "max": 11000,
+                "warningMax": 15000,
+                "warningMin": 11000
+            },
+            "trend": "increasing"
         },
-        "createdAt": "2025-10-28T10:17:05.534Z",
-        "updatedAt": "2025-10-28T10:17:06.385Z"
+        "createdAt": "2025-10-29T06:43:27.061Z",
+        "updatedAt": "2025-10-29T06:43:27.061Z"
     },
     {
-        "id": "enhanced-todo-1761646949289-pfcm3rg5y",
-        "type": "todo",
-        "x": 4840,
-        "y": 60,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
-        "todoData": {
-            "title": "Radiology Results Retrieval Workflow",
-            "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
-            "todos": [
-                {
-                    "subTodos": [],
-                    "status": "pending",
-                    "agent": "Radiology Data Collector",
-                    "id": "1",
-                    "text": "Collect all radiology reports for Sarah Miller"
-                },
-                {
-                    "agent": "Radiology Report Analyzer",
-                    "status": "pending",
-                    "text": "Summarize key findings from each report",
-                    "id": "2",
-                    "subTodos": []
-                },
-                {
-                    "subTodos": [],
-                    "status": "pending",
-                    "agent": "EHR Integrator",
-                    "id": "3",
-                    "text": "Integrate results into patient record"
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-10-28T10:22:29.293Z",
-        "updatedAt": "2025-10-28T10:22:29.293Z"
-    },
-    {
-        "id": "item-1761646959194-tuvy4w",
-        "type": "agent",
+        "id": "item-1761720207557-8uq7gl",
+        "type": "lab-result",
         "x": 4820,
         "y": -4540,
+        "width": 400,
+        "height": 280,
+        "content": "Hemoglobin",
+        "color": "#ffffff",
+        "rotation": 0,
+        "labResultData": {
+            "parameter": "Hemoglobin",
+            "value": "9",
+            "unit": "g/dL",
+            "status": "critical",
+            "range": {
+                "warningMax": 12,
+                "max": 16,
+                "warningMin": 10,
+                "min": 12
+            },
+            "trend": "decreasing"
+        },
+        "createdAt": "2025-10-29T06:43:27.560Z",
+        "updatedAt": "2025-10-29T06:43:27.560Z"
+    },
+    {
+        "id": "enhanced-todo-1761723715693-ybe6u25ws",
+        "type": "todo",
+        "x": 4260,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Retrieve Sarah Miller's radiology data and upload it to the designated portal.",
+        "todoData": {
+            "title": "Pull Radiology Data to Portal",
+            "description": "Retrieve Sarah Miller's radiology data and upload it to the designated portal.",
+            "todos": [
+                {
+                    "id": "1",
+                    "status": "pending",
+                    "subTodos": [
+                        {
+                            "text": "Confirm ultrasound has been performed",
+                            "status": "pending"
+                        }
+                    ],
+                    "text": "Check for new radiology results for Sarah Miller",
+                    "agent": "Medforce Agent"
+                },
+                {
+                    "status": "pending",
+                    "id": "2",
+                    "agent": "Radiology System",
+                    "text": "Retrieve radiology images and reports",
+                    "subTodos": [
+                        {
+                            "status": "pending",
+                            "text": "Access Sarah Miller's radiology records"
+                        },
+                        {
+                            "status": "pending",
+                            "text": "Download images in DICOM format"
+                        },
+                        {
+                            "status": "pending",
+                            "text": "Download associated reports in PDF format"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "subTodos": [
+                        {
+                            "text": "Log into the designated portal with appropriate credentials",
+                            "status": "pending"
+                        },
+                        {
+                            "status": "pending",
+                            "text": "Upload DICOM images and PDF reports to Sarah Miller's patient record"
+                        },
+                        {
+                            "status": "pending",
+                            "text": "Verify successful upload and data integrity"
+                        }
+                    ],
+                    "agent": "Portal System",
+                    "status": "pending",
+                    "text": "Upload data to the portal"
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-29T07:41:55.697Z",
+        "updatedAt": "2025-10-29T07:41:55.697Z"
+    },
+    {
+        "id": "item-1761723728587-eq28km",
+        "type": "agent",
+        "x": 5380,
+        "y": -4540,
         "width": 520,
-        "height": 901,
-        "content": " \n## Radiology Results Retrieval Workflow for Sarah Miller\n\n**Description:** Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.\n\n### 1. Collect all radiology reports for Sarah Miller\n*   **Colonoscopy (2023-11-10, Medilogik EMS):** Indication: Iron-deficiency anemia and screening given age/methotrexate use. Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable. Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology. Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):** Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%. Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Summarize key findings from each report\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted (raw-medilogik-ems-colonoscopy).\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume (raw-viper-ultrasound-ivc).\n\n### 3. Integrate results into patient record\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n",
+        "height": 1695,
+        "content": " \n## Pull Radiology Data to Portal\n\n**Description:** Retrieve Sarah Miller's radiology data and upload it to the designated portal.\n\n### 1. Check for new radiology results for Sarah Miller\n\n*   **Answer:** An abdominal ultrasound was performed on 2025-06-21 in the ED, showing \"IVC minimally collapsible; suggests normal to increased intravascular volume\" (**raw-viper-ultrasound-ivc**). A colonoscopy was performed on 2023-11-10 and revealed \"One 5 mm sessile polyp in sigmoid colon (25 cm from anal verge)\" (**raw-medilogik-ems-colonoscopy**).\n*   **Evidence:**\n    *   2025-06-21: \"Ultrasound of Inferior Vena Cava (IVC)\" (**raw-viper-ultrasound-ivc**)\n    *   2023-11-10: \"Colonoscopy on 2023-11-10 08:30\" (**raw-medilogik-ems-colonoscopy**)\n*   **Next Steps:**\n    *   Confirm if any other imaging studies are available (e.g., external radiology reports). (Routine)\n\n### 2. Confirm ultrasound has been performed\n\n*   **Answer:** Yes, an IVC ultrasound was performed on 2025-06-21 in the ED (**raw-viper-ultrasound-ivc**).\n*   **Evidence:**\n    *   2025-06-21: \"Ultrasound of Inferior Vena Cava (IVC) \u2013 Subxiphoid long-axis.\" (**raw-viper-ultrasound-ivc**)\n\n### 3. Retrieve radiology images and reports\n\n*   **Sub-task 1: Access Sarah Miller's radiology records**\n    *   **Answer:** Sarah Miller's radiology records include an IVC ultrasound from 2025-06-21 and a colonoscopy from 2023-11-10.\n    *   **Evidence:**\n        *   2025-06-21: \"VIPER Ultrasound (ICU/ED Point-of-Care)\" (**raw-viper-ultrasound-ivc**)\n        *   2023-11-10: \"Medilogik EMS (Endoscopy Report)\" (**raw-medilogik-ems-colonoscopy**)\n*   **Sub-task 2: Download images in DICOM format**\n    *   **Answer:** Images from the colonoscopy on 2023-11-10 exist: \"[Endoscopic snapshot of the sigmoid polyp] (attached to report).\" (**raw-medilogik-ems-colonoscopy**).\n        No explicit DICOM image is mentioned for the IVC ultrasound.\n    *   **Evidence:**\n        *   2023-11-10: \"Images: [Endoscopic snapshot of the sigmoid polyp]\" (**raw-medilogik-ems-colonoscopy**)\n    *   **Next Steps:**\n        *   Confirm DICOM availability for IVC ultrasound. (Routine)\n*   **Sub-task 3: Download associated reports in PDF format**\n    *   **Answer:** Associated reports are available for both the IVC ultrasound and the colonoscopy.\n    *   **Evidence:**\n        *   2025-06-21: \"VIPER Ultrasound (ICU/ED Point-of-Care)\" (**raw-viper-ultrasound-ivc**)\n        *   2023-11-10: \"Medilogik EMS (Endoscopy Report)\" (**raw-medilogik-ems-colonoscopy**)\n\n### 4. Upload data to the portal\n\n*   **Sub-task 1: Log into the designated portal with appropriate credentials**\n    *   *Action:* Requires manual login to the designated portal.\n*   **Sub-task 2: Upload DICOM images and PDF reports to Sarah Miller's patient record**\n    *   *Action:* Requires manual upload of the downloaded images and reports.\n*   **Sub-task 3: Verify successful upload and data integrity**\n    *   *Action:* Requires manual verification of the uploaded data.\n\n### Audit Summary\n\n*   Reviewed patient encounters and radiology data from 2023-11-10 to 2025-06-21.\n*   Confirmed presence of IVC ultrasound (2025-06-21) and colonoscopy (2023-11-10).\n*   Identified colonoscopy images for potential DICOM download.\n",
         "color": "#ffffff",
         "rotation": 0,
         "agentData": {
-            "title": "Radiology results retrieval workflow",
-            "markdown": " \n## Radiology Results Retrieval Workflow for Sarah Miller\n\n**Description:** Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.\n\n### 1. Collect all radiology reports for Sarah Miller\n*   **Colonoscopy (2023-11-10, Medilogik EMS):** Indication: Iron-deficiency anemia and screening given age/methotrexate use. Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable. Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology. Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):** Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%. Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Summarize key findings from each report\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted (raw-medilogik-ems-colonoscopy).\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume (raw-viper-ultrasound-ivc).\n\n### 3. Integrate results into patient record\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n"
+            "title": "Pull radiology data to portal",
+            "markdown": " \n## Pull Radiology Data to Portal\n\n**Description:** Retrieve Sarah Miller's radiology data and upload it to the designated portal.\n\n### 1. Check for new radiology results for Sarah Miller\n\n*   **Answer:** An abdominal ultrasound was performed on 2025-06-21 in the ED, showing \"IVC minimally collapsible; suggests normal to increased intravascular volume\" (**raw-viper-ultrasound-ivc**). A colonoscopy was performed on 2023-11-10 and revealed \"One 5 mm sessile polyp in sigmoid colon (25 cm from anal verge)\" (**raw-medilogik-ems-colonoscopy**).\n*   **Evidence:**\n    *   2025-06-21: \"Ultrasound of Inferior Vena Cava (IVC)\" (**raw-viper-ultrasound-ivc**)\n    *   2023-11-10: \"Colonoscopy on 2023-11-10 08:30\" (**raw-medilogik-ems-colonoscopy**)\n*   **Next Steps:**\n    *   Confirm if any other imaging studies are available (e.g., external radiology reports). (Routine)\n\n### 2. Confirm ultrasound has been performed\n\n*   **Answer:** Yes, an IVC ultrasound was performed on 2025-06-21 in the ED (**raw-viper-ultrasound-ivc**).\n*   **Evidence:**\n    *   2025-06-21: \"Ultrasound of Inferior Vena Cava (IVC) \u2013 Subxiphoid long-axis.\" (**raw-viper-ultrasound-ivc**)\n\n### 3. Retrieve radiology images and reports\n\n*   **Sub-task 1: Access Sarah Miller's radiology records**\n    *   **Answer:** Sarah Miller's radiology records include an IVC ultrasound from 2025-06-21 and a colonoscopy from 2023-11-10.\n    *   **Evidence:**\n        *   2025-06-21: \"VIPER Ultrasound (ICU/ED Point-of-Care)\" (**raw-viper-ultrasound-ivc**)\n        *   2023-11-10: \"Medilogik EMS (Endoscopy Report)\" (**raw-medilogik-ems-colonoscopy**)\n*   **Sub-task 2: Download images in DICOM format**\n    *   **Answer:** Images from the colonoscopy on 2023-11-10 exist: \"[Endoscopic snapshot of the sigmoid polyp] (attached to report).\" (**raw-medilogik-ems-colonoscopy**).\n        No explicit DICOM image is mentioned for the IVC ultrasound.\n    *   **Evidence:**\n        *   2023-11-10: \"Images: [Endoscopic snapshot of the sigmoid polyp]\" (**raw-medilogik-ems-colonoscopy**)\n    *   **Next Steps:**\n        *   Confirm DICOM availability for IVC ultrasound. (Routine)\n*   **Sub-task 3: Download associated reports in PDF format**\n    *   **Answer:** Associated reports are available for both the IVC ultrasound and the colonoscopy.\n    *   **Evidence:**\n        *   2025-06-21: \"VIPER Ultrasound (ICU/ED Point-of-Care)\" (**raw-viper-ultrasound-ivc**)\n        *   2023-11-10: \"Medilogik EMS (Endoscopy Report)\" (**raw-medilogik-ems-colonoscopy**)\n\n### 4. Upload data to the portal\n\n*   **Sub-task 1: Log into the designated portal with appropriate credentials**\n    *   *Action:* Requires manual login to the designated portal.\n*   **Sub-task 2: Upload DICOM images and PDF reports to Sarah Miller's patient record**\n    *   *Action:* Requires manual upload of the downloaded images and reports.\n*   **Sub-task 3: Verify successful upload and data integrity**\n    *   *Action:* Requires manual verification of the uploaded data.\n\n### Audit Summary\n\n*   Reviewed patient encounters and radiology data from 2023-11-10 to 2025-06-21.\n*   Confirmed presence of IVC ultrasound (2025-06-21) and colonoscopy (2023-11-10).\n*   Identified colonoscopy images for potential DICOM download.\n"
         },
-        "createdAt": "2025-10-28T10:22:39.208Z",
-        "updatedAt": "2025-10-28T10:22:40.033Z"
+        "createdAt": "2025-10-29T07:42:08.590Z",
+        "updatedAt": "2025-10-29T07:45:20.060Z"
+    },
+    {
+        "id": "item-1761724011616-eui9g7",
+        "type": "lab-result",
+        "x": 4260,
+        "y": -4050,
+        "width": 400,
+        "height": 280,
+        "content": "ALT",
+        "color": "#ffffff",
+        "rotation": 0,
+        "labResultData": {
+            "parameter": "ALT",
+            "value": "650",
+            "unit": "U/L",
+            "status": "critical",
+            "range": {
+                "min": 7,
+                "warningMax": 200,
+                "max": 55,
+                "warningMin": 56
+            },
+            "trend": "increasing"
+        },
+        "createdAt": "2025-10-29T07:46:51.619Z",
+        "updatedAt": "2025-10-29T07:46:51.619Z"
+    },
+    {
+        "id": "item-1761724193902-1whqie",
+        "type": "agent",
+        "x": 4820,
+        "y": -4050,
+        "width": 520,
+        "height": 1337,
+        "content": "# Short Answer\nFor Sarah Miller's suspected DILI with critically elevated ALT, EASL recommends immediate discontinuation of all non-essential implicated medications (Methotrexate, Trimethoprim-Sulfamethoxazole, Lisinopril) and a comprehensive diagnostic workup to exclude alternative causes, including viral hepatitis and autoimmune hepatitis. Monitoring for signs of acute liver failure is crucial, with hospitalization and transplant referral if present. Specific therapies are generally not indicated for her implicated drugs, but steroids could be considered if autoimmune hepatitis is suspected after serological testing.\n\n# Detailed Answer\nThe primary EASL recommendation for Sarah Miller's suspected DILI, given her critically elevated ALT and medication history, is the **immediate discontinuation of all non-essential implicated medications**. Methotrexate, Trimethoprim-Sulfamethoxazole (co-trimoxazole), and Lisinopril are all listed as drugs associated with idiosyncratic DILI . The critically elevated ALT meets the thresholds for treatment discontinuation in clinical trials (ALT >8 ULN or ALT >3 ULN with symptoms) , strongly supporting immediate cessation. Once discontinued, patients should not be re-exposed to the suspected drug .\n\n        Concurrently, a comprehensive **diagnostic workup** is mandatory to confirm DILI and exclude alternative causes. This should include serum aminotransferases (ALT/AST), ALP, and TBL to define liver damage and dysfunction . Given the critically elevated ALT, a hepatocellular pattern of injury is likely, which necessitates testing for HCV-RNA and anti-HEV IgM (or HEV-RNA), in addition to HAV, HBV, and autoimmune serology . Screening for auto-antibodies and serum IgG is mandatory for hepatocellular patterns . If AST is disproportionately high, CPK testing is recommended to differentiate liver from muscle injury .\n\n        **Specific therapies** for DILI are generally limited, as spontaneous recovery after drug withdrawal is common . Cholestyramine is only recommended for very selected drugs with enterohepatic circulation, such as leflunomide and terbinafine, to speed up clearance . None of Sarah's implicated medications fall into this category. Steroids can be considered if autoimmune hepatitis (AIH) is an option or in cases with marked hypersensitivity features . Given Sarah's Rheumatoid Arthritis, an autoimmune predisposition might make AIH a consideration, but this requires further serological testing.\n\n        **Monitoring and Follow-up:** Patients with DILI should have liver biochemistry routinely tested until complete normalization . Careful scrutiny of hepatocellular cases with jaundice in females and all other cases with altered INR is necessary for impending liver failure . If Sarah develops jaundice or signs of acute liver failure (ALF) such as encephalopathy or coagulopathy (INR >1.5), she should be hospitalized and referred to a liver transplant unit .\n\n# References\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Aminotransferases\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Introduction to DILI Classification\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-General Treatment Measures\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Laboratory Workup for Excluding Alternative Causes\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Patterns of DILI\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Decision to Stop Drug Administration\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Specific Therapies: Cholestyramine\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Chronic DILI\n",
+        "color": "#ffffff",
+        "rotation": 0,
+        "agentData": {
+            "title": "EASL Answer",
+            "markdown": "# Short Answer\nFor Sarah Miller's suspected DILI with critically elevated ALT, EASL recommends immediate discontinuation of all non-essential implicated medications (Methotrexate, Trimethoprim-Sulfamethoxazole, Lisinopril) and a comprehensive diagnostic workup to exclude alternative causes, including viral hepatitis and autoimmune hepatitis. Monitoring for signs of acute liver failure is crucial, with hospitalization and transplant referral if present. Specific therapies are generally not indicated for her implicated drugs, but steroids could be considered if autoimmune hepatitis is suspected after serological testing.\n\n# Detailed Answer\nThe primary EASL recommendation for Sarah Miller's suspected DILI, given her critically elevated ALT and medication history, is the **immediate discontinuation of all non-essential implicated medications**. Methotrexate, Trimethoprim-Sulfamethoxazole (co-trimoxazole), and Lisinopril are all listed as drugs associated with idiosyncratic DILI . The critically elevated ALT meets the thresholds for treatment discontinuation in clinical trials (ALT >8 ULN or ALT >3 ULN with symptoms) , strongly supporting immediate cessation. Once discontinued, patients should not be re-exposed to the suspected drug .\n\n        Concurrently, a comprehensive **diagnostic workup** is mandatory to confirm DILI and exclude alternative causes. This should include serum aminotransferases (ALT/AST), ALP, and TBL to define liver damage and dysfunction . Given the critically elevated ALT, a hepatocellular pattern of injury is likely, which necessitates testing for HCV-RNA and anti-HEV IgM (or HEV-RNA), in addition to HAV, HBV, and autoimmune serology . Screening for auto-antibodies and serum IgG is mandatory for hepatocellular patterns . If AST is disproportionately high, CPK testing is recommended to differentiate liver from muscle injury .\n\n        **Specific therapies** for DILI are generally limited, as spontaneous recovery after drug withdrawal is common . Cholestyramine is only recommended for very selected drugs with enterohepatic circulation, such as leflunomide and terbinafine, to speed up clearance . None of Sarah's implicated medications fall into this category. Steroids can be considered if autoimmune hepatitis (AIH) is an option or in cases with marked hypersensitivity features . Given Sarah's Rheumatoid Arthritis, an autoimmune predisposition might make AIH a consideration, but this requires further serological testing.\n\n        **Monitoring and Follow-up:** Patients with DILI should have liver biochemistry routinely tested until complete normalization . Careful scrutiny of hepatocellular cases with jaundice in females and all other cases with altered INR is necessary for impending liver failure . If Sarah develops jaundice or signs of acute liver failure (ALF) such as encephalopathy or coagulopathy (INR >1.5), she should be hospitalized and referred to a liver transplant unit .\n\n# References\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Aminotransferases\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Introduction to DILI Classification\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-General Treatment Measures\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Laboratory Workup for Excluding Alternative Causes\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Patterns of DILI\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Decision to Stop Drug Administration\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Specific Therapies: Cholestyramine\n- EASL Clinical Practice Guidelines: Drug-induced liver injury-Chronic DILI\n"
+        },
+        "createdAt": "2025-10-29T07:49:53.906Z",
+        "updatedAt": "2025-10-29T07:50:09.392Z"
     },
     {
         "id": "dashboard-item-1759853783245-patient-context",
@@ -200,6 +304,131 @@
         },
         "createdAt": "2025-10-14T16:16:23.245Z",
         "updatedAt": "2025-10-14T16:16:23.245Z"
+    },
+    {
+        "id": "dashboard-item-1759906076097-encounter-timeline",
+        "type": "component",
+        "x": 1750,
+        "y": 100,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "EncounterTimeline",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Patient Encounter Timeline",
+            "component": "EncounterTimeline",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "type": "Rheumatology Initial Consult",
+                        "provider": "Dr. Elizabeth Hayes",
+                        "diagnosis": "Seropositive Rheumatoid Arthritis (active)",
+                        "medications": [
+                            "Methotrexate 10mg weekly",
+                            "Folic Acid 5mg weekly"
+                        ],
+                        "notes": "Started MTX therapy with folic acid supplementation"
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Stable RA on MTX",
+                        "medications": [
+                            "Methotrexate 10mg weekly",
+                            "Folic Acid 5mg weekly"
+                        ],
+                        "notes": "Good RA control on MTX 10 mg weekly; no MTX side effects"
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "New essential hypertension; RA stable; plan MTX dose increase",
+                        "medications": [
+                            "Methotrexate 20mg weekly",
+                            "Folic Acid 5mg weekly",
+                            "Lisinopril 10mg daily"
+                        ],
+                        "notes": "Elevated BP readings 145\u2013155/90\u201395; MTX increased to 20mg"
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Stable RA; controlled HTN; mild CKD (stable)",
+                        "medications": [
+                            "Methotrexate 20mg weekly",
+                            "Folic Acid 5mg weekly",
+                            "Lisinopril 10mg daily"
+                        ],
+                        "notes": "Overall well; RA controlled on MTX 20 mg; BP controlled"
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Acute bacterial sinusitis; RA/HTN/CKD stable",
+                        "medications": [
+                            "Trimethoprim-Sulfamethoxazole 800/160mg BID"
+                        ],
+                        "notes": "5 days nasal congestion, facial pain, headache, green discharge"
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "type": "Emergency Medicine",
+                        "provider": "Dr. Sarah Chen",
+                        "diagnosis": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
+                        "medications": [],
+                        "notes": "Severe fatigue, jaundice, epigastric pain, confusion"
+                    }
+                ],
+                "medicationTimeline": [
+                    {
+                        "name": "Methotrexate",
+                        "startDate": "2015-08-10",
+                        "endDate": "2018-09-05",
+                        "dose": "10mg weekly",
+                        "indication": "RA"
+                    },
+                    {
+                        "name": "Methotrexate",
+                        "startDate": "2018-09-05",
+                        "dose": "20mg weekly",
+                        "indication": "RA"
+                    },
+                    {
+                        "name": "Folic Acid",
+                        "startDate": "2015-08-10",
+                        "dose": "5mg weekly",
+                        "indication": "MTX supplementation"
+                    },
+                    {
+                        "name": "Lisinopril",
+                        "startDate": "2018-09-05",
+                        "dose": "10mg daily",
+                        "indication": "Hypertension"
+                    },
+                    {
+                        "name": "Trimethoprim-Sulfamethoxazole",
+                        "startDate": "2025-06-15",
+                        "endDate": "2025-06-25",
+                        "dose": "800/160mg BID",
+                        "indication": "Acute bacterial sinusitis"
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:47:56.098Z",
+        "updatedAt": "2025-10-14T16:47:56.098Z"
     },
     {
         "id": "dashboard-item-1759906219477-adverse-event-analytics",
@@ -553,19 +782,5 @@
         },
         "createdAt": "2025-10-14T16:50:46.157Z",
         "updatedAt": "2025-10-14T16:50:46.157Z"
-    },
-    {
-        "id": "iframe-item-easl-interface",
-        "type": "iframe",
-        "x": -2100,
-        "y": 100,
-        "width": 1800,
-        "height": 1200,
-        "title": "EASL Web Interface",
-        "iframeUrl": "https://easl-seven.vercel.app/",
-        "color": "#ffffff",
-        "rotation": 0,
-        "createdAt": "2025-10-28T12:00:00.000Z",
-        "updatedAt": "2025-10-28T12:00:00.000Z"
     }
 ]
