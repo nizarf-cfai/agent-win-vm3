@@ -325,7 +325,7 @@ class AudioOnlyGeminiCable:
             easl_answer_str += f"# References\n"
             for r in easl_answer.get('guideline_references', []):
                 easl_answer_str += f"- {r.get('Source','')}\n"
-
+            print(f"EASL Answer :\n{easl_answer_str[:200]}")
             result_data = {}
             result_data['title'] = "EASL Answer"
             result_data['content'] = easl_answer_str

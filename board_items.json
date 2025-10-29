@@ -1,5 +1,126 @@
 [
     {
+        "id": "enhanced-todo-1761646614343-09hi07k4l",
+        "type": "todo",
+        "x": 4260,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Collect and consolidate all radiology results for Sarah Miller.",
+        "todoData": {
+            "title": "Radiology Results Collection Workflow",
+            "description": "Collect and consolidate all radiology results for Sarah Miller.",
+            "todos": [
+                {
+                    "text": "Collect all radiology reports",
+                    "subTodos": [],
+                    "status": "pending",
+                    "id": "1",
+                    "agent": "Radiology Technician"
+                },
+                {
+                    "agent": "Radiologist",
+                    "text": "Review radiology reports",
+                    "id": "2",
+                    "status": "pending",
+                    "subTodos": []
+                },
+                {
+                    "text": "Summarize key findings",
+                    "agent": "Primary Care Physician",
+                    "id": "3",
+                    "subTodos": [],
+                    "status": "pending"
+                },
+                {
+                    "subTodos": [],
+                    "agent": "Medical Records Clerk",
+                    "status": "pending",
+                    "id": "4",
+                    "text": "Integrate results into patient record"
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-28T10:16:54.347Z",
+        "updatedAt": "2025-10-28T10:16:54.347Z"
+    },
+    {
+        "id": "item-1761646625531-h8hatl",
+        "type": "agent",
+        "x": 4260,
+        "y": -4540,
+        "width": 520,
+        "height": 1109,
+        "content": " \n## Sarah Miller: Radiology Results Collection Workflow\n\n### 1. Collect all radiology reports\n\n*   **Colonoscopy (2023-11-10, Medilogik EMS):**\n    *   Indication: Iron-deficiency anemia and screening given age/methotrexate use.\n    *   Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable.\n    *   Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology.\n    *   Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):**\n    *   Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%.\n    *   Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Review radiology reports\n\n*   **Colonoscopy (2023-11-10):**\n    *   Sigmoid polyp removed; histology pending.\n    *   Recommend surveillance colonoscopy in 10 years.\n*   **IVC Ultrasound (2025-06-21):**\n    *   Normal to increased intravascular volume.\n\n### 3. Summarize key findings\n\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted.\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume.\n\n### 4. Integrate results into patient record\n\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n",
+        "color": "#ffffff",
+        "rotation": 0,
+        "agentData": {
+            "title": "Radiology results collection workflow",
+            "markdown": " \n## Sarah Miller: Radiology Results Collection Workflow\n\n### 1. Collect all radiology reports\n\n*   **Colonoscopy (2023-11-10, Medilogik EMS):**\n    *   Indication: Iron-deficiency anemia and screening given age/methotrexate use.\n    *   Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable.\n    *   Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology.\n    *   Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):**\n    *   Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%.\n    *   Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Review radiology reports\n\n*   **Colonoscopy (2023-11-10):**\n    *   Sigmoid polyp removed; histology pending.\n    *   Recommend surveillance colonoscopy in 10 years.\n*   **IVC Ultrasound (2025-06-21):**\n    *   Normal to increased intravascular volume.\n\n### 3. Summarize key findings\n\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted.\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume.\n\n### 4. Integrate results into patient record\n\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n"
+        },
+        "createdAt": "2025-10-28T10:17:05.534Z",
+        "updatedAt": "2025-10-28T10:17:06.385Z"
+    },
+    {
+        "id": "enhanced-todo-1761646949289-pfcm3rg5y",
+        "type": "todo",
+        "x": 4840,
+        "y": 60,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
+        "todoData": {
+            "title": "Radiology Results Retrieval Workflow",
+            "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
+            "todos": [
+                {
+                    "subTodos": [],
+                    "status": "pending",
+                    "agent": "Radiology Data Collector",
+                    "id": "1",
+                    "text": "Collect all radiology reports for Sarah Miller"
+                },
+                {
+                    "agent": "Radiology Report Analyzer",
+                    "status": "pending",
+                    "text": "Summarize key findings from each report",
+                    "id": "2",
+                    "subTodos": []
+                },
+                {
+                    "subTodos": [],
+                    "status": "pending",
+                    "agent": "EHR Integrator",
+                    "id": "3",
+                    "text": "Integrate results into patient record"
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-10-28T10:22:29.293Z",
+        "updatedAt": "2025-10-28T10:22:29.293Z"
+    },
+    {
+        "id": "item-1761646959194-tuvy4w",
+        "type": "agent",
+        "x": 4820,
+        "y": -4540,
+        "width": 520,
+        "height": 901,
+        "content": " \n## Radiology Results Retrieval Workflow for Sarah Miller\n\n**Description:** Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.\n\n### 1. Collect all radiology reports for Sarah Miller\n*   **Colonoscopy (2023-11-10, Medilogik EMS):** Indication: Iron-deficiency anemia and screening given age/methotrexate use. Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable. Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology. Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):** Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%. Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Summarize key findings from each report\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted (raw-medilogik-ems-colonoscopy).\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume (raw-viper-ultrasound-ivc).\n\n### 3. Integrate results into patient record\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n",
+        "color": "#ffffff",
+        "rotation": 0,
+        "agentData": {
+            "title": "Radiology results retrieval workflow",
+            "markdown": " \n## Radiology Results Retrieval Workflow for Sarah Miller\n\n**Description:** Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.\n\n### 1. Collect all radiology reports for Sarah Miller\n*   **Colonoscopy (2023-11-10, Medilogik EMS):** Indication: Iron-deficiency anemia and screening given age/methotrexate use. Findings: Scattered diverticula in sigmoid colon; one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No colitis or masses. Terminal ileum unremarkable. Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology. Conclusions/Plan: Small adenomatous polyp removed (histology pending). Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years. Follow-up GI clinic after pathology. (\"Small adenomatous polyp removed (histology pending). Recommend routine surveillance colonoscopy in 10 years per guidelines.\" - raw-medilogik-ems-colonoscopy)\n*   **IVC Ultrasound (2025-06-21, Viper Ultrasound):** Findings: IVC diameter on inspiration: 2.0 cm; IVC diameter on expiration: 2.3 cm; IVC Collapsibility Index: 13%. Interpretation: IVC minimally collapsible; suggests normal to increased intravascular volume. No significant hypovolemia. (\"IVC minimally collapsible; suggests normal to increased intravascular volume.\" - raw-viper-ultrasound-ivc)\n\n### 2. Summarize key findings from each report\n*   **Colonoscopy (2023-11-10):** Small adenomatous polyp removed from sigmoid colon, histology pending. Diverticulosis noted (raw-medilogik-ems-colonoscopy).\n*   **IVC Ultrasound (2025-06-21):** IVC suggests normal to increased intravascular volume (raw-viper-ultrasound-ivc).\n\n### 3. Integrate results into patient record\n*   All radiology results have been collected and summarized. Integrate these findings into the patient's record.\n\n### Audit Summary\n*   **Time Window:** 2023-11-10 to 2025-06-21\n*   **Radiology Reports Reviewed:** Colonoscopy, IVC Ultrasound\n"
+        },
+        "createdAt": "2025-10-28T10:22:39.208Z",
+        "updatedAt": "2025-10-28T10:22:40.033Z"
+    },
+    {
         "id": "dashboard-item-1759853783245-patient-context",
         "type": "component",
         "x": 100,
@@ -21,7 +142,7 @@
                         "sex": "Female",
                         "age_at_first_encounter": 53,
                         "identifiers": {
-                            "mrn": "MC-001001"
+                            "mrn": null
                         }
                     },
                     "riskLevel": "high",
@@ -117,14 +238,107 @@
                             "description": "Synergistic hepatotoxicity with TMP-SMX; oral mucosal ulcerations present"
                         }
                     ],
-                    "riskAssessment": {
-                        "keyRiskFactors": [
-                            "The patient developed acute jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX (started June 15; symptoms June 20; presentation June 21), a timeline that strongly fits idiosyncratic hepatocellular DILI",
-                            "Mechanistically, TMP-SMX can raise free methotrexate levels and impair folate metabolism; in an older patient with alcohol use (and possible CKD), this pharmacologic interaction plausibly potentiates hepatocellular necrosis",
-                            "The clinical pattern is hepatocellular (expected ALT > AST \u226b ALP) and the presence of encephalopathy with presumed INR >1.5 and elevated bilirubin meets criteria for non-acetaminophen acute liver failure",
-                            "RUCAM totals 7 (Probable), with TMP-SMX as the primary culprit and methotrexate as a significant co-factor",
-                            "Immediate management includes withdrawal of both agents, initiation of N-acetylcysteine, aggressive supportive care, and ICU-level monitoring"
-                        ]
+                    "rucam_ctcae_analysis": {
+                        "rucam": {
+                            "title": "RUCAM Scoring (Hepatocellular pattern)",
+                            "columns": [
+                                "#",
+                                "Parameter",
+                                "Key findings from this case",
+                                "Score",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    1,
+                                    "Time to onset (from drug start to injury)",
+                                    "TMP-SMX started Jun 15 \u2192 symptoms Jun 20 \u2192 presentation Jun 21 (\u22486 days)",
+                                    2,
+                                    "Compatible interval for idiosyncratic hepatocellular DILI (5\u201390 days)."
+                                ],
+                                [
+                                    2,
+                                    "Course after stopping the drug",
+                                    "TMP-SMX and MTX held on admission; recovery not yet documented but improvement expected",
+                                    1,
+                                    "Early improvement expected; data incomplete at time of scoring."
+                                ],
+                                [
+                                    3,
+                                    "Risk factors",
+                                    "Age 53 (+1); chronic alcohol consumption (+1)",
+                                    2,
+                                    "Age >55 and ongoing alcohol use increase risk."
+                                ],
+                                [
+                                    4,
+                                    "Concomitant drugs",
+                                    "Methotrexate (hepatotoxic; interacts with TMP-SMX)",
+                                    -1,
+                                    "Confounding co-drug complicates attribution."
+                                ],
+                                [
+                                    5,
+                                    "Exclusion of non-drug causes",
+                                    "Viral hepatitis pending; no history/exposure; ultrasound ordered; no ischemic/septic event",
+                                    1,
+                                    "Alternatives considered and largely excluded clinically."
+                                ],
+                                [
+                                    6,
+                                    "Previous information on hepatotoxicity",
+                                    "Methotrexate and TMP-SMX both well-known for hepatotoxicity and interaction",
+                                    2,
+                                    "Documented reactions in literature/databases."
+                                ],
+                                [
+                                    7,
+                                    "Response to re-exposure",
+                                    "Not applicable (no re-challenge)",
+                                    0,
+                                    "\u2014"
+                                ]
+                            ],
+                            "total_score": 7,
+                            "causality_category": "Probable"
+                        },
+                        "ctcae": {
+                            "title": "CTCAE Hepatic Toxicity Scoring",
+                            "columns": [
+                                "Criterion",
+                                "Observed / Inferred",
+                                "CTCAE Grade",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    "ALT/AST",
+                                    "Markedly elevated (likely >20\u00d7 ULN)",
+                                    "4",
+                                    "ALT/AST >20\u00d7 ULN \u2192 life-threatening elevation."
+                                ],
+                                [
+                                    "Total Bilirubin",
+                                    "Jaundice evident (likely \u22653\u00d7 ULN; ~\u22653 mg/dL)",
+                                    "3\u20134",
+                                    "Hyperbilirubinemia with clinical jaundice."
+                                ],
+                                [
+                                    "INR / Coagulopathy",
+                                    "Rising INR; impaired synthetic function",
+                                    "4",
+                                    "Coagulopathy (\u00b1 encephalopathy) consistent with acute liver failure."
+                                ],
+                                [
+                                    "Clinical Presentation",
+                                    "Jaundice, asterixis, disorientation (hepatic encephalopathy)",
+                                    "4",
+                                    "Life-threatening consequences; urgent intervention needed."
+                                ]
+                            ],
+                            "overall_grade": "CTCAE Grade 4 \u2014 Life-threatening; requires urgent intervention"
+                        },
+                        "reasoning": "The patient developed acute jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX (started June 15; symptoms June 20; presentation June 21), a timeline that strongly fits idiosyncratic hepatocellular DILI. There is low likelihood of alternative causes\u2014no fever or hemodynamic instability to suggest ischemic or septic hepatitis, viral panels are pending with low pretest probability, and there is no autoimmune or metabolic history. Mechanistically, TMP-SMX can raise free methotrexate levels and impair folate metabolism; in an older patient with alcohol use (and possible CKD), this pharmacologic interaction plausibly potentiates hepatocellular necrosis and explains concurrent mucosal/CNS findings. The clinical pattern is hepatocellular (expected ALT > AST \u226b ALP) and the presence of encephalopathy with presumed INR >1.5 and elevated bilirubin meets criteria for non-acetaminophen acute liver failure. RUCAM totals 7 (Probable), with TMP-SMX as the primary culprit and methotrexate as a significant co-factor. Immediate management includes withdrawal of both agents, initiation of N-acetylcysteine, aggressive supportive care, and ICU-level monitoring."
                     }
                 }
             }
@@ -341,240 +555,17 @@
         "updatedAt": "2025-10-14T16:50:46.157Z"
     },
     {
-        "id": "enhanced-todo-1761633779383-ss1tfvv1h",
-        "type": "todo",
-        "x": 4260,
-        "y": 60,
-        "width": 450,
-        "height": "auto",
+        "id": "iframe-item-easl-interface",
+        "type": "iframe",
+        "x": -2100,
+        "y": 100,
+        "width": 1800,
+        "height": 1200,
+        "title": "EASL Web Interface",
+        "iframeUrl": "https://easl-seven.vercel.app/",
         "color": "#ffffff",
-        "description": "Comprehensive patient admission process with detailed sub-tasks",
-        "todoData": {
-            "title": "Patient Admission Workflow",
-            "description": "Comprehensive patient admission process with detailed sub-tasks",
-            "todos": [
-                {
-                    "id": "task-101",
-                    "text": "Initial Patient Assessment",
-                    "status": "executing",
-                    "agent": "Assessment Agent",
-                    "subTodos": [
-                        {
-                            "text": "Check vital signs",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Review medical history",
-                            "status": "executing"
-                        },
-                        {
-                            "text": "Document chief complaint",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-102",
-                    "text": "Laboratory Testing",
-                    "status": "pending",
-                    "agent": "Lab Coordination Agent",
-                    "subTodos": [
-                        {
-                            "text": "Order blood work",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Schedule imaging studies",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Collect urine sample",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-103",
-                    "text": "Treatment Planning",
-                    "status": "finished",
-                    "agent": "Treatment Planning Agent",
-                    "subTodos": [
-                        {
-                            "text": "Consult with specialists",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Develop care plan",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set treatment goals",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
         "rotation": 0,
-        "createdAt": "2025-10-28T06:42:59.390Z",
-        "updatedAt": "2025-10-28T06:42:59.390Z"
-    },
-    {
-        "id": "enhanced-todo-1761633783811-4y74tly0m",
-        "type": "todo",
-        "x": 4840,
-        "y": 60,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Comprehensive patient admission process with detailed sub-tasks",
-        "todoData": {
-            "title": "Patient Admission Workflow",
-            "description": "Comprehensive patient admission process with detailed sub-tasks",
-            "todos": [
-                {
-                    "id": "task-101",
-                    "text": "Initial Patient Assessment",
-                    "status": "executing",
-                    "agent": "Assessment Agent",
-                    "subTodos": [
-                        {
-                            "text": "Check vital signs",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Review medical history",
-                            "status": "executing"
-                        },
-                        {
-                            "text": "Document chief complaint",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-102",
-                    "text": "Laboratory Testing",
-                    "status": "pending",
-                    "agent": "Lab Coordination Agent",
-                    "subTodos": [
-                        {
-                            "text": "Order blood work",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Schedule imaging studies",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Collect urine sample",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-103",
-                    "text": "Treatment Planning",
-                    "status": "finished",
-                    "agent": "Treatment Planning Agent",
-                    "subTodos": [
-                        {
-                            "text": "Consult with specialists",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Develop care plan",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set treatment goals",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-10-28T06:43:03.813Z",
-        "updatedAt": "2025-10-28T06:43:03.813Z"
-    },
-    {
-        "id": "enhanced-todo-1761633788717-72f99sacz",
-        "type": "todo",
-        "x": 5420,
-        "y": 60,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Comprehensive patient admission process with detailed sub-tasks",
-        "todoData": {
-            "title": "Patient Admission Workflow",
-            "description": "Comprehensive patient admission process with detailed sub-tasks",
-            "todos": [
-                {
-                    "id": "task-101",
-                    "text": "Initial Patient Assessment",
-                    "status": "executing",
-                    "agent": "Assessment Agent",
-                    "subTodos": [
-                        {
-                            "text": "Check vital signs",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Review medical history",
-                            "status": "executing"
-                        },
-                        {
-                            "text": "Document chief complaint",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-102",
-                    "text": "Laboratory Testing",
-                    "status": "pending",
-                    "agent": "Lab Coordination Agent",
-                    "subTodos": [
-                        {
-                            "text": "Order blood work",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Schedule imaging studies",
-                            "status": "pending"
-                        },
-                        {
-                            "text": "Collect urine sample",
-                            "status": "pending"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-103",
-                    "text": "Treatment Planning",
-                    "status": "finished",
-                    "agent": "Treatment Planning Agent",
-                    "subTodos": [
-                        {
-                            "text": "Consult with specialists",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Develop care plan",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set treatment goals",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-10-28T06:43:08.719Z",
-        "updatedAt": "2025-10-28T06:43:08.719Z"
+        "createdAt": "2025-10-28T12:00:00.000Z",
+        "updatedAt": "2025-10-28T12:00:00.000Z"
     }
 ]

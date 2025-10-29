@@ -1,67 +1,28 @@
 {
-    "description": "Comprehensive diagnostic workflow for Sarah Miller including detailed sub-tasks",
     "todos": [
         {
-            "text": "Review patient history and current medications",
-            "id": "task-101",
-            "agent": "Pharmacist",
-            "subTodos": [
-                {
-                    "text": "Check for drug interactions",
-                    "status": "finished"
-                },
-                {
-                    "text": "Assess methotrexate and TMP-SMX usage",
-                    "status": "executing"
-                },
-                {
-                    "status": "pending",
-                    "text": "Evaluate penicillin allergy"
-                }
-            ],
-            "status": "executing"
+            "subTodos": [],
+            "status": "pending",
+            "agent": "Radiology Data Collector",
+            "id": "1",
+            "text": "Collect all radiology reports for Sarah Miller"
         },
         {
+            "agent": "Radiology Report Analyzer",
             "status": "pending",
-            "text": "Order comprehensive lab tests",
-            "subTodos": [
-                {
-                    "status": "pending",
-                    "text": "Request liver function panel"
-                },
-                {
-                    "text": "Order viral hepatitis serology",
-                    "status": "pending"
-                },
-                {
-                    "text": "Check complete blood count",
-                    "status": "pending"
-                }
-            ],
-            "agent": "Lab Coordinator",
-            "id": "task-102"
+            "text": "Summarize key findings from each report",
+            "id": "2",
+            "subTodos": []
         },
         {
+            "subTodos": [],
             "status": "pending",
-            "agent": "Hepatologist",
-            "id": "task-103",
-            "text": "Consult with specialist",
-            "subTodos": [
-                {
-                    "text": "Discuss complex case details",
-                    "status": "pending"
-                },
-                {
-                    "status": "pending",
-                    "text": "Consider liver biopsy"
-                },
-                {
-                    "text": "Review potential alternative diagnoses",
-                    "status": "pending"
-                }
-            ]
+            "agent": "EHR Integrator",
+            "id": "3",
+            "text": "Integrate results into patient record"
         }
     ],
-    "title": "Deeper Diagnosis Workflow for Sarah Miller",
+    "description": "Comprehensive retrieval and summarization of all available radiology reports for Sarah Miller.",
+    "title": "Radiology Results Retrieval Workflow",
     "area": "planning-zone"
 }
