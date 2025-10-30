@@ -1,71 +1,71 @@
 {
-    "id": "enhanced-todo-1761723715693-ybe6u25ws",
+    "id": "enhanced-todo-1761800649334-jsgponcxb",
     "type": "todo",
     "x": 4260,
     "y": 60,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Retrieve Sarah Miller's radiology data and upload it to the designated portal.",
+    "description": "Comprehensive search and retrieval of all available radiology results for Sarah Miller.",
     "todoData": {
-        "title": "Pull Radiology Data to Portal",
-        "description": "Retrieve Sarah Miller's radiology data and upload it to the designated portal.",
+        "title": "Retrieve Sarah Miller Radiology Results",
+        "description": "Comprehensive search and retrieval of all available radiology results for Sarah Miller.",
         "todos": [
             {
+                "agent": "Medforce Agent",
+                "text": "Query payload {\"query\":\"Sarah Miller Radiology CT/MRI/US\"} on endpoint https://ehr.hospital-example.com/fhir/ImagingStudy",
+                "status": "pending",
                 "id": "1",
-                "status": "pending",
                 "subTodos": [
                     {
-                        "text": "Confirm ultrasound has been performed",
+                        "status": "pending",
+                        "text": "Query FHIR endpoint for radiology studies"
+                    },
+                    {
+                        "status": "pending",
+                        "text": "Filter studies for Sarah Miller"
+                    },
+                    {
+                        "text": "Store radiology results",
                         "status": "pending"
-                    }
-                ],
-                "text": "Check for new radiology results for Sarah Miller",
-                "agent": "Medforce Agent"
-            },
-            {
-                "status": "pending",
-                "id": "2",
-                "agent": "Radiology System",
-                "text": "Retrieve radiology images and reports",
-                "subTodos": [
-                    {
-                        "status": "pending",
-                        "text": "Access Sarah Miller's radiology records"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Download images in DICOM format"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Download associated reports in PDF format"
                     }
                 ]
             },
             {
+                "agent": "Data Archiver",
+                "subTodos": [
+                    {
+                        "status": "pending",
+                        "text": "Encrypt data"
+                    },
+                    {
+                        "status": "pending",
+                        "text": "Store in secure database"
+                    }
+                ],
+                "id": "2",
+                "status": "pending",
+                "text": "Securely store radiology results"
+            },
+            {
+                "status": "pending",
+                "text": "Make radiology results available in patient dashboard",
                 "id": "3",
                 "subTodos": [
                     {
-                        "text": "Log into the designated portal with appropriate credentials",
+                        "status": "pending",
+                        "text": "Update patient dashboard"
+                    },
+                    {
+                        "text": "Display radiology results",
                         "status": "pending"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Upload DICOM images and PDF reports to Sarah Miller's patient record"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Verify successful upload and data integrity"
                     }
                 ],
-                "agent": "Portal System",
-                "status": "pending",
-                "text": "Upload data to the portal"
+                "agent": "UI Agent"
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-29T07:41:55.697Z",
-    "updatedAt": "2025-10-29T07:41:55.697Z"
+    "createdAt": "2025-10-30T05:04:09.336Z",
+    "updatedAt": "2025-10-30T05:04:09.337Z"
 }

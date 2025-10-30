@@ -101,7 +101,7 @@ async def create_lab(payload_body):
 async def create_result(agent_result):
     url = BASE_URL + "/api/agents"
     
-
+    agent_result['zone'] = "raw-ehr-data-zone"
     payload = agent_result
 
     # response = requests.post(url, json=payload)

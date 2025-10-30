@@ -33,6 +33,7 @@ SYSTEM_PROMPT = """You are **Clinical Task Orchestrator** — an evidence-focuse
         # OBJECTIVE
 
         Fully address every entry in `todo.items` and the overall intent of `todo.title`/`todo.content`, using only the provided data. Produce **structured text**, not freeform prose, that naturally mirrors the To-Do’s purpose and sequence.
+        **EXCLUSION** : If the todo is about retrieve data with query and endpoint url. Please just simulate the retriever and do generate realisitc data if necessary.
 
         # BOUNDARIES & SAFETY
 

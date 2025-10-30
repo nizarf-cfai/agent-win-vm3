@@ -13,8 +13,6 @@ import httpx
 from typing import Optional
 from bs4 import BeautifulSoup
 import json, re
-import sys
-import os
 
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 
@@ -249,8 +247,7 @@ def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", col
         if results["documents"] and results["documents"][0]:
             context = "\n".join(results["documents"][0])
             easl_question = f"Question: {query}\nContext: {context}"
-            # easl_answer = get_easl_answer(easl_question)
-            easl_answer = ""
+            easl_answer = get_easl_answer(easl_question)
 
 
             rag_res = f"RAG Result: {context}\nEASL Answer: {easl_answer}"
@@ -301,117 +298,8 @@ def json_to_markdown(obj: dict, index: int = 0) -> str:
     return "\n".join(lines)
 
 
-async def block_rag(str_list: list = [], query: str="", top_k: int = 3):
-    
-    # Create in-memory Chroma collection with custom embedding function
-    client = chromadb.Client(Settings(anonymized_telemetry=False))
-    
-    # Create a unique collection name based on JSON path and timestamp
-    collection_name = f"temp_block_rag_rag"
-    
-    try:
-        # Create a custom embedding function for queries
-        class CustomEmbeddingFunction:
-            def __call__(self, input):
-                return embed_texts(input)
-            
-            def embed_query(self, input, **kwargs):
-                embeddings = embed_texts([input])
-                result = embeddings[0] if embeddings else []
-                # ChromaDB expects a list of lists even for single query
-                return [result]
-        
-        # Try to delete existing collection if it exists, then create new one
-        try:
-            client.delete_collection(name=collection_name)
-        except:
-            pass  # Collection doesn't exist, which is fine
-        
-        collection = client.create_collection(
-            name=collection_name,
-            embedding_function=CustomEmbeddingFunction()
-        )
-
-        # Use each md_block as a single chunk to preserve objectId integrity
-        chunks = str_list
-
-        # Embed and store in Chroma
-        embeddings = embed_texts(chunks)
-        ids = [f"chunk_{i}" for i in range(len(chunks))]
-                
-        # Save original stdout and stderr
-        original_stdout = sys.stdout
-        original_stderr = sys.stderr
-        
-        # Redirect to devnull
-        with open(os.devnull, 'w') as devnull:
-            sys.stdout = devnull
-            sys.stderr = devnull
-            try:
-                collection.add(documents=chunks, embeddings=embeddings, ids=ids)
-            finally:
-                # Restore original stdout and stderr
-                sys.stdout = original_stdout
-                sys.stderr = original_stderr
-
-        # Query
-        results = collection.query(query_texts=[query], n_results=top_k)
-
-        context = "\n\n".join(results["documents"][0])
-
-        return context
-        
-    finally:
-        # Clean up: delete the temporary collection
-        try:
-            client.delete_collection(name=collection_name)
-        except:
-            pass  # Collection might already be deleted, which is fine
-
-
-async def rag_from_json(query: str="", top_k: int = 10):
-
-    
-    try:
-
-        data = get_board_items()
-        summary_objects = []
-        raw_objects = []
-        for d in data:
-            if 'raw' in d.get('id',''):
-                raw_objects.append(d)
-            elif 'single-encounter' in d.get('id',''):
-                raw_objects.append(d)
-            elif 'iframe' in d.get('id',''):
-                raw_objects.append(d)
-            else:
-                summary_objects.append(d)
-
-        print("Summary object len:", len(summary_objects))
-        print("Raw object len:", len(raw_objects))
-
-        # Convert each object to Markdown string
-        summary_objects_blocks = [json_to_markdown(obj, i) for i,obj in enumerate(summary_objects)]
-        raw_objects_blocks = [json_to_markdown(obj, i) for i,obj in enumerate(raw_objects)]
-
-        summary_res = await block_rag(summary_objects_blocks,query,top_k=3)
-        
-        raw_res = await block_rag(raw_objects_blocks,query,top_k=3)
-
-
-        # context = "\n\n".join(summary_result[:3]) + "\n\n".join(raw_result[:3])
-        # context = "\n\n".join(results["documents"][0])
-        context = summary_res + "\n\n" + raw_res
-        with open("rag_result.md", "w", encoding="utf-8") as f:
-            f.write(context)
-        return context
-        
-    except Exception as e:
-        print(f"Error object_rag :\n{e}")
-        return ""
-
 # ---------- Main Function ----------
-async def rag_from_json2(query: str="", top_k: int = 10):
+async def rag_from_json(query: str="", top_k: int = 10):
     """
     Load JSON (list of objects), convert each record to Markdown,
     embed chunks in memory, and perform semantic RAG search.

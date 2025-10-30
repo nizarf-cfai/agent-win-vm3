@@ -317,14 +317,20 @@ class AudioOnlyGeminiCable:
     async def _handle_easl_processing(self, query, canvas_result):
         """Handle agent processing in background"""
         try:
+            print("Start trigger EASL endpoint")
             easl_answer = await get_easl_answer_async(f"Question: {query}\nContext: {canvas_result}")
             await asyncio.sleep(2)
             easl_answer_str = ""
-            easl_answer_str += f"# Short Answer\n{easl_answer.get('short_answer','')}\n\n"
-            easl_answer_str += f"# Detailed Answer\n{easl_answer.get('detailed_answer','')}\n\n"
-            easl_answer_str += f"# References\n"
-            for r in easl_answer.get('guideline_references', []):
-                easl_answer_str += f"- {r.get('Source','')}\n"
+            easl_answer_str += f"# Question\n{query}\n\n"
+            easl_answer_str += f"# Context\n{canvas_result}\n\n"
+
+            if type(easl_answer) == dict:
+                easl_answer_str += f"# Short Answer\n{easl_answer.get('short_answer','')}\n\n"
+                easl_answer_str += f"# Detailed Answer\n{easl_answer.get('detailed_answer','')}\n\n"
+                easl_answer_str += f"# References\n"
+                for r in easl_answer.get('guideline_references', []):
+                    easl_answer_str += f"- {r.get('Source','')}\n"
+
             print(f"EASL Answer :\n{easl_answer_str[:200]}")
             result_data = {}
             result_data['title'] = "EASL Answer"
@@ -340,6 +346,7 @@ class AudioOnlyGeminiCable:
             
                 
         except Exception as e:
+            traceback.print_exc()
             print(f"❌ Background EASL processing error: {e}")
             # Send error info to Gemini
             error_message = f"BACKGROUND EASL PROCESSING ERROR: EASL Agent encountered an error while processing your task: {str(e)}"
