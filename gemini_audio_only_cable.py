@@ -423,6 +423,7 @@ class AudioOnlyGeminiCable:
             with open("action_data_focus.json", "w", encoding="utf-8") as f:
                 json.dump(focus_res, f, ensure_ascii=False, indent=4)
             print(f"  📝 Task created")
+            await asyncio.sleep(3)
 
             # Trigger agent processing in background
             self.start_background_agent_processing(action_data)

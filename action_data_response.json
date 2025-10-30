@@ -1,71 +1,91 @@
 {
-    "id": "enhanced-todo-1761800649334-jsgponcxb",
+    "id": "enhanced-todo-1761812412807-03dyztoqh",
     "type": "todo",
-    "x": 4260,
-    "y": 60,
+    "x": 4840,
+    "y": 540,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Comprehensive search and retrieval of all available radiology results for Sarah Miller.",
+    "description": "Comprehensive task to pull and consolidate all lab results for Sarah Miller, ensuring all relevant data is readily accessible for clinical decision-making.",
     "todoData": {
-        "title": "Retrieve Sarah Miller Radiology Results",
-        "description": "Comprehensive search and retrieval of all available radiology results for Sarah Miller.",
+        "title": "Retrieve All Lab Results for Sarah Miller",
+        "description": "Comprehensive task to pull and consolidate all lab results for Sarah Miller, ensuring all relevant data is readily accessible for clinical decision-making.",
         "todos": [
             {
-                "agent": "Medforce Agent",
-                "text": "Query payload {\"query\":\"Sarah Miller Radiology CT/MRI/US\"} on endpoint https://ehr.hospital-example.com/fhir/ImagingStudy",
-                "status": "pending",
+                "agent": "FHIR API Retriever",
                 "id": "1",
+                "status": "pending",
+                "text": "Initial data retrieval via FHIR API",
                 "subTodos": [
                     {
                         "status": "pending",
-                        "text": "Query FHIR endpoint for radiology studies"
+                        "text": "Query parameter: patient → Sarah Miller’s UUID."
+                    },
+                    {
+                        "text": "Query parameter: category → Laboratory. ",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Query parameter: date=ge2015-01-01 → only reports after Jan 1, 2015.",
+                        "status": "pending"
                     },
                     {
                         "status": "pending",
-                        "text": "Filter studies for Sarah Miller"
+                        "text": "Query parameter: status=final → only completed lab reports."
                     },
                     {
-                        "text": "Store radiology results",
-                        "status": "pending"
+                        "status": "pending",
+                        "text": "Query parameter: _sort=-date → newest first."
+                    },
+                    {
+                        "status": "pending",
+                        "text": "Query parameter: _count=10 → retrieve last 10 lab reports"
+                    },
+                    {
+                        "status": "pending",
+                        "text": "Retrieve request: curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=Laboratory&date=ge2015-01-01&status=final&_sort=-date&_count=10' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' -H 'Accept: application/fhir+json' -H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'"
                     }
                 ]
             },
             {
-                "agent": "Data Archiver",
+                "id": "2",
                 "subTodos": [
                     {
                         "status": "pending",
-                        "text": "Encrypt data"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Store in secure database"
+                        "text": "Store retrieved lab reports in secure, encrypted, access-controlled location."
                     }
                 ],
-                "id": "2",
+                "agent": "Data Security Agent",
                 "status": "pending",
-                "text": "Securely store radiology results"
+                "text": "Secure Storage"
             },
             {
-                "status": "pending",
-                "text": "Make radiology results available in patient dashboard",
+                "agent": "Communication Agent",
+                "text": "Stakeholder Notification",
                 "id": "3",
                 "subTodos": [
                     {
                         "status": "pending",
-                        "text": "Update patient dashboard"
-                    },
-                    {
-                        "text": "Display radiology results",
-                        "status": "pending"
+                        "text": "Notify relevant personnel that the lab data has been pulled and is available for review."
                     }
                 ],
-                "agent": "UI Agent"
+                "status": "pending"
+            },
+            {
+                "status": "pending",
+                "agent": "Audit Agent",
+                "id": "4",
+                "subTodos": [
+                    {
+                        "status": "pending",
+                        "text": "Compile audit summary detailing patient encounters, medication timeline, and lab findings."
+                    }
+                ],
+                "text": "Audit Summary"
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-30T05:04:09.336Z",
-    "updatedAt": "2025-10-30T05:04:09.337Z"
+    "createdAt": "2025-10-30T08:20:12.814Z",
+    "updatedAt": "2025-10-30T08:20:12.814Z"
 }
