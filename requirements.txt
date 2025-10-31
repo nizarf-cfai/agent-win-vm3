@@ -8,3 +8,6 @@ fastapi
 uvicorn
 pyaudio
 google-genai
+chromadb
+beautifulsoup4
+langchain-text-splitters

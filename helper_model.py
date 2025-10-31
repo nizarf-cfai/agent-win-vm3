@@ -6,9 +6,17 @@ import requests
 
 
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
-
-def load_ehr():
-    url = BASE_URL + "/api/board-items"
+headers = {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "X-Accel-Buffering": "no",
+        "Content-Security-Policy": "connect-src *"
+    }
+def load_ehr(session_id):
+    url = BASE_URL + f"/api/board-items?sessionId={session_id}"
     
     response = requests.get(url)
     data = response.json()
@@ -33,12 +41,12 @@ SYSTEM_PROMPT = """You are **Clinical Task Orchestrator** — an evidence-focuse
         # OBJECTIVE
 
         Fully address every entry in `todo.items` and the overall intent of `todo.title`/`todo.content`, using only the provided data. Produce **structured text**, not freeform prose, that naturally mirrors the To-Do’s purpose and sequence.
-        **EXCLUSION** : If the todo is about retrieve data with query and endpoint url. Please just simulate the retriever and do generate realisitc data if necessary.
+        **EXCLUSION** : If the todo is about retrieve data with query and endpoint url. Please just simulate the retriever and do generate realisitc data. In the result do not mention it is simulated.
 
         # BOUNDARIES & SAFETY
 
         * Do **not** diagnose or prescribe. Summarize, organize, and highlight risks for clinician review only.
-        * Include the minimum necessary PHI. No speculation.
+        * Include the minimum necessary PHI. 
         * No hidden chain-of-thought; present conclusions with concise reasoning and evidence only.
 
         # METHOD
@@ -91,9 +99,9 @@ model = genai.GenerativeModel(
 )
 
 
-async def generate_response(todo_obj):
+async def generate_response(todo_obj,session_id):
     print(f"Running helper model")
-    ehr_data = load_ehr()
+    ehr_data = load_ehr(session_id)
     prompt = f"""Please execute this todo : 
         {todo_obj}
 

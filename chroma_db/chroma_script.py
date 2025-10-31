@@ -21,6 +21,15 @@ BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 EASL_BASE_URL = "https://inference-dili-16771232505.us-central1.run.app"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+headers = {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "X-Accel-Buffering": "no",
+        "Content-Security-Policy": "connect-src *"
+    }
 _client: Optional[httpx.AsyncClient] = None
 
 
@@ -76,8 +85,8 @@ def get_client() -> httpx.AsyncClient:
     return _client
 
 
-def get_board_items():
-    url = BASE_URL + "/api/board-items"
+def get_board_items(session_id):
+    url = BASE_URL + f"/api/board-items??sessionId={session_id}"
     
     response = requests.get(url)
     data = response.json()
@@ -143,17 +152,40 @@ async def fetch_easl_result(task_id: str, client: Optional[httpx.AsyncClient] = 
 async def get_easl_answer_async(question: str, *,
                                 interval: float = 60.0,
                                 max_retries: int = 5,
-                                client: Optional[httpx.AsyncClient] = None) -> str:
+                                client: Optional[httpx.AsyncClient] = None,
+                                session_id="") -> str:
     """
     Full async pipeline: start -> poll -> fetch.
     Returns "" if not completed within retries.
     """
     client = client or get_client()
-    task_id = await start_easl_async(question, client=client)
+    data = get_board_items(session_id)
+    context_objects = []
+    for d in data:
+        if 'enhanced-todo' in d.get('id',''):
+            pass
+        elif 'doctor-note' in d.get('id',''):
+            pass
+        elif 'iframe' in d.get('id',''):
+            pass
+        else:
+            context_objects.append(d)
+
+    context_objects_blocks = [json_to_markdown(obj, i) for i,obj in enumerate(context_objects)]
+    context_str = "\n\n".join(context_objects_blocks)
+
+    q_with_context = f"{question}\n\nContext:\n{context_str}"
+    
+    task_id = await start_easl_async(q_with_context, client=client)
     completed = await poll_easl_status(task_id, interval=interval, max_retries=max_retries, client=client)
     if not completed:
         return ""
-    return await fetch_easl_result(task_id, client=client)
+
+    result_answer = await fetch_easl_result(task_id, client=client)
+    result_answer['question'] = question
+    result_answer['context'] = context_str
+    
+    return result_answer
 
 
 # ----------------------------
@@ -369,12 +401,12 @@ async def block_rag(str_list: list = [], query: str="", top_k: int = 3):
             pass  # Collection might already be deleted, which is fine
 
 
-async def rag_from_json(query: str="", top_k: int = 10):
+async def rag_from_json(query: str="", top_k: int = 10,session_id=""):
 
     
     try:
 
-        data = get_board_items()
+        data = get_board_items(session_id)
         summary_objects = []
         raw_objects = []
         for d in data:

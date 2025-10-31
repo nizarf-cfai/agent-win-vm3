@@ -1,12 +1,12 @@
 {
     "success": true,
     "message": "Focus event broadcasted",
-    "itemId": "enhanced-todo-1761812412807-03dyztoqh",
-    "subElement": null,
+    "itemId": "item-1761643036366-hoqlfm",
+    "subElement": "medications.methotrexate",
     "focusOptions": {
         "zoom": 0.8,
         "highlight": true,
-        "duration": 1200,
+        "duration": 1500,
         "scrollIntoView": true
     }
 }

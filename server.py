@@ -31,25 +31,50 @@ def kill_existing_processes(script_name: str):
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             continue
 
-def run_powershell_script(script_name: str, meet_url: str = None):
+def run_powershell_script2(script_name: str, meet_url: str = None,session_id: str = None):
     """Run a Python script via PowerShell so Chrome can open in GUI session."""
     if meet_url:
         command = f'powershell -ExecutionPolicy Bypass -NoExit -Command "python {script_name} --link {meet_url}"'
+    if session_id:
+        command = f'powershell -ExecutionPolicy Bypass -NoExit -Command "python {script_name} --session {session_id}"'
     else:
         command = f'powershell -ExecutionPolicy Bypass -NoExit -Command "python {script_name}"'
 
     subprocess.Popen(command, shell=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
     print(f"Started PowerShell for {script_name}")
 
+def run_powershell_script(script_name: str, meet_url: str = None, session_id: str = None):
+    """Run a Python script in a visible PowerShell window."""
+    if meet_url:
+        command = (
+            f'start powershell -NoExit -ExecutionPolicy Bypass '
+            f'-Command "python {script_name} --link \'{meet_url}\'"'
+        )
+    if session_id:
+        command = (
+            f'start powershell -NoExit -ExecutionPolicy Bypass '
+            f'-Command "python {script_name} --session \'{session_id}\'"'
+        )
+    else:
+        command = (
+            f'start powershell -NoExit -ExecutionPolicy Bypass '
+            f'-Command "python {script_name}"'
+        )
+
+    subprocess.Popen(command, shell=True)
+    print(f"Started visible PowerShell for {script_name}")
+
+
 @app.post("/join-meeting")
 def join_meeting(payload: dict, background_tasks: BackgroundTasks):
     meet_url = payload.get("meetUrl")
+    session_id = payload.get("session_id")
     print("Received:", payload)
 
     background_tasks.add_task(kill_existing_processes, "visit_meet_with_audio.py")
     background_tasks.add_task(kill_existing_processes, "gemini_audio_only_cable.py")
 
     background_tasks.add_task(run_powershell_script, "visit_meet_with_audio.py", meet_url)
-    background_tasks.add_task(run_powershell_script, "gemini_audio_only_cable.py")
+    background_tasks.add_task(run_powershell_script, "gemini_audio_only_cable.py",None,session_id)
 
     return {"status": "joining", "meeting_url": meet_url}

@@ -5,14 +5,13 @@ import aiohttp
 import helper_model
 import os
 
-# BASE_URL = "http://localhost:3001"
-# BASE_URL = "https://cameraman-phi.vercel.app"
+
 
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
 
 
-async def get_agent_answer(todo):
-    data = await helper_model.generate_response(todo)
+async def get_agent_answer(todo,session_id=''):
+    data = await helper_model.generate_response(todo,session_id=session_id)
 
     result = {}
     result['content'] = data.get('answer', '')
@@ -21,36 +20,9 @@ async def get_agent_answer(todo):
 
     return result
 
-def get_canvas_item_id():
-
-    url = BASE_URL + "/api/board-items"
-    
-    response = requests.get(url)
-    data = response.json()
-    item_desc = []
-    for item in data:
-        rec = {
-            'objectId': item['id'],
-            'description': item.get('obj_description', ''),
-            'content_type': item.get('content', '')
-        }
-
-        if item.get('agentData'):
-            rec['content'] = item.get('agentData')
-        elif item.get('todoItems'): 
-            rec['content'] = item.get('todoItems')
-        else:
-            rec['content'] = item.get('ehrData',{}).get('subjective')
-        item_desc.append(rec)
 
 
-    with open("item_desc.json", "w", encoding="utf-8") as f:
-        json.dump(item_desc, f, ensure_ascii=False, indent=2)
-        
-    return json.dumps(item_desc, indent=4)
-
-
-async def focus_item(item_id, sub_element=""):
+async def focus_item(item_id, sub_element="",session_id=""):
 
     url = BASE_URL + "/api/focus"
     payload = {
@@ -62,8 +34,12 @@ async def focus_item(item_id, sub_element=""):
         }
     }
 
+    headers = {
+        "Content-Type": "application/json",
+        "X-Session-Id": session_id
+    }
     async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as response:
+        async with session.post(url, json=payload, headers=headers) as response:
             with open("focus_payload.json", "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=4)
             data = await response.json()
@@ -71,15 +47,18 @@ async def focus_item(item_id, sub_element=""):
                 json.dump(data, f, ensure_ascii=False, indent=4)
             return data
 
-async def create_todo(payload_body):
+async def create_todo(payload_body,session_id):
 
     url = BASE_URL + "/api/enhanced-todo"
 
     payload = payload_body
-
+    headers = {
+        "Content-Type": "application/json",
+        "X-Session-Id": session_id
+    }
     # response = requests.post(url, json=payload)
     async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as response:
+        async with session.post(url, json=payload, headers=headers) as response:
             with open("todo_payload.json", "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=4)
             data = await response.json()
@@ -87,25 +66,31 @@ async def create_todo(payload_body):
                 json.dump(data, f, ensure_ascii=False, indent=4)
             return data
     
-async def create_lab(payload_body):
+async def create_lab(payload_body,session_id):
    
     url = BASE_URL + "/api/lab-results"
     
-
+    headers = {
+        "Content-Type": "application/json",
+        "X-Session-Id": session_id
+    }
     # response = requests.post(url, json=payload)
     async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload_body) as response:
+        async with session.post(url, json=payload_body, headers=headers) as response:
             data = await response.json()
             return data
 
-async def create_result(agent_result):
+async def create_result(agent_result,session_id):
     url = BASE_URL + "/api/agents"
     
-    agent_result['zone'] = "raw-ehr-data-zone"
+    # agent_result['zone'] = "raw-ehr-data-zone"
     payload = agent_result
-
+    headers = {
+        "Content-Type": "application/json",
+        "X-Session-Id": session_id
+    }
     # response = requests.post(url, json=payload)
     async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as response:
+        async with session.post(url, json=payload, headers=headers) as response:
             data = await response.json()
             return data
