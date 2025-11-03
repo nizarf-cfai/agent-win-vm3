@@ -14,6 +14,7 @@ import time
 import socket
 import threading
 import warnings
+import requests
 # Import RAG functions from chroma_script
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
 # Import canvas operations
@@ -70,7 +71,13 @@ class AudioOnlyGeminiCable:
         self.output_stream = None
         self.function_call_count = 0
         self.last_function_call_time = None
-        
+        self.req_session = requests.Session()
+        self.req_session.headers.update(
+            {
+                "Content-Type": "application/json",
+                "X-Session-Id": session_id
+            }
+        )
         # Initialize Gemini client
         api_key = os.getenv("GOOGLE_API_KEY")
         if not api_key:
@@ -110,25 +117,26 @@ class AudioOnlyGeminiCable:
                 
                 # Save the function call to file (non-blocking)
                 asyncio.create_task(self.save_function_call(arguments))
-                
+                # await self.save_function_call(arguments)
+                fun_res = self.get_function_response(arguments)
                 # Create function response with actual canvas processing
-                if fc.name == "get_canvas_objects":
-                    query = arguments.get('query', '')
-                    canvas_result = await self.get_canvas_objects(query)
-                    print("RAG Result Canvas:",canvas_result[:200])
+                # if fc.name == "get_canvas_objects":
+                #     query = arguments.get('query', '')
+                #     canvas_result = await self.get_canvas_objects(query)
+                #     print("RAG Result Canvas:",canvas_result[:200])
 
-                    fun_res = {
-                        "result": {
-                            "status": "Canvas objects retrieved",
-                            "action": "Retrieved canvas items and will navigate to most relevant",
-                            "query": query,
-                            "canvas_data": canvas_result,
-                            "message": f"I've retrieved relevant canvas objects for your query: '{query}'. I'll now navigate to the most relevant object to show you the specific data. Here's what I found: {canvas_result}",
-                            "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and will automatically navigate to the most relevant object."
-                        }
-                    }
-                else:
-                    fun_res = self.get_function_response(arguments)
+                #     fun_res = {
+                #         "result": {
+                #             "status": "Canvas objects retrieved",
+                #             "action": "Retrieved canvas items and will navigate to most relevant",
+                #             "query": query,
+                #             "canvas_data": canvas_result,
+                #             "message": f"I've retrieved relevant canvas objects for your query: '{query}'. I'll now navigate to the most relevant object to show you the specific data. Here's what I found: {canvas_result}",
+                #             "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and will automatically navigate to the most relevant object."
+                #         }
+                #     }
+                # else:
+                #     fun_res = self.get_function_response(arguments)
                 
                 function_response = types.FunctionResponse(
                     id=fc.id,
@@ -285,7 +293,9 @@ class AudioOnlyGeminiCable:
             
                 
         except Exception as e:
+            
             print(f"❌ Background processing error: {e}")
+            traceback.print_exc()
             # Send error info to Gemini
             error_message = f"BACKGROUND PROCESSING ERROR: The Data Analyst Agent encountered an error while processing your task: {str(e)}"
             try:
@@ -376,16 +386,16 @@ class AudioOnlyGeminiCable:
                 print(f"  🎯 Navigating to object {object_id} with sub-element focus: {sub_element}")
                 # For now, we'll use the basic focus_item, but this could be enhanced
                 # to support sub-element navigation in the future
-                focus_res = await canvas_ops.focus_item(object_id,sub_element,session_id=self.session_id)
+                focus_res =  await canvas_ops.focus_item2(object_id,sub_element,session_id=self.session_id)
                 print(f"  🎯 Navigation completed with sub-element focus: {sub_element}", focus_res)
             else:
-                focus_res = await canvas_ops.focus_item(object_id,session_id=self.session_id)
+                focus_res =  await canvas_ops.focus_item2(object_id,session_id=self.session_id)
                 print(f"  🎯 Navigation completed", focus_res)
         elif 'parameter' in action_data:
             lab_res = await canvas_ops.create_lab(action_data,session_id=self.session_id)
             await asyncio.sleep(2)
             labId = lab_res['id']
-            focus_res = await canvas_ops.focus_item(labId,session_id=self.session_id)
+            focus_res = await canvas_ops.focus_item2(labId,session_id=self.session_id)
             print(f"  🧪 Lab result created")
         elif 'query' in action_data and len(action_data) == 1:
             # Handle canvas object queries with navigation
@@ -452,22 +462,22 @@ class AudioOnlyGeminiCable:
                     }
                 ]
                 }
-            task_res = await canvas_ops.create_todo(easl_todo_payload,session_id=self.session_id)
+            task_res = canvas_ops.create_todo2(easl_todo_payload,session_id=self.session_id)
             await asyncio.sleep(3)
 
             self.start_background_easl_processing(query, context)
             print(f"  🔍 EASL question processed: {query[:50]}...")
         
         else:
-            action_data['area'] = "planning-zone"
             with open("action_data.json", "w", encoding="utf-8") as f:
                 json.dump(action_data, f, ensure_ascii=False, indent=4)
-            task_res = await canvas_ops.create_todo(action_data,session_id=self.session_id)
+            todo_res = canvas_ops.create_todo2(action_data,session_id=self.session_id)
             with open("action_data_response.json", "w", encoding="utf-8") as f:
-                json.dump(task_res, f, ensure_ascii=False, indent=4)
+                json.dump(todo_res, f, ensure_ascii=False, indent=4)
             await asyncio.sleep(3)
-            boxId = task_res['id']
-            focus_res = await canvas_ops.focus_item(boxId,session_id=self.session_id)
+            boxId = todo_res['id']
+
+            focus_res = await canvas_ops.focus_item2(boxId,session_id=self.session_id)
             with open("action_data_focus.json", "w", encoding="utf-8") as f:
                 json.dump(focus_res, f, ensure_ascii=False, indent=4)
             print(f"  📝 Task created")
@@ -633,6 +643,7 @@ class AudioOnlyGeminiCable:
         print("4. Speak in the meeting - Gemini will respond with audio to the meeting")
         print("5. Press Ctrl+C to stop")
         print("=" * 60)
+        print("Session ID : ",self.session_id)
         
         try:
             # Connect to Gemini Live API
@@ -706,3 +717,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(session_id=args.session)
+
+
+

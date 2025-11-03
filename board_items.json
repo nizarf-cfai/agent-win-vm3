@@ -1,5 +1,564 @@
 [
     {
+        "id": "dashboard-item-1759853783245-patient-context",
+        "type": "component",
+        "x": 100,
+        "y": 100,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "PatientContext",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Patient Context",
+            "component": "PatientContext",
+            "props": {
+                "patientData": {
+                    "patient": {
+                        "name": "Sarah Miller",
+                        "date_of_birth": "1962-03-15",
+                        "age": 63,
+                        "sex": "Female",
+                        "age_at_first_encounter": 53,
+                        "identifiers": {
+                            "mrn": null
+                        }
+                    },
+                    "riskLevel": "high",
+                    "primaryDiagnosis": "Rheumatoid arthritis",
+                    "problem_list": [
+                        {
+                            "name": "Rheumatoid arthritis",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Essential hypertension",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Mild chronic kidney disease",
+                            "status": "active"
+                        }
+                    ],
+                    "medication_timeline": [
+                        {
+                            "name": "Methotrexate",
+                            "dose": "20 mg",
+                            "route": "PO",
+                            "frequency": "weekly",
+                            "start": "2018-09-05"
+                        },
+                        {
+                            "name": "Folic Acid",
+                            "dose": "5 mg",
+                            "route": "PO",
+                            "frequency": "weekly",
+                            "start": "2015-08-10"
+                        },
+                        {
+                            "name": "Lisinopril",
+                            "dose": "10 mg",
+                            "route": "PO",
+                            "frequency": "daily",
+                            "start": "2018-09-05"
+                        },
+                        {
+                            "name": "Trimethoprim-Sulfamethoxazole",
+                            "dose": "800/160 mg",
+                            "route": "PO",
+                            "frequency": "BID",
+                            "start": "2025-06-15",
+                            "end": "2025-06-25"
+                        }
+                    ],
+                    "allergies": [
+                        "Penicillin (rash)"
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:16:23.245Z",
+        "updatedAt": "2025-10-14T16:16:23.245Z"
+    },
+    {
+        "id": "dashboard-item-1759906076097-medication-timeline",
+        "type": "component",
+        "x": 1750,
+        "y": 100,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "MedicationTimeline",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Medication Timeline",
+            "component": "MedicationTimeline",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "type": "Rheumatology Initial Consult",
+                        "provider": "Dr. Elizabeth Hayes",
+                        "diagnosis": "Seropositive Rheumatoid Arthritis (active)",
+                        "medications": [
+                            "Methotrexate 10mg weekly",
+                            "Folic Acid 5mg weekly"
+                        ],
+                        "notes": "Started MTX therapy with folic acid supplementation"
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Stable RA on MTX",
+                        "medications": [
+                            "Methotrexate 10mg weekly",
+                            "Folic Acid 5mg weekly"
+                        ],
+                        "notes": "Good RA control on MTX 10 mg weekly; no MTX side effects"
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "New essential hypertension; RA stable; plan MTX dose increase",
+                        "medications": [
+                            "Methotrexate 20mg weekly",
+                            "Folic Acid 5mg weekly",
+                            "Lisinopril 10mg daily"
+                        ],
+                        "notes": "Elevated BP readings 145\u2013155/90\u201395; MTX increased to 20mg"
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Stable RA; controlled HTN; mild CKD (stable)",
+                        "medications": [
+                            "Methotrexate 20mg weekly",
+                            "Folic Acid 5mg weekly",
+                            "Lisinopril 10mg daily"
+                        ],
+                        "notes": "Overall well; RA controlled on MTX 20 mg; BP controlled"
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "type": "General Practice",
+                        "provider": "GP",
+                        "diagnosis": "Acute bacterial sinusitis; RA/HTN/CKD stable",
+                        "medications": [
+                            "Trimethoprim-Sulfamethoxazole 800/160mg BID"
+                        ],
+                        "notes": "5 days nasal congestion, facial pain, headache, green discharge"
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "type": "Emergency Medicine",
+                        "provider": "Dr. Sarah Chen",
+                        "diagnosis": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
+                        "medications": [],
+                        "notes": "Severe fatigue, jaundice, epigastric pain, confusion"
+                    }
+                ],
+                "medicationTimeline": [
+                    {
+                        "name": "Methotrexate",
+                        "startDate": "2015-08-10",
+                        "endDate": "2018-09-05",
+                        "dose": "10mg weekly",
+                        "indication": "RA"
+                    },
+                    {
+                        "name": "Methotrexate",
+                        "startDate": "2018-09-05",
+                        "dose": "20mg weekly",
+                        "indication": "RA"
+                    },
+                    {
+                        "name": "Folic Acid",
+                        "startDate": "2015-08-10",
+                        "dose": "5mg weekly",
+                        "indication": "MTX supplementation"
+                    },
+                    {
+                        "name": "Lisinopril",
+                        "startDate": "2018-09-05",
+                        "dose": "10mg daily",
+                        "indication": "Hypertension"
+                    },
+                    {
+                        "name": "Trimethoprim-Sulfamethoxazole",
+                        "startDate": "2025-06-15",
+                        "endDate": "2025-06-25",
+                        "dose": "800/160mg BID",
+                        "indication": "Acute bacterial sinusitis"
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:47:56.098Z",
+        "updatedAt": "2025-10-14T16:47:56.098Z"
+    },
+    {
+        "id": "dashboard-item-1759906219477-adverse-event-analytics",
+        "type": "component",
+        "x": 100,
+        "y": 700,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "AdverseEventAnalytics",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Adverse Event Analytics",
+            "component": "AdverseEventAnalytics",
+            "props": {
+                "patientData": {
+                    "adverseEvents": [
+                        {
+                            "event": "Drug-Induced Liver Injury (DILI)",
+                            "severity": "Severe",
+                            "description": "Acute hepatocellular injury with jaundice and encephalopathy following TMP-SMX initiation in patient on chronic MTX"
+                        },
+                        {
+                            "event": "Hepatic Encephalopathy",
+                            "severity": "4",
+                            "description": "Asterixis, disorientation to time/place, GCS 13 (E4 V3 M6)"
+                        },
+                        {
+                            "event": "Acute Liver Failure",
+                            "severity": "4",
+                            "description": "ALT/AST >20\u00d7 ULN, INR elevated, bilirubin \u22653\u00d7 ULN with clinical jaundice"
+                        },
+                        {
+                            "event": "Methotrexate Toxicity",
+                            "severity": "Severe",
+                            "description": "Synergistic hepatotoxicity with TMP-SMX; oral mucosal ulcerations present"
+                        }
+                    ],
+                    "rucam_ctcae_analysis": {
+                        "rucam": {
+                            "title": "RUCAM Scoring (Hepatocellular pattern)",
+                            "columns": [
+                                "#",
+                                "Parameter",
+                                "Key findings from this case",
+                                "Score",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    1,
+                                    "Time to onset (from drug start to injury)",
+                                    "TMP-SMX started Jun 15 \u2192 symptoms Jun 20 \u2192 presentation Jun 21 (\u22486 days)",
+                                    2,
+                                    "Compatible interval for idiosyncratic hepatocellular DILI (5\u201390 days)."
+                                ],
+                                [
+                                    2,
+                                    "Course after stopping the drug",
+                                    "TMP-SMX and MTX held on admission; recovery not yet documented but improvement expected",
+                                    1,
+                                    "Early improvement expected; data incomplete at time of scoring."
+                                ],
+                                [
+                                    3,
+                                    "Risk factors",
+                                    "Age 53 (+1); chronic alcohol consumption (+1)",
+                                    2,
+                                    "Age >55 and ongoing alcohol use increase risk."
+                                ],
+                                [
+                                    4,
+                                    "Concomitant drugs",
+                                    "Methotrexate (hepatotoxic; interacts with TMP-SMX)",
+                                    -1,
+                                    "Confounding co-drug complicates attribution."
+                                ],
+                                [
+                                    5,
+                                    "Exclusion of non-drug causes",
+                                    "Viral hepatitis pending; no history/exposure; ultrasound ordered; no ischemic/septic event",
+                                    1,
+                                    "Alternatives considered and largely excluded clinically."
+                                ],
+                                [
+                                    6,
+                                    "Previous information on hepatotoxicity",
+                                    "Methotrexate and TMP-SMX both well-known for hepatotoxicity and interaction",
+                                    2,
+                                    "Documented reactions in literature/databases."
+                                ],
+                                [
+                                    7,
+                                    "Response to re-exposure",
+                                    "Not applicable (no re-challenge)",
+                                    0,
+                                    "\u2014"
+                                ]
+                            ],
+                            "total_score": 7,
+                            "causality_category": "Probable"
+                        },
+                        "ctcae": {
+                            "title": "CTCAE Hepatic Toxicity Scoring",
+                            "columns": [
+                                "Criterion",
+                                "Observed / Inferred",
+                                "CTCAE Grade",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    "ALT/AST",
+                                    "Markedly elevated (likely >20\u00d7 ULN)",
+                                    "4",
+                                    "ALT/AST >20\u00d7 ULN \u2192 life-threatening elevation."
+                                ],
+                                [
+                                    "Total Bilirubin",
+                                    "Jaundice evident (likely \u22653\u00d7 ULN; ~\u22653 mg/dL)",
+                                    "3\u20134",
+                                    "Hyperbilirubinemia with clinical jaundice."
+                                ],
+                                [
+                                    "INR / Coagulopathy",
+                                    "Rising INR; impaired synthetic function",
+                                    "4",
+                                    "Coagulopathy (\u00b1 encephalopathy) consistent with acute liver failure."
+                                ],
+                                [
+                                    "Clinical Presentation",
+                                    "Jaundice, asterixis, disorientation (hepatic encephalopathy)",
+                                    "4",
+                                    "Life-threatening consequences; urgent intervention needed."
+                                ]
+                            ],
+                            "overall_grade": "CTCAE Grade 4 \u2014 Life-threatening; requires urgent intervention"
+                        },
+                        "reasoning": "The patient developed acute jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX (started June 15; symptoms June 20; presentation June 21), a timeline that strongly fits idiosyncratic hepatocellular DILI. There is low likelihood of alternative causes\u2014no fever or hemodynamic instability to suggest ischemic or septic hepatitis, viral panels are pending with low pretest probability, and there is no autoimmune or metabolic history. Mechanistically, TMP-SMX can raise free methotrexate levels and impair folate metabolism; in an older patient with alcohol use (and possible CKD), this pharmacologic interaction plausibly potentiates hepatocellular necrosis and explains concurrent mucosal/CNS findings. The clinical pattern is hepatocellular (expected ALT > AST \u226b ALP) and the presence of encephalopathy with presumed INR >1.5 and elevated bilirubin meets criteria for non-acetaminophen acute liver failure. RUCAM totals 7 (Probable), with TMP-SMX as the primary culprit and methotrexate as a significant co-factor. Immediate management includes withdrawal of both agents, initiation of N-acetylcysteine, aggressive supportive care, and ICU-level monitoring."
+                    }
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:19.477Z",
+        "updatedAt": "2025-10-14T16:50:19.477Z"
+    },
+    {
+        "id": "dashboard-item-1759906246155-lab-table",
+        "type": "component",
+        "x": 1750,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabTable",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Findings",
+            "component": "LabTable",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "meta": {
+                            "ui_risk_color": "amber"
+                        }
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "meta": {
+                            "ui_risk_color": "red",
+                            "event_tags": [
+                                "Suspected DILI",
+                                "Potential MTX toxicity",
+                                "Acute liver failure risk"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.155Z",
+        "updatedAt": "2025-10-14T16:50:46.155Z"
+    },
+    {
+        "id": "dashboard-item-1759906246156-lab-chart",
+        "type": "component",
+        "x": 2300,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabChart",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Trends",
+            "component": "LabChart",
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2015-08-10",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2016-02-20",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2018-09-05",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 4,
+                        "date": "2021-03-15",
+                        "meta": {
+                            "ui_risk_color": "green"
+                        }
+                    },
+                    {
+                        "encounter_no": 5,
+                        "date": "2025-06-15",
+                        "meta": {
+                            "ui_risk_color": "amber"
+                        }
+                    },
+                    {
+                        "encounter_no": 6,
+                        "date": "2025-06-21",
+                        "meta": {
+                            "ui_risk_color": "red",
+                            "event_tags": [
+                                "Suspected DILI",
+                                "Potential MTX toxicity"
+                            ]
+                        }
+                    }
+                ],
+                "medicationTimeline": [
+                    {
+                        "name": "Methotrexate",
+                        "start": "2015-08-10",
+                        "dose": "10mg weekly"
+                    },
+                    {
+                        "name": "Methotrexate",
+                        "start": "2018-09-05",
+                        "dose": "20mg weekly"
+                    },
+                    {
+                        "name": "Lisinopril",
+                        "start": "2018-09-05",
+                        "dose": "10mg daily"
+                    },
+                    {
+                        "name": "Trimethoprim-Sulfamethoxazole",
+                        "start": "2025-06-15",
+                        "end": "2025-06-25",
+                        "dose": "800/160mg BID"
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.156Z",
+        "updatedAt": "2025-10-14T16:50:46.156Z"
+    },
+    {
+        "id": "dashboard-item-1759906246157-differential-diagnosis",
+        "type": "component",
+        "x": 2850,
+        "y": 900,
+        "width": 520,
+        "height": 500,
+        "componentType": "DifferentialDiagnosis",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Differential Diagnosis",
+            "component": "DifferentialDiagnosis",
+            "props": {
+                "patientData": {
+                    "encounters": [
+                        {
+                            "encounter_no": 6,
+                            "assessment": {
+                                "impression": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
+                                "differential": [
+                                    "Severe methotrexate toxicity (\u00b1 pancytopenia, hepatic/renal injury)",
+                                    "TMP-SMX\u2013induced DILI",
+                                    "Acute viral hepatitis",
+                                    "Acute decompensation of undiagnosed chronic liver disease",
+                                    "Sepsis with multiorgan dysfunction"
+                                ]
+                            },
+                            "rucam_ctcae_analysis": {
+                                "rucam": {
+                                    "rows": [
+                                        [
+                                            "5",
+                                            "Exclusion of non-drug causes",
+                                            "viral hepatitis pending",
+                                            "+2",
+                                            "Awaiting serology"
+                                        ]
+                                    ]
+                                },
+                                "reasoning": "no autoimmune or metabolic history; no fever or hemodynamic instability"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.157Z",
+        "updatedAt": "2025-10-14T16:50:46.157Z"
+    },
+    {
         "id": "dashboard-item-1759906300003-single-encounter-1",
         "type": "component",
         "x": 100,
@@ -1419,562 +1978,107 @@
         "updatedAt": "2025-10-17T12:00:00.000Z"
     },
     {
-        "id": "dashboard-item-1759853783245-patient-context",
-        "type": "component",
-        "x": 100,
-        "y": 100,
-        "width": 1600,
+        "id": "enhanced-todo-1762149362533-ukdttojop",
+        "type": "todo",
+        "x": 4260,
+        "y": 60,
+        "width": 450,
         "height": "auto",
-        "componentType": "PatientContext",
         "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Patient Context",
-            "component": "PatientContext",
-            "props": {
-                "patientData": {
-                    "patient": {
-                        "name": "Sarah Miller",
-                        "date_of_birth": "1962-03-15",
-                        "age": 63,
-                        "sex": "Female",
-                        "age_at_first_encounter": 53,
-                        "identifiers": {
-                            "mrn": null
-                        }
-                    },
-                    "riskLevel": "high",
-                    "primaryDiagnosis": "Rheumatoid arthritis",
-                    "problem_list": [
+        "description": "Comprehensive task workflow to retrieve Sarah Miller's radiology data from relevant databases and APIs, ensuring all data is up-to-date and accurately reflects her medical history.",
+        "todoData": {
+            "title": "Radiology Data Retrieval for Sarah Miller",
+            "description": "Comprehensive task workflow to retrieve Sarah Miller's radiology data from relevant databases and APIs, ensuring all data is up-to-date and accurately reflects her medical history.",
+            "todos": [
+                {
+                    "status": "pending",
+                    "subTodos": [],
+                    "id": "1",
+                    "text": "Identify relevant radiology databases and APIs containing Sarah Miller's data.",
+                    "agent": "Medforce Agent"
+                },
+                {
+                    "agent": "Medforce Agent",
+                    "subTodos": [
                         {
-                            "name": "Rheumatoid arthritis",
-                            "status": "active"
+                            "status": "pending",
+                            "text": "Query parameter: patient \u2192 Sarah Miller\u2019s UUID"
                         },
                         {
-                            "name": "Essential hypertension",
-                            "status": "active"
+                            "text": "Query parameter: category \u2192 LP29684-5 (LOINC code for Radiology).",
+                            "status": "pending"
                         },
                         {
-                            "name": "Mild chronic kidney disease",
-                            "status": "active"
+                            "status": "pending",
+                            "text": "Query parameter: date=ge2015-01-01 \u2192 only reports after Jan 1, 2015."
+                        },
+                        {
+                            "text": "Query parameter: modality=CT, MR \u2192 restrict to CT and MRI studies (DICOM codes).",
+                            "status": "pending"
+                        },
+                        {
+                            "status": "pending",
+                            "text": "Query parameter: status=final \u2192 only completed radiology reports."
+                        },
+                        {
+                            "text": "Query parameter: bodysite=416949008 \u2192 SNOMED code for Abdomen.",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Query parameter: _sort=-date \u2192 newest first.",
+                            "status": "pending"
+                        },
+                        {
+                            "text": "Query parameter: _count=5 \u2192 retrieve last 5 radiology reports",
+                            "status": "pending"
                         }
                     ],
-                    "medication_timeline": [
-                        {
-                            "name": "Methotrexate",
-                            "dose": "20 mg",
-                            "route": "PO",
-                            "frequency": "weekly",
-                            "start": "2018-09-05"
-                        },
-                        {
-                            "name": "Folic Acid",
-                            "dose": "5 mg",
-                            "route": "PO",
-                            "frequency": "weekly",
-                            "start": "2015-08-10"
-                        },
-                        {
-                            "name": "Lisinopril",
-                            "dose": "10 mg",
-                            "route": "PO",
-                            "frequency": "daily",
-                            "start": "2018-09-05"
-                        },
-                        {
-                            "name": "Trimethoprim-Sulfamethoxazole",
-                            "dose": "800/160 mg",
-                            "route": "PO",
-                            "frequency": "BID",
-                            "start": "2025-06-15",
-                            "end": "2025-06-25"
-                        }
-                    ],
-                    "allergies": [
-                        "Penicillin (rash)"
-                    ]
+                    "text": "Construct FHIR queries to retrieve DiagnosticReport resources for Sarah Miller.",
+                    "id": "2",
+                    "status": "pending"
+                },
+                {
+                    "agent": "FHIR API Retriever",
+                    "id": "3",
+                    "subTodos": [],
+                    "status": "pending",
+                    "text": "Retrieve radiology reports using FHIR API:\ncurl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MR&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5' \\\n-H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' \\\n-H 'Accept: application/fhir+json' \\\n-H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'"
+                },
+                {
+                    "status": "pending",
+                    "text": "Parse and structure the retrieved radiology data for presentation in the canvas.",
+                    "agent": "Medforce Agent",
+                    "id": "4",
+                    "subTodos": []
+                },
+                {
+                    "agent": "Medforce Agent",
+                    "id": "5",
+                    "status": "pending",
+                    "subTodos": [],
+                    "text": "Present the retrieved and structured radiology data in the patient timeline."
                 }
-            }
+            ]
         },
-        "createdAt": "2025-10-14T16:16:23.245Z",
-        "updatedAt": "2025-10-14T16:16:23.245Z"
+        "rotation": 0,
+        "createdAt": "2025-11-03T05:56:02.539Z",
+        "updatedAt": "2025-11-03T05:56:02.539Z"
     },
     {
-        "id": "dashboard-item-1759906076097-medication-timeline",
-        "type": "component",
-        "x": 1750,
-        "y": 100,
-        "width": 1600,
-        "height": "auto",
-        "componentType": "MedicationTimeline",
-        "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Medication Timeline",
-            "component": "MedicationTimeline",
-            "props": {
-                "encounters": [
-                    {
-                        "encounter_no": 1,
-                        "date": "2015-08-10",
-                        "type": "Rheumatology Initial Consult",
-                        "provider": "Dr. Elizabeth Hayes",
-                        "diagnosis": "Seropositive Rheumatoid Arthritis (active)",
-                        "medications": [
-                            "Methotrexate 10mg weekly",
-                            "Folic Acid 5mg weekly"
-                        ],
-                        "notes": "Started MTX therapy with folic acid supplementation"
-                    },
-                    {
-                        "encounter_no": 2,
-                        "date": "2016-02-20",
-                        "type": "General Practice",
-                        "provider": "GP",
-                        "diagnosis": "Stable RA on MTX",
-                        "medications": [
-                            "Methotrexate 10mg weekly",
-                            "Folic Acid 5mg weekly"
-                        ],
-                        "notes": "Good RA control on MTX 10 mg weekly; no MTX side effects"
-                    },
-                    {
-                        "encounter_no": 3,
-                        "date": "2018-09-05",
-                        "type": "General Practice",
-                        "provider": "GP",
-                        "diagnosis": "New essential hypertension; RA stable; plan MTX dose increase",
-                        "medications": [
-                            "Methotrexate 20mg weekly",
-                            "Folic Acid 5mg weekly",
-                            "Lisinopril 10mg daily"
-                        ],
-                        "notes": "Elevated BP readings 145\u2013155/90\u201395; MTX increased to 20mg"
-                    },
-                    {
-                        "encounter_no": 4,
-                        "date": "2021-03-15",
-                        "type": "General Practice",
-                        "provider": "GP",
-                        "diagnosis": "Stable RA; controlled HTN; mild CKD (stable)",
-                        "medications": [
-                            "Methotrexate 20mg weekly",
-                            "Folic Acid 5mg weekly",
-                            "Lisinopril 10mg daily"
-                        ],
-                        "notes": "Overall well; RA controlled on MTX 20 mg; BP controlled"
-                    },
-                    {
-                        "encounter_no": 5,
-                        "date": "2025-06-15",
-                        "type": "General Practice",
-                        "provider": "GP",
-                        "diagnosis": "Acute bacterial sinusitis; RA/HTN/CKD stable",
-                        "medications": [
-                            "Trimethoprim-Sulfamethoxazole 800/160mg BID"
-                        ],
-                        "notes": "5 days nasal congestion, facial pain, headache, green discharge"
-                    },
-                    {
-                        "encounter_no": 6,
-                        "date": "2025-06-21",
-                        "type": "Emergency Medicine",
-                        "provider": "Dr. Sarah Chen",
-                        "diagnosis": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
-                        "medications": [],
-                        "notes": "Severe fatigue, jaundice, epigastric pain, confusion"
-                    }
-                ],
-                "medicationTimeline": [
-                    {
-                        "name": "Methotrexate",
-                        "startDate": "2015-08-10",
-                        "endDate": "2018-09-05",
-                        "dose": "10mg weekly",
-                        "indication": "RA"
-                    },
-                    {
-                        "name": "Methotrexate",
-                        "startDate": "2018-09-05",
-                        "dose": "20mg weekly",
-                        "indication": "RA"
-                    },
-                    {
-                        "name": "Folic Acid",
-                        "startDate": "2015-08-10",
-                        "dose": "5mg weekly",
-                        "indication": "MTX supplementation"
-                    },
-                    {
-                        "name": "Lisinopril",
-                        "startDate": "2018-09-05",
-                        "dose": "10mg daily",
-                        "indication": "Hypertension"
-                    },
-                    {
-                        "name": "Trimethoprim-Sulfamethoxazole",
-                        "startDate": "2025-06-15",
-                        "endDate": "2025-06-25",
-                        "dose": "800/160mg BID",
-                        "indication": "Acute bacterial sinusitis"
-                    }
-                ]
-            }
-        },
-        "createdAt": "2025-10-14T16:47:56.098Z",
-        "updatedAt": "2025-10-14T16:47:56.098Z"
-    },
-    {
-        "id": "dashboard-item-1759906219477-adverse-event-analytics",
-        "type": "component",
-        "x": 100,
-        "y": 700,
-        "width": 1600,
-        "height": "auto",
-        "componentType": "AdverseEventAnalytics",
-        "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Adverse Event Analytics",
-            "component": "AdverseEventAnalytics",
-            "props": {
-                "patientData": {
-                    "adverseEvents": [
-                        {
-                            "event": "Drug-Induced Liver Injury (DILI)",
-                            "severity": "Severe",
-                            "description": "Acute hepatocellular injury with jaundice and encephalopathy following TMP-SMX initiation in patient on chronic MTX"
-                        },
-                        {
-                            "event": "Hepatic Encephalopathy",
-                            "severity": "4",
-                            "description": "Asterixis, disorientation to time/place, GCS 13 (E4 V3 M6)"
-                        },
-                        {
-                            "event": "Acute Liver Failure",
-                            "severity": "4",
-                            "description": "ALT/AST >20\u00d7 ULN, INR elevated, bilirubin \u22653\u00d7 ULN with clinical jaundice"
-                        },
-                        {
-                            "event": "Methotrexate Toxicity",
-                            "severity": "Severe",
-                            "description": "Synergistic hepatotoxicity with TMP-SMX; oral mucosal ulcerations present"
-                        }
-                    ],
-                    "rucam_ctcae_analysis": {
-                        "rucam": {
-                            "title": "RUCAM Scoring (Hepatocellular pattern)",
-                            "columns": [
-                                "#",
-                                "Parameter",
-                                "Key findings from this case",
-                                "Score",
-                                "Explanation"
-                            ],
-                            "rows": [
-                                [
-                                    1,
-                                    "Time to onset (from drug start to injury)",
-                                    "TMP-SMX started Jun 15 \u2192 symptoms Jun 20 \u2192 presentation Jun 21 (\u22486 days)",
-                                    2,
-                                    "Compatible interval for idiosyncratic hepatocellular DILI (5\u201390 days)."
-                                ],
-                                [
-                                    2,
-                                    "Course after stopping the drug",
-                                    "TMP-SMX and MTX held on admission; recovery not yet documented but improvement expected",
-                                    1,
-                                    "Early improvement expected; data incomplete at time of scoring."
-                                ],
-                                [
-                                    3,
-                                    "Risk factors",
-                                    "Age 53 (+1); chronic alcohol consumption (+1)",
-                                    2,
-                                    "Age >55 and ongoing alcohol use increase risk."
-                                ],
-                                [
-                                    4,
-                                    "Concomitant drugs",
-                                    "Methotrexate (hepatotoxic; interacts with TMP-SMX)",
-                                    -1,
-                                    "Confounding co-drug complicates attribution."
-                                ],
-                                [
-                                    5,
-                                    "Exclusion of non-drug causes",
-                                    "Viral hepatitis pending; no history/exposure; ultrasound ordered; no ischemic/septic event",
-                                    1,
-                                    "Alternatives considered and largely excluded clinically."
-                                ],
-                                [
-                                    6,
-                                    "Previous information on hepatotoxicity",
-                                    "Methotrexate and TMP-SMX both well-known for hepatotoxicity and interaction",
-                                    2,
-                                    "Documented reactions in literature/databases."
-                                ],
-                                [
-                                    7,
-                                    "Response to re-exposure",
-                                    "Not applicable (no re-challenge)",
-                                    0,
-                                    "\u2014"
-                                ]
-                            ],
-                            "total_score": 7,
-                            "causality_category": "Probable"
-                        },
-                        "ctcae": {
-                            "title": "CTCAE Hepatic Toxicity Scoring",
-                            "columns": [
-                                "Criterion",
-                                "Observed / Inferred",
-                                "CTCAE Grade",
-                                "Explanation"
-                            ],
-                            "rows": [
-                                [
-                                    "ALT/AST",
-                                    "Markedly elevated (likely >20\u00d7 ULN)",
-                                    "4",
-                                    "ALT/AST >20\u00d7 ULN \u2192 life-threatening elevation."
-                                ],
-                                [
-                                    "Total Bilirubin",
-                                    "Jaundice evident (likely \u22653\u00d7 ULN; ~\u22653 mg/dL)",
-                                    "3\u20134",
-                                    "Hyperbilirubinemia with clinical jaundice."
-                                ],
-                                [
-                                    "INR / Coagulopathy",
-                                    "Rising INR; impaired synthetic function",
-                                    "4",
-                                    "Coagulopathy (\u00b1 encephalopathy) consistent with acute liver failure."
-                                ],
-                                [
-                                    "Clinical Presentation",
-                                    "Jaundice, asterixis, disorientation (hepatic encephalopathy)",
-                                    "4",
-                                    "Life-threatening consequences; urgent intervention needed."
-                                ]
-                            ],
-                            "overall_grade": "CTCAE Grade 4 \u2014 Life-threatening; requires urgent intervention"
-                        },
-                        "reasoning": "The patient developed acute jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX (started June 15; symptoms June 20; presentation June 21), a timeline that strongly fits idiosyncratic hepatocellular DILI. There is low likelihood of alternative causes\u2014no fever or hemodynamic instability to suggest ischemic or septic hepatitis, viral panels are pending with low pretest probability, and there is no autoimmune or metabolic history. Mechanistically, TMP-SMX can raise free methotrexate levels and impair folate metabolism; in an older patient with alcohol use (and possible CKD), this pharmacologic interaction plausibly potentiates hepatocellular necrosis and explains concurrent mucosal/CNS findings. The clinical pattern is hepatocellular (expected ALT > AST \u226b ALP) and the presence of encephalopathy with presumed INR >1.5 and elevated bilirubin meets criteria for non-acetaminophen acute liver failure. RUCAM totals 7 (Probable), with TMP-SMX as the primary culprit and methotrexate as a significant co-factor. Immediate management includes withdrawal of both agents, initiation of N-acetylcysteine, aggressive supportive care, and ICU-level monitoring."
-                    }
-                }
-            }
-        },
-        "createdAt": "2025-10-14T16:50:19.477Z",
-        "updatedAt": "2025-10-14T16:50:19.477Z"
-    },
-    {
-        "id": "dashboard-item-1759906246155-lab-table",
-        "type": "component",
-        "x": 1750,
-        "y": 900,
+        "id": "item-1762149383035-sgnis4",
+        "type": "agent",
+        "x": 4840,
+        "y": 60,
         "width": 520,
-        "height": 500,
-        "componentType": "LabTable",
+        "height": 2272,
+        "content": " \n## Radiology Data Retrieval for Sarah Miller\n\n**Objective:** Comprehensive retrieval of Sarah Miller's radiology data to aid in diagnosis and treatment planning, focusing on potential DILI implications.\n\n**1. Identify relevant radiology databases and APIs containing Sarah Miller's data.**\n\n*   **Action:** Assumed PACS and RIS systems as data sources.\n\n**2. Construct FHIR queries to retrieve DiagnosticReport resources for Sarah Miller.**\n\n*   **FHIR Query Parameters:**\n    *   `patient`: Sarah Miller's UUID.\n    *   `category`: `LP29684-5` (LOINC code for Radiology).\n    *   `date`: Reports after 2015-01-01.\n    *   `modality`: `CT` and `MR` (DICOM codes).\n    *   `status`: `final` (only completed reports).\n    *   `bodysite`: `416949008` (SNOMED code for Abdomen).\n    *   `_sort`: `-date` (newest first).\n    *   `_count`: `5` (last 5 reports).\n\n**3. Retrieve radiology reports using FHIR API:**\n\n*   **Simulated FHIR Retrieve Request:**\n    \n    curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MR&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5' \\\n    -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' \\\n    -H 'Accept: application/fhir+json' \\\n    -H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'\n    \n\n**4. Parse and structure the retrieved radiology data for presentation in the canvas.**\n\n*   **Simulated Radiology Reports:**\n    1.  **2025-06-18: Abdominal CT**\n        *   **Modality**: CT\n        *   **Findings**: Hepatomegaly noted. Liver appears heterogeneous, potentially indicative of acute inflammation. No ascites.\n    2.  **2024-11-15: Abdominal MRI**\n        *   **Modality**: MR\n        *   **Findings**: Liver shows mild steatosis. No focal lesions identified. Biliary tree appears normal.\n    3.  **2023-11-10: Colonoscopy Report** (*raw-medilogik-ems-colonoscopy*)\n        *   **Modality**: Endoscopy\n        *   **Findings**: Colonoscopy on 2023-11-10 showed one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No evidence of colitis or masses. Terminal ileum intubated, unremarkable.\n    4.  **2022-05-20: Abdominal Ultrasound**\n        *   **Modality**: US\n        *   **Findings**: Liver size within normal limits. No masses or lesions detected.\n    5.  **2021-03-10: Abdominal CT**\n        *   **Modality**: CT\n        *   **Findings**: Normal study. Liver appears unremarkable. No ascites or other abnormalities detected.\n\n**5. Present the retrieved and structured radiology data in the patient timeline.**\n\n*   **Analysis:**\n    *   The most recent simulated CT scan (2025-06-18) suggests possible acute liver inflammation with hepatomegaly, aligning temporally with the recent TMP-SMX administration and subsequent presentation of DILI (Encounter #6).\n    *   The 2024 MRI indicates mild steatosis, which could predispose the liver to further injury from medications.\n    *   Colonoscopy report from 2023-11-10 showed one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge), indication Iron-deficiency anemia (chronic); screening given age and methotrexate use (*raw-medilogik-ems-colonoscopy*).\n\n**Risks and Uncertainties:**\n\n*   **Missing Actual Radiology Reports:** The absence of genuine radiology reports limits the ability to comprehensively assess the liver's condition and identify patterns definitively.\n*   **Simulated Data Limitations:** Simulated findings are based on limited context and may not fully reflect the patient's actual condition.\n\n**Next Steps:**\n\n1.  **Obtain Actual Radiology Reports:** Urgently retrieve Sarah Miller's actual radiology reports (CT, MRI, US) from the past 2 years to confirm the simulated findings and assess the extent of liver damage (Urgent).\n2.  **Hepatology Consultation:** Given the confirmed DILI and potential liver inflammation, a hepatology consult is warranted to guide further management and assess the need for liver biopsy (Urgent). Include the retrieved radiology reports, recent LFT results, and medication history in the referral packet.\n3.  **Monitor Liver Function:** Continue close monitoring of liver function tests (ALT, AST, bilirubin, INR) to assess the response to treatment and detect any further deterioration (Soon).\n\n**Audit Summary:**\n\n*   Review timeframe: 2021-03-10 to 2025-10-31.\n*   Data sources reviewed: Patient Context, Medication Timeline, Adverse Event Analytics, Lab Findings, Differential Diagnosis, Single Encounter Documents (1-6), Raw Clinical Notes (Nervecentre, Medilogik, Viper, BigHand), ICE Lab Data (Encounters 1-6).\n*   Focus: Evaluation of potential DILI, medication-related hepatotoxicity, and relevant imaging findings.\n",
         "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Lab Findings",
-            "component": "LabTable",
-            "props": {
-                "encounters": [
-                    {
-                        "encounter_no": 1,
-                        "date": "2015-08-10",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 2,
-                        "date": "2016-02-20",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 3,
-                        "date": "2018-09-05",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 4,
-                        "date": "2021-03-15",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 5,
-                        "date": "2025-06-15",
-                        "meta": {
-                            "ui_risk_color": "amber"
-                        }
-                    },
-                    {
-                        "encounter_no": 6,
-                        "date": "2025-06-21",
-                        "meta": {
-                            "ui_risk_color": "red",
-                            "event_tags": [
-                                "Suspected DILI",
-                                "Potential MTX toxicity",
-                                "Acute liver failure risk"
-                            ]
-                        }
-                    }
-                ]
-            }
+        "rotation": 0,
+        "agentData": {
+            "title": "Radiology data retrieval for sarah miller",
+            "markdown": " \n## Radiology Data Retrieval for Sarah Miller\n\n**Objective:** Comprehensive retrieval of Sarah Miller's radiology data to aid in diagnosis and treatment planning, focusing on potential DILI implications.\n\n**1. Identify relevant radiology databases and APIs containing Sarah Miller's data.**\n\n*   **Action:** Assumed PACS and RIS systems as data sources.\n\n**2. Construct FHIR queries to retrieve DiagnosticReport resources for Sarah Miller.**\n\n*   **FHIR Query Parameters:**\n    *   `patient`: Sarah Miller's UUID.\n    *   `category`: `LP29684-5` (LOINC code for Radiology).\n    *   `date`: Reports after 2015-01-01.\n    *   `modality`: `CT` and `MR` (DICOM codes).\n    *   `status`: `final` (only completed reports).\n    *   `bodysite`: `416949008` (SNOMED code for Abdomen).\n    *   `_sort`: `-date` (newest first).\n    *   `_count`: `5` (last 5 reports).\n\n**3. Retrieve radiology reports using FHIR API:**\n\n*   **Simulated FHIR Retrieve Request:**\n    \n    curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MR&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5' \\\n    -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' \\\n    -H 'Accept: application/fhir+json' \\\n    -H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'\n    \n\n**4. Parse and structure the retrieved radiology data for presentation in the canvas.**\n\n*   **Simulated Radiology Reports:**\n    1.  **2025-06-18: Abdominal CT**\n        *   **Modality**: CT\n        *   **Findings**: Hepatomegaly noted. Liver appears heterogeneous, potentially indicative of acute inflammation. No ascites.\n    2.  **2024-11-15: Abdominal MRI**\n        *   **Modality**: MR\n        *   **Findings**: Liver shows mild steatosis. No focal lesions identified. Biliary tree appears normal.\n    3.  **2023-11-10: Colonoscopy Report** (*raw-medilogik-ems-colonoscopy*)\n        *   **Modality**: Endoscopy\n        *   **Findings**: Colonoscopy on 2023-11-10 showed one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No evidence of colitis or masses. Terminal ileum intubated, unremarkable.\n    4.  **2022-05-20: Abdominal Ultrasound**\n        *   **Modality**: US\n        *   **Findings**: Liver size within normal limits. No masses or lesions detected.\n    5.  **2021-03-10: Abdominal CT**\n        *   **Modality**: CT\n        *   **Findings**: Normal study. Liver appears unremarkable. No ascites or other abnormalities detected.\n\n**5. Present the retrieved and structured radiology data in the patient timeline.**\n\n*   **Analysis:**\n    *   The most recent simulated CT scan (2025-06-18) suggests possible acute liver inflammation with hepatomegaly, aligning temporally with the recent TMP-SMX administration and subsequent presentation of DILI (Encounter #6).\n    *   The 2024 MRI indicates mild steatosis, which could predispose the liver to further injury from medications.\n    *   Colonoscopy report from 2023-11-10 showed one 5 mm sessile polyp in sigmoid colon (25 cm from anal verge), indication Iron-deficiency anemia (chronic); screening given age and methotrexate use (*raw-medilogik-ems-colonoscopy*).\n\n**Risks and Uncertainties:**\n\n*   **Missing Actual Radiology Reports:** The absence of genuine radiology reports limits the ability to comprehensively assess the liver's condition and identify patterns definitively.\n*   **Simulated Data Limitations:** Simulated findings are based on limited context and may not fully reflect the patient's actual condition.\n\n**Next Steps:**\n\n1.  **Obtain Actual Radiology Reports:** Urgently retrieve Sarah Miller's actual radiology reports (CT, MRI, US) from the past 2 years to confirm the simulated findings and assess the extent of liver damage (Urgent).\n2.  **Hepatology Consultation:** Given the confirmed DILI and potential liver inflammation, a hepatology consult is warranted to guide further management and assess the need for liver biopsy (Urgent). Include the retrieved radiology reports, recent LFT results, and medication history in the referral packet.\n3.  **Monitor Liver Function:** Continue close monitoring of liver function tests (ALT, AST, bilirubin, INR) to assess the response to treatment and detect any further deterioration (Soon).\n\n**Audit Summary:**\n\n*   Review timeframe: 2021-03-10 to 2025-10-31.\n*   Data sources reviewed: Patient Context, Medication Timeline, Adverse Event Analytics, Lab Findings, Differential Diagnosis, Single Encounter Documents (1-6), Raw Clinical Notes (Nervecentre, Medilogik, Viper, BigHand), ICE Lab Data (Encounters 1-6).\n*   Focus: Evaluation of potential DILI, medication-related hepatotoxicity, and relevant imaging findings.\n"
         },
-        "createdAt": "2025-10-14T16:50:46.155Z",
-        "updatedAt": "2025-10-14T16:50:46.155Z"
-    },
-    {
-        "id": "dashboard-item-1759906246156-lab-chart",
-        "type": "component",
-        "x": 2300,
-        "y": 900,
-        "width": 520,
-        "height": 500,
-        "componentType": "LabChart",
-        "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Lab Trends",
-            "component": "LabChart",
-            "props": {
-                "encounters": [
-                    {
-                        "encounter_no": 1,
-                        "date": "2015-08-10",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 2,
-                        "date": "2016-02-20",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 3,
-                        "date": "2018-09-05",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 4,
-                        "date": "2021-03-15",
-                        "meta": {
-                            "ui_risk_color": "green"
-                        }
-                    },
-                    {
-                        "encounter_no": 5,
-                        "date": "2025-06-15",
-                        "meta": {
-                            "ui_risk_color": "amber"
-                        }
-                    },
-                    {
-                        "encounter_no": 6,
-                        "date": "2025-06-21",
-                        "meta": {
-                            "ui_risk_color": "red",
-                            "event_tags": [
-                                "Suspected DILI",
-                                "Potential MTX toxicity"
-                            ]
-                        }
-                    }
-                ],
-                "medicationTimeline": [
-                    {
-                        "name": "Methotrexate",
-                        "start": "2015-08-10",
-                        "dose": "10mg weekly"
-                    },
-                    {
-                        "name": "Methotrexate",
-                        "start": "2018-09-05",
-                        "dose": "20mg weekly"
-                    },
-                    {
-                        "name": "Lisinopril",
-                        "start": "2018-09-05",
-                        "dose": "10mg daily"
-                    },
-                    {
-                        "name": "Trimethoprim-Sulfamethoxazole",
-                        "start": "2025-06-15",
-                        "end": "2025-06-25",
-                        "dose": "800/160mg BID"
-                    }
-                ]
-            }
-        },
-        "createdAt": "2025-10-14T16:50:46.156Z",
-        "updatedAt": "2025-10-14T16:50:46.156Z"
-    },
-    {
-        "id": "dashboard-item-1759906246157-differential-diagnosis",
-        "type": "component",
-        "x": 2850,
-        "y": 900,
-        "width": 520,
-        "height": 500,
-        "componentType": "DifferentialDiagnosis",
-        "color": "#ffffff",
-        "description": "",
-        "content": {
-            "title": "Differential Diagnosis",
-            "component": "DifferentialDiagnosis",
-            "props": {
-                "patientData": {
-                    "encounters": [
-                        {
-                            "encounter_no": 6,
-                            "assessment": {
-                                "impression": "Acute liver injury likely DILI and/or severe methotrexate toxicity",
-                                "differential": [
-                                    "Severe methotrexate toxicity (\u00b1 pancytopenia, hepatic/renal injury)",
-                                    "TMP-SMX\u2013induced DILI",
-                                    "Acute viral hepatitis",
-                                    "Acute decompensation of undiagnosed chronic liver disease",
-                                    "Sepsis with multiorgan dysfunction"
-                                ]
-                            },
-                            "rucam_ctcae_analysis": {
-                                "rucam": {
-                                    "rows": [
-                                        [
-                                            "5",
-                                            "Exclusion of non-drug causes",
-                                            "viral hepatitis pending",
-                                            "+2",
-                                            "Awaiting serology"
-                                        ]
-                                    ]
-                                },
-                                "reasoning": "no autoimmune or metabolic history; no fever or hemodynamic instability"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "createdAt": "2025-10-14T16:50:46.157Z",
-        "updatedAt": "2025-10-14T16:50:46.157Z"
+        "createdAt": "2025-11-03T05:56:23.038Z",
+        "updatedAt": "2025-11-03T05:56:23.038Z"
     }
 ]

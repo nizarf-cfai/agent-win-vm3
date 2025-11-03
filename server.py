@@ -50,7 +50,7 @@ def run_powershell_script(script_name: str, meet_url: str = None, session_id: st
             f'start powershell -NoExit -ExecutionPolicy Bypass '
             f'-Command "python {script_name} --link \'{meet_url}\'"'
         )
-    if session_id:
+    elif session_id:
         command = (
             f'start powershell -NoExit -ExecutionPolicy Bypass '
             f'-Command "python {script_name} --session \'{session_id}\'"'
@@ -62,7 +62,7 @@ def run_powershell_script(script_name: str, meet_url: str = None, session_id: st
         )
 
     subprocess.Popen(command, shell=True)
-    print(f"Started visible PowerShell for {script_name}")
+    print(f"Started visible PowerShell for {command}")
 
 
 @app.post("/join-meeting")
@@ -74,7 +74,7 @@ def join_meeting(payload: dict, background_tasks: BackgroundTasks):
     background_tasks.add_task(kill_existing_processes, "visit_meet_with_audio.py")
     background_tasks.add_task(kill_existing_processes, "gemini_audio_only_cable.py")
 
-    background_tasks.add_task(run_powershell_script, "visit_meet_with_audio.py", meet_url)
+    background_tasks.add_task(run_powershell_script, "visit_meet_with_audio.py", meet_url, None)
     background_tasks.add_task(run_powershell_script, "gemini_audio_only_cable.py",None,session_id)
 
     return {"status": "joining", "meeting_url": meet_url}

@@ -1,8 +1,7 @@
 {
-    "objectId": "item-1761643036366-hoqlfm",
-    "subElement": "medications.methotrexate",
-    "focusOptions": {
-        "zoom": 0.8,
-        "highlight": true
+    "url": "https://board-v2-test-self.vercel.app/api/focus",
+    "payload": {
+        "sessionId": "b83f7348-d31f-4664-af32-6efcd9205dc4",
+        "objectId": "dashboard-item-1759853783246-medication-timeline"
     }
 }

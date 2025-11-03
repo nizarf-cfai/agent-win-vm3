@@ -1,12 +1,13 @@
 {
     "success": true,
-    "message": "Focus event broadcasted",
-    "itemId": "item-1761643036366-hoqlfm",
-    "subElement": "medications.methotrexate",
+    "sessionId": "b83f7348-d31f-4664-af32-6efcd9205dc4",
+    "message": "Focus event broadcasted to session",
+    "itemId": "dashboard-item-1759853783246-medication-timeline",
+    "subElement": null,
     "focusOptions": {
-        "zoom": 0.8,
-        "highlight": true,
-        "duration": 1500,
+        "zoom": 1.2,
+        "highlight": false,
+        "duration": 1200,
         "scrollIntoView": true
     }
 }

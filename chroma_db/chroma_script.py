@@ -86,10 +86,12 @@ def get_client() -> httpx.AsyncClient:
 
 
 def get_board_items(session_id):
-    url = BASE_URL + f"/api/board-items??sessionId={session_id}"
+    url = BASE_URL + f"/api/board-items?sessionId={session_id}"
     
     response = requests.get(url)
-    data = response.json()
+    print("URL :",url)
+    print("Get board status",response.status_code)
+    data = response.json().get('items',[])
     result_data = []
     for d in data:
         result_data.append(d)
@@ -407,8 +409,11 @@ async def rag_from_json(query: str="", top_k: int = 10,session_id=""):
     try:
 
         data = get_board_items(session_id)
+        print("Board Items type:",type(data))
         summary_objects = []
         raw_objects = []
+        # with open("board_item_test.json", "w", encoding="utf-8") as f:
+        #     json.dump(data, f, indent=4, ensure_ascii=False)
         for d in data:
             if 'raw' in d.get('id',''):
                 raw_objects.append(d)
@@ -439,7 +444,9 @@ async def rag_from_json(query: str="", top_k: int = 10,session_id=""):
         return context
         
     except Exception as e:
+        import traceback
         print(f"Error object_rag :\n{e}")
+        traceback.print_exc()
         return ""
 
 # ---------- Main Function ----------

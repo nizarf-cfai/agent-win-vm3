@@ -1,123 +1,87 @@
 {
-    "id": "enhanced-todo-1761819050027-0o51phtg0",
+    "id": "enhanced-todo-1762149362533-ukdttojop",
     "type": "todo",
     "x": 4260,
     "y": 60,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Retrieve Sarah Miller’s radiology data from the NHS database.",
+    "description": "Comprehensive task workflow to retrieve Sarah Miller's radiology data from relevant databases and APIs, ensuring all data is up-to-date and accurately reflects her medical history.",
     "todoData": {
-        "title": "Pull Radiology Data for Sarah Miller",
-        "description": "Retrieve Sarah Miller’s radiology data from the NHS database.",
+        "title": "Radiology Data Retrieval for Sarah Miller",
+        "description": "Comprehensive task workflow to retrieve Sarah Miller's radiology data from relevant databases and APIs, ensuring all data is up-to-date and accurately reflects her medical history.",
         "todos": [
             {
-                "id": "radiology-data-1",
                 "status": "pending",
+                "subTodos": [],
+                "id": "1",
+                "text": "Identify relevant radiology databases and APIs containing Sarah Miller's data.",
+                "agent": "Medforce Agent"
+            },
+            {
+                "agent": "Medforce Agent",
                 "subTodos": [
                     {
-                        "text": "Patient → Sarah Miller’s UUID.",
+                        "status": "pending",
+                        "text": "Query parameter: patient → Sarah Miller’s UUID"
+                    },
+                    {
+                        "text": "Query parameter: category → LP29684-5 (LOINC code for Radiology).",
                         "status": "pending"
                     },
                     {
                         "status": "pending",
-                        "text": "Category → LP29684-5 (LOINC code for Radiology)."
+                        "text": "Query parameter: date=ge2015-01-01 → only reports after Jan 1, 2015."
+                    },
+                    {
+                        "text": "Query parameter: modality=CT, MR → restrict to CT and MRI studies (DICOM codes).",
+                        "status": "pending"
                     },
                     {
                         "status": "pending",
-                        "text": "date=ge2015-01-01 → only reports after Jan 1, 2015."
+                        "text": "Query parameter: status=final → only completed radiology reports."
                     },
                     {
-                        "status": "pending",
-                        "text": "modality=CT, MR → restrict to CT and MRI studies (DICOM codes)."
-                    },
-                    {
-                        "text": "status=final → only completed radiology reports.",
+                        "text": "Query parameter: bodysite=416949008 → SNOMED code for Abdomen.",
                         "status": "pending"
                     },
                     {
-                        "text": "bodysite=416949008 → SNOMED code for Abdomen.",
+                        "text": "Query parameter: _sort=-date → newest first.",
                         "status": "pending"
                     },
                     {
-                        "text": "_sort=-date → newest first.",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "_count=5 → retrieve last 5 radiology reports",
+                        "text": "Query parameter: _count=5 → retrieve last 5 radiology reports",
                         "status": "pending"
                     }
                 ],
-                "text": "Construct FHIR query to retrieve DiagnosticReport resources related to Sarah Miller.",
-                "agent": "Data Retrieval Agent"
+                "text": "Construct FHIR queries to retrieve DiagnosticReport resources for Sarah Miller.",
+                "id": "2",
+                "status": "pending"
             },
             {
-                "agent": "Radiology Data Retriever",
-                "id": "radiology-data-2",
+                "agent": "FHIR API Retriever",
+                "id": "3",
+                "subTodos": [],
                 "status": "pending",
-                "text": "Retrieve request: curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MR&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' -H 'Accept: application/fhir+json' -H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'",
-                "subTodos": [
-                    {
-                        "status": "pending",
-                        "text": "Patient → Sarah Miller’s UUID."
-                    },
-                    {
-                        "text": "Category → LP29684-5 (LOINC code for Radiology).",
-                        "status": "pending"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "date=ge2015-01-01 → only reports after Jan 1, 2015."
-                    },
-                    {
-                        "text": "modality=CT, MR → restrict to CT and MRI studies (DICOM codes).",
-                        "status": "pending"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "status=final → only completed radiology reports."
-                    },
-                    {
-                        "text": "bodysite=416949008 → SNOMED code for Abdomen.",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "_sort=-date → newest first.",
-                        "status": "pending"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "_count=5 → retrieve last 5 radiology reports"
-                    }
-                ]
+                "text": "Retrieve radiology reports using FHIR API:\ncurl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MR&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5' \\\n-H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' \\\n-H 'Accept: application/fhir+json' \\\n-H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'"
             },
             {
-                "id": "radiology-data-3",
-                "subTodos": [
-                    {
-                        "status": "pending",
-                        "text": "Transform FHIR JSON into a table."
-                    }
-                ],
                 "status": "pending",
-                "text": "Map FHIR response to a structured format for analysis.",
-                "agent": "Data Transformation Agent"
+                "text": "Parse and structure the retrieved radiology data for presentation in the canvas.",
+                "agent": "Medforce Agent",
+                "id": "4",
+                "subTodos": []
             },
             {
-                "id": "radiology-data-4",
-                "agent": "Canvas Integration Agent",
-                "text": "Display the radiology data in the Radiology Reports section.",
+                "agent": "Medforce Agent",
+                "id": "5",
                 "status": "pending",
-                "subTodos": [
-                    {
-                        "text": "Insert table into the Radiology Reports section.",
-                        "status": "pending"
-                    }
-                ]
+                "subTodos": [],
+                "text": "Present the retrieved and structured radiology data in the patient timeline."
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-10-30T10:10:50.036Z",
-    "updatedAt": "2025-10-30T10:10:50.036Z"
+    "createdAt": "2025-11-03T05:56:02.539Z",
+    "updatedAt": "2025-11-03T05:56:02.539Z"
 }

@@ -6,19 +6,14 @@ import requests
 
 
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
-headers = {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "X-Accel-Buffering": "no",
-        "Content-Security-Policy": "connect-src *"
-    }
+
 def load_ehr(session_id):
     url = BASE_URL + f"/api/board-items?sessionId={session_id}"
-    
-    response = requests.get(url)
+    headers = {
+        "Content-Type": "application/json",
+        "X-Session-Id": session_id
+    }
+    response = requests.get(url,headers=headers)
     data = response.json()
 
     return data
