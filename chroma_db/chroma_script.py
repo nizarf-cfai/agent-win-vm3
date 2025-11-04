@@ -16,11 +16,19 @@ import json, re
 import sys
 import os
 
-BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 
 EASL_BASE_URL = "https://inference-dili-16771232505.us-central1.run.app"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
+headers = {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "X-Accel-Buffering": "no",
+        "Content-Security-Policy": "connect-src *"
+    }
 _client: Optional[httpx.AsyncClient] = None
 
 
@@ -141,6 +149,7 @@ async def fetch_easl_result(task_id: str, client: Optional[httpx.AsyncClient] = 
     return parse_kin(data["results"][0]["llm_answer"])
 
 async def get_easl_answer_async(question: str, *,
+                                context: str,
                                 interval: float = 60.0,
                                 max_retries: int = 5,
                                 client: Optional[httpx.AsyncClient] = None) -> str:
@@ -149,11 +158,19 @@ async def get_easl_answer_async(question: str, *,
     Returns "" if not completed within retries.
     """
     client = client or get_client()
-    task_id = await start_easl_async(question, client=client)
+
+
+    q_with_context = f"{question}\n\nContext:\n{context}\n"
+    
+    task_id = await start_easl_async(q_with_context, client=client)
     completed = await poll_easl_status(task_id, interval=interval, max_retries=max_retries, client=client)
     if not completed:
         return ""
-    return await fetch_easl_result(task_id, client=client)
+
+    result_answer = await fetch_easl_result(task_id, client=client)
+    result_answer['question'] = question
+    
+    return result_answer
 
 
 # ----------------------------
@@ -219,6 +236,7 @@ def build_chroma_from_texts(dir_path: str, persist_dir: str = "./chroma_store"):
 # ----------------------------
 # 1.5️⃣ Query from persistent ChromaDB collection
 # ----------------------------
+
 def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", collection_name: str = "local_docs", top_k: int = 3):
 
     try:

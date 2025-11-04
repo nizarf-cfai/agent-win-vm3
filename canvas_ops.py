@@ -8,8 +8,14 @@ import os
 # BASE_URL = "http://localhost:3001"
 # BASE_URL = "https://cameraman-phi.vercel.app"
 
-BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 
+
+async def get_agent_context(question):
+    context_str = await helper_model.generate_context(question)
+
+
+    return context_str
 
 async def get_agent_answer(todo):
     data = await helper_model.generate_response(todo)
@@ -61,7 +67,7 @@ async def focus_item(item_id, sub_element=""):
             "highlight": True
         }
     }
-
+    print("Focus URL:",url)
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as response:
             with open("focus_payload.json", "w", encoding="utf-8") as f:
@@ -101,7 +107,7 @@ async def create_lab(payload_body):
 async def create_result(agent_result):
     url = BASE_URL + "/api/agents"
     
-    agent_result['zone'] = "raw-ehr-data-zone"
+    # agent_result['zone'] = "raw-ehr-data-zone"
     payload = agent_result
 
     # response = requests.post(url, json=payload)

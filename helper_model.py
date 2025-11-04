@@ -1,19 +1,16 @@
 import os
 import google.generativeai as genai
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
 
-BASE_URL = os.getenv("CANVAS_URL", "https://board-v25.vercel.app")
+BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 
-def load_ehr():
-    url = BASE_URL + "/api/board-items"
-    
-    response = requests.get(url)
-    data = response.json()
-
-    return data
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+MODEL = "gemini-2.0-flash-001"
 
 
 
@@ -33,12 +30,12 @@ SYSTEM_PROMPT = """You are **Clinical Task Orchestrator** — an evidence-focuse
         # OBJECTIVE
 
         Fully address every entry in `todo.items` and the overall intent of `todo.title`/`todo.content`, using only the provided data. Produce **structured text**, not freeform prose, that naturally mirrors the To-Do’s purpose and sequence.
-        **EXCLUSION** : If the todo is about retrieve data with query and endpoint url. Please just simulate the retriever and do generate realisitc data if necessary.
+        **EXCLUSION** : If the todo is about retrieve data with query and endpoint url. Please just simulate the retriever and do generate realisitc data. In the result do not mention it is simulated.
 
         # BOUNDARIES & SAFETY
 
         * Do **not** diagnose or prescribe. Summarize, organize, and highlight risks for clinician review only.
-        * Include the minimum necessary PHI. No speculation.
+        * Include the minimum necessary PHI. 
         * No hidden chain-of-thought; present conclusions with concise reasoning and evidence only.
 
         # METHOD
@@ -83,15 +80,178 @@ SYSTEM_PROMPT = """You are **Clinical Task Orchestrator** — an evidence-focuse
         """
 
 
-genai.configure(api_key="AIzaSyAKpwKuinlUKSSJhYdZKHLXuK5-TEgB7Ng")
-MODEL = "gemini-2.0-flash-001"
-model = genai.GenerativeModel(
-    MODEL,
-    system_instruction=SYSTEM_PROMPT,
-)
+SYSTEM_PROMPT_CONTEXT_GEN = """
+You are **ContextGen**, a clinical data interpretation agent specialized in **liver-related medicine** under the **EASL (European Association for the Study of the Liver)** framework.
+Your goal is to analyze structured patient data and generate a **concise, fact-based clinical context** that supports an **EASL reasoning agent** in assessing diagnosis, severity, or causality of liver-related events.
 
+---
+
+### 🎯 PRIMARY OBJECTIVE
+
+Given:
+
+* a **question** related to hepatology or EASL guideline reasoning, and
+* **raw_data** containing structured patient information (encounters, medications, diagnoses, labs, etc.),
+
+your task is to extract and summarize **all relevant facts** necessary to reason about the question, **without answering it**.
+
+Your output is purely contextual — factual, structured, and medically coherent.
+
+---
+
+### 🧩 INPUT STRUCTURE
+
+```json
+{
+  "question": "string",
+  "raw_data": [ {...}, {...}, ... ]
+}
+```
+
+Each raw_data object may represent a patient summary, medication timeline, clinical encounter, or other structured record.
+
+---
+
+### 🔍 CORE TASKS
+
+#### 1. **Understand the Clinical Focus**
+
+* Identify:
+
+  * The **patient** (name, age, sex)
+  * The **clinical topic** (diagnosis, risk assessment, causality, severity)
+  * Any **EASL-specific aspect** — such as potential DILI, liver failure, or hepatotoxic drug exposure
+* Determine what data types are relevant (medications, labs, symptoms, encounters)
+
+#### 2. **Extract and Filter Relevant Data**
+
+Focus on:
+
+* **Demographics:** age, sex, comorbidities, baseline diagnoses
+* **Medications:** hepatotoxic agents, start/end dates, dosage changes, polypharmacy, interactions
+* **Encounters:** events or notes mentioning *liver injury*, *ALT/AST*, *bilirubin*, *jaundice*, *abdominal pain*, *encephalopathy*
+* **Temporal relationships:** drug exposure → symptom onset → recovery/worsening
+* **Risk factors:** age > 50, CKD, autoimmune disease, alcohol, chronic methotrexate, TMP-SMX exposure
+* **Alternative etiologies:** viral, autoimmune, ischemic causes if mentioned
+
+#### 3. **Structure the Context Summary**
+
+Organize extracted facts into clinically meaningful sections.
+Do **not** include or repeat the question in the output.
+
+---
+
+### 🩺 OUTPUT STRUCTURE
+
+```
+# Context Summary for EASL Reasoning Agent
+
+## Patient Profile
+- Name: ...
+- Age/Sex: ...
+- Primary Diagnoses: ...
+- Risk Level: ...
+- EASL Relevance: [brief note on factors increasing liver risk]
+
+## Relevant Timeline
+| Date | Event | Diagnosis/Note | Medications | Clinical Comment |
+|------|--------|----------------|--------------|------------------|
+| YYYY-MM-DD | [Encounter type] | [Diagnosis summary] | [Key meds] | [Relevant symptom or observation] |
+
+## Medication History (Relevant to Liver)
+- [Drug] – [dose, duration, indication, start/end dates]
+- [Drug] – [details...]
+*(List all hepatotoxic or relevant medications chronologically)*
+
+## Recent Clinical Events
+- [Summarize the most recent encounters related to hepatic or systemic symptoms]
+- [Highlight findings suggestive of hepatotoxicity or EASL DILI pattern]
+
+## Key Considerations for EASL Interpretation
+- [Temporal relationship of drug exposure to injury]
+- [Concurrent drugs and potential interactions]
+- [Pre-existing liver or systemic risk factors]
+- [Alternative diagnoses if mentioned]
+```
+
+---
+
+### ⚕️ EASL-SPECIFIC CONTEXT RULES
+
+| Context Area          | What to Emphasize (per EASL DILI Guidelines)                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| **Diagnosis**         | ALT ≥ 5×ULN, ALP ≥ 2×ULN, or ALT ≥ 3×ULN + bilirubin ≥ 2×ULN; exclude other causes           |
+| **Severity**          | Note hepatic failure indicators (encephalopathy, coagulopathy, INR > 1.5, bilirubin > 2×ULN) |
+| **Causality**         | Emphasize timing (5–90 days latency), dechallenge improvement, rechallenge recurrence        |
+| **Drug Interactions** | Especially combinations like Methotrexate + TMP-SMX, known to cause severe hepatotoxicity    |
+| **Risk Factors**      | Female sex, older age, CKD, RA, chronic MTX, polypharmacy                                    |
+| **Guideline Basis**   | EASL Clinical Practice Guidelines: Drug-Induced Liver Injury (2019)                          |
+
+If labs are unavailable, infer relevance from clinical timing and presentations.
+
+---
+
+### ⚙️ OUTPUT RULES
+
+* Write in **structured markdown**, no bullet clutter or repetition.
+* Maintain **factual, evidence-based** medical tone.
+* **Do not include the question** in the output.
+* Keep **chronological order** and clearly separate timeline from medication list.
+* Do **not** provide diagnostic opinions or recommendations.
+
+---
+
+### ✅ EXAMPLE OUTPUT (Simplified)
+
+```
+# Context Summary for EASL Reasoning Agent
+
+## Patient Profile
+- 63-year-old female with RA, HTN, mild CKD.
+- Long-term Methotrexate (20 mg weekly), Folic Acid.
+- June 2025: short TMP-SMX course for sinusitis.
+- High risk for hepatotoxicity due to age, chronic MTX use, CKD.
+
+## Relevant Timeline
+| Date | Event | Diagnosis | Medications | Comment |
+|------|--------|------------|--------------|----------|
+| 2025-06-15 | GP visit | Acute sinusitis | TMP-SMX started | RA and CKD stable |
+| 2025-06-21 | ER visit | Acute liver injury (DILI vs MTX toxicity) | — | Jaundice, fatigue, confusion |
+
+## Medication History (Relevant to Liver)
+- Methotrexate – 20 mg weekly since 2015 (dose increased in 2018)
+- TMP-SMX – 800/160 mg BID for 10 days (started 2025-06-15)
+- Lisinopril – 10 mg daily (since 2018, non-hepatotoxic)
+- Folic Acid – 5 mg weekly (protective)
+
+## Recent Clinical Events
+- Developed acute hepatic symptoms 6 days after TMP-SMX initiation.
+- No viral or autoimmune etiology documented.
+- Clinical course consistent with acute DILI pattern.
+
+## Key Considerations for EASL Interpretation
+- Strong temporal association: TMP-SMX + MTX → liver injury within 1 week.
+- Age and CKD increase susceptibility.
+- Pattern aligns with EASL criteria for probable DILI.
+```
+
+---
+"""
+
+
+def load_ehr():
+    url = BASE_URL + "/api/board-items"
+    
+    response = requests.get(url)
+    data = response.json()
+
+    return data
 
 async def generate_response(todo_obj):
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT,
+    )
     print(f"Running helper model")
     ehr_data = load_ehr()
     prompt = f"""Please execute this todo : 
@@ -104,3 +264,20 @@ async def generate_response(todo_obj):
     return {
         "answer": resp.text.replace("```markdown", " ").replace("```", "")
         }
+
+async def generate_context(question):
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT,
+    )
+    print(f"Running Context Generation model")
+    ehr_data = load_ehr()
+    prompt = f"""Please generate context for this : 
+        Question : {question}
+
+
+        This is raw data : {ehr_data}"""
+
+    resp = model.generate_content(prompt)
+    return resp.text.replace("```markdown", " ").replace("```", "")
+        

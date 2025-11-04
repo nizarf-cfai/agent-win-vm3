@@ -1,79 +1,103 @@
 {
-    "description": "Comprehensive task to pull and consolidate all lab results for Sarah Miller, ensuring all relevant data is readily accessible for clinical decision-making.",
-    "title": "Retrieve All Lab Results for Sarah Miller",
+    "title": "General Checkup Task",
     "todos": [
         {
-            "agent": "FHIR API Retriever",
-            "id": "1",
-            "status": "pending",
-            "text": "Initial data retrieval via FHIR API",
+            "text": "Review medical history",
             "subTodos": [
                 {
                     "status": "pending",
-                    "text": "Query parameter: patient → Sarah Miller’s UUID."
+                    "text": "Check medications"
                 },
                 {
-                    "text": "Query parameter: category → Laboratory. ",
+                    "status": "pending",
+                    "text": "Review allergies"
+                },
+                {
+                    "status": "pending",
+                    "text": "Assess current conditions"
+                }
+            ],
+            "status": "pending",
+            "agent": "MedForce Agent",
+            "id": "checkup-1"
+        },
+        {
+            "agent": "MedForce Agent",
+            "status": "pending",
+            "id": "checkup-2",
+            "text": "Perform physical exam",
+            "subTodos": [
+                {
+                    "status": "pending",
+                    "text": "Measure vitals"
+                },
+                {
+                    "status": "pending",
+                    "text": "Check heart and lungs"
+                },
+                {
+                    "text": "Examine abdomen",
                     "status": "pending"
-                },
-                {
-                    "text": "Query parameter: date=ge2015-01-01 → only reports after Jan 1, 2015.",
-                    "status": "pending"
-                },
-                {
-                    "status": "pending",
-                    "text": "Query parameter: status=final → only completed lab reports."
-                },
-                {
-                    "status": "pending",
-                    "text": "Query parameter: _sort=-date → newest first."
-                },
-                {
-                    "status": "pending",
-                    "text": "Query parameter: _count=10 → retrieve last 10 lab reports"
-                },
-                {
-                    "status": "pending",
-                    "text": "Retrieve request: curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=Laboratory&date=ge2015-01-01&status=final&_sort=-date&_count=10' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImJkZl9rZXlfMDEifQ.eyJpc3MiOiJodHRwczovL2F1dGguYmVkZm9yZHNoaXJlaG9zcGl0YWxzLm5ocy51ayIsInN1YiI6InNhaGFyLm1pbGxlciIsImF1ZCI6Imh0dHBzOi8vYXBpLmJlZGZvcmRzaGlyZWhvc3BpdGFscy5uaHMudWsiLCJzY29wZSI6InBhdGllbnQvRGlhZ25vc3RpY1JlcG9ydC5yZWFkIiwiZXhwIjoxNzIzNTUyMDAwLCJpYXQiOjE3MjM1NDk0MDB9.abc123' -H 'Accept: application/fhir+json' -H 'X-Request-ID: 7e4f5c12-9b2d-44a3-a7b9-82cf18a27d1e'"
                 }
             ]
         },
         {
-            "id": "2",
+            "text": "Order lab tests",
+            "status": "pending",
+            "id": "checkup-3",
+            "agent": "MedForce Agent",
             "subTodos": [
                 {
+                    "text": "Complete blood count",
+                    "status": "pending"
+                },
+                {
                     "status": "pending",
-                    "text": "Store retrieved lab reports in secure, encrypted, access-controlled location."
+                    "text": "Comprehensive metabolic panel"
+                },
+                {
+                    "text": "Liver function tests",
+                    "status": "pending"
                 }
-            ],
-            "agent": "Data Security Agent",
-            "status": "pending",
-            "text": "Secure Storage"
+            ]
         },
         {
-            "agent": "Communication Agent",
-            "text": "Stakeholder Notification",
-            "id": "3",
+            "id": "checkup-4",
+            "text": "Assess vaccination status",
+            "agent": "MedForce Agent",
+            "status": "pending",
+            "subTodos": [
+                {
+                    "text": "Check immunization records",
+                    "status": "pending"
+                },
+                {
+                    "status": "pending",
+                    "text": "Administer necessary vaccines"
+                }
+            ]
+        },
+        {
+            "text": "Provide counseling and education",
+            "agent": "MedForce Agent",
+            "id": "checkup-5",
             "subTodos": [
                 {
                     "status": "pending",
-                    "text": "Notify relevant personnel that the lab data has been pulled and is available for review."
+                    "text": "Discuss lifestyle modifications"
+                },
+                {
+                    "text": "Address health concerns",
+                    "status": "pending"
+                },
+                {
+                    "text": "Schedule follow-up appointment",
+                    "status": "pending"
                 }
             ],
             "status": "pending"
-        },
-        {
-            "status": "pending",
-            "agent": "Audit Agent",
-            "id": "4",
-            "subTodos": [
-                {
-                    "status": "pending",
-                    "text": "Compile audit summary detailing patient encounters, medication timeline, and lab findings."
-                }
-            ],
-            "text": "Audit Summary"
         }
     ],
+    "description": "Create a todo list for Sarah Miller's general checkup.",
     "area": "planning-zone"
 }
