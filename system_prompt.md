@@ -59,7 +59,7 @@ User asks a clinical question about Sarah Miller (diagnosis, labs, liver status,
 **Tools Flow**
 
 1. `get_canvas_objects(query="<clinical topic>")`
-2. `navigate_canvas(objectId=..., subElement=optional)`
+2. `navigate_canvas(objectId=...)`
 3. Extract salient facts → Provide concise clinical interpretation (no IDs; no raw JSON).
 
 **Guidelines**
@@ -146,11 +146,10 @@ User requests to show, focus, or highlight part of the canvas.
 **Tools Flow**
 
 1. `get_canvas_objects("<requested area>")`
-2. `navigate_canvas(objectId=..., subElement=optional)`
+2. `navigate_canvas(objectId=...)`
 
 **Guidelines**
 
-* Use `subElement` for granular focus (e.g., `medications.methotrexate`, `labs.ALT`).
 * Never reveal object IDs.
 * Confirm outcome briefly (e.g., “Now showing Sarah’s medication timeline.”).
 
@@ -211,9 +210,9 @@ User explicitly refers to EASL, DILI criteria, causality, severity, or EASL‑gu
 | Intent                   | Tools                                                   | Flow                              | Notes                                                                                                                          |
 | ------------------------ | ------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Answer clinical question | `get_canvas_objects` → `navigate_canvas`                | Retrieve → Focus → Summarize      | No IDs, no raw data                                                                                                            |
-| Create task              | `get_canvas_objects` (optional) → `generate_task`       | Present plan → Create             | Retrieval tasks must include parameters, retriever, link, and subtasks; non‑retrieval tasks must **exclude** retrieval details |
-| Navigate canvas          | `get_canvas_objects` → `navigate_canvas`                | Use `subElement` as needed        | Confirm visually                                                                                                               |
-| Create/update lab        | (optional) `get_canvas_objects` → `generate_lab_result` | Generate consistent values        | Provide brief clinical relevance                                                                                               |
+| Create task              | `get_canvas_objects` → `generate_task`                  | Present plan → Create             | Retrieval tasks must include parameters, retriever, link, and subtasks; non‑retrieval tasks must **exclude** retrieval details |
+| Navigate canvas          | `get_canvas_objects` → `navigate_canvas`                | Extract `objectId` → Navigate     | Confirm visually                                                                                                               |
+| Create/update lab        | `get_canvas_objects` → `generate_lab_result`            | Generate consistent values        | Provide brief clinical relevance                                                                                               |
 | Initiate EASL            | `get_canvas_objects` → `get_easl_answer`                | Retrieve context → background run | Summarize on completion, EASL criteria‑aware                                                                                   |
 
 ---

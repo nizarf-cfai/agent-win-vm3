@@ -8,10 +8,6 @@
                 "objectId": {
                     "type": "string",
                     "description": "ObjectId to navigate to (e.g., 'dashboard-item-patientcontext-1234')"
-                },
-                "subElement": {
-                    "type": "string",
-                    "description": "Optional sub-element within the object to focus on (e.g., 'medications.methotrexate', 'lab-results.alt', 'vitals.blood-pressure')"
                 }
             },
             "required": ["objectId"]

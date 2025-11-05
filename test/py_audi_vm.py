@@ -1,7 +1,7 @@
 # pip install pyaudio numpy
 import pyaudio, wave, numpy as np, os, sys
 
-FILE_TO_PLAY = "sample.wav"      # put your WAV here (16- or 32-bit PCM)
+FILE_TO_PLAY = "test/sample.wav"      # put your WAV here (16- or 32-bit PCM)
 TARGET_DEVICE_SUBSTR = "Voicemeeter Input"   # we WRITE to this (VAIO)
 TARGET_SR = 48000
 FRAMES_PER_BUFFER = 480

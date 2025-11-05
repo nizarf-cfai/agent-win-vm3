@@ -9,15 +9,13 @@ import json
 import datetime
 import canvas_ops
 from google import genai
-from dotenv import load_dotenv
 import time
 import socket
 import threading
 import warnings
-# Import RAG functions from chroma_script
+
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
-# Import canvas operations
-from canvas_ops import get_canvas_item_id
+from dotenv import load_dotenv
 load_dotenv()
 
 # Suppress Gemini warnings about non-text parts
@@ -169,29 +167,15 @@ class AudioOnlyGeminiCable:
     def get_function_response(self, arguments):
         if 'objectId' in arguments:
             object_id = arguments.get('objectId', '')
-            sub_element = arguments.get('subElement', '')
-            
-            if sub_element:
-                return { 
-                    "result": {
-                        "status": "Canvas navigation completed with sub-element focus",
-                        "action": "Moved viewport to target object and focused on specific sub-element",
-                        "objectId": object_id,
-                        "subElement": sub_element,
-                        "message": f"I've successfully navigated to the requested canvas object and focused on the specific sub-element '{sub_element}'. The viewport has been moved to show this precise information.",
-                        "explanation": f"Navigation completed successfully to object '{object_id}' with focus on sub-element '{sub_element}'. The canvas view has been updated to show the specific requested data."
-                    }
+            return { 
+                "result": {
+                    "status": "Canvas navigation completed",
+                    "action": "Moved viewport to target object",
+                    "objectId": object_id,
+                    "message": "I've successfully navigated to the requested canvas object. The viewport has been moved to focus on this item. You can now see the relevant information displayed on the canvas.",
+                    "explanation": "Navigation completed successfully. The canvas view has been updated to show the requested object with all relevant details."
                 }
-            else:
-                return { 
-                    "result": {
-                        "status": "Canvas navigation completed",
-                        "action": "Moved viewport to target object",
-                        "objectId": object_id,
-                        "message": "I've successfully navigated to the requested canvas object. The viewport has been moved to focus on this item. You can now see the relevant information displayed on the canvas.",
-                        "explanation": "Navigation completed successfully. The canvas view has been updated to show the requested object with all relevant details."
-                    }
-                }
+            }
         elif 'parameter' in arguments:
             return { 
                 "result": {
@@ -371,17 +355,8 @@ class AudioOnlyGeminiCable:
             return
         if 'objectId' in action_data:
             object_id = action_data["objectId"]
-            sub_element = action_data.get("subElement", "")
-            
-            if sub_element:
-                print(f"  🎯 Navigating to object {object_id} with sub-element focus: {sub_element}")
-                # For now, we'll use the basic focus_item, but this could be enhanced
-                # to support sub-element navigation in the future
-                focus_res = await canvas_ops.focus_item(object_id,sub_element)
-                print(f"  🎯 Navigation completed with sub-element focus: {sub_element}", focus_res)
-            else:
-                focus_res = await canvas_ops.focus_item(object_id)
-                print(f"  🎯 Navigation completed", focus_res)
+            focus_res = await canvas_ops.focus_item(object_id)
+            print(f"  🎯 Navigation completed", focus_res)
         elif 'parameter' in action_data:
             lab_res = await canvas_ops.create_lab(action_data)
             await asyncio.sleep(2)
@@ -397,14 +372,9 @@ class AudioOnlyGeminiCable:
             try:
                 canvas_result = await self.get_canvas_objects(query)
                 print(f"  🔍 Canvas objects retrieved: {canvas_result[:100]}...")
-                
-                # Parse the result to extract objectId for navigation
-                # The rag_from_json result should contain objectId information
-                # For now, we'll trigger navigation after a short delay
+
                 await asyncio.sleep(1)
                 
-                # Try to extract objectId from the canvas result
-                # This is a simplified approach - in practice, you'd parse the JSON result
                 print(f"  🎯 Will navigate to relevant object based on query results")
                 
             except Exception as e:
@@ -459,37 +429,19 @@ class AudioOnlyGeminiCable:
         
         else:
             action_data['area'] = "planning-zone"
-            with open("action_data.json", "w", encoding="utf-8") as f:
-                json.dump(action_data, f, ensure_ascii=False, indent=4)
+
             task_res = await canvas_ops.create_todo(action_data)
-            with open("action_data_response.json", "w", encoding="utf-8") as f:
-                json.dump(task_res, f, ensure_ascii=False, indent=4)
+
             await asyncio.sleep(3)
             boxId = task_res['id']
             focus_res = await canvas_ops.focus_item(boxId)
-            with open("action_data_focus.json", "w", encoding="utf-8") as f:
-                json.dump(focus_res, f, ensure_ascii=False, indent=4)
+
             print(f"  📝 Task created")
             await asyncio.sleep(3)
 
             # Trigger agent processing in background
             self.start_background_agent_processing(action_data)
             
-
-
-        try:
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"function_call_object/gemini_function_call_{timestamp}.json"
-            
-            # with open(filename, 'w') as f:
-            #     json.dump(action_data, f, indent=2)
-            
-            # print(f"💾 Function call saved to: {filename}")
-            # print(f"📄 Content: {json.dumps(action_data, indent=2)}")
-            
-        except Exception as e:
-            print(f"❌ Error saving function call: {e}")
-
 
     def find_input_device(self, substr: str) -> int:
         """Find input device by substring"""
@@ -555,18 +507,7 @@ class AudioOnlyGeminiCable:
                     # Handle audio data
                     if data := response.data:
                         self.audio_in_queue.put_nowait(data)
-                        # Reduced logging - only log occasionally
-                        # if self.function_call_count % 10 == 0:  # Log every 10th audio chunk
-                        #     print(f"🔊 Audio: {len(data)} bytes")
-                    
-                    # Handle text responses (print them)
-                    # if text := response.text:
-                    #     print(f"💬 Gemini: {text}")
-                        # Check if the text contains function call requests
 
-
-                    # Enhanced function call detection with multiple methods
-                    function_call_detected = False
                     
                     # Method 1: Check tool_call attribute
                     if hasattr(response, 'tool_call'):
@@ -648,11 +589,7 @@ class AudioOnlyGeminiCable:
         print("=" * 60)
         
         try:
-            # Connect to Gemini Live API
-            # config = {
-            #     "response_modalities": ["AUDIO"]
-            # }
-            
+
             async with (
                 self.client.aio.live.connect(model=MODEL, config=CONFIG) as session,
                 asyncio.TaskGroup() as tg,

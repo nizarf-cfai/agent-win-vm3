@@ -32,14 +32,14 @@ def kill_existing_processes(script_name: str):
             continue
 
 def run_powershell_script(script_name: str, meet_url: str = None):
-    """Run a Python script via PowerShell so Chrome can open in GUI session."""
     if meet_url:
-        command = f'powershell -ExecutionPolicy Bypass -NoExit -Command "python {script_name} --link {meet_url}"'
+        command = f'start powershell -NoExit -ExecutionPolicy Bypass -Command "python {script_name} --link {meet_url}"'
     else:
-        command = f'powershell -ExecutionPolicy Bypass -NoExit -Command "python {script_name}"'
+        command = f'start powershell -NoExit -ExecutionPolicy Bypass -Command "python {script_name}"'
 
-    subprocess.Popen(command, shell=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
-    print(f"Started PowerShell for {script_name}")
+    subprocess.Popen(command, shell=True)
+    print(f"Opened PowerShell window for {script_name}")
+
 
 @app.post("/join-meeting")
 def join_meeting(payload: dict, background_tasks: BackgroundTasks):

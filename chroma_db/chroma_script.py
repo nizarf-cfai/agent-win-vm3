@@ -15,20 +15,15 @@ from bs4 import BeautifulSoup
 import json, re
 import sys
 import os
+import config
 
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 
+print("#### chroma_script.py CANVAS_URL : ",BASE_URL)
+
 EASL_BASE_URL = "https://inference-dili-16771232505.us-central1.run.app"
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-headers = {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "X-Accel-Buffering": "no",
-        "Content-Security-Policy": "connect-src *"
-    }
+
 _client: Optional[httpx.AsyncClient] = None
 
 
@@ -89,21 +84,11 @@ def get_board_items():
     
     response = requests.get(url)
     data = response.json()
-    result_data = []
-    for d in data:
-        result_data.append(d)
-        # if 'raw' in d.get('id',''):
-        #     pass
-        # elif 'single-encounter' in d.get('id',''):
-        #     pass
-        # elif 'iframe' in d.get('id',''):
-        #     pass
-        # else:
-        #     result_data.append(d)
 
-    with open("board_items.json", "w", encoding="utf-8") as f:
-        json.dump(result_data, f, indent=4)   # indent=4 makes it pretty
-    return result_data
+
+    with open(f"{config.output_dir}/board_items.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)   # indent=4 makes it pretty
+    return data
 
 
 async def start_easl_async(question: str, client: Optional[httpx.AsyncClient] = None) -> str:
@@ -176,6 +161,7 @@ async def get_easl_answer_async(question: str, *,
 # ----------------------------
 # Common embedding helper
 # ----------------------------
+
 def embed_texts(texts: List[str]) -> List[List[float]]:
     """Embed texts using Gemini embedding model"""
     model = "models/text-embedding-004"
@@ -208,6 +194,7 @@ def embed_texts(texts: List[str]) -> List[List[float]]:
 # ----------------------------
 # 1️⃣ Build Chroma from text files
 # ----------------------------
+
 def build_chroma_from_texts(dir_path: str, persist_dir: str = "./chroma_store"):
     """Load text files, chunk, and store in Chroma vector DB"""
     client = chromadb.PersistentClient(path=persist_dir)
@@ -286,6 +273,7 @@ def query_chroma_collection(query: str, persist_dir: str = "./chroma_store", col
 # 2️⃣ RAG from JSON file (no DB)
 # ----------------------------
 # ---------- Helper: JSON → Markdown ----------
+
 def json_to_markdown(obj: dict, index: int = 0) -> str:
     """
     Convert one JSON object into flat Markdown text.
@@ -420,7 +408,7 @@ async def rag_from_json(query: str="", top_k: int = 10):
         # context = "\n\n".join(summary_result[:3]) + "\n\n".join(raw_result[:3])
         # context = "\n\n".join(results["documents"][0])
         context = summary_res + "\n\n" + raw_res
-        with open("rag_result.md", "w", encoding="utf-8") as f:
+        with open(f"{config.output_dir}/rag_result.md", "w", encoding="utf-8") as f:
             f.write(context)
         return context
         
@@ -428,118 +416,3 @@ async def rag_from_json(query: str="", top_k: int = 10):
         print(f"Error object_rag :\n{e}")
         return ""
 
-# ---------- Main Function ----------
-async def rag_from_json2(query: str="", top_k: int = 10):
-    """
-    Load JSON (list of objects), convert each record to Markdown,
-    embed chunks in memory, and perform semantic RAG search.
-    """
-    import hashlib
-    import time
-    
-    # Create in-memory Chroma collection with custom embedding function
-    client = chromadb.Client(Settings(anonymized_telemetry=False))
-    
-    # Create a unique collection name based on JSON path and timestamp
-    collection_name = f"temp_json_rag"
-    
-    try:
-        # Create a custom embedding function for queries
-        class CustomEmbeddingFunction:
-            def __call__(self, input):
-                return embed_texts(input)
-            
-            def embed_query(self, input, **kwargs):
-                embeddings = embed_texts([input])
-                result = embeddings[0] if embeddings else []
-                # ChromaDB expects a list of lists even for single query
-                return [result]
-        
-        # Try to delete existing collection if it exists, then create new one
-        try:
-            client.delete_collection(name=collection_name)
-        except:
-            pass  # Collection doesn't exist, which is fine
-        
-        collection = client.create_collection(
-            name=collection_name,
-            embedding_function=CustomEmbeddingFunction()
-        )
-
-
-        data = get_board_items()
-
-        # Normalize: list of dicts
-        if isinstance(data, dict):
-            data = [data]
-
-        # Convert each object to Markdown string
-        md_blocks = [json_to_markdown(obj, i) for i,obj in enumerate(data)]
-
-        # Use each md_block as a single chunk to preserve objectId integrity
-        chunks = md_blocks
-
-        # Embed and store in Chroma
-        embeddings = embed_texts(chunks)
-        ids = [f"chunk_{i}" for i in range(len(chunks))]
-        
-        # Suppress any output from ChromaDB by redirecting stdout and stderr
-        import sys
-        import os
-        from contextlib import redirect_stdout, redirect_stderr
-        
-        # Save original stdout and stderr
-        original_stdout = sys.stdout
-        original_stderr = sys.stderr
-        
-        # Redirect to devnull
-        with open(os.devnull, 'w') as devnull:
-            sys.stdout = devnull
-            sys.stderr = devnull
-            try:
-                collection.add(documents=chunks, embeddings=embeddings, ids=ids)
-            finally:
-                # Restore original stdout and stderr
-                sys.stdout = original_stdout
-                sys.stderr = original_stderr
-
-        # Query
-        results = collection.query(query_texts=[query], n_results=top_k)
-        unordered_result = results["documents"][0]
-        raw_result = []
-        summary_result = []
-
-        for r in unordered_result:
-            if 'single-encounter' in r:
-                raw_result.append(r)
-            elif 'dashboard-item-' in r:
-                summary_result.append(r)
-            elif 'item-' in r:
-                summary_result.append(r)
-            elif 'enhanced-todo-' in r:
-                summary_result.append(r)
-            else:
-                raw_result.append(r)
-
-
-        context = "\n\n".join(summary_result[:3]) + "\n\n".join(raw_result[:3])
-        # context = "\n\n".join(results["documents"][0])
-
-        # easl_answer = await get_easl_answer_async(f"Question: {query}\nContext: {context}")
-        # easl_answer = ""
-        # full_result = f"RAG Result: \n{context}\nEASL Answer: \n{easl_answer}"
-        return context
-        
-    finally:
-        # Clean up: delete the temporary collection
-        try:
-            client.delete_collection(name=collection_name)
-        except:
-            pass  # Collection might already be deleted, which is fine
-
-
-
-## RUN THIS FOR FIRST TIME TO CREATE VECTOR STORE
-# collection = build_chroma_from_texts("patient_data", "./chroma_store")
-# print("✅ Collection built successfully!")
-    
