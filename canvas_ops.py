@@ -12,6 +12,11 @@ load_dotenv()
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 print("#### canvas_ops.py CANVAS_URL : ",BASE_URL)
 
+async def get_agent_question(question):
+    context_str = await helper_model.generate_question(question)
+
+
+    return context_str
 
 async def get_agent_context(question):
     context_str = await helper_model.generate_context(question)

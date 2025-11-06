@@ -25,6 +25,9 @@ with open("system_prompts/clinical_agent.md", "r", encoding="utf-8") as f:
 with open("system_prompts/context_agent.md", "r", encoding="utf-8") as f:
     SYSTEM_PROMPT_CONTEXT_GEN = f.read()
 
+with open("system_prompts/question_gen.md", "r", encoding="utf-8") as f:
+    SYSTEM_PROMPT_Q_GEN = f.read()
+
 def load_ehr():
     url = BASE_URL + "/api/board-items"
     
@@ -56,7 +59,7 @@ async def generate_response(todo_obj):
 async def generate_context(question):
     model = genai.GenerativeModel(
         MODEL,
-        system_instruction=SYSTEM_PROMPT,
+        system_instruction=SYSTEM_PROMPT_CONTEXT_GEN,
     )
     print(f"Running Context Generation model")
     ehr_data = load_ehr()
@@ -71,3 +74,21 @@ async def generate_context(question):
         f.write(resp.text)
     return resp.text.replace("```markdown", " ").replace("```", "")
         
+
+async def generate_question(question):
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT_Q_GEN,
+    )
+    print(f"Running Context Generation model")
+    ehr_data = load_ehr()
+    prompt = f"""Please generate proper question : 
+        Question : {question}
+
+
+        This is raw data : {ehr_data}"""
+
+    resp = model.generate_content(prompt)
+    with open(f"{config.output_dir}/generate_question.md", "w", encoding="utf-8") as f:
+        f.write(resp.text)
+    return resp.text.replace("```markdown", " ").replace("```", "")

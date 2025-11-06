@@ -152,7 +152,7 @@
             "properties": {
                 "question": {
                     "type": "string",
-                    "description": "Question for EASL medical knowledge model"
+                    "description": "Detailed question for EASL medical knowledge model. Question must include context of the patient."
                 },
                 "context": {
                     "type": "string",

@@ -278,7 +278,7 @@ class AudioOnlyGeminiCable:
             except Exception as error_send_error:
                 print(f"⚠️ Could not send error message: {error_send_error}")
 
-    def start_background_easl_processing(self, query, canvas_result):
+    def start_background_easl_processing(self, query):
         """Start agent processing in background using threading (no asyncio.create_task)"""
         def run_agent_processing():
             try:
@@ -287,7 +287,7 @@ class AudioOnlyGeminiCable:
                 asyncio.set_event_loop(loop)
                 
                 # Run the agent processing
-                loop.run_until_complete(self._handle_easl_processing(query, canvas_result))
+                loop.run_until_complete(self._handle_easl_processing(query))
                 
             except Exception as e:
                 print(f"❌ Error in background agent processing thread: {e}")
@@ -299,13 +299,14 @@ class AudioOnlyGeminiCable:
         thread.start()
         print(f"  🔄 Background processing started")
 
-    async def _handle_easl_processing(self, query, canvas_result):
+    async def _handle_easl_processing(self, query):
         """Handle agent processing in background"""
         try:
             print("Start trigger EASL endpoint")
             try:
+                question = await canvas_ops.get_agent_question(query)
                 context = await canvas_ops.get_agent_context(query)
-                easl_answer = await get_easl_answer_async(question=f"Question: {query}\n", context=context)
+                easl_answer = await get_easl_answer_async(question=f"Question: {question}\n", context=context)
             except:
                 easl_answer = {}
             await asyncio.sleep(2)
@@ -313,7 +314,7 @@ class AudioOnlyGeminiCable:
             
 
             if type(easl_answer) == dict:
-                easl_answer_str += f"# Question\n{query}\n\n"
+                easl_answer_str += f"# Question\n{question}\n\n"
                 easl_answer_str += f"# Context\n{context[:1000]}\n...truncated\n\n"
                 easl_answer_str += f"# Short Answer\n{easl_answer.get('short_answer','')}\n\n"
                 easl_answer_str += f"# Detailed Answer\n{easl_answer.get('detailed_answer','')}\n\n"
@@ -383,7 +384,6 @@ class AudioOnlyGeminiCable:
             print(f"  🔍 Start EASL Processing:\n {action_data}...")
 
             query = action_data.get('question', '')
-            context = action_data.get('context', '')
             easl_todo_payload = {
                 "title": "EASL Guideline Query Workflow",
                 "description": "Handling query to EASL Guideline Agent in background",
@@ -424,7 +424,7 @@ class AudioOnlyGeminiCable:
                 }
             task_res = await canvas_ops.create_todo(easl_todo_payload)
             await asyncio.sleep(3)
-            self.start_background_easl_processing(query, context)
+            self.start_background_easl_processing(query)
             print(f"  🔍 EASL question processed: {query[:50]}...")
         
         else:

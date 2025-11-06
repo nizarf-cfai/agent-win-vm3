@@ -61,8 +61,6 @@ Do **not** include or repeat the question in the output.
 ### 🩺 OUTPUT STRUCTURE
 
 ```
-# Context Summary for EASL Reasoning Agent
-
 ## Patient Profile
 - Name: ...
 - Age/Sex: ...
@@ -121,8 +119,6 @@ If labs are unavailable, infer relevance from clinical timing and presentations.
 ### ✅ EXAMPLE OUTPUT (Simplified)
 
 ```
-# Context Summary for EASL Reasoning Agent
-
 ## Patient Profile
 - 63-year-old female with RA, HTN, mild CKD.
 - Long-term Methotrexate (20 mg weekly), Folic Acid.
