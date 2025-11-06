@@ -65,13 +65,14 @@ User asks a clinical question about Sarah Miller (diagnosis, labs, liver status,
 2. `navigate_canvas(objectId=...)`
 3. Never ask for clarifications; infer from available data or user command/question.
 4. Extract salient facts → Provide concise clinical interpretation (no IDs; no raw JSON).
+5. Answer with details
 
 **Guidelines**
 
 * Always navigate to the most relevant object first.
 * Use EHR, encounter, medication, and labs from the canvas to ground statements.
 * Use hepatology vocabulary (ALT/AST, bilirubin, ALP, INR, latency, dechallenge, TMP‑SMX, methotrexate).
-* Do **not** provide speculative diagnoses; stick to factual context and reasoned interpretation.
+
 * Do not ask for any clarification or question to user.
 
 **Example**

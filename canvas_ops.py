@@ -12,6 +12,23 @@ load_dotenv()
 BASE_URL = os.getenv("CANVAS_URL", "https://board-v24problem.vercel.app")
 print("#### canvas_ops.py CANVAS_URL : ",BASE_URL)
 
+async def initiate_easl_iframe(question):
+    url = BASE_URL + "/api/send-to-easl"
+    payload = {
+        "query": question,
+        "metadata": {
+            "source": "voice"
+        }
+    }
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    return response.json()
+
 async def get_agent_question(question):
     context_str = await helper_model.generate_question(question)
 

@@ -4,6 +4,7 @@ import subprocess
 import os, sys
 import subprocess, os, datetime, psutil
 from fastapi.middleware.cors import CORSMiddleware
+import json
 
 TARGET_SCRIPTS = ["visit_meet_with_audio.py", "gemini_audio_only_cable.py"]
 app = FastAPI()
@@ -53,3 +54,17 @@ def join_meeting(payload: dict, background_tasks: BackgroundTasks):
     background_tasks.add_task(run_powershell_script, "gemini_audio_only_cable.py")
 
     return {"status": "joining", "meeting_url": meet_url}
+
+@app.post("/mute")
+def mute(payload: dict):
+    with open("agent_status.json", "r", encoding="utf-8") as f:
+        agent_status = json.load(f)
+    if agent_status.get('mute'):
+        agent_status['mute'] = False
+    else:
+        agent_status['mute'] = True
+    with open("agent_status.json", "w", encoding="utf-8") as f:
+        json.dump(agent_status, f,indent=4)
+
+    print("Agent Status:", agent_status['mute'])
+    return agent_status
