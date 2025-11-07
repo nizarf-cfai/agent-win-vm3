@@ -13,6 +13,8 @@ import time
 import socket
 import threading
 import warnings
+import random
+import time
 
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
 from dotenv import load_dotenv
@@ -143,11 +145,11 @@ class AudioOnlyGeminiCable:
             await asyncio.sleep(0.5)
             
             # Force session state reset by sending a simple message
-            try:
-                await self.session.send(input="Ready.")
-                print("  🔄 Session reset")
-            except Exception as reset_error:
-                print(f"⚠️ Reset failed: {reset_error}")
+            # try:
+            #     await self.session.send(input="Ready.")
+            #     print("  🔄 Session reset")
+            # except Exception as reset_error:
+            #     print(f"⚠️ Reset failed: {reset_error}")
             
         except Exception as e:
             print(f"❌ Function call error: {e}")
@@ -236,7 +238,7 @@ class AudioOnlyGeminiCable:
             print(f"Error getting canvas objects: {e}")
             return f"Error retrieving canvas objects: {str(e)}"
 
-    def start_background_agent_processing(self, action_data):
+    def start_background_agent_processing(self, action_data, todo_obj):
         """Start agent processing in background using threading (no asyncio.create_task)"""
         def run_agent_processing():
             try:
@@ -245,7 +247,7 @@ class AudioOnlyGeminiCable:
                 asyncio.set_event_loop(loop)
                 
                 # Run the agent processing
-                loop.run_until_complete(self._handle_agent_processing(action_data))
+                loop.run_until_complete(self._handle_agent_processing(action_data,todo_obj))
                 
             except Exception as e:
                 print(f"❌ Error in background agent processing thread: {e}")
@@ -257,11 +259,42 @@ class AudioOnlyGeminiCable:
         thread.start()
         print(f"  🔄 Background processing started")
 
-    async def _handle_agent_processing(self, action_data):
+    async def _handle_agent_processing(self, action_data, todo_obj):
         """Handle agent processing in background"""
         try:
             agent_res = await canvas_ops.get_agent_answer(action_data)
-            await asyncio.sleep(2)
+            
+            todo_id = todo_obj.get("id")
+            for t in todo_obj.get("todoData",{}).get('todos',[]):
+                t_id = t.get('id')
+                await canvas_ops.update_todo(
+                        {
+                            "id" : todo_id,
+                            "task_id" : t_id,
+                            "index":"",
+                            "status" : "executing"
+                        }
+                    )
+                for i, st in enumerate(t.get('subTodos',[])):
+                    await canvas_ops.update_todo(
+                        {
+                            "id" : todo_id,
+                            "task_id" : t_id,
+                            "index":f"{i}",
+                            "status" : "finished"
+                        }
+                    )
+                    await asyncio.sleep(random.randint(1, 3))
+                await canvas_ops.update_todo(
+                        {
+                            "id" : todo_id,
+                            "task_id" : t_id,
+                            "index":"",
+                            "status" : "finished"
+                        }
+                    )
+                await asyncio.sleep(random.randint(2, 3))
+
             agent_res['zone'] = "raw-ehr-data-zone"
             create_agent_res = await canvas_ops.create_result(agent_res)
             print(f"  ✅ Analysis completed")
@@ -278,7 +311,7 @@ class AudioOnlyGeminiCable:
             except Exception as error_send_error:
                 print(f"⚠️ Could not send error message: {error_send_error}")
 
-    def start_background_easl_processing(self, query):
+    def start_background_easl_processing(self, query,todo_obj):
         """Start agent processing in background using threading (no asyncio.create_task)"""
         def run_agent_processing():
             try:
@@ -288,7 +321,7 @@ class AudioOnlyGeminiCable:
                 
                 # Run the agent processing
                 # loop.run_until_complete(self._handle_easl_processing(query))
-                loop.run_until_complete(self._handle_easl_iframe(query))
+                loop.run_until_complete(self._handle_easl_iframe(query,todo_obj))
                 
             except Exception as e:
                 print(f"❌ Error in background agent processing thread: {e}")
@@ -350,14 +383,61 @@ class AudioOnlyGeminiCable:
             except Exception as error_send_error:
                 print(f"⚠️ Could not send error message: {error_send_error}")
 
-    async def _handle_easl_iframe(self, query):
+    async def _handle_easl_iframe(self, query, todo_obj):
         """Handle agent processing in background"""
         try:
             print("Start trigger EASL endpoint")
             try:
                 question = await canvas_ops.get_agent_question(query)
+                for i in range(2):
+                    await canvas_ops.update_todo(
+                        {
+                            "id" : todo_obj.get('id'),
+                            "task_id" : "task-101",
+                            "index":f"{i}",
+                            "status" : "finished"
+                        }
+                    )
+                    await asyncio.sleep(random.randint(1, 3))
+
+                await canvas_ops.update_todo(
+                    {
+                        "id" : todo_obj.get('id'),
+                        "task_id" : "task-101",
+                        "index":"",
+                        "status" : "finished"
+                    }
+                )
+                await asyncio.sleep(random.randint(1, 3))
                 # context = await canvas_ops.get_agent_context(query)
+                await canvas_ops.update_todo(
+                    {
+                        "id" : todo_obj.get('id'),
+                        "task_id" : "task-102",
+                        "index":"",
+                        "status" : "executing"
+                    }
+                )
+                await asyncio.sleep(random.randint(1, 3))
                 easl_status = await canvas_ops.initiate_easl_iframe(question)
+                for i in range(2):
+                    await canvas_ops.update_todo(
+                        {
+                            "id" : todo_obj.get('id'),
+                            "task_id" : "task-102",
+                            "index":f"{i}",
+                            "status" : "finished"
+                        }
+                    )
+                    await asyncio.sleep(random.randint(1, 3))
+                await canvas_ops.update_todo(
+                    {
+                        "id" : todo_obj.get('id'),
+                        "task_id" : "task-102",
+                        "index":"",
+                        "status" : "finished"
+                    }
+                )
                 print("iframe status:", easl_status)
             except:
                 easl_status = {}
@@ -403,22 +483,22 @@ class AudioOnlyGeminiCable:
             labId = lab_res['id']
             focus_res = await canvas_ops.focus_item(labId)
             print(f"  🧪 Lab result created")
-        elif 'query' in action_data and len(action_data) == 1:
-            # Handle canvas object queries with navigation
-            query = action_data.get('query', '')
-            print(f"  🔍 Canvas query processed: {query[:50]}...")
+        # elif 'query' in action_data and len(action_data) == 1:
+        #     # Handle canvas object queries with navigation
+        #     query = action_data.get('query', '')
+        #     print(f"  🔍 Canvas query processed: {query[:50]}...")
             
-            # Get canvas objects and navigate to the most relevant one
-            try:
-                canvas_result = await self.get_canvas_objects(query)
-                print(f"  🔍 Canvas objects retrieved: {canvas_result[:100]}...")
+        #     # Get canvas objects and navigate to the most relevant one
+        #     try:
+        #         canvas_result = await self.get_canvas_objects(query)
+        #         print(f"  🔍 Canvas objects retrieved: {canvas_result[:100]}...")
 
-                await asyncio.sleep(1)
+        #         await asyncio.sleep(1)
                 
-                print(f"  🎯 Will navigate to relevant object based on query results")
+        #         print(f"  🎯 Will navigate to relevant object based on query results")
                 
-            except Exception as e:
-                print(f"  ❌ Error processing canvas query: {e}")
+        #     except Exception as e:
+        #         print(f"  ❌ Error processing canvas query: {e}")
         elif "question" in action_data:
             print(f"  🔍 Start EASL Processing:\n {action_data}...")
 
@@ -430,28 +510,28 @@ class AudioOnlyGeminiCable:
                     {
                     "id": "task-101",
                     "text": "Creating question query and generating context",
-                    "status": "finished",
+                    "status": "executing",
                     "agent": "Data Analyst Agent",
                     "subTodos": [
                             {
                             "text": f"Base question : {query}",
-                            "status": "finished"
+                            "status": "executing"
                             },
                             {
                             "text": "Detailed Question is generated by ContextGen Agent",
-                            "status": "pending"
+                            "status": "executing"
                             }
                         ]
                     },
                     {
-                    "id": "task-101",
+                    "id": "task-102",
                     "text": "Send query to EASL Guideline Agent",
-                    "status": "finished",
+                    "status": "pending",
                     "agent": "Data Analyst Agent",
                     "subTodos": [
                             {
                             "text": f"Query is processing",
-                            "status": "finished"
+                            "status": "pending"
                             },
                             {
                             "text": "Result is created in canvas",
@@ -463,10 +543,10 @@ class AudioOnlyGeminiCable:
                 }
             task_res = await canvas_ops.create_todo(easl_todo_payload)
             await asyncio.sleep(3)
-            self.start_background_easl_processing(query)
+            self.start_background_easl_processing(query, task_res)
             print(f"  🔍 EASL question processed: {query[:50]}...")
         
-        else:
+        elif 'todos' in action_data:
             action_data['area'] = "planning-zone"
 
             task_res = await canvas_ops.create_todo(action_data)
@@ -479,7 +559,7 @@ class AudioOnlyGeminiCable:
             await asyncio.sleep(3)
 
             # Trigger agent processing in background
-            self.start_background_agent_processing(action_data)
+            self.start_background_agent_processing(action_data, task_res)
             
 
     def find_input_device(self, substr: str) -> int:
@@ -499,6 +579,18 @@ class AudioOnlyGeminiCable:
             if info['maxOutputChannels'] > 0 and s in info['name'].lower():
                 return i
         return None
+
+    def safe_read_status(self):
+        for _ in range(5):  # Try up to 5 times
+            try:
+                with open("agent_status.json", "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except json.JSONDecodeError:
+                # File is being written -> wait a tiny bit and retry
+                time.sleep(0.05)
+            except FileNotFoundError:
+                return {"mute": False}
+        return {"mute": False}
 
     async def listen_audio(self):
         """Listen to CABLE Output (Google Meet audio) and send to Gemini"""
@@ -540,8 +632,9 @@ class AudioOnlyGeminiCable:
         print("🔊 Starting response processing...")
         
         while True:
-            with open("agent_status.json", "r", encoding="utf-8") as f:
-                agent_status = json.load(f)
+            agent_status = self.safe_read_status()
+            # with open("agent_status.json", "r", encoding="utf-8") as f:
+            #     agent_status = json.load(f)
             if not agent_status.get('mute'):
                 try:
                     turn = self.session.receive()
@@ -628,7 +721,7 @@ class AudioOnlyGeminiCable:
         print("   - Speaker: CABLE Input (VB-Audio Virtual Cable)")
         print("4. Speak in the meeting - Gemini will respond with audio to the meeting")
         print("5. Press Ctrl+C to stop")
-        print("=" * 60)
+        # print("=" * 60)
         agent_status = {
             "mute" : False
         }

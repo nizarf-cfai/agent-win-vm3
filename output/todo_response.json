@@ -1,87 +1,67 @@
 {
-    "id": "enhanced-todo-1762398826325-y07n5dhny",
+    "id": "enhanced-todo-1762433045362-s4ru9u9f4",
     "type": "todo",
-    "x": 4260,
-    "y": 60,
+    "x": 5420,
+    "y": -2240,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Comprehensive retrieval of CT and MR radiology reports for Sarah Miller to investigate potential underlying conditions or complications.",
+    "description": "Create a report summarizing Sarah Miller's case and send it to the rheumatologist.",
     "todoData": {
-        "title": "Fetch CT/MR Radiology Reports for Sarah Miller",
-        "description": "Comprehensive retrieval of CT and MR radiology reports for Sarah Miller to investigate potential underlying conditions or complications.",
+        "title": "Generate and Send Report to Rheumatologist",
+        "description": "Create a report summarizing Sarah Miller's case and send it to the rheumatologist.",
         "todos": [
             {
+                "id": "report-1",
+                "agent": "MedForce Agent",
+                "text": "Gather patient data",
                 "status": "pending",
-                "text": "Prepare request for radiology reports",
                 "subTodos": [
                     {
-                        "text": "Identify Sarah Miller’s UUID",
+                        "text": "Collect patient history",
                         "status": "pending"
                     },
                     {
                         "status": "pending",
-                        "text": "Define category as LP29684‑5 (LOINC code for Radiology)"
+                        "text": "Collect lab results"
                     },
                     {
                         "status": "pending",
-                        "text": "Set modality to CT and MR (DICOM codes)"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Filter for final reports (status=final)"
-                    },
-                    {
-                        "text": "Set date range to after Jan 1 2015",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Sort by date (newest first)",
-                        "status": "pending"
-                    },
-                    {
-                        "status": "pending",
-                        "text": "Limit to last 5 reports (_count=5)"
+                        "text": "Collect medication timeline"
                     }
-                ],
-                "id": "1",
-                "agent": "MedForce Agent"
+                ]
             },
             {
                 "subTodos": [
                     {
                         "status": "pending",
-                        "text": "Authenticate API request"
-                    },
-                    {
-                        "text": "Run curl command to retrieve data",
-                        "status": "pending"
+                        "text": "Write the report"
                     }
                 ],
-                "status": "pending",
-                "id": "2",
+                "text": "Generate the report",
                 "agent": "MedForce Agent",
-                "text": "Execute the radiology report retrieval request"
+                "status": "pending",
+                "id": "report-2"
             },
             {
+                "agent": "MedForce Agent",
+                "id": "report-3",
+                "text": "Send the report to Rheumatologist",
+                "status": "pending",
                 "subTodos": [
                     {
-                        "status": "pending",
-                        "text": "Check for valid FHIR response"
+                        "text": "Find Rheumatologist contact info",
+                        "status": "pending"
                     },
                     {
-                        "text": "Parse and display relevant report details",
-                        "status": "pending"
+                        "status": "pending",
+                        "text": "Send report"
                     }
-                ],
-                "id": "3",
-                "agent": "MedForce Agent",
-                "status": "pending",
-                "text": "Validate and process retrieved radiology reports"
+                ]
             }
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-06T03:13:46.330Z",
-    "updatedAt": "2025-11-06T03:13:46.330Z"
+    "createdAt": "2025-11-06T12:44:05.369Z",
+    "updatedAt": "2025-11-06T12:44:05.369Z"
 }

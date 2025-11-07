@@ -1,0 +1,76 @@
+{
+    "success": true,
+    "message": "Todo status updated successfully",
+    "item": {
+        "id": "enhanced-todo-1762433045362-s4ru9u9f4",
+        "type": "todo",
+        "x": 5420,
+        "y": -2240,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Create a report summarizing Sarah Miller's case and send it to the rheumatologist.",
+        "todoData": {
+            "title": "Generate and Send Report to Rheumatologist",
+            "description": "Create a report summarizing Sarah Miller's case and send it to the rheumatologist.",
+            "todos": [
+                {
+                    "id": "report-1",
+                    "agent": "MedForce Agent",
+                    "text": "Gather patient data",
+                    "status": "finished",
+                    "subTodos": [
+                        {
+                            "text": "Collect patient history",
+                            "status": "finished"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Collect lab results"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Collect medication timeline"
+                        }
+                    ]
+                },
+                {
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "Write the report"
+                        }
+                    ],
+                    "text": "Generate the report",
+                    "agent": "MedForce Agent",
+                    "status": "finished",
+                    "id": "report-2"
+                },
+                {
+                    "agent": "MedForce Agent",
+                    "id": "report-3",
+                    "text": "Send the report to Rheumatologist",
+                    "status": "finished",
+                    "subTodos": [
+                        {
+                            "text": "Find Rheumatologist contact info",
+                            "status": "finished"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Send report"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-11-06T12:44:05.369Z",
+        "updatedAt": "2025-11-06T12:44:47.186Z"
+    },
+    "updated": {
+        "task_id": "report-3",
+        "index": null,
+        "status": "finished"
+    }
+}

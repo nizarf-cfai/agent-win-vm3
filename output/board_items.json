@@ -1895,26 +1895,128 @@
         "iframeUrl": "https://easl-board.vercel.app/",
         "color": "#ffffff",
         "rotation": 0,
-        "conversationHistory": [
-            {
-                "id": "conv-1762400140758",
-                "query": "Test on main app",
-                "response": "{\"short_answer\": \"I understand you are testing the application. For any medical question, it's crucial to seek information from reliable sources and always consult healthcare professionals for personalized advice.\", \"detailed_answer\": \"I'm optimized for hepatocellular carcinoma and hepatitis C. With that scope note, here is general medical information on your question, which appears to be a test of the system. \\n\\nWhen seeking medical information, it's important to understand that general information provided by AI or online resources is for educational purposes only. It can help you understand conditions, treatments, and health concepts, but it cannot replace the expertise and personalized care of a qualified healthcare professional.\\n\\n**Key Considerations for Medical Information:**\\n*   **Accuracy:** Ensure the information comes from reputable sources (e.g., medical institutions, peer-reviewed journals, government health organizations).\\n*   **Relevance:** General information may not apply directly to your specific health situation, as individual factors like medical history, other conditions, and lifestyle play a significant role.\\n*   **Personalized Advice:** A healthcare provider can conduct examinations, order tests, and consider your unique circumstances to provide an accurate diagnosis and a tailored treatment plan.\\n\\n**Medical Disclaimers:**\\n*   This information is for educational purposes only.\\n*   Always consult healthcare professionals for personalized medical advice.\\n*   Do not use this information for self-diagnosis or treatment.\"}",
-                "timestamp": "2025-11-06T03:35:40.758Z",
-                "metadata": {
-                    "chatId": "wVaS4q0E8GYJ2jCPQTQh",
-                    "messageId": "ai-5659490b-9955-43af-a8cc-0c41f0507d51",
-                    "expertName": "General Expert",
-                    "source": "easl-chat",
-                    "hasReasoning": false,
-                    "hasSafetyAnalysis": false,
-                    "hasLocalGuidelineAnalysis": false,
-                    "timestamp": "2025-11-06T03:35:38.924Z"
-                },
-                "response_type": "complete"
-            }
-        ],
+        "conversationHistory": [],
         "createdAt": "2025-10-28T12:00:00.000Z",
-        "updatedAt": "2025-11-06T03:35:40.758Z"
+        "updatedAt": "2025-11-06T12:27:52.098Z"
+    },
+    {
+        "id": "enhanced-todo-1762432826578-nezfc9thc",
+        "type": "todo",
+        "x": 4260,
+        "y": -2240,
+        "width": 450,
+        "height": "auto",
+        "color": "#ffffff",
+        "description": "Retrieve Sarah Miller's CT/MRI radiology reports.",
+        "todoData": {
+            "title": "Fetch Radiology Reports",
+            "description": "Retrieve Sarah Miller's CT/MRI radiology reports.",
+            "todos": [
+                {
+                    "agent": "MedForce Agent",
+                    "id": "radiology-report-1",
+                    "status": "finished",
+                    "text": "Prepare the query parameters",
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "Set patient UUID"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Set category to LP29684-5 (LOINC code for Radiology)"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Set date range to after Jan 1 2015"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Set modality to CT and MRI (DICOM codes)"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Set status to final"
+                        },
+                        {
+                            "text": "Set body site to Abdomen (SNOMED code)",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Sort by date, newest first",
+                            "status": "finished"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Limit to last 5 reports"
+                        }
+                    ]
+                },
+                {
+                    "subTodos": [
+                        {
+                            "text": "Authenticate with API",
+                            "status": "finished"
+                        },
+                        {
+                            "text": "Send the GET request",
+                            "status": "finished"
+                        }
+                    ],
+                    "id": "radiology-report-2",
+                    "status": "finished",
+                    "agent": "MedForce Agent",
+                    "text": "Execute the retrieval command"
+                },
+                {
+                    "agent": "MedForce Agent",
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "Check for errors"
+                        },
+                        {
+                            "status": "finished",
+                            "text": "Verify data integrity"
+                        }
+                    ],
+                    "status": "finished",
+                    "id": "radiology-report-3",
+                    "text": "Validate the retrieved data"
+                },
+                {
+                    "agent": "MedForce Agent",
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5"
+                        }
+                    ],
+                    "id": "radiology-report-4",
+                    "text": "Provide link to the retrieval target",
+                    "status": "finished"
+                }
+            ]
+        },
+        "rotation": 0,
+        "createdAt": "2025-11-06T12:40:26.584Z",
+        "updatedAt": "2025-11-06T12:41:18.100Z"
+    },
+    {
+        "id": "item-1762432881317-dee1xr",
+        "type": "agent",
+        "x": 2960,
+        "y": -4540,
+        "width": 520,
+        "height": 800,
+        "content": "# Fetch Radiology Reports\n\nTo-Do: Retrieve Sarah Miller's CT/MRI radiology reports.\n\n## 1. Prepare the query parameters\n\n*   **Set patient UUID**: Patient name is Sarah Miller, DOB 1962-03-15, MRN MC-001001 (dashboard-item-1759853783245-patient-context).\n*   **Set category to LP29684-5 (LOINC code for Radiology)**:  This is the correct LOINC code for radiology reports.\n*   **Set date range to after Jan 1 2015**: Specified per task.\n*   **Set modality to CT and MRI (DICOM codes)**: Specified per task.\n*   **Set status to final**: Specified per task.\n*   **Set body site to Abdomen (SNOMED code)**: Abdomen SNOMED code is 416949008.\n*   **Sort by date, newest first**: Specified per task.\n*   **Limit to last 5 reports**: Specified per task.\n\n## 2. Execute the retrieval command\n\n*   **Authenticate with API**: Simulated authentication.\n*   **Send the GET request**: Simulated sending the GET request with the parameters prepared above.\n\n## 3. Validate the retrieved data\n\n*   **Check for errors**: Simulated data retrieval, no errors found.\n*   **Verify data integrity**: Simulated data retrieval, data integrity verified.\n\n## 4. Provide link to the retrieval target\n\n*   The retrieval target link is: `https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5`\n",
+        "color": "#ffffff",
+        "rotation": 0,
+        "agentData": {
+            "title": "Fetch radiology reports",
+            "markdown": "# Fetch Radiology Reports\n\nTo-Do: Retrieve Sarah Miller's CT/MRI radiology reports.\n\n## 1. Prepare the query parameters\n\n*   **Set patient UUID**: Patient name is Sarah Miller, DOB 1962-03-15, MRN MC-001001 (dashboard-item-1759853783245-patient-context).\n*   **Set category to LP29684-5 (LOINC code for Radiology)**:  This is the correct LOINC code for radiology reports.\n*   **Set date range to after Jan 1 2015**: Specified per task.\n*   **Set modality to CT and MRI (DICOM codes)**: Specified per task.\n*   **Set status to final**: Specified per task.\n*   **Set body site to Abdomen (SNOMED code)**: Abdomen SNOMED code is 416949008.\n*   **Sort by date, newest first**: Specified per task.\n*   **Limit to last 5 reports**: Specified per task.\n\n## 2. Execute the retrieval command\n\n*   **Authenticate with API**: Simulated authentication.\n*   **Send the GET request**: Simulated sending the GET request with the parameters prepared above.\n\n## 3. Validate the retrieved data\n\n*   **Check for errors**: Simulated data retrieval, no errors found.\n*   **Verify data integrity**: Simulated data retrieval, data integrity verified.\n\n## 4. Provide link to the retrieval target\n\n*   The retrieval target link is: `https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=8a7f0d23-56c1-4f9a-9c42-8e7a3d6f1b12&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5`\n"
+        },
+        "createdAt": "2025-11-06T12:41:21.324Z",
+        "updatedAt": "2025-11-06T12:41:21.324Z"
     }
 ]
