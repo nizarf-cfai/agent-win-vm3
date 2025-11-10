@@ -15,6 +15,7 @@ import threading
 import warnings
 import random
 import time
+import signal
 
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
 from dotenv import load_dotenv
@@ -780,6 +781,18 @@ def main():
         print("set GOOGLE_API_KEY=your_api_key_here")
         return
     
+    def sigterm_handler(_signo, _stack_frame):
+        # Raise KeyboardInterrupt to trigger the existing graceful shutdown logic
+        print("\n🛑 SIGTERM received, shutting down gracefully...")
+        raise KeyboardInterrupt
+
+    try:
+        signal.signal(signal.SIGTERM, sigterm_handler)
+    except (ValueError, AttributeError) as e:
+        # signal handling might not be available in all environments (e.g., non-main threads on Windows)
+        print(f"⚠️ Could not set SIGTERM handler: {e}. Graceful shutdown via terminate signal may not work.")
+
+
     gemini = AudioOnlyGeminiCable()
     asyncio.run(gemini.run())
 
