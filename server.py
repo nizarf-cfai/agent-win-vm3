@@ -5,6 +5,7 @@ import os, sys
 import subprocess, os, datetime, psutil
 from fastapi.middleware.cors import CORSMiddleware
 import json
+import chat_model
 
 TARGET_SCRIPTS = ["visit_meet_with_audio.py", "gemini_audio_only_cable.py"]
 app = FastAPI()
@@ -68,3 +69,11 @@ def mute(payload: dict):
 
     print("Agent Status:", agent_status['mute'])
     return agent_status
+
+
+@app.post("/send-chat")
+def run_chat_agent(payload: list[dict]):
+    answer = chat_model.chat_agent(payload)
+
+    print("Agent Answer:", answer)
+    return answer

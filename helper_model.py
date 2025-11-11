@@ -2,7 +2,7 @@ import os
 import google.generativeai as genai
 import requests
 import config
-
+import httpx
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -28,13 +28,20 @@ with open("system_prompts/context_agent.md", "r", encoding="utf-8") as f:
 with open("system_prompts/question_gen.md", "r", encoding="utf-8") as f:
     SYSTEM_PROMPT_Q_GEN = f.read()
 
-def load_ehr():
+async def load_ehr():
+    print("Start load_ehr")
     url = BASE_URL + "/api/board-items"
     
-    response = requests.get(url)
-    data = response.json()
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+        data = response.json()
 
-    return data
+        return data
+    # response = requests.get(url)
+    # print("load ehr",response.status_code)
+    # data = response.json()
+
+    # return data
 
 async def generate_response(todo_obj):
     model = genai.GenerativeModel(
@@ -42,7 +49,7 @@ async def generate_response(todo_obj):
         system_instruction=SYSTEM_PROMPT,
     )
     print(f"Running helper model")
-    ehr_data = load_ehr()
+    ehr_data = await load_ehr()
     prompt = f"""Please execute this todo : 
         {todo_obj}
 
@@ -51,7 +58,9 @@ async def generate_response(todo_obj):
 
     resp = model.generate_content(prompt)
     with open(f"{config.output_dir}/generate_response.md", "w", encoding="utf-8") as f:
-            f.write(resp.text)
+        f.write(resp.text)
+
+    print("Agent Result :", resp.text[:200])
     return {
         "answer": resp.text.replace("```markdown", " ").replace("```", "")
         }
@@ -62,7 +71,7 @@ async def generate_context(question):
         system_instruction=SYSTEM_PROMPT_CONTEXT_GEN,
     )
     print(f"Running Context Generation model")
-    ehr_data = load_ehr()
+    ehr_data = await load_ehr()
     prompt = f"""Please generate context for this : 
         Question : {question}
 
@@ -81,7 +90,7 @@ async def generate_question(question):
         system_instruction=SYSTEM_PROMPT_Q_GEN,
     )
     print(f"Running Context Generation model")
-    ehr_data = load_ehr()
+    ehr_data = await load_ehr()
     prompt = f"""Please generate proper question : 
         Question : {question}
 

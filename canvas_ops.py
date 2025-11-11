@@ -98,6 +98,7 @@ async def update_todo(payload):
             with open(f"{config.output_dir}/upadate_todo_payload.json", "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=4)
             data = await response.json()
+            # print("Update todo :", data)
             with open(f"{config.output_dir}/upadate_todo_response.json", "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
             return data
