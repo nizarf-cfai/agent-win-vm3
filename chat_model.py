@@ -77,6 +77,10 @@ def chat_agent(chat_history: list[dict]) -> str:
             loop.create_task(side_agent.generate_task_workflow(query))
 
         return "Task generated. Agent will execute in background."
+    elif tool_res.get('tool') == "dili_diagnosis":
+        pass
+    elif tool_res.get('tool') == "patient_report":
+        pass
     else:
         object_id = side_agent.resolve_object_id(query, context)
         print("OBJECT ID :",object_id)
@@ -107,7 +111,7 @@ def chat_agent(chat_history: list[dict]) -> str:
 history = [
         # {"role": "user", "content": "Tell me about Sarah Miller summary."},
         # {"role": "user", "content": "Show me medication timeline"},
-        {"role": "user", "content": "Create task to pull Sarah Miller Radiology data."},
+        # {"role": "user", "content": "Create task to pull Sarah Miller Radiology data."},
         # {"role": "user", "content": "What is the DILI diagnosis according EASL guideline for Sarah Miller?"},
     ]
 # start_time = time.time()

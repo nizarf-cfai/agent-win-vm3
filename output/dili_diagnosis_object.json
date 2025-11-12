@@ -1,0 +1,87 @@
+{
+    "title": "DILI Diagnostic Panel",
+    "component": "DILIDiagnostic",
+    "props": {
+        "pattern": {
+            "classification": "Hepatocellular",
+            "R_ratio": 14.13,
+            "keyLabs": [
+                {
+                    "label": "ALT",
+                    "value": "1650 U/L",
+                    "note": "↑↑↑↑ (41.25x ULN)"
+                },
+                {
+                    "label": "AST",
+                    "value": "2100 U/L",
+                    "note": "↑↑↑"
+                },
+                {
+                    "label": "ALP",
+                    "value": "350 U/L",
+                    "note": "↑ (2.92x ULN)"
+                },
+                {
+                    "label": "Total Bilirubin",
+                    "value": "12.5 mg/dL",
+                    "note": "↑↑↑ (10.42x ULN)"
+                },
+                {
+                    "label": "INR",
+                    "value": "1",
+                    "note": "Normal"
+                }
+            ],
+            "clinicalFeatures": [
+                "Severe fatigue",
+                "Jaundice",
+                "Epigastric pain",
+                "Confusion",
+                "Drowsiness",
+                "Asterixis",
+                "Oral mucosal ulcerations"
+            ]
+        },
+        "causality": {
+            "primaryDrug": "Trimethoprim-Sulfamethoxazole",
+            "contributingFactors": [
+                "Methotrexate (potential synergistic toxicity)"
+            ],
+            "mechanisticRationale": [
+                "TMP-SMX is a known cause of idiosyncratic hepatocellular DILI.",
+                "TMP-SMX can inhibit folate metabolism and increase free methotrexate levels, potentially potentiating hepatotoxicity.",
+                "The timeline of symptom onset following TMP-SMX initiation is highly suggestive of DILI."
+            ]
+        },
+        "severity": {
+            "features": [
+                "ALT > 5x ULN",
+                "ALP > 2x ULN",
+                "Total Bilirubin > 2x ULN",
+                "Encephalopathy (confusion, drowsiness, asterixis)"
+            ],
+            "prognosis": "Severe DILI with high risk of progression to acute liver failure."
+        },
+        "management": {
+            "immediateActions": [
+                "Discontinue Trimethoprim-Sulfamethoxazole",
+                "Discontinue Methotrexate",
+                "Initiate N-acetylcysteine",
+                "Admit to ICU",
+                "Aggressive supportive care"
+            ],
+            "consults": [
+                "Hepatology",
+                "Gastroenterology",
+                "Hematology"
+            ],
+            "monitoringPlan": [
+                "Frequent LFT monitoring",
+                "INR monitoring",
+                "Neurological status checks",
+                "Monitor for signs of hepatic encephalopathy",
+                "Monitor for signs of acute liver failure"
+            ]
+        }
+    }
+}

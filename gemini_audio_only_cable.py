@@ -226,7 +226,7 @@ class AudioOnlyGeminiCable:
                     "background_processing": "Data Analyst Agent will analyze the task and provide detailed results in the background"
                 }
             }
-
+ 
 
     async def get_canvas_objects(self, query):
         """Get canvas objects using RAG from JSON"""

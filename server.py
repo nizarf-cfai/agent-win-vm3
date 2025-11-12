@@ -6,6 +6,8 @@ import subprocess, os, datetime, psutil
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import chat_model
+import side_agent
+
 
 TARGET_SCRIPTS = ["visit_meet_with_audio.py", "gemini_audio_only_cable.py"]
 app = FastAPI()
@@ -77,3 +79,18 @@ def run_chat_agent(payload: list[dict]):
 
     print("Agent Answer:", answer)
     return answer
+
+
+@app.post("/generate_diagnosis")
+def gen_diagnosis(payload: dict):
+    side_agent.create_dili_diagnosis()
+    return {
+        "status" : "done"
+    }
+
+@app.post("/generate_report")
+def gen_report(payload: dict):
+    side_agent.create_dili_diagnosis()
+    return {
+        "status" : "done"
+    }

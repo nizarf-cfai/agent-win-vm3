@@ -3,6 +3,7 @@ import google.generativeai as genai
 import requests
 import config
 import httpx
+import json
 from dotenv import load_dotenv
 load_dotenv()
 

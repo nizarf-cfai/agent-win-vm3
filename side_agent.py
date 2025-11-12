@@ -403,11 +403,248 @@ async def generate_task_workflow(query: str):
 
     return task_res
 
+async def generate_dili_diagnosis():
+    with open("system_prompts/dili_diagnosis_prompt.md", "r", encoding="utf-8") as f:
+        SYSTEM_PROMPT_DILI = f.read()
+    RESPONSE_SCHEMA = {
+        "type": "OBJECT",
+        "properties": {
+            "title": {
+                "type": "STRING",
+                "description": "Section title, always 'DILI Diagnostic Panel'"
+            },
+            "component": {
+                "type": "STRING",
+                "description": "Component identifier, always 'DILIDiagnostic'"
+            },
+            "props": {
+                "type": "OBJECT",
+                "properties": {
+                    "pattern": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "classification": {"type": "STRING"},
+                            "R_ratio": {"type": "NUMBER"},
+                            "keyLabs": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "label": {"type": "STRING"},
+                                        "value": {"type": "STRING"},
+                                        "note": {"type": "STRING"}
+                                    },
+                                    "required": ["label", "value", "note"]
+                                }
+                            },
+                            "clinicalFeatures": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            }
+                        },
+                        "required": ["classification", "R_ratio", "keyLabs", "clinicalFeatures"]
+                    },
+                    "causality": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "primaryDrug": {"type": "STRING"},
+                            "contributingFactors": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+                            "mechanisticRationale": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            }
+                        },
+                        "required": ["primaryDrug", "contributingFactors", "mechanisticRationale"]
+                    },
+                    "severity": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "features": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+                            "prognosis": {"type": "STRING"}
+                        },
+                        "required": ["features", "prognosis"]
+                    },
+                    "management": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "immediateActions": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+                            "consults": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+                            "monitoringPlan": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            }
+                        },
+                        "required": ["immediateActions", "consults", "monitoringPlan"]
+                    }
+                },
+                "required": ["pattern", "causality", "severity", "management"]
+            }
+        },
+        "required": ["title", "component", "props"]
+    }
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT_DILI,
+    )
+    print(f"Running generate_dili_diagnosis model")
+    ehr_data = await load_ehr()
+    prompt = f"""Please generate DILI diagnosis object.
+
+
+        This is patient raw data : {ehr_data}"""
+
+    resp = model.generate_content(
+        prompt,
+        generation_config={
+            "response_mime_type": "application/json",
+            "response_schema": RESPONSE_SCHEMA
+        }
+        )
+    result = json.loads(resp.text)
+    object_data = result.get("props",{})
+    with open(f"{config.output_dir}/dili_diagnosis_object.json", "w", encoding="utf-8") as f:
+        json.dump(object_data, f, ensure_ascii=False, indent=4)
+    return object_data
+
+
+
+async def generate_patient_report():
+    with open("system_prompts/patient_report_prompt.md", "r", encoding="utf-8") as f:
+        SYSTEM_PROMPT_PATIENT = f.read()
+    RESPONSE_SCHEMA = {
+        "type": "OBJECT",
+        "properties": {
+            "title": {
+                "type": "STRING",
+                "description": "Always 'Patient Summary Report'"
+            },
+            "component": {
+                "type": "STRING",
+                "description": "Always 'PatientReport'"
+            },
+            "props": {
+                "type": "OBJECT",
+                "properties": {
+                    "patientData": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "name": {"type": "STRING"},
+                            "date_of_birth": {"type": "STRING"},
+                            "age": {"type": "NUMBER"},
+                            "sex": {"type": "STRING"},
+                            "mrn": {"type": "STRING"},
+                            "primaryDiagnosis": {"type": "STRING"},
+
+                            "problem_list": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "name": {"type": "STRING"},
+                                        "status": {"type": "STRING"}
+                                    },
+                                    "required": ["name", "status"]
+                                }
+                            },
+
+                            "allergies": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+
+                            "medication_history": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "name": {"type": "STRING"},
+                                        "dose": {"type": "STRING"}
+                                    },
+                                    "required": ["name", "dose"]
+                                }
+                            },
+
+                            "acute_event_summary": {"type": "STRING"},
+
+                            "diagnosis_acute_event": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            },
+
+                            "causality": {"type": "STRING"},
+
+                            "management_recommendations": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"}
+                            }
+                        },
+                        "required": ['name', 'date_of_birth', 'age', 'sex', 'mrn', 'primaryDiagnosis', 'problem_list', 'allergies', 'medication_history', 'acute_event_summary', 'diagnosis_acute_event', 'causality', 'management_recommendations']
+                    }
+                },
+                "required": ["patientData"]
+            }
+        },
+        "required": ["title", "component", "props"]
+    }
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT_PATIENT,
+    )
+    print(f"Running generate_patient_report model")
+    ehr_data = await load_ehr()
+    prompt = f"""Please generate Patient Report object.
+
+
+        This is patient raw data : {ehr_data}"""
+
+    resp = model.generate_content(
+        prompt,
+        generation_config={
+            "response_mime_type": "application/json",
+            "response_schema": RESPONSE_SCHEMA
+        }
+        )
+    result = json.loads(resp.text)
+    object_data = result.get("props",{})
+
+    with open(f"{config.output_dir}/patient_report_object.json", "w", encoding="utf-8") as f:
+        json.dump(object_data, f, ensure_ascii=False, indent=4)
+    return object_data
+
+
+async def create_dili_diagnosis():
+    diagnosis_content = await generate_dili_diagnosis()
+
+    print("Diagnosis content generated")
+
+    canvas_ops.create_diagnosis(diagnosis_content)
+
+async def create_patient_report():
+    diagnosis_content = await generate_patient_report()
+
+    print("Patient report content generated")
+
+    canvas_ops.create_report(diagnosis_content)
+
 # start_time = time.time()
 
-# query = "Pull radiology data for Sarah Miller"
-# parse_tool(query)
-
+# # query = "Pull radiology data for Sarah Miller"
+# # parse_tool(query)
+# asyncio.run(generate_patient_report())
 # end_time = time.time()
 # execution_time = end_time - start_time
 # print(f"Execution time: {execution_time:.4f} seconds")

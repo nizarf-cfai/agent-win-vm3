@@ -1,0 +1,63 @@
+{
+    "title": "Patient Summary Report",
+    "component": "PatientReport",
+    "props": {
+        "patientData": {
+            "name": "Sarah Miller",
+            "date_of_birth": "1962-03-15",
+            "age": 63,
+            "sex": "Female",
+            "mrn": "MC-001001",
+            "primaryDiagnosis": "Rheumatoid arthritis",
+            "problem_list": [
+                {
+                    "name": "Rheumatoid arthritis",
+                    "status": "active"
+                },
+                {
+                    "name": "Essential hypertension",
+                    "status": "active"
+                },
+                {
+                    "name": "Mild chronic kidney disease",
+                    "status": "active"
+                }
+            ],
+            "allergies": [
+                "Penicillin (rash)"
+            ],
+            "medication_history": [
+                {
+                    "name": "Methotrexate",
+                    "dose": "20 mg weekly"
+                },
+                {
+                    "name": "Folic Acid",
+                    "dose": "5 mg weekly"
+                },
+                {
+                    "name": "Lisinopril",
+                    "dose": "10 mg daily"
+                },
+                {
+                    "name": "Trimethoprim-Sulfamethoxazole",
+                    "dose": "800/160 mg BID"
+                }
+            ],
+            "acute_event_summary": "Patient presented with severe fatigue, jaundice, epigastric pain, and confusion following initiation of trimethoprim-sulfamethoxazole.",
+            "diagnosis_acute_event": [
+                "Drug-Induced Liver Injury (DILI)",
+                "Hepatic Encephalopathy",
+                "Acute Liver Failure",
+                "Methotrexate Toxicity"
+            ],
+            "causality": "Trimethoprim-sulfamethoxazole is identified as the likely culprit for idiosyncratic DILI, potentially potentiated by chronic methotrexate use. The temporal association between starting TMP-SMX and the onset of severe liver injury, along with the pattern of injury, supports this causal link.",
+            "management_recommendations": [
+                "Withdraw trimethoprim-sulfamethoxazole and methotrexate.",
+                "Initiate N-acetylcysteine.",
+                "Provide aggressive supportive care.",
+                "Intensive care unit (ICU)-level monitoring."
+            ]
+        }
+    }
+}
