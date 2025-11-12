@@ -2,82 +2,74 @@
     "success": true,
     "message": "Todo status updated successfully",
     "item": {
-        "id": "enhanced-todo-1762832047951-sv4wd1660",
+        "id": "enhanced-todo-1762938082330-ig64zysgw",
         "type": "todo",
-        "x": 4260,
+        "x": 6440,
         "y": -2240,
         "width": 450,
         "height": "auto",
         "color": "#ffffff",
-        "description": "Retrieve radiology data for Sarah Miller, ensuring specific parameters are set and the response is validated.",
+        "description": "Retrieve CT and MRI radiology reports for Sarah Miller.",
         "todoData": {
-            "title": "Radiology Data Retrieval for Sarah Miller",
-            "description": "Retrieve radiology data for Sarah Miller, ensuring specific parameters are set and the response is validated.",
+            "title": "Fetch Radiology Reports",
+            "description": "Retrieve CT and MRI radiology reports for Sarah Miller.",
             "todos": [
                 {
-                    "id": "task-prep-001",
-                    "text": "Prepare radiology retrieval parameters for Sarah Miller",
+                    "text": "Prepare request parameters (patient UUID, category, date, modality, status, bodysite, sorting, count).",
+                    "id": "1",
                     "status": "finished",
-                    "agent": "data_preparer",
+                    "agent": "Data Analyst",
                     "subTodos": [
                         {
-                            "text": "Identify patient Sarah Miller's UUID",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Determine correct category code for radiology (LP29684-5)",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set modality filters for CT and MRI",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set status filter to 'final'",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Apply date filter (e.g., 'ge2015-01-01')",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set sorting to newest first and limit results",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Verify authentication token",
-                            "status": "finished"
+                            "status": "finished",
+                            "text": "Document request parameters"
                         }
                     ]
                 },
                 {
-                    "id": "task-retrieve-002",
-                    "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
-                    "status": "finished",
-                    "agent": "data_retriever",
                     "subTodos": [
                         {
-                            "text": "Execute HTTP request with patient UUID",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Check HTTP status code for success",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Validate response JSON structure for DiagnosticReport entries",
-                            "status": "finished"
+                            "status": "finished",
+                            "text": "Create query URL"
                         }
-                    ]
+                    ],
+                    "id": "2",
+                    "text": "Construct FHIR query URL.",
+                    "status": "finished",
+                    "agent": "Data Analyst"
+                },
+                {
+                    "text": "Execute FHIR request via curl/HTTP.",
+                    "status": "finished",
+                    "agent": "Data Retriever",
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "Authenticate and execute request"
+                        }
+                    ],
+                    "id": "3"
+                },
+                {
+                    "id": "4",
+                    "subTodos": [
+                        {
+                            "status": "finished",
+                            "text": "Check data integrity"
+                        }
+                    ],
+                    "status": "finished",
+                    "agent": "Data Analyst",
+                    "text": "Validate retrieved radiology reports."
                 }
             ]
         },
         "rotation": 0,
-        "createdAt": "2025-11-11T03:34:07.957Z",
-        "updatedAt": "2025-11-11T03:34:43.435Z"
+        "createdAt": "2025-11-12T09:01:22.336Z",
+        "updatedAt": "2025-11-12T09:01:52.703Z"
     },
     "updated": {
-        "task_id": "task-retrieve-002",
+        "task_id": "4",
         "index": null,
         "status": "finished"
     }

@@ -1,43 +1,68 @@
+```markdown
 # Radiology Data Retrieval for Sarah Miller
 
-## Task: Prepare radiology retrieval parameters for Sarah Miller
+## Task: Prepare parameters for radiology data retrieval
 
-### Identify patient Sarah Miller's UUID
-*   **UUID:** Not explicitly provided in the patient encounter data. This information is typically found in a patient's master patient index or demographic record.
+*   **Patient Sarah Miller's UUID:** Not explicitly provided in the encounter data.
+    *   *Evidence:* Patient context shows "Sarah Miller" with MRN "MC-001001" and DOB "1962-03-15", but no UUID is listed.
+    *   *Gap:* Patient UUID is required for API calls.
+    *   *Next Step:* Obtain Sarah Miller's UUID from a patient registry or user interface. (Urgency: Urgent)
 
-### Determine correct category code for radiology (LP29684-5)
-*   **Category Code:** `LP29684-5` is identified as the correct LOINC code for radiology reports. This code is used in the FHIR API query.
+*   **Category Code for Radiology:** `http://loinc.org|LP29684-5`
+    *   *Evidence:* Provided directly in the `todo.items` description.
 
-### Set modality filters for CT and MRI
-*   **Modality Filters:** The query should include filters for `http://dicom.nema.org/resources/ontology/DCM|CT` and `http://dicom.nema.org/resources/ontology/DCM|MRI`.
+*   **Modality Filters:** `CT`, `MRI`
+    *   *Evidence:* Specified in the `todo.items` description: `modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI`.
 
-### Set status filter to 'final'
-*   **Status Filter:** The query should specify `status=final` to retrieve only finalized radiology reports.
+*   **Status Filter:** `final`
+    *   *Evidence:* Specified in the `todo.items` description: `status=final`.
 
-### Apply date filter (e.g., 'ge2015-01-01')
-*   **Date Filter:** The query should include `date=ge2015-01-01` to retrieve reports from January 1, 2015, onwards.
+*   **Sorting and Date Filters:**
+    *   *Sorting:* `-date` (most recent first)
+    *   *Date Filter:* Not explicitly specified in the provided API call example, but generally implied for retrieval. The `_count=10` suggests a limit to the most recent results.
+    *   *Evidence:* The `_sort=-date` parameter is present in the `todo.items` description.
+    *   *Gap:* A specific date range for retrieval is not defined.
 
-### Set sorting to newest first and limit results
-*   **Sorting:** The query should use `_sort=-date` to sort results by date in descending order (newest first).
-*   **Limit:** The query should use `_count=5` to limit the results to the 5 most recent reports.
+*   **Authentication:**
+    *   *Evidence:* Not explicitly detailed in the provided patient encounter data or the To-Do item itself. The API call format implies it would be handled via headers or tokens.
+    *   *Gap:* Authentication method and credentials are not provided.
+    *   *Next Step:* Ensure proper authentication mechanisms (e.g., API keys, OAuth tokens) are configured for the FHIR API endpoint. (Urgency: Urgent)
 
-### Verify authentication token
-*   **Authentication Token:** Verification of the authentication token is required before executing the API request. This step is external to the provided patient data.
+## Task: Execute the retrieval request
 
-## Task: Execute HTTP request with patient UUID
+*   **Simulated Execution:** The following is a simulated execution of the provided `curl` command, assuming the patient UUID and authentication are available.
 
-*   **Action:** Execute the provided `curl` command using the identified parameters.
-*   **Note:** The `<UUID>` placeholder must be replaced with Sarah Miller's actual patient UUID. The `curl` command as provided:
-    ```bash
-    curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'
-    ```
+```bash
+# Placeholder for actual UUID and authentication details
+PATIENT_UUID="<SARAH_MILLER_UUID>"
+AUTH_TOKEN="<YOUR_AUTH_TOKEN>"
 
-### Check HTTP status code for success
-*   **Requirement:** Monitor the HTTP status code returned by the API request. A `200 OK` status code indicates success.
+curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<PATIENT_UUID>&category=http://loinc.org|LP29684-5&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=10' \
+  -H "Authorization: Bearer <AUTH_TOKEN>"
+```
 
-### Validate response JSON structure for DiagnosticReport entries
-*   **Requirement:** Parse the JSON response and validate that it contains `DiagnosticReport` entries with expected fields such as `code`, `subject`, `effectiveDateTime`, `conclusionCode`, and `presentedForm`.
+*   **HTTP Response Status Code:**
+    *   *Expected:* `200 OK` for a successful retrieval.
+    *   *Possible Issues:* `401 Unauthorized` (authentication failure), `404 Not Found` (if patient or resource endpoint is incorrect), `400 Bad Request` (invalid parameters).
+    *   *Evidence:* Standard FHIR API response codes.
+    *   *Gap:* Actual response code requires execution.
 
----
-**Audit Summary:**
-Reviewed the `todo` object for radiology data retrieval for Sarah Miller. Extracted specific parameters for API query based on the provided sub-tasks. Identified missing patient UUID and external authentication requirement. The structured output provides the necessary parameters for executing the retrieval task. Data reviewed spans from 2015-01-01 to the present, based on the specified date filter. No radiology reports were found within the provided patient encounter data.
+*   **Validation of Returned Data:**
+    *   *Expected Structure:* The response should be a FHIR `Bundle` resource containing `DiagnosticReport` resources. Each `DiagnosticReport` should include:
+        *   `id`: Report identifier.
+        *   `status`: Should be 'final'.
+        *   `category`: Should include `LP29684-5`.
+        *   `code`: A coded element describing the diagnostic service.
+        *   `subject`: Reference to the patient (`Sarah Miller`).
+        *   `effectiveDateTime` or `effectivePeriod`: Date/time of the diagnostic study.
+        *   `issued`: Date the report was issued.
+        *   `performer`: Healthcare professional or organization that performed the study.
+        *   `resultsInterpreter`: Healthcare professional who interpreted the report.
+        *   `presentedForm`: Typically a reference to an Observation or DocumentReference, or a binary attachment containing the report text/PDF.
+    *   *Evidence:* FHIR R4 `DiagnosticReport` resource specification.
+    *   *Gap:* Actual data structure and content require successful API execution and inspection.
+
+## Summary of Review
+
+This task aimed to prepare parameters and outline the execution of a radiology data retrieval request for Sarah Miller. Key parameters such as category, modality, and status filters were identified from the provided To-Do item. The primary gap identified is the missing patient UUID and authentication details, which are critical for successful API interaction. The next steps involve obtaining these credentials and executing the query, followed by validation of the returned FHIR `DiagnosticReport` resources.
+```

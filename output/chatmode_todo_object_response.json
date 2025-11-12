@@ -1,19 +1,19 @@
 {
-    "id": "enhanced-todo-1762832047951-sv4wd1660",
+    "id": "enhanced-todo-1762923129156-g3qkhhat7",
     "type": "todo",
-    "x": 4260,
+    "x": 5860,
     "y": -2240,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Retrieve radiology data for Sarah Miller, ensuring specific parameters are set and the response is validated.",
+    "description": "Fetch radiology reports for patient Sarah Miller to facilitate clinical review and analysis.",
     "todoData": {
-        "title": "Radiology Data Retrieval for Sarah Miller",
-        "description": "Retrieve radiology data for Sarah Miller, ensuring specific parameters are set and the response is validated.",
+        "title": "Retrieve Radiology Data for Sarah Miller",
+        "description": "Fetch radiology reports for patient Sarah Miller to facilitate clinical review and analysis.",
         "todos": [
             {
-                "id": "task-prep-001",
-                "text": "Prepare radiology retrieval parameters for Sarah Miller",
+                "id": "task-prep-rad-data-001",
+                "text": "Prepare parameters for radiology data retrieval",
                 "status": "pending",
                 "agent": "data_preparer",
                 "subTodos": [
@@ -22,7 +22,7 @@
                         "status": "pending"
                     },
                     {
-                        "text": "Determine correct category code for radiology (LP29684-5)",
+                        "text": "Determine category code for radiology (LP29684-5)",
                         "status": "pending"
                     },
                     {
@@ -30,39 +30,35 @@
                         "status": "pending"
                     },
                     {
-                        "text": "Set status filter to 'final'",
+                        "text": "Apply status filter for final reports",
                         "status": "pending"
                     },
                     {
-                        "text": "Apply date filter (e.g., 'ge2015-01-01')",
+                        "text": "Configure sorting and date filters",
                         "status": "pending"
                     },
                     {
-                        "text": "Set sorting to newest first and limit results",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Verify authentication token",
+                        "text": "Ensure authentication is properly configured",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-retrieve-002",
-                "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
+                "id": "task-fetch-rad-data-002",
+                "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=10'",
                 "status": "pending",
                 "agent": "data_retriever",
                 "subTodos": [
                     {
-                        "text": "Execute HTTP request with patient UUID",
+                        "text": "Execute the retrieval request",
                         "status": "pending"
                     },
                     {
-                        "text": "Check HTTP status code for success",
+                        "text": "Check the HTTP response status code",
                         "status": "pending"
                     },
                     {
-                        "text": "Validate response JSON structure for DiagnosticReport entries",
+                        "text": "Validate the structure of the returned DiagnosticReport data",
                         "status": "pending"
                     }
                 ]
@@ -70,6 +66,6 @@
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-11T03:34:07.957Z",
-    "updatedAt": "2025-11-11T03:34:07.957Z"
+    "createdAt": "2025-11-12T04:52:09.162Z",
+    "updatedAt": "2025-11-12T04:52:09.162Z"
 }

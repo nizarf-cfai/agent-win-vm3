@@ -82,15 +82,15 @@ def run_chat_agent(payload: list[dict]):
 
 
 @app.post("/generate_diagnosis")
-def gen_diagnosis(payload: dict):
-    side_agent.create_dili_diagnosis()
+async def gen_diagnosis(payload: dict):
+    await side_agent.create_dili_diagnosis()
     return {
         "status" : "done"
     }
 
 @app.post("/generate_report")
-def gen_report(payload: dict):
-    side_agent.create_dili_diagnosis()
+async def gen_report(payload: dict):
+    await side_agent.create_patient_report()
     return {
         "status" : "done"
     }

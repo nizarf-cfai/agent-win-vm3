@@ -137,20 +137,22 @@ async def create_result(agent_result):
                 json.dump(data, f, ensure_ascii=False, indent=4)
             return data
         
-async def create_diagnosis(payload):
+def create_diagnosis(payload):
+    print("Start create object")
     url = BASE_URL + "/api/dili-diagnostic"
     payload['zone'] = "dili-analysis-zone"
-    # response = requests.post(url, json=payload)
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as response:
-            with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:
-                json.dump(payload, f, ensure_ascii=False, indent=4)
+    response = requests.post(url, json=payload)
+    print(response.status_code)
+    # async with aiohttp.ClientSession() as session:
+    #     async with session.post(url, json=payload) as response:
+    #         with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:
+    #             json.dump(payload, f, ensure_ascii=False, indent=4)
 
-            data = await response.json()
-
-            with open(f"{config.output_dir}/diagnosis_create_response.json", "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=4)
-            return data
+    #         data = await response.json()
+    #         print("Object created")
+    #         with open(f"{config.output_dir}/diagnosis_create_response.json", "w", encoding="utf-8") as f:
+    #             json.dump(data, f, ensure_ascii=False, indent=4)
+    #         return data
         
 async def create_report(payload):
     url = BASE_URL + "/api/patient-report"

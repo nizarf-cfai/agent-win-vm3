@@ -599,7 +599,7 @@ async def generate_patient_report():
         },
         "required": ["title", "component", "props"]
     }
-
+ 
     model = genai.GenerativeModel(
         MODEL,
         system_instruction=SYSTEM_PROMPT_PATIENT,
@@ -625,20 +625,35 @@ async def generate_patient_report():
         json.dump(object_data, f, ensure_ascii=False, indent=4)
     return object_data
 
+def create_diagnosis(payload):
+    print("Start create object")
+    url = BASE_URL + "/api/dili-diagnostic"
+    payload['zone'] = "dili-analysis-zone"
+    response = requests.post(url, json=payload)
+    print(response.status_code)
 
 async def create_dili_diagnosis():
+    print("Start generate DILI object")
     diagnosis_content = await generate_dili_diagnosis()
 
     print("Diagnosis content generated")
 
-    canvas_ops.create_diagnosis(diagnosis_content)
+    # canvas_ops.create_diagnosis(diagnosis_content)
+    create_diagnosis(diagnosis_content)
+
+def create_report(payload):
+    print("Start create object")
+    url = BASE_URL + "/api/patient-report"
+    payload['zone'] = "dili-analysis-zone"
+    response = requests.post(url, json=payload)
+    print(response.status_code)
 
 async def create_patient_report():
     diagnosis_content = await generate_patient_report()
 
     print("Patient report content generated")
 
-    canvas_ops.create_report(diagnosis_content)
+    create_report(diagnosis_content)
 
 # start_time = time.time()
 

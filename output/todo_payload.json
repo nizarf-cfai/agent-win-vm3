@@ -1,62 +1,55 @@
 {
-    "title": "Radiology Data Retrieval for Sarah Miller",
-    "description": "Retrieve radiology data for Sarah Miller, ensuring specific parameters are set and the response is validated.",
+    "description": "Retrieve CT and MRI radiology reports for Sarah Miller.",
+    "title": "Fetch Radiology Reports",
     "todos": [
         {
-            "id": "task-prep-001",
-            "text": "Prepare radiology retrieval parameters for Sarah Miller",
+            "text": "Prepare request parameters (patient UUID, category, date, modality, status, bodysite, sorting, count).",
+            "id": "1",
             "status": "pending",
-            "agent": "data_preparer",
+            "agent": "Data Analyst",
             "subTodos": [
                 {
-                    "text": "Identify patient Sarah Miller's UUID",
-                    "status": "pending"
-                },
-                {
-                    "text": "Determine correct category code for radiology (LP29684-5)",
-                    "status": "pending"
-                },
-                {
-                    "text": "Set modality filters for CT and MRI",
-                    "status": "pending"
-                },
-                {
-                    "text": "Set status filter to 'final'",
-                    "status": "pending"
-                },
-                {
-                    "text": "Apply date filter (e.g., 'ge2015-01-01')",
-                    "status": "pending"
-                },
-                {
-                    "text": "Set sorting to newest first and limit results",
-                    "status": "pending"
-                },
-                {
-                    "text": "Verify authentication token",
-                    "status": "pending"
+                    "status": "pending",
+                    "text": "Document request parameters"
                 }
             ]
         },
         {
-            "id": "task-retrieve-002",
-            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
-            "status": "pending",
-            "agent": "data_retriever",
             "subTodos": [
                 {
-                    "text": "Execute HTTP request with patient UUID",
-                    "status": "pending"
-                },
-                {
-                    "text": "Check HTTP status code for success",
-                    "status": "pending"
-                },
-                {
-                    "text": "Validate response JSON structure for DiagnosticReport entries",
-                    "status": "pending"
+                    "status": "pending",
+                    "text": "Create query URL"
                 }
-            ]
+            ],
+            "id": "2",
+            "text": "Construct FHIR query URL.",
+            "status": "pending",
+            "agent": "Data Analyst"
+        },
+        {
+            "text": "Execute FHIR request via curl/HTTP.",
+            "status": "pending",
+            "agent": "Data Retriever",
+            "subTodos": [
+                {
+                    "status": "pending",
+                    "text": "Authenticate and execute request"
+                }
+            ],
+            "id": "3"
+        },
+        {
+            "id": "4",
+            "subTodos": [
+                {
+                    "status": "pending",
+                    "text": "Check data integrity"
+                }
+            ],
+            "status": "pending",
+            "agent": "Data Analyst",
+            "text": "Validate retrieved radiology reports."
         }
-    ]
+    ],
+    "area": "planning-zone"
 }
