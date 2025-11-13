@@ -42,7 +42,7 @@ If the user request involves **pulling / retrieving / fetching / getting data**:
 
 2. The todo **before** the curl command must describe:
    - Query parameter construction
-   - Patient UUID
+   - Patient UUID or available id
    - Category code (e.g., LP29684-5 for radiology)
    - Modality filters (e.g., CT / MRI DICOM codes)
    - Status filters (e.g., final)
@@ -73,7 +73,7 @@ One main task MUST be exactly in this pattern:
   ]
 }
 
-Replace <UUID> with patient UUID **only if known**, otherwise keep placeholder `<UUID>`.
+Replace <UUID> with patient UUID **only if known**, otherwise use available identifier id.
 
 ----------------------------------------------------
 FEW-SHOT EXAMPLE (YOU MUST LEARN FROM THIS PATTERN ONLY)

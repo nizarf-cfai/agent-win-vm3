@@ -16,6 +16,7 @@ import warnings
 import random
 import time
 import signal
+import chat_model
 
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
 from dotenv import load_dotenv
@@ -107,34 +108,41 @@ class AudioOnlyGeminiCable:
                 
                 print(f"  📋 {function_name}: {json.dumps(arguments, indent=2)[:100]}...")
                 
-
-                
+                q_base = arguments.get('query')
+                response_agent = await chat_model.chat_agent(
+                    [
+                        {"role" : "user", "content":q_base}
+                    ]
+                )
+                print("Agent Response :",response_agent[:200])
                 # Save the function call to file (non-blocking)
-                asyncio.create_task(self.save_function_call(arguments))
+                # asyncio.create_task(self.save_function_call(arguments))
                 # fun_res = self.get_function_response(arguments)
                 # Create function response with actual canvas processing
-                if fc.name == "get_canvas_objects":
-                    query = arguments.get('query', '')
-                    canvas_result = await self.get_canvas_objects(query)
-                    print("RAG Result Canvas:",canvas_result[:200])
+                # if fc.name == "get_canvas_objects":
+                #     query = arguments.get('query', '')
+                #     canvas_result = await self.get_canvas_objects(query)
+                #     print("RAG Result Canvas:",canvas_result[:200])
 
-                    fun_res = {
-                        "result": {
-                            "status": "Canvas objects retrieved",
-                            "action": "Retrieved canvas items and will navigate to most relevant",
-                            "query": query,
-                            "canvas_data": canvas_result,
-                            "message": f"I've retrieved relevant canvas objects for your query: '{query}'. I'll now navigate to the most relevant object to show you the specific data. Here's what I found: {canvas_result}",
-                            "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and will automatically navigate to the most relevant object."
-                        }
-                    }
-                else:
-                    fun_res = self.get_function_response(arguments)
+                #     fun_res = {
+                #         "result": {
+                #             "status": "Canvas objects retrieved",
+                #             "action": "Retrieved canvas items and will navigate to most relevant",
+                #             "query": query,
+                #             "canvas_data": canvas_result,
+                #             "message": f"I've retrieved relevant canvas objects for your query: '{query}'. I'll now navigate to the most relevant object to show you the specific data. Here's what I found: {canvas_result}",
+                #             "explanation": f"Canvas query '{query}' processed successfully. Retrieved relevant canvas items and will automatically navigate to the most relevant object."
+                #         }
+                #     }
+                # else:
+                #     fun_res = self.get_function_response(arguments)
                 
                 function_response = types.FunctionResponse(
                     id=fc.id,
                     name=fc.name,
-                    response=fun_res
+                    response={
+                        "result" : response_agent
+                    }
                 )
                 function_responses.append(function_response)
             
@@ -467,100 +475,17 @@ class AudioOnlyGeminiCable:
             except Exception as error_send_error:
                 print(f"⚠️ Could not send error message: {error_send_error}")
 
+    async def save_function_call(self, arguments):
+        if arguments.get("tool") in ["navigate_canvas", "general"]:
+            pass
+        elif arguments.get("tool") == "generate_task":
+            pass
+        elif arguments.get("tool") == "get_easl_answer":
+            pass
 
 
 
-    async def save_function_call(self, action_data):
-        """Save the function call to a file"""
-        if not action_data:
-            return
-        if 'objectId' in action_data:
-            object_id = action_data["objectId"]
-            focus_res = await canvas_ops.focus_item(object_id)
-            print(f"  🎯 Navigation completed", focus_res)
-        elif 'parameter' in action_data:
-            lab_res = await canvas_ops.create_lab(action_data)
-            await asyncio.sleep(2)
-            labId = lab_res['id']
-            focus_res = await canvas_ops.focus_item(labId)
-            print(f"  🧪 Lab result created")
-        # elif 'query' in action_data and len(action_data) == 1:
-        #     # Handle canvas object queries with navigation
-        #     query = action_data.get('query', '')
-        #     print(f"  🔍 Canvas query processed: {query[:50]}...")
-            
-        #     # Get canvas objects and navigate to the most relevant one
-        #     try:
-        #         canvas_result = await self.get_canvas_objects(query)
-        #         print(f"  🔍 Canvas objects retrieved: {canvas_result[:100]}...")
-
-        #         await asyncio.sleep(1)
-                
-        #         print(f"  🎯 Will navigate to relevant object based on query results")
-                
-        #     except Exception as e:
-        #         print(f"  ❌ Error processing canvas query: {e}")
-        elif "question" in action_data:
-            print(f"  🔍 Start EASL Processing:\n {action_data}...")
-
-            query = action_data.get('question', '')
-            easl_todo_payload = {
-                "title": "EASL Guideline Query Workflow",
-                "description": "Handling query to EASL Guideline Agent in background",
-                "todos": [
-                    {
-                    "id": "task-101",
-                    "text": "Creating question query and generating context",
-                    "status": "executing",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                            {
-                            "text": f"Base question : {query}",
-                            "status": "executing"
-                            },
-                            {
-                            "text": "Detailed Question is generated by ContextGen Agent",
-                            "status": "executing"
-                            }
-                        ]
-                    },
-                    {
-                    "id": "task-102",
-                    "text": "Send query to EASL Guideline Agent",
-                    "status": "pending",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                            {
-                            "text": f"Query is processing",
-                            "status": "pending"
-                            },
-                            {
-                            "text": "Result is created in canvas",
-                            "status": "pending"
-                            }
-                        ]
-                    }
-                ]
-                }
-            task_res = await canvas_ops.create_todo(easl_todo_payload)
-            await asyncio.sleep(3)
-            self.start_background_easl_processing(query, task_res)
-            print(f"  🔍 EASL question processed: {query[:50]}...")
         
-        elif 'todos' in action_data:
-            action_data['area'] = "planning-zone"
-
-            task_res = await canvas_ops.create_todo(action_data)
-
-            await asyncio.sleep(3)
-            boxId = task_res['id']
-            focus_res = await canvas_ops.focus_item(boxId)
-
-            print(f"  📝 Task created")
-            await asyncio.sleep(3)
-
-            # Trigger agent processing in background
-            self.start_background_agent_processing(action_data, task_res)
             
 
     def find_input_device(self, substr: str) -> int:

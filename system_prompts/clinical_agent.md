@@ -44,7 +44,6 @@ De-duplicate conflicting entries, normalize units and reference ranges, mark abn
 # REQUIRED CONTENT CHARACTERISTICS
 
 * Output must be **structured text**, **not** a rigid template.
-* The structure should **mirror the To-Do** (e.g., organized by items, then synthesized conclusions).
 * Use concise headings and bullet-like organization that fit the To-Do’s purpose.
 * Include: task answers, supporting evidence with encounter citations, salient risks, explicit gaps/uncertainties, concrete next actions, and a brief audit summary (what was reviewed and the time window).
 * Use ISO dates and neutral, factual language.

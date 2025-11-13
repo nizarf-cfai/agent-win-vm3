@@ -28,7 +28,7 @@ model = genai.GenerativeModel(
 )
 
 
-def chat_agent(chat_history: list[dict]) -> str:
+async def chat_agent(chat_history: list[dict]) -> str:
     """
     Chat Agent:
     Takes a list of messages (chat history) and returns a natural language response.
@@ -48,21 +48,19 @@ def chat_agent(chat_history: list[dict]) -> str:
 
 
     query = chat_history[-1].get('content')
-    print("RAG query")
-    context = asyncio.run(rag_from_json(query, top_k=3))
-    print("query type :",type(query))
-    print("context type :",type(context))
+    context = await rag_from_json(query, top_k=3)
+
     # Tools check
-    print("Tools check")
+    print("Tools check") 
     tool_res = side_agent.parse_tool(query)
     print("Tools use :", tool_res)
 
     if tool_res.get('tool') == "navigate_canvas":
-        object_id = side_agent.resolve_object_id(query, context)
+        object_id = await side_agent.resolve_object_id(query, context)
         print("OBJECT ID :",object_id)
         
     elif tool_res.get('tool') == "get_easl_answer":
-        asyncio.run(side_agent.trigger_easl(query))
+        await side_agent.trigger_easl(query)
         return "Question forwarded to EASL Interface. You will recieved the answer soon."
     
 
@@ -77,12 +75,9 @@ def chat_agent(chat_history: list[dict]) -> str:
             loop.create_task(side_agent.generate_task_workflow(query))
 
         return "Task generated. Agent will execute in background."
-    elif tool_res.get('tool') == "dili_diagnosis":
-        pass
-    elif tool_res.get('tool') == "patient_report":
-        pass
+
     else:
-        object_id = side_agent.resolve_object_id(query, context)
+        object_id = await side_agent.resolve_object_id(query, context)
         print("OBJECT ID :",object_id)
 
 
@@ -109,14 +104,14 @@ def chat_agent(chat_history: list[dict]) -> str:
 
 
 history = [
-        # {"role": "user", "content": "Tell me about Sarah Miller summary."},
+        {"role": "user", "content": "Tell me about Sarah Miller summary."},
         # {"role": "user", "content": "Show me medication timeline"},
         # {"role": "user", "content": "Create task to pull Sarah Miller Radiology data."},
         # {"role": "user", "content": "What is the DILI diagnosis according EASL guideline for Sarah Miller?"},
     ]
 # start_time = time.time()
 
-# result = chat_agent(history)
+# result = asyncio.run(chat_agent(history))
 
 # end_time = time.time()
 # execution_time = end_time - start_time

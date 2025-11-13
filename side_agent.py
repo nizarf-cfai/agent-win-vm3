@@ -72,15 +72,7 @@ def parse_tool(query):
     return result
 
 
-def resolve_object_id(query: str, context: str):
-    """
-    Given:
-      - query (str): what user wants (e.g., "open medication timeline")
-      - context (list): list of canvas object records [{ objectId, title, content, ... }]
-
-    Returns:
-      { "objectId": "<id>" } or { "objectId": null }
-    """
+async def resolve_object_id(query: str, context: str):
 
     # Load system prompt
     with open("system_prompts/objectid_parser.md", "r", encoding="utf-8") as f:
@@ -100,14 +92,14 @@ def resolve_object_id(query: str, context: str):
 
     # Prepare request text
     prompt = f"""
-User Query:
-{query}
+    User Query:
+    {query}
 
-Context (Canvas Objects):
-{context}
+    Context (Canvas Objects):
+    {context}
 
-Return ONLY the matching objectId in JSON.
-"""
+    Return ONLY the matching objectId in JSON.
+    """
 
     model = genai.GenerativeModel(
         MODEL,
@@ -129,12 +121,12 @@ Return ONLY the matching objectId in JSON.
     # print("Resolver Output:", result)
 
     ### CANVAS ACTION HERE
-    focus_res = asyncio.run(canvas_ops.focus_item(result.get("objectId")))
+    focus_res = await canvas_ops.focus_item(result.get("objectId"))
     print(f"  🎯 Navigation completed", focus_res)
     return result
 
 async def trigger_easl(question):
-    easl_q = helper_model.generate_question(question)
+    easl_q = await helper_model.generate_question(question)
 
     easl_todo_payload = {
         "title": "EASL Guideline Query Workflow",
@@ -335,6 +327,69 @@ async def _handle_agent_processing(action_data, todo_obj):
         print(f"❌ Background processing error: {e}")
         # Send error info to Gemini
         
+
+async def generate_task_obj(query):
+    with open("system_prompts/task_generator.md", "r", encoding="utf-8") as f:
+        SYSTEM_PROMPT = f.read()
+
+    RESPONSE_SCHEMA = {
+        "type": "object",
+        "properties": {
+            "title": {"type": "string"},
+            "description": {"type": "string"},
+            "todos": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "text": {"type": "string"},
+                        "status": {"type": "string", "enum": ["pending", "executing", "finished"]},
+                        "agent": {"type": "string"},
+                        "subTodos": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {"type": "string"},
+                                    "status": {"type": "string", "enum": ["pending", "executing", "finished"]}
+                                },
+                                "required": ["text", "status"]
+                            }
+                        }
+                    },
+                    "required": ["id", "text", "status", "agent", "subTodos"]
+                }
+            }
+        },
+        "required": ["title", "description", "todos"]
+    }
+
+    prompt = f"User request:\n{query}\n\nGenerate the task workflow JSON."
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT,
+    )
+
+    resp = model.generate_content(
+        prompt,
+        generation_config={
+            "response_mime_type": "application/json",
+            "response_schema": RESPONSE_SCHEMA
+        }
+    )
+    ## Generated todo
+    todo_json = json.loads(resp.text)
+    with open(f"{config.output_dir}/chatmode_todo_generated.json", "w", encoding="utf-8") as f:
+        json.dump(todo_json, f, ensure_ascii=False, indent=4)
+    ## Create todo object
+    task_res = await canvas_ops.create_todo(todo_json)
+
+    with open(f"{config.output_dir}/chatmode_todo_object_response.json", "w", encoding="utf-8") as f:
+        json.dump(task_res, f, ensure_ascii=False, indent=4)
+
+    return todo_json, task_res
 
 async def generate_task_workflow(query: str):
     with open("system_prompts/task_generator.md", "r", encoding="utf-8") as f:

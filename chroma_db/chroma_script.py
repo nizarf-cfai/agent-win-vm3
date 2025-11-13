@@ -402,7 +402,7 @@ async def rag_from_json(query: str="", top_k: int = 10):
 
         summary_res = await block_rag(summary_objects_blocks,query,top_k=3)
         
-        raw_res = await block_rag(raw_objects_blocks,query,top_k=3)
+        raw_res = await block_rag(raw_objects_blocks,query,top_k=6)
 
 
         # context = "\n\n".join(summary_result[:3]) + "\n\n".join(raw_result[:3])

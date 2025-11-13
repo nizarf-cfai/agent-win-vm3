@@ -10,7 +10,7 @@ Identify which object in the context best matches the user query, and return ONL
 
 Output Format (strict JSON):
 {
-  "objectId": "<matching objectId or null>"
+  "objectId": "<matching objectId>"
 }
 
 ----------------------------------------------------
@@ -36,6 +36,21 @@ RESOLUTION RULES
 
 5) Never hallucinate objectIds that are not present in the context.
    Only choose from the context list provided.
+
+- Example known formats:
+   - `dashboard-item-1759853783245-patient-context`
+   - `dashboard-item-1759906076097-medication-timeline`
+   - `dashboard-item-1759906219477-adverse-event-analytics` (Causality analysis/assesment)
+   - `dashboard-item-1759906246155-lab-table`
+   - `dashboard-item-1759906246156-lab-chart`
+   - `dashboard-item-1759906246157-differential-diagnosis`
+   - `dashboard-item-1759906300003-single-encounter-1`
+   - `dashboard-item-1759906300004-single-encounter-2`
+   - `dashboard-item-1759906300004-single-encounter-3`
+   - `dashboard-item-1759906300004-single-encounter-4`
+   - `dashboard-item-1759906300004-single-encounter-5`
+   - `dashboard-item-1759906300004-single-encounter-6`
+
 
 ----------------------------------------------------
 EXAMPLES
@@ -72,7 +87,7 @@ If no match or meaning unclear:
 Example input to the model:
 
 ```
-User Query: "open medication timeline"
+User Query: "tell me medication timeline"
 
 Context:
 [

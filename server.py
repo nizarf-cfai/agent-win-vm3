@@ -74,8 +74,8 @@ def mute(payload: dict):
 
 
 @app.post("/send-chat")
-def run_chat_agent(payload: list[dict]):
-    answer = chat_model.chat_agent(payload)
+async def run_chat_agent(payload: list[dict]):
+    answer = await chat_model.chat_agent(payload)
 
     print("Agent Answer:", answer)
     return answer

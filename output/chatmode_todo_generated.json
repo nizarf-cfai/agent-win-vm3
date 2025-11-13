@@ -1,55 +1,55 @@
 {
-    "title": "Retrieve Radiology Data for Sarah Miller",
-    "description": "Fetch radiology reports for patient Sarah Miller to facilitate clinical review and analysis.",
+    "title": "Sarah Miller Radiology Data Retrieval",
+    "description": "Retrieve radiology diagnostic reports for Sarah Miller, with validated filtering and structured verification.",
     "todos": [
         {
-            "id": "task-prep-rad-data-001",
-            "text": "Prepare parameters for radiology data retrieval",
+            "id": "task-prepare-retrieval-parameters",
+            "text": "Prepare radiology retrieval parameters for Sarah Miller",
             "status": "pending",
-            "agent": "data_preparer",
+            "agent": "data_retriever",
             "subTodos": [
                 {
-                    "text": "Identify patient Sarah Miller's UUID",
+                    "text": "Confirm patient identifier for Sarah Miller",
                     "status": "pending"
                 },
                 {
-                    "text": "Determine category code for radiology (LP29684-5)",
+                    "text": "Set category=LP29684-5 for radiology",
                     "status": "pending"
                 },
                 {
-                    "text": "Set modality filters for CT and MRI",
+                    "text": "Apply modality filters for CT and MRI",
                     "status": "pending"
                 },
                 {
-                    "text": "Apply status filter for final reports",
+                    "text": "Apply status=final filter",
                     "status": "pending"
                 },
                 {
-                    "text": "Configure sorting and date filters",
+                    "text": "Sort newest first and limit count",
                     "status": "pending"
                 },
                 {
-                    "text": "Ensure authentication is properly configured",
+                    "text": "Verify authentication token",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "task-fetch-rad-data-002",
-            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=10'",
+            "id": "task-fetch-radiology-reports",
+            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=SMILLER123&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
             "status": "pending",
             "agent": "data_retriever",
             "subTodos": [
                 {
-                    "text": "Execute the retrieval request",
+                    "text": "Execute HTTP request",
                     "status": "pending"
                 },
                 {
-                    "text": "Check the HTTP response status code",
+                    "text": "Check HTTP status code",
                     "status": "pending"
                 },
                 {
-                    "text": "Validate the structure of the returned DiagnosticReport data",
+                    "text": "Validate structure of DiagnosticReport entries",
                     "status": "pending"
                 }
             ]
