@@ -1,0 +1,72 @@
+{
+  "easlAssessment": {
+    "overallImpression": "Sarah Miller, a 63-year-old female with rheumatoid arthritis, hypertension, and mild CKD, presents with acute, severe hepatocellular DILI. This is strongly suspected to be drug-induced, with Trimethoprim-Sulfamethoxazole (TMP-SMX) as the most likely trigger, potentially potentiated by her chronic Methotrexate (MTX) use. The presentation includes jaundice, hepatic encephalopathy, and marked elevations in ALT and AST, meeting criteria for acute liver failure.",
+    "diliDiagnosticCriteriaMet": [
+      {
+        "criterion": "ALT ≥ 5 × ULN",
+        "status": "MET",
+        "details": "ALT is 1650 U/L, which is approximately 29.5 times the upper limit of normal (ULN) of 56 U/L."
+      },
+      {
+        "criterion": "ALT ≥ 3 × ULN with Bilirubin ≥ 2 × ULN",
+        "status": "MET",
+        "details": "ALT is 1650 U/L (>>3x ULN) and Total Bilirubin is 12.5 mg/dL (>>2x ULN of 1.2 mg/dL)."
+      },
+      {
+        "criterion": "R-ratio calculation",
+        "status": "MET",
+        "details": "R-ratio = (ALT / ULN ALT) / (ALP / ULN ALP) = (1650 / 56) / (350 / 150) ≈ 29.5 / 2.33 ≈ 12.7. This strongly indicates a hepatocellular pattern of injury."
+      }
+    ],
+    "causativeAgentAssessment": [
+      {
+        "agent": "Trimethoprim-Sulfamethoxazole (TMP-SMX)",
+        "role": "HIGHLY SUSPECTED PRIMARY TRIGGER",
+        "rationale": "Temporal association: TMP-SMX was started 6 days prior to symptom onset and presentation. Known hepatotoxicity: TMP-SMX is a recognized cause of idiosyncratic DILI. Drug interaction: Its use with methotrexate is known to increase the risk of hepatotoxicity due to potential interactions affecting folate metabolism and drug clearance. Clinical presentation of mouth ulcers also noted, which can be associated with TMP-SMX toxicity."
+      },
+      {
+        "agent": "Methotrexate (MTX)",
+        "role": "SIGNIFICANT CO-FACTOR",
+        "rationale": "Chronic use: Patient has been on MTX for several years. Known hepatotoxicity: MTX is known to cause DILI, especially with prolonged use or in patients with risk factors. Synergy with TMP-SMX: Concurrent use with TMP-SMX can increase MTX levels and impair folate metabolism, potentiating liver injury. Risk factors: Patient's age and possibly chronic alcohol consumption could increase susceptibility to MTX toxicity."
+      },
+      {
+        "agent": "Lisinopril",
+        "role": "UNLIKELY",
+        "rationale": "No temporal association with the acute liver injury. While ACE inhibitors can rarely cause DILI, it is not the primary suspicion in this context, especially given the strong suspicion for TMP-SMX and MTX."
+      },
+      {
+        "agent": "Folic Acid",
+        "role": "UNLIKELY",
+        "rationale": "Folic acid is a supplement taken to mitigate MTX toxicity and is not associated with causing DILI."
+      }
+    ],
+    "severityAssessment": {
+      "overallSeverity": "SEVERE DILI",
+      "features": [
+        "Jaundice (Total Bilirubin 12.5 mg/dL)",
+        "Hepatic Encephalopathy (GCS 13, asterixis, disorientation)",
+        "Marked transaminitis (ALT 1650 U/L, AST 2100 U/L)",
+        "Acute Kidney Injury (Creatinine 1.5 mg/dL, eGFR 58)",
+        "Potential coagulopathy (INR 1.0 on presentation, but PT/PTT values noted)"
+      ],
+      "prognosisNote": "The patient presents with severe DILI meeting criteria for acute liver failure, characterized by encephalopathy, jaundice, and markedly elevated transaminases. This carries a significant risk of mortality or need for liver transplantation. Prognosis is guarded and dependent on rapid intervention, withdrawal of offending agents, and intensive supportive care in the ICU."
+    },
+    "exclusionOfAlternativeCausesRequired": [
+      "Viral hepatitis (HAV, HBV, HCV - serologies pending)",
+      "Autoimmune hepatitis (workup pending)",
+      "Sepsis with multiorgan dysfunction",
+      "Ischemic hepatitis",
+      "Alcohol-related liver disease (chronic consumption is a risk factor, but acute injury pattern is more consistent with DILI)",
+      "Wilson's disease"
+    ],
+    "localGuidelinesComparison": {
+      "status": "GAP IDENTIFIED",
+      "details": "No specific local guidelines for DILI assessment were provided in the input. The assessment relies solely on EASL guidelines."
+    },
+    "references": [
+      "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury – Diagnostic Criteria",
+      "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury – Causality Assessment",
+      "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury – Severity Assessment"
+    ]
+  }
+}

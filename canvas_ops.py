@@ -141,8 +141,12 @@ def create_diagnosis(payload):
     print("Start create object")
     url = BASE_URL + "/api/dili-diagnostic"
     payload['zone'] = "dili-analysis-zone"
+    with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=4)
     response = requests.post(url, json=payload)
     print(response.status_code)
+    with open(f"{config.output_dir}/diagnosis_create_response.json", "w", encoding="utf-8") as f:
+        json.dump(response.json(), f, ensure_ascii=False, indent=4)    
     # async with aiohttp.ClientSession() as session:
     #     async with session.post(url, json=payload) as response:
     #         with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:

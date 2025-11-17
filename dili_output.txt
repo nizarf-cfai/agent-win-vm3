@@ -1,0 +1,118 @@
+{
+  "patientInformation": {
+    "name": "Sarah Miller",
+    "mrn": "MC-001001",
+    "dateOfBirth": "1962-03-15",
+    "age": 63,
+    "sex": "Female"
+  },
+  "presentingComplaint": "Severe fatigue, jaundice, epigastric pain, confusion",
+  "medicalHistory": {
+    "conditions": [
+      "Rheumatoid arthritis",
+      "Essential hypertension",
+      "Mild chronic kidney disease"
+    ],
+    "allergies": [
+      "Penicillin (rash)"
+    ],
+    "socialHistory": "Drinks ~1-2 beers/day (7-14 units/week). Ex-smoker (quit 2017, 20 pack-year history). Retired carpenter."
+  },
+  "medications": {
+    "chronicPriorToEvent": [
+      "Methotrexate 20 mg weekly",
+      "Folic Acid 5 mg weekly",
+      "Lisinopril 10 mg daily"
+    ],
+    "initiatedAtAcuteEvent": "Trimethoprim-Sulfamethoxazole 800/160 mg BID (started 2025-06-15, ended 2025-06-25)"
+  },
+  "keyLaboratoryFindings": {
+    "encounterDate": "2025-06-21",
+    "results": [
+      {
+        "test": "ALT",
+        "value": "1650 U/L",
+        "flag": "H",
+        "reference": "7.0 - 56",
+        "note": "↑↑↑ (likely >20x ULN)"
+      },
+      {
+        "test": "AST",
+        "value": "2100 U/L",
+        "flag": "H",
+        "reference": "8.0 - 40",
+        "note": "↑↑↑ (likely >20x ULN)"
+      },
+      {
+        "test": "ALP",
+        "value": "350 U/L",
+        "flag": "H",
+        "reference": "40 - 150",
+        "note": "↑"
+      },
+      {
+        "test": "Total Bilirubin",
+        "value": "12.5 mg/dL",
+        "flag": "H",
+        "reference": "0.2 - 1.2",
+        "note": "↑↑ (likely >3x ULN, jaundice)"
+      },
+      {
+        "test": "INR",
+        "value": "1.0",
+        "flag": "",
+        "reference": "0.8 - 1.2",
+        "note": "Normal at presentation, but coagulopathy is a risk."
+      },
+      {
+        "test": "Creatinine",
+        "value": "1.5 mg/dL",
+        "flag": "H",
+        "reference": "0.7 - 1.3",
+        "note": "↑ (Acute Kidney Injury)"
+      },
+      {
+        "test": "Platelets",
+        "value": "165 x10^9/L",
+        "flag": "",
+        "reference": "150 - 450",
+        "note": "Mildly low"
+      }
+    ]
+  },
+  "diagnosis": {
+    "main": "Drug-Induced Liver Injury (DILI) with Acute Liver Failure",
+    "causality": "Likely DILI from Trimethoprim-Sulfamethoxazole, potentiated by Methotrexate.",
+    "mechanism": "Trimethoprim-Sulfamethoxazole can cause DILI. It is known to interact with Methotrexate by potentially increasing its serum levels and interfering with folate metabolism, leading to synergistic hepatotoxicity. The patient's presentation with jaundice, encephalopathy, and elevated liver enzymes shortly after starting TMP-SMX strongly suggests an idiosyncratic drug reaction. Methotrexate's known hepatotoxicity likely contributed to the severity."
+  },
+  "differentialDiagnosisTracker": {
+    "diagnoses": [
+      {
+        "name": "Severe Methotrexate Toxicity",
+        "status": "PRIMARY",
+        "notes": "Considered a contributing factor and potentiation of DILI."
+      },
+      {
+        "name": "TMP-SMX-induced DILI",
+        "status": "PRIMARY",
+        "notes": "Primary suspected agent based on temporal association."
+      },
+      {
+        "name": "Acute viral hepatitis",
+        "status": "PENDING",
+        "notes": "Workup pending (HAV IgM, HBsAg/IgM, HCV Ab ordered)."
+      },
+      {
+        "name": "Acute decompensation of undiagnosed chronic liver disease",
+        "status": "RULED OUT",
+        "notes": "No prior history or signs suggestive of chronic liver disease."
+      },
+      {
+        "name": "Sepsis with multiorgan dysfunction",
+        "status": "RULED OUT",
+        "notes": "No fever or hemodynamic instability suggestive of sepsis at presentation."
+      }
+    ],
+    "ruledOut": []
+  }
+}

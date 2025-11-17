@@ -1,55 +1,67 @@
 {
-    "title": "Sarah Miller Radiology Data Retrieval",
-    "description": "Retrieve radiology diagnostic reports for Sarah Miller, with validated filtering and structured verification.",
+    "title": "EHR Report Entry",
+    "description": "Add Sarah Miller's report to the EHR system and create a follow-up note.",
     "todos": [
         {
-            "id": "task-prepare-retrieval-parameters",
-            "text": "Prepare radiology retrieval parameters for Sarah Miller",
+            "id": "task-001",
+            "text": "Prepare Sarah Miller's report for EHR entry",
             "status": "pending",
-            "agent": "data_retriever",
+            "agent": "ehr_preparer",
             "subTodos": [
                 {
-                    "text": "Confirm patient identifier for Sarah Miller",
+                    "text": "Locate Sarah Miller's report",
                     "status": "pending"
                 },
                 {
-                    "text": "Set category=LP29684-5 for radiology",
+                    "text": "Verify report completeness and accuracy",
                     "status": "pending"
                 },
                 {
-                    "text": "Apply modality filters for CT and MRI",
-                    "status": "pending"
-                },
-                {
-                    "text": "Apply status=final filter",
-                    "status": "pending"
-                },
-                {
-                    "text": "Sort newest first and limit count",
-                    "status": "pending"
-                },
-                {
-                    "text": "Verify authentication token",
+                    "text": "Format report for EHR system",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "task-fetch-radiology-reports",
-            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=SMILLER123&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
+            "id": "task-002",
+            "text": "Push Sarah Miller's report into EHR system",
             "status": "pending",
-            "agent": "data_retriever",
+            "agent": "ehr_integrator",
             "subTodos": [
                 {
-                    "text": "Execute HTTP request",
+                    "text": "Authenticate with EHR system",
                     "status": "pending"
                 },
                 {
-                    "text": "Check HTTP status code",
+                    "text": "Upload Sarah Miller's report",
                     "status": "pending"
                 },
                 {
-                    "text": "Validate structure of DiagnosticReport entries",
+                    "text": "Confirm successful upload and record ID",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "id": "task-003",
+            "text": "Create follow-up note regarding Sarah Miller's report",
+            "status": "pending",
+            "agent": "clinical_noter",
+            "subTodos": [
+                {
+                    "text": "Determine appropriate note type",
+                    "status": "pending"
+                },
+                {
+                    "text": "Draft follow-up note content",
+                    "status": "pending"
+                },
+                {
+                    "text": "Attach or link report to the note",
+                    "status": "pending"
+                },
+                {
+                    "text": "Save the note in EHR system",
                     "status": "pending"
                 }
             ]

@@ -246,11 +246,11 @@ async def generate_response(todo_obj):
     print(f"Running helper model")
     ehr_data = await load_ehr()
     # print("EHR result :", ehr_data)
-    prompt = f"""Please execute this todo : 
+    prompt = f"""Please generate result for this todo : 
         {todo_obj}
 
 
-        This is patient encounter data : {ehr_data}"""
+        This is patient raw data : {ehr_data}"""
 
     resp = model.generate_content(prompt)
     with open(f"{config.output_dir}/chatmode_generate_response.md", "w", encoding="utf-8") as f:
@@ -261,6 +261,155 @@ async def generate_response(todo_obj):
         "answer": resp.text.replace("```markdown", " ").replace("```", "")
         }
 
+async def generate_easl_diagnosis(ehr_data):
+    with open("system_prompts/easl_diagnose.md", "r", encoding="utf-8") as f:
+        SYSTEM_PROMPT_DILI = f.read()
+    RESPONSE_SCHEMA = {
+        "type": "OBJECT",
+        "description": "Structured EASL-based DILI assessment object.",
+        "properties": {
+            "easlAssessment": {
+            "type": "OBJECT",
+            "description": "Top-level EASL assessment container.",
+            "properties": {
+                "overallImpression": {
+                "type": "STRING",
+                "description": "High-level summary of the DILI assessment based on EASL guidelines."
+                },
+                "diliDiagnosticCriteriaMet": {
+                "type": "ARRAY",
+                "description": "List of DILI diagnostic criteria and whether each was met.",
+                "items": {
+                    "type": "OBJECT",
+                    "properties": {
+                    "criterion": {
+                        "type": "STRING",
+                        "description": "The specific EASL diagnostic criterion."
+                    },
+                    "status": {
+                        "type": "STRING",
+                        "description": "Whether the criterion is MET or NOT MET."
+                    },
+                    "details": {
+                        "type": "STRING",
+                        "description": "Explanation and justification for the status."
+                    }
+                    },
+                    "required": ["criterion", "status", "details"]
+                }
+                },
+                "causativeAgentAssessment": {
+                "type": "ARRAY",
+                "description": "Assessment of each drug that may contribute to DILI.",
+                "items": {
+                    "type": "OBJECT",
+                    "properties": {
+                    "agent": {
+                        "type": "STRING",
+                        "description": "Name of the drug being evaluated."
+                    },
+                    "role": {
+                        "type": "STRING",
+                        "description": "Role of the agent (e.g., PRIMARY, CONTRIBUTOR, LESS LIKELY)."
+                    },
+                    "rationale": {
+                        "type": "STRING",
+                        "description": "EASL-based justification for the assigned role."
+                    }
+                    },
+                    "required": ["agent", "role", "rationale"]
+                }
+                },
+                "severityAssessment": {
+                "type": "OBJECT",
+                "description": "EASL-based severity grading and prognosis.",
+                "properties": {
+                    "overallSeverity": {
+                    "type": "STRING",
+                    "description": "Overall severity classification (e.g., SEVERE DILI)."
+                    },
+                    "features": {
+                    "type": "ARRAY",
+                    "description": "List of severity features identified.",
+                    "items": {
+                        "type": "STRING"
+                    }
+                    },
+                    "prognosisNote": {
+                    "type": "STRING",
+                    "description": "Commentary on prognosis and risk based on EASL guidance."
+                    }
+                },
+                "required": ["overallSeverity", "features", "prognosisNote"]
+                },
+                "exclusionOfAlternativeCausesRequired": {
+                "type": "ARRAY",
+                "description": "List of alternative causes that must be excluded per EASL guidance.",
+                "items": { "type": "STRING" }
+                },
+                "localGuidelinesComparison": {
+                "type": "OBJECT",
+                "description": "Comparison between EASL guidelines and provided local guidelines.",
+                "properties": {
+                    "status": {
+                    "type": "STRING",
+                    "description": "Summary status of guideline comparison."
+                    },
+                    "details": {
+                    "type": "STRING",
+                    "description": "Explanation of gaps or alignment between guidelines."
+                    }
+                },
+                "required": ["status", "details"]
+                },
+                "references": {
+                "type": "ARRAY",
+                "description": "List of EASL guideline references relevant to the assessment.",
+                "items": { "type": "STRING" }
+                }
+            },
+            "required": [
+                "overallImpression",
+                "diliDiagnosticCriteriaMet",
+                "causativeAgentAssessment",
+                "severityAssessment",
+                "exclusionOfAlternativeCausesRequired",
+                "localGuidelinesComparison",
+                "references"
+            ]
+            }
+        },
+        "required": ["easlAssessment"]
+        }
+
+
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT_DILI,
+    )
+    print(f"Running generate_easl_diagnosis model")
+    prompt = f"""Please generate EASL diagnosis object.
+
+
+        This is patient raw data : {ehr_data}"""
+
+    resp = model.generate_content(
+        prompt,
+        generation_config={
+            "response_mime_type": "application/json",
+            "response_schema": RESPONSE_SCHEMA
+        }
+        )
+    
+    with open("easl_output.txt", "w", encoding="utf-8") as f:
+        f.write(resp.text)
+    result = json.loads(resp.text)
+    # object_data = result.get("props",{})
+    object_data = result
+    with open(f"{config.output_dir}/easl_diagnosis_object.json", "w", encoding="utf-8") as f:
+        json.dump(object_data, f, ensure_ascii=False, indent=4)
+    return object_data
 
 
 def start_background_agent_processing(action_data, todo_obj):
@@ -462,93 +611,205 @@ async def generate_dili_diagnosis():
     with open("system_prompts/dili_diagnosis_prompt.md", "r", encoding="utf-8") as f:
         SYSTEM_PROMPT_DILI = f.read()
     RESPONSE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "patientInformation": {
         "type": "OBJECT",
+        "description": "Core demographic and identifying information about the patient.",
         "properties": {
-            "title": {
-                "type": "STRING",
-                "description": "Section title, always 'DILI Diagnostic Panel'"
+            "name": {
+            "type": "STRING",
+            "description": "Full patient name."
             },
-            "component": {
-                "type": "STRING",
-                "description": "Component identifier, always 'DILIDiagnostic'"
+            "mrn": {
+            "type": "STRING",
+            "description": "Medical Record Number."
             },
-            "props": {
-                "type": "OBJECT",
-                "properties": {
-                    "pattern": {
-                        "type": "OBJECT",
-                        "properties": {
-                            "classification": {"type": "STRING"},
-                            "R_ratio": {"type": "NUMBER"},
-                            "keyLabs": {
-                                "type": "ARRAY",
-                                "items": {
-                                    "type": "OBJECT",
-                                    "properties": {
-                                        "label": {"type": "STRING"},
-                                        "value": {"type": "STRING"},
-                                        "note": {"type": "STRING"}
-                                    },
-                                    "required": ["label", "value", "note"]
-                                }
-                            },
-                            "clinicalFeatures": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            }
-                        },
-                        "required": ["classification", "R_ratio", "keyLabs", "clinicalFeatures"]
-                    },
-                    "causality": {
-                        "type": "OBJECT",
-                        "properties": {
-                            "primaryDrug": {"type": "STRING"},
-                            "contributingFactors": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-                            "mechanisticRationale": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            }
-                        },
-                        "required": ["primaryDrug", "contributingFactors", "mechanisticRationale"]
-                    },
-                    "severity": {
-                        "type": "OBJECT",
-                        "properties": {
-                            "features": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-                            "prognosis": {"type": "STRING"}
-                        },
-                        "required": ["features", "prognosis"]
-                    },
-                    "management": {
-                        "type": "OBJECT",
-                        "properties": {
-                            "immediateActions": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-                            "consults": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-                            "monitoringPlan": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            }
-                        },
-                        "required": ["immediateActions", "consults", "monitoringPlan"]
-                    }
-                },
-                "required": ["pattern", "causality", "severity", "management"]
+            "dateOfBirth": {
+            "type": "STRING",
+            "description": "Date of birth in YYYY-MM-DD format."
+            },
+            "age": {
+            "type": "NUMBER",
+            "description": "Patient age in years."
+            },
+            "sex": {
+            "type": "STRING",
+            "description": "Sex of the patient."
             }
         },
-        "required": ["title", "component", "props"]
+        "required": ["name", "mrn", "dateOfBirth", "age", "sex"]
+        },
+
+        "presentingComplaint": {
+        "type": "STRING",
+        "description": "Narrative summary of the acute presentation prompting evaluation."
+        },
+
+        "medicalHistory": {
+        "type": "OBJECT",
+        "description": "Past medical, allergy, and social history.",
+        "properties": {
+            "conditions": {
+            "type": "ARRAY",
+            "description": "List of past or chronic medical diagnoses.",
+            "items": { "type": "STRING" }
+            },
+            "allergies": {
+            "type": "ARRAY",
+            "description": "List of documented allergies.",
+            "items": { "type": "STRING" }
+            },
+            "socialHistory": {
+            "type": "STRING",
+            "description": "Relevant social history including smoking, alcohol, and substance use."
+            }
+        },
+        "required": ["conditions", "allergies", "socialHistory"]
+        },
+
+        "medications": {
+        "type": "OBJECT",
+        "description": "All chronic and acute medications relevant to DILI assessment.",
+        "properties": {
+            "chronicPriorToEvent": {
+            "type": "ARRAY",
+            "description": "Long-term medications the patient was taking before the acute episode.",
+            "items": { "type": "STRING" }
+            },
+            "initiatedAtAcuteEvent": {
+            "type": "STRING",
+            "description": "Medication newly initiated just before symptom onset."
+            }
+        },
+        "required": ["chronicPriorToEvent", "initiatedAtAcuteEvent"]
+        },
+
+        "keyLaboratoryFindings": {
+        "type": "OBJECT",
+        "description": "Critical lab findings relevant to DILI diagnosis.",
+        "properties": {
+            "encounterDate": {
+            "type": "STRING",
+            "description": "Date of the clinical encounter during which labs were obtained."
+            },
+            "results": {
+            "type": "ARRAY",
+            "description": "List of lab results including value, reference range, and interpretation.",
+            "items": {
+                "type": "OBJECT",
+                "properties": {
+                "test": {
+                    "type": "STRING",
+                    "description": "Name of the laboratory test."
+                },
+                "value": {
+                    "type": "STRING",
+                    "description": "Measured lab value including units."
+                },
+                "flag": {
+                    "type": "STRING",
+                    "description": "Interpretation flag such as High, Low, or normal indicators."
+                },
+                "reference": {
+                    "type": "STRING",
+                    "description": "Reference or normal range for the test."
+                },
+                "note": {
+                    "type": "STRING",
+                    "description": "Additional context or clinical comments regarding the result."
+                }
+                },
+                "required": ["test", "value", "flag", "reference"]
+            }
+            }
+        },
+        "required": ["encounterDate", "results"]
+        },
+
+        "diagnosis": {
+        "type": "OBJECT",
+        "description": "Primary diagnosis and mechanistic explanation for DILI.",
+        "properties": {
+            "main": {
+            "type": "STRING",
+            "description": "The primary clinical diagnosis related to DILI."
+            },
+            "causality": {
+            "type": "STRING",
+            "description": "Short narrative explaining the suspected cause of DILI."
+            },
+            "mechanism": {
+            "type": "STRING",
+            "description": "Mechanistic explanation of drug interactions or pathophysiology contributing to DILI."
+            }
+        },
+        "required": ["main", "causality", "mechanism"]
+        },
+
+        "differentialDiagnosisTracker": {
+        "type": "OBJECT",
+        "description": "Tracker separating active/investigated diagnoses from excluded ones.",
+        "properties": {
+            "diagnoses": {
+            "type": "ARRAY",
+            "description": "List of differential diagnoses still under consideration.",
+            "items": {
+                "type": "OBJECT",
+                "properties": {
+                "name": {
+                    "type": "STRING",
+                    "description": "Name of the possible condition."
+                },
+                "status": {
+                    "type": "STRING",
+                    "description": "INVESTIGATE, PRIMARY, or PENDING indicators."
+                },
+                "notes": {
+                    "type": "STRING",
+                    "description": "Brief explanation supporting the status."
+                }
+                },
+                "required": ["name", "status", "notes"]
+            }
+            },
+            "ruledOut": {
+            "type": "ARRAY",
+            "description": "Differential diagnoses that have been ruled out.",
+            "items": {
+                "type": "OBJECT",
+                "properties": {
+                "name": {
+                    "type": "STRING",
+                    "description": "Name of the ruled-out diagnosis."
+                },
+                "status": {
+                    "type": "STRING",
+                    "description": "Typically 'RULED OUT'."
+                },
+                "notes": {
+                    "type": "STRING",
+                    "description": "Explanation of why the diagnosis was excluded."
+                }
+                },
+                "required": ["name", "status", "notes"]
+            }
+            }
+        },
+        "required": ["diagnoses", "ruledOut"]
+        }
+    },
+    "required": [
+        "patientInformation",
+        "presentingComplaint",
+        "medicalHistory",
+        "medications",
+        "keyLaboratoryFindings",
+        "diagnosis",
+        "differentialDiagnosisTracker"
+    ]
     }
+
 
     model = genai.GenerativeModel(
         MODEL,
@@ -568,8 +829,14 @@ async def generate_dili_diagnosis():
             "response_schema": RESPONSE_SCHEMA
         }
         )
+    
+    with open("dili_output.txt", "w", encoding="utf-8") as f:
+        f.write(resp.text)
     result = json.loads(resp.text)
-    object_data = result.get("props",{})
+    easl_res = await generate_easl_diagnosis(ehr_data)
+    result.update(easl_res)
+    # object_data = result.get("props",{})
+    object_data = result
     with open(f"{config.output_dir}/dili_diagnosis_object.json", "w", encoding="utf-8") as f:
         json.dump(object_data, f, ensure_ascii=False, indent=4)
     return object_data
@@ -582,79 +849,262 @@ async def generate_patient_report():
     RESPONSE_SCHEMA = {
         "type": "OBJECT",
         "properties": {
-            "title": {
-                "type": "STRING",
-                "description": "Always 'Patient Summary Report'"
+            "name": {
+            "type": "STRING",
+            "description": "Full patient name."
             },
-            "component": {
-                "type": "STRING",
-                "description": "Always 'PatientReport'"
+            "mrn": {
+            "type": "STRING",
+            "description": "Medical Record Number identifying the patient."
             },
-            "props": {
-                "type": "OBJECT",
-                "properties": {
-                    "patientData": {
-                        "type": "OBJECT",
-                        "properties": {
-                            "name": {"type": "STRING"},
-                            "date_of_birth": {"type": "STRING"},
-                            "age": {"type": "NUMBER"},
-                            "sex": {"type": "STRING"},
-                            "mrn": {"type": "STRING"},
-                            "primaryDiagnosis": {"type": "STRING"},
-
-                            "problem_list": {
-                                "type": "ARRAY",
-                                "items": {
-                                    "type": "OBJECT",
-                                    "properties": {
-                                        "name": {"type": "STRING"},
-                                        "status": {"type": "STRING"}
-                                    },
-                                    "required": ["name", "status"]
-                                }
-                            },
-
-                            "allergies": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-
-                            "medication_history": {
-                                "type": "ARRAY",
-                                "items": {
-                                    "type": "OBJECT",
-                                    "properties": {
-                                        "name": {"type": "STRING"},
-                                        "dose": {"type": "STRING"}
-                                    },
-                                    "required": ["name", "dose"]
-                                }
-                            },
-
-                            "acute_event_summary": {"type": "STRING"},
-
-                            "diagnosis_acute_event": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            },
-
-                            "causality": {"type": "STRING"},
-
-                            "management_recommendations": {
-                                "type": "ARRAY",
-                                "items": {"type": "STRING"}
-                            }
-                        },
-                        "required": ['name', 'date_of_birth', 'age', 'sex', 'mrn', 'primaryDiagnosis', 'problem_list', 'allergies', 'medication_history', 'acute_event_summary', 'diagnosis_acute_event', 'causality', 'management_recommendations']
-                    }
+            "age_sex": {
+            "type": "STRING",
+            "description": "Patient age combined with sex (e.g., '63-year-old Female')."
+            },
+            "date_of_summary": {
+            "type": "STRING",
+            "description": "Date this summary was generated, in a human-readable format (e.g., 'November 14, 2025')."
+            },
+            "one_sentence_impression": {
+            "type": "STRING",
+            "description": "A concise high-level clinical impression summarizing the patient’s condition and key issue."
+            },
+            "clinical_context_baseline": {
+            "type": "OBJECT",
+            "description": "Baseline clinical context including comorbidities, stable labs, and relevant history before the acute event.",
+            "properties": {
+                "comorbidities": {
+                "type": "ARRAY",
+                "description": "List of chronic medical conditions.",
+                "items": { "type": "STRING" }
                 },
-                "required": ["patientData"]
+                "key_baseline_labs": {
+                "type": "STRING",
+                "description": "Summary of the most recent stable laboratory values before the acute episode."
+                },
+                "social_history": {
+                "type": "STRING",
+                "description": "Relevant social history including alcohol, tobacco, substance use, and lifestyle context."
+                }
+            },
+            "required": ["comorbidities", "key_baseline_labs", "social_history"]
+            },
+            "suspect_drug_timeline": {
+            "type": "OBJECT",
+            "description": "Timeline connecting medication exposure with onset of symptoms and clinical deterioration.",
+            "properties": {
+                "chief_complaint": {
+                "type": "STRING",
+                "description": "Primary symptoms prompting evaluation."
+                },
+                "hopi_significant_points": {
+                "type": "STRING",
+                "description": "Key elements of the history of present illness leading up to the event."
+                },
+                "chronic_medications": {
+                "type": "ARRAY",
+                "description": "Chronic medications with dose and duration.",
+                "items": { "type": "STRING" }
+                },
+                "acute_medication_onset": {
+                "type": "STRING",
+                "description": "Recent medication started shortly before the event."
+                },
+                "possibilities_for_dili": {
+                "type": "ARRAY",
+                "description": "List of drugs potentially responsible for DILI.",
+                "items": { "type": "STRING" }
+                }
+            },
+            "required": [
+                "chief_complaint",
+                "hopi_significant_points",
+                "chronic_medications",
+                "acute_medication_onset",
+                "possibilities_for_dili"
+            ]
+            },
+            "rule_out_complete": {
+            "type": "OBJECT",
+            "description": "Workup to exclude alternative diagnoses or etiologies.",
+            "properties": {
+                "viral_hepatitis": {
+                "type": "STRING",
+                "description": "Status of viral hepatitis workup including HAV, HBV, and HCV serologies."
+                },
+                "autoimmune": {
+                "type": "STRING",
+                "description": "Status of autoimmune liver disease assessment including ANA, SMA, or other markers."
+                },
+                "other_competing_dx_ruled_out": {
+                "type": "STRING",
+                "description": "Narrative describing exclusion of other liver disease causes."
+                }
+            },
+            "required": [
+                "viral_hepatitis",
+                "autoimmune",
+                "other_competing_dx_ruled_out"
+            ]
+            },
+            "injury_pattern_trends": {
+            "type": "OBJECT",
+            "description": "Pattern of liver injury and relevant diagnostic calculations.",
+            "properties": {
+                "pattern": {
+                "type": "STRING",
+                "description": "Primary injury pattern classification (e.g., hepatocellular, cholestatic, mixed)."
+                },
+                "hys_law": {
+                "type": "STRING",
+                "description": "Hy's Law assessment describing severity and prognostic risk."
+                },
+                "meld_na": {
+                "type": "STRING",
+                "description": "Clinical interpretation of MELD-Na severity."
+                },
+                "lft_data_peak_onset": {
+                "type": "OBJECT",
+                "description": "Peak abnormal liver test values at time of injury recognition.",
+                "properties": {
+                    "ALT": { "type": "STRING", "description": "Peak ALT level with unit." },
+                    "AST": { "type": "STRING", "description": "Peak AST level with unit." },
+                    "Alk_Phos": { "type": "STRING", "description": "Peak alkaline phosphatase level with unit." },
+                    "T_Bili": { "type": "STRING", "description": "Peak total bilirubin with unit." },
+                    "INR": { "type": "STRING", "description": "INR value at peak or presentation." }
+                },
+                "required": ["ALT", "AST", "Alk_Phos", "T_Bili", "INR"]
+                },
+                "lft_sparklines_trends": {
+                "type": "STRING",
+                "description": "Summary of temporal trend in liver enzymes."
+                },
+                "complications": {
+                "type": "ARRAY",
+                "description": "List of complications identified during presentation or course.",
+                "items": { "type": "STRING" }
+                },
+                "noh_graz_law": {
+                "type": "STRING",
+                "description": "Applicability of N-acetyl-p-benzoquinone imine (NAPQI) toxicity rules (for paracetamol/APAP)."
+                }
+            },
+            "required": [
+                "pattern",
+                "hys_law",
+                "meld_na",
+                "lft_data_peak_onset",
+                "lft_sparklines_trends",
+                "complications",
+                "noh_graz_law"
+            ]
+            },
+            "severity_prognosis": {
+            "type": "OBJECT",
+            "description": "Assessment of severity and short-term clinical prognosis.",
+            "properties": {
+                "severity_features": {
+                "type": "ARRAY",
+                "description": "Important severity indicators such as encephalopathy, coagulopathy, or high bilirubin.",
+                "items": { "type": "STRING" }
+                },
+                "prognosis_statement": {
+                "type": "STRING",
+                "description": "Narrative summary of expected clinical course and risk."
+                }
+            },
+            "required": ["severity_features", "prognosis_statement"]
+            },
+            "key_diagnostics": {
+            "type": "OBJECT",
+            "description": "Key diagnostic tests performed, ordered, or pending.",
+            "properties": {
+                "imaging_performed": {
+                "type": "STRING",
+                "description": "Summary of imaging performed or planned."
+                },
+                "biopsy": {
+                "type": "STRING",
+                "description": "Liver biopsy status or findings."
+                },
+                "methotrexate_level": {
+                "type": "STRING",
+                "description": "MTX level ordered or obtained during evaluation."
+                }
+            },
+            "required": ["imaging_performed", "biopsy", "methotrexate_level"]
+            },
+            "management_monitoring": {
+            "type": "OBJECT",
+            "description": "Management steps, active treatments, consultations and monitoring plans.",
+            "properties": {
+                "stopped_culprit_drugs": {
+                "type": "ARRAY",
+                "description": "List of medications stopped due to suspected toxicity.",
+                "items": { "type": "STRING" }
+                },
+                "active_treatments": {
+                "type": "ARRAY",
+                "description": "List of ongoing treatments and interventions.",
+                "items": { "type": "STRING" }
+                },
+                "consults_initiated": {
+                "type": "ARRAY",
+                "description": "Specialists consulted for management.",
+                "items": { "type": "STRING" }
+                },
+                "nutrition": {
+                "type": "STRING",
+                "description": "Nutritional management decisions."
+                },
+                "vte_ppx": {
+                "type": "STRING",
+                "description": "Notes regarding venous thromboembolism prophylaxis."
+                },
+                "causality_rucam": {
+                "type": "STRING",
+                "description": "RUCAM score and interpretation regarding drug causality."
+                },
+                "monitoring_plan": {
+                "type": "ARRAY",
+                "description": "List of monitoring steps or schedules.",
+                "items": { "type": "STRING" }
+                }
+            },
+            "required": [
+                "stopped_culprit_drugs",
+                "active_treatments",
+                "consults_initiated",
+                "nutrition",
+                "vte_ppx",
+                "causality_rucam",
+                "monitoring_plan"
+            ]
+            },
+            "current_status_last_48h": {
+            "type": "STRING",
+            "description": "Clinical status over the last 48 hours, including improvement, deterioration, or stability."
             }
         },
-        "required": ["title", "component", "props"]
-    }
- 
+        "required": [
+            "name",
+            "mrn",
+            "age_sex",
+            "date_of_summary",
+            "one_sentence_impression",
+            "clinical_context_baseline",
+            "suspect_drug_timeline",
+            "rule_out_complete",
+            "injury_pattern_trends",
+            "severity_prognosis",
+            "key_diagnostics",
+            "management_monitoring",
+            "current_status_last_48h"
+        ]
+        }
+
+
+
     model = genai.GenerativeModel(
         MODEL,
         system_instruction=SYSTEM_PROMPT_PATIENT,
@@ -674,7 +1124,9 @@ async def generate_patient_report():
         }
         )
     result = json.loads(resp.text)
-    object_data = result.get("props",{})
+    object_data = {
+        "patientData" : result
+    }
 
     with open(f"{config.output_dir}/patient_report_object.json", "w", encoding="utf-8") as f:
         json.dump(object_data, f, ensure_ascii=False, indent=4)
@@ -684,8 +1136,12 @@ def create_diagnosis(payload):
     print("Start create object")
     url = BASE_URL + "/api/dili-diagnostic"
     payload['zone'] = "dili-analysis-zone"
+    with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=4)
     response = requests.post(url, json=payload)
-    print(response.status_code)
+    print(response.status_code, "Create diagnosis")
+    with open(f"{config.output_dir}/diagnosis_create_response.json", "w", encoding="utf-8") as f:
+        json.dump(response.json(), f, ensure_ascii=False, indent=4)   
 
 async def create_dili_diagnosis():
     print("Start generate DILI object")
@@ -699,7 +1155,7 @@ async def create_dili_diagnosis():
 def create_report(payload):
     print("Start create object")
     url = BASE_URL + "/api/patient-report"
-    payload['zone'] = "dili-analysis-zone"
+    payload['zone'] = "patient-report-zone"
     response = requests.post(url, json=payload)
     print(response.status_code)
 
@@ -715,6 +1171,8 @@ async def create_patient_report():
 # # query = "Pull radiology data for Sarah Miller"
 # # parse_tool(query)
 # asyncio.run(generate_patient_report())
+# asyncio.run(generate_dili_diagnosis())
+# asyncio.run(generate_easl_diagnosis())
 # end_time = time.time()
 # execution_time = end_time - start_time
 # print(f"Execution time: {execution_time:.4f} seconds")

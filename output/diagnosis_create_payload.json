@@ -184,5 +184,6 @@
             "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury – Causality Assessment",
             "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury – Severity Assessment"
         ]
-    }
+    },
+    "zone": "dili-analysis-zone"
 }

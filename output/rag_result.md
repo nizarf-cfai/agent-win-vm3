@@ -1,234 +1,69 @@
-# Object Record 19
-**objectId:** item-1762951321414-rmfxr5
-**type:** agent
-**content:** # Radiology Data Retrieval for Sarah Miller
-
-## Task: Prepare radiology retrieval parameters for Sarah Miller
-
-*   **Patient Identifier:** Sarah Miller's Medical Record Number (MRN) is MC-001001. The provided API call uses `SMILLER123`, which is assumed to be the correct identifier for the system.
-*   **Category:** `LP29684-5` is confirmed. This corresponds to "Radiology reports" in the LOINC classification.
-*   **Modality Filters:** CT and MRI modalities are specified.
-*   **Status Filter:** `status=final` is specified.
-*   **Sorting and Limiting:** Reports are sorted by date descending, with a limit of 5 results.
-*   **Authentication Token:** Assumed to be valid for API access.
-
-## Task: Fetch radiology reports
-
-The following data retrieval parameters are set:
-
-*   **Patient ID:** SMILLER123
-*   **Category:** `http://loinc.org|LP29684-5`
-*   **Date Range:** `ge2015-01-01` (on or after January 1, 2015)
-*   **Modality:** `http://dicom.nema.org/resources/ontology/DCM|CT` and `http://dicom.nema.org/resources/ontology/DCM|MRI`
-*   **Status:** `final`
-*   **Sort Order:** `-date` (newest first)
-*   **Count Limit:** `5`
-
-The request to execute the HTTP GET request:
-`https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=SMILLER123&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5`
-
-### Results:
-
-*   **HTTP Status Code:** Not available from provided patient encounter data.
-*   **DiagnosticReport Entries:** No radiology diagnostic reports matching the specified criteria were found in the provided patient encounter data.
-
----
-
-**Audit Summary:**
-Reviewed To-Do for radiology data retrieval for Sarah Miller. Prepared retrieval parameters based on the provided information. The attempt to fetch radiology reports could not be completed as no radiology reports were found within the provided patient encounter data. The time window considered for the search was from 2015-01-01 onwards.
+# Object Record 29
+**objectId:** enhanced-todo-1763135835190-as6j9ev1p
+**type:** todo
+**description:** Generate a comprehensive report for Sarah Miller.
+**todoData title:** Patient Report Generation
+**todoData description:** Generate a comprehensive report for Sarah Miller.
+**todoData todos 0 id:** task-report-001
+**todoData todos 0 text:** Gather patient information for Sarah Miller
+**todoData todos 0 status:** finished
+**todoData todos 0 agent:** data_retriever
+**todoData todos 0 subTodos 0 text:** Retrieve patient demographic details
+**todoData todos 0 subTodos 0 status:** finished
+**todoData todos 0 subTodos 1 text:** Fetch medical history records
+**todoData todos 0 subTodos 1 status:** finished
+**todoData todos 0 subTodos 2 text:** Collect recent test results
+**todoData todos 0 subTodos 2 status:** finished
+**todoData todos 0 subTodos 3 text:** Obtain medication list
+**todoData todos 0 subTodos 3 status:** finished
+**todoData todos 1 id:** task-report-002
+**todoData todos 1 text:** Analyze collected patient data
+**todoData todos 1 status:** finished
+**todoData todos 1 agent:** data_analyst
+**todoData todos 1 subTodos 0 text:** Identify key findings and trends
+**todoData todos 1 subTodos 0 status:** finished
+**todoData todos 1 subTodos 1 text:** Note any abnormalities or significant events
+**todoData todos 1 subTodos 1 status:** finished
+**todoData todos 1 subTodos 2 text:** Synthesize information for report sections
+**todoData todos 1 subTodos 2 status:** finished
+**todoData todos 2 id:** task-report-003
+**todoData todos 2 text:** Compile and format the report
+**todoData todos 2 status:** finished
+**todoData todos 2 agent:** report_generator
+**todoData todos 2 subTodos 0 text:** Structure the report document
+**todoData todos 2 subTodos 0 status:** finished
+**todoData todos 2 subTodos 1 text:** Incorporate analyzed data and findings
+**todoData todos 2 subTodos 1 status:** finished
+**todoData todos 2 subTodos 2 text:** Add patient identifiers and date
+**todoData todos 2 subTodos 2 status:** finished
+**todoData todos 2 subTodos 3 text:** Review and proofread the report
+**todoData todos 2 subTodos 3 status:** finished
 **rotation:** 0
-**agentData title:** Sarah miller radiology data retrieval
-**agentData markdown:** # Radiology Data Retrieval for Sarah Miller
+**createdAt:** 2025-11-14T15:57:15.195Z
+**updatedAt:** 2025-11-14T15:57:49.453Z
 
-## Task: Prepare radiology retrieval parameters for Sarah Miller
-
-*   **Patient Identifier:** Sarah Miller's Medical Record Number (MRN) is MC-001001. The provided API call uses `SMILLER123`, which is assumed to be the correct identifier for the system.
-*   **Category:** `LP29684-5` is confirmed. This corresponds to "Radiology reports" in the LOINC classification.
-*   **Modality Filters:** CT and MRI modalities are specified.
-*   **Status Filter:** `status=final` is specified.
-*   **Sorting and Limiting:** Reports are sorted by date descending, with a limit of 5 results.
-*   **Authentication Token:** Assumed to be valid for API access.
-
-## Task: Fetch radiology reports
-
-The following data retrieval parameters are set:
-
-*   **Patient ID:** SMILLER123
-*   **Category:** `http://loinc.org|LP29684-5`
-*   **Date Range:** `ge2015-01-01` (on or after January 1, 2015)
-*   **Modality:** `http://dicom.nema.org/resources/ontology/DCM|CT` and `http://dicom.nema.org/resources/ontology/DCM|MRI`
-*   **Status:** `final`
-*   **Sort Order:** `-date` (newest first)
-*   **Count Limit:** `5`
-
-The request to execute the HTTP GET request:
-`https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=SMILLER123&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5`
-
-### Results:
-
-*   **HTTP Status Code:** Not available from provided patient encounter data.
-*   **DiagnosticReport Entries:** No radiology diagnostic reports matching the specified criteria were found in the provided patient encounter data.
-
----
-
-**Audit Summary:**
-Reviewed To-Do for radiology data retrieval for Sarah Miller. Prepared retrieval parameters based on the provided information. The attempt to fetch radiology reports could not be completed as no radiology reports were found within the provided patient encounter data. The time window considered for the search was from 2015-01-01 onwards.
-**createdAt:** 2025-11-12T12:42:01.421Z
-**updatedAt:** 2025-11-12T12:42:01.698Z
-
-# Object Record 3
-**objectId:** dashboard-item-1759906246155-lab-table
-**type:** component
-**componentType:** LabTable
-**description:** 
-**content title:** Lab Findings
-**content component:** LabTable
-**content props encounters 0 encounter no:** 1
-**content props encounters 0 date:** 2015-08-10
-**content props encounters 0 meta ui risk color:** green
-**content props encounters 1 encounter no:** 2
-**content props encounters 1 date:** 2016-02-20
-**content props encounters 1 meta ui risk color:** green
-**content props encounters 2 encounter no:** 3
-**content props encounters 2 date:** 2018-09-05
-**content props encounters 2 meta ui risk color:** green
-**content props encounters 3 encounter no:** 4
-**content props encounters 3 date:** 2021-03-15
-**content props encounters 3 meta ui risk color:** green
-**content props encounters 4 encounter no:** 5
-**content props encounters 4 date:** 2025-06-15
-**content props encounters 4 meta ui risk color:** amber
-**content props encounters 5 encounter no:** 6
-**content props encounters 5 date:** 2025-06-21
-**content props encounters 5 meta ui risk color:** red
-**content props encounters 5 meta event tags 0:** Suspected DILI
-**content props encounters 5 meta event tags 1:** Potential MTX toxicity
-**content props encounters 5 meta event tags 2:** Acute liver failure risk
-**createdAt:** 2025-10-14T16:50:46.155Z
-**updatedAt:** 2025-10-14T16:50:46.155Z
-
-# Object Record 16
-**objectId:** dashboard-item-generate-diagnosis-button
+# Object Record 21
+**objectId:** dashboard-item-push-to-ehr-new
 **type:** button
-**buttonText:** Generate DILI Diagnosis
+**buttonText:** Push to EHR System
 **buttonIcon:** 
-**buttonColor:** #1E88E5
-**buttonAction:** generateDiagnosis
+**buttonColor:** #2196F3
+**buttonAction:** pushToEHR
+**showHandles:** True
+**draggable:** False
 **createdAt:** 2025-11-10T16:00:00.000Z
 **updatedAt:** 2025-11-10T16:00:00.000Z
 
-# Object Record 5
-**objectId:** dashboard-item-1759906300004-single-encounter-6
-**type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #6 - Emergency Visit
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 6
-**content props encounter meta visit type:** ED
-**content props encounter meta date time:** 2025-06-21T14:00:00
-**content props encounter meta provider name:** Dr. Sarah Chen
-**content props encounter meta provider specialty:** Emergency Medicine
-**content props encounter meta ui risk color:** red
-**content props encounter meta event tags 0:** Suspected DILI
-**content props encounter meta event tags 1:** Potential MTX toxicity
-**content props encounter meta event tags 2:** Acute liver failure risk
-**content props encounter reason for visit:** Severe fatigue, jaundice, epigastric pain, confusion
-**content props encounter chief complaint:** Severe fatigue, jaundice, epigastric pain, confusion
-**content props encounter hpi:** 63-year-old female with 24h severe fatigue, jaundice, epigastric pain; 4–6 days prior noted fatigue, mouth ulcers, nausea; started TMP-SMX 6 days ago for sinusitis
-**content props encounter medications prior 0 name:** Methotrexate
-**content props encounter medications prior 0 dose:** 20 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** weekly
-**content props encounter medications prior 1 name:** Trimethoprim-Sulfamethoxazole
-**content props encounter medications prior 1 dose:** 800/160 mg
-**content props encounter medications prior 1 route:** PO
-**content props encounter medications prior 1 frequency:** BID
-**content props encounter physical exam general:** Jaundiced, fatigued, drowsy; disoriented to time/place
-**content props encounter physical exam abdomen:** Soft, non-distended; mild epigastric tenderness
-**content props encounter physical exam cns:** Arousable; PERL; slow commands; asterixis present; GCS 13
-**content props encounter assessment impression:** Acute liver injury likely DILI and/or severe methotrexate toxicity
-**content props encounter assessment differential 0:** Severe methotrexate toxicity
-**content props encounter assessment differential 1:** TMP-SMX–induced DILI
-**content props encounter assessment differential 2:** Acute viral hepatitis
-**content props encounter plan investigations labs 0:** CBC
-**content props encounter plan investigations labs 1:** CMP
-**content props encounter plan investigations labs 2:** Methotrexate level (urgent)
-**content props encounter plan investigations labs 3:** HAV IgM
-**content props encounter plan investigations labs 4:** HBsAg
-**content props encounter plan management education 0:** Immediate ICU admission
-**content props encounter plan management education 1:** N-acetylcysteine protocol
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 5
-**content props dataSource:** VueExplore
-**createdAt:** 2025-10-14T16:55:00.004Z
-**updatedAt:** 2025-10-14T16:55:00.004Z
-
-# Object Record 11
-**objectId:** raw-nervecentre-encounter-6
-**type:** component
-**componentType:** RawClinicalNote
-**description:** Raw Nervecentre EPR data for Encounter 6
-**content title:** Nervecentre - Encounter 6
-**content component:** RawClinicalNote
-**content props encounterNumber:** 6
-**content props date:** 2025-06-21
-**content props visitType:** Emergency Dept
-**content props provider:** Dr. Sarah Chen
-**content props specialty:** Emergency Medicine
-**content props rawText:** – 2025-06-21, Emergency Dept (Severe Jaundice & Fatigue)
-Patient: Sarah Miller, 63 y/o. Brought in by wife for acute jaundice, confusion, and epigastric pain.
-Clinician: Dr. Sarah Chen, Emergency Medicine.
-Presenting Complaint: 24-hour history of extreme tiredness, yellow eyes/skin, upper abdomen pain, nausea. Recent TMP-SMX for sinusitis (started 6 days ago). Mild mouth ulcers noted 4–6 days ago. No fever or GI bleeding. No other new meds.
-Past History: Rheumatoid arthritis (10 years, on MTX), Hypertension (7 years), chronic back pain, CKD Stage 3 (eGFR ~55). No known liver disease. Appendectomy as a child.
-Medications: MTX 20 mg weekly (Mon), Folic Acid 5 mg weekly (Tue), Lisinopril 10 mg daily, TMP-SMX 800/160 mg BID ×6d, Paracetamol PRN. Allergies: Penicillin (rash).
-Review of Systems: Significant for nausea, anorexia, dark urine. No cough/dyspnea. Altered mental status (mild confusion).
-Physical Exam: Ill, jaundiced, drowsy (GCS 13). Vitals: BP 142/90, HR 75, RR 18, T 36.9°C. Neuro: Arousable but disoriented; asterixis present. Abd: Soft, mild epigastric tenderness, no HSM or ascites. Skin: Generalized icterus, oral mucosa with small ulcers. No rash or bruises.
-Impression: Acute severe liver injury (likely drug-induced: MTX toxicity ± TMP-SMX). Possible methotrexate overdose or fulminant hepatitis. DDX: acute viral hepatitis, Wilson’s, sepsis.
-Plan: Admit to ICU. STAT labs: CBC (for cytopenias), Comprehensive Metabolic Panel (LFTs, renal), PT/INR, Ammonia, Serum MTX level, viral hepatitis serologies (HAV IgM, HBsAg/IgM, HCV Ab), autoimmune serologies, toxicology. STAT abdominal ultrasound (liver appearance, biliary). Start IV fluids and IV N-acetylcysteine (covering for DILI/acute liver failure). NPO, frequent neuro checks. Notify GI/Hepatology and Hematology. Prepare for possible transfusions or dialysis.
-Orders/Results: (via ICE/EHR) STAT lab draw sent.
-Coding: ICD-10 K71.1 (Toxic liver disease with hepatic necrosis), T45.1X5A (Adverse effect of MTX), T36.0X5A (Adverse effect of sulfonamides). CPT 99285 (ED high complexity).
-**content props dataSource:** Nervecentre EPR
-**createdAt:** 2025-10-17T03:32:13.025Z
-**updatedAt:** 2025-10-17T03:32:13.025Z
-
-# Object Record 6
-**objectId:** raw-nervecentre-encounter-1
-**type:** component
-**componentType:** RawClinicalNote
-**description:** Raw Nervecentre EPR data for Encounter 1
-**content title:** Nervecentre - Encounter 1
-**content component:** RawClinicalNote
-**content props encounterNumber:** 1
-**content props date:** 2015-08-10
-**content props visitType:** Outpatient Rheumatology
-**content props provider:** Dr. Elizabeth Hayes
-**content props specialty:** Rheumatology
-**content props rawText:** – 2015-08-10, Outpatient Rheumatology (Initial Consult)
-Patient: Sarah Miller, 53-year-old female, retired carpenter.
-Clinician: Dr. Elizabeth Hayes, Rheumatology.
-Chief Complaint: 6-month history of bilateral hand and foot joint pain/swelling.
-History of Present Illness: “Progressive, symmetrical pain and swelling in MCPs and PIPs of both hands and 2nd–3rd MTPs of both feet. Severe morning stiffness >1 hour daily and significant fatigue. Tried ibuprofen 200 mg PRN with minimal relief. Symptoms worse in mornings, slightly better with activity. Denies fevers, rash, chest pain, respiratory or GI symptoms, or recent infections.”
-Past Medical History: No liver disease. Appendectomy in childhood. No other chronic illnesses.
-Medication History: Occasional Ibuprofen 200 mg as needed.
-Allergies: None (NKDA).
-Family History: Father with hypertension and type 2 diabetes; mother with osteoarthritis. No known autoimmune or liver disease in family.
-Social History: Drinks ~1–2 beers/day (7–14 units/week) routinely; denies bingeing. Smokes ~1 pack/day (35 pack-year history). Retired carpenter (exposure to wood dust/solvents). No IV drug use. Married, monogamous.
-Review of Systems: Negative for weight loss, fever, or rash. Cardiac and respiratory: no chest pain or cough. GI: no nausea/vomiting/diarrhea. Neuro: no headaches or focal deficits. MSK: (as above).
-Physical Exam: Alert, fatigued but NAD. Vitals WNL. HEENT normal. Neck supple, no lymphadenopathy. Heart: RRR, no murmurs. Lungs clear. Abdomen soft, NTND, no hepatosplenomegaly. Skin: no rash or jaundice. MSK: Hands – visibly swollen, tender MCP joints (2nd–3rd) and PIP joints (2nd–3rd) bilaterally; similar swelling in both 2nd–3rd MTP joints. Palpable synovitis and warmth. Reduced grip strength. Range-of-motion limited by pain. No joint deformities yet. No subcutaneous nodules.
-Assessment: Likely Seropositive Rheumatoid Arthritis, active. Differential: Psoriatic arthritis, SLE, gout/pseudogout.
-Plan:
-Investigations: Order Rheumatoid Factor, anti-CCP IgG, ESR, CRP, CBC with diff, LFTs (AST, ALT, ALP, bilirubin), creatinine/eGFR, Hep B serologies (HBsAg, anti-HBc total) and Hep C antibody.
-Medications: Start Methotrexate 10 mg PO once weekly + Folic Acid 5 mg PO weekly (to be taken the day after MTX). Discuss MTX side effects.
-Patient Education: Explained RA pathophysiology, chronic nature, and treatment goals. Counseling on MTX: common side effects (malaise, GI upset, mucositis) and serious risks (hepatotoxicity, bone marrow suppression, lung toxicity). Emphasized need for strict alcohol avoidance with MTX. Advised regular blood test monitoring. Reinforced smoking cessation (“greatest modifiable risk”).
-Referrals: Rheumatology nurse to provide MTX information/monitoring. Smoking cessation support provided.
-Follow-Up: Return to Rheumatology clinic in 3 months. GP to check CBC, LFTs, renal, ESR/CRP in 4 weeks. “Red flag” symptoms (fever, severe fatigue, rash, jaundice) to prompt urgent evaluation.
-Coding: ICD-10 M05.9 (Seropositive RA, unspecified); CPT 99204 (New patient, moderate complexity).
-**content props dataSource:** Nervecentre EPR
-**createdAt:** 2025-10-17T03:32:13.025Z
-**updatedAt:** 2025-10-17T03:32:13.025Z
+# Object Record 18
+**objectId:** dashboard-item-generate-report-button
+**type:** button
+**buttonText:** Generate Patient Report
+**buttonIcon:** 
+**buttonColor:** #1E88E5
+**buttonAction:** generateReport
+**draggable:** False
+**createdAt:** 2025-11-10T16:00:00.000Z
+**updatedAt:** 2025-11-10T16:00:00.000Z
 
 # Object Record 3
 **objectId:** dashboard-item-1759906300004-single-encounter-4
@@ -282,6 +117,82 @@ Coding: ICD-10 M05.9 (Seropositive RA, unspecified); CPT 99204 (New patient, mod
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
 
+# Object Record 14
+**objectId:** raw-bighand-dictation-hayes-2015
+**type:** component
+**componentType:** RawClinicalNote
+**description:** BigHand dictation from Dr. Elizabeth Hayes (Rheumatology)
+**content title:** BigHand - Dr. Hayes Dictation
+**content component:** RawClinicalNote
+**content props encounterNumber:** 1
+**content props date:** 2015-08-10
+**content props visitType:** Rheumatology Initial Consult
+**content props provider:** Dr. Elizabeth Hayes
+**content props specialty:** Rheumatology
+**content props rawText:** BigHand Dictation (Transcribed Notes)
+Dictation – Dr. Elizabeth Hayes (Rheumatology), 2015-08-10:
+"Ms. Sarah Miller is a 63-year-old retired carpenter with a six-month history of progressive, symmetrical arthritis. He has pain and swelling in the small joints of his hands and feet, accompanied by morning stiffness over one hour. He reports significant fatigue. He has no fevers, rash, or other systemic symptoms and has only had minimal relief with ibuprofen 200 mg PRN. On exam, there is swelling and tenderness of MCPs and PIPs bilaterally and of the 2nd–3rd MTP joints. Grip strength is reduced. No skin lesions or organomegaly. My impression is active seropositive rheumatoid arthritis. Plan: order Rheumatoid Factor and anti-CCP, ESR, CRP, CBC, LFTs, creatinine, and hepatitis serologies. Start Methotrexate 10 mg weekly with folic acid. Counsel patient on MTX side effects and necessity of regular labs and alcohol avoidance."
+(BigHand would queue each dictation for transcription and signature, and track completion of related tasks.)
+**content props dataSource:** BigHand Dictation
+**createdAt:** 2025-10-17T12:00:00.000Z
+**updatedAt:** 2025-10-17T12:00:00.000Z
+
+# Object Record 2
+**objectId:** dashboard-item-1759906300004-single-encounter-3
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #3 - Outpatient (Elevated BP)
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 3
+**content props encounter meta visit type:** Outpatient
+**content props encounter meta date time:** 2018-09-05T10:00:00
+**content props encounter meta provider name:** None
+**content props encounter meta provider specialty:** General Practice
+**content props encounter meta ui risk color:** green
+**content props encounter reason for visit:** Routine review; elevated blood pressure
+**content props encounter chief complaint:** Raised BP readings at home
+**content props encounter hpi:** BP 145–155/90–95; asymptomatic. RA well-controlled on MTX 10 mg but specialist advised increase to 20 mg for mild flares. Quit smoking in 2017; continues 1–2 beers/day.
+**content props encounter medications prior 0 name:** Methotrexate
+**content props encounter medications prior 0 dose:** 10 mg
+**content props encounter medications prior 0 route:** PO
+**content props encounter medications prior 0 frequency:** weekly
+**content props encounter medications prior 1 name:** Folic Acid
+**content props encounter medications prior 1 dose:** 5 mg
+**content props encounter medications prior 1 route:** PO
+**content props encounter medications prior 1 frequency:** weekly
+**content props encounter medications prior 2 name:** Paracetamol
+**content props encounter medications prior 2 dose:** None
+**content props encounter medications prior 2 route:** PO
+**content props encounter medications prior 2 frequency:** PRN
+**content props encounter physical exam general:** Well
+**content props encounter physical exam vitals:** BP 148/92, HR 72, RR 16, Temp 36.8°C
+**content props encounter physical exam cvs:** Normal S1/S2, no murmurs
+**content props encounter physical exam msk:** No active synovitis
+**content props encounter assessment impression:** New essential hypertension; RA stable; plan MTX dose increase
+**content props encounter plan investigations labs 0:** CBC
+**content props encounter plan investigations labs 1:** LFTs
+**content props encounter plan investigations labs 2:** Creatinine
+**content props encounter plan investigations labs 3:** eGFR
+**content props encounter plan management medications started 0 name:** Lisinopril
+**content props encounter plan management medications started 0 dose:** 10 mg
+**content props encounter plan management medications started 0 route:** PO
+**content props encounter plan management medications started 0 frequency:** daily
+**content props encounter plan management medications started 1 name:** Methotrexate
+**content props encounter plan management medications started 1 dose:** 20 mg
+**content props encounter plan management medications started 1 route:** PO
+**content props encounter plan management medications started 1 frequency:** weekly
+**content props encounter plan management education 0:** Lisinopril side effects (e.g., cough); monitor BP regularly
+**content props encounter plan management education 1:** Reinforce alcohol moderation with higher MTX dose
+**content props encounter plan management education 2:** Continue Folic Acid the day after MTX
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 53
+**content props encounterIndex:** 2
+**content props dataSource:** Viper
+**createdAt:** 2025-10-15T08:00:00.000Z
+**updatedAt:** 2025-10-15T08:00:00.000Z
+
 # Object Record 1
 **objectId:** dashboard-item-1759906300004-single-encounter-2
 **type:** component
@@ -327,6 +238,35 @@ Coding: ICD-10 M05.9 (Seropositive RA, unspecified); CPT 99204 (New patient, mod
 **content props dataSource:** Medilogik
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
+
+# Object Record 12
+**objectId:** raw-medilogik-ems-colonoscopy
+**type:** component
+**componentType:** RawClinicalNote
+**description:** Raw Medilogik EMS endoscopy report
+**content title:** Medilogik EMS - Colonoscopy
+**content component:** RawClinicalNote
+**content props encounterNumber:** 0
+**content props date:** 2023-11-10
+**content props visitType:** Colonoscopy
+**content props provider:** Dr. Alice N. Wong
+**content props specialty:** Endoscopy
+**content props rawText:** Medilogik EMS (Endoscopy Report)
+(Example endoscopy procedure report using Medilogik’s structured format)
+Patient: Sarah Miller (63F), MRN 12345678.
+Procedure: Colonoscopy on 2023-11-10 08:30 (Endoscopy Suite). Endoscopist: Dr. Alice N. Wong.
+Indication: Iron-deficiency anemia (chronic); screening given age and methotrexate use.
+Sedation: IV Midazolam and Fentanyl; monitored anesthesia care.
+Findings: Traversed to cecum. Colonic mucosa has scattered diverticula in sigmoid. One 5 mm sessile polyp in sigmoid colon (25 cm from anal verge). No evidence of colitis or masses. Terminal ileum intubated, unremarkable. Visualized upper GI (if dual-scope done): unremarkable esophagus, stomach, duodenum (if applicable).
+Interventions: Polypectomy performed with cold biopsy forceps; specimen sent to pathology. Biopsies of normal-appearing mucosa not taken. Bowel prep good.
+Images: [Endoscopic snapshot of the sigmoid polyp] (attached to report).
+Conclusions/Plan: Small adenomatous polyp removed (histology pending). No malignant lesions seen. Diverticulosis noted. Recommend routine surveillance colonoscopy in 10 years per guidelines. Follow-up GI clinic after pathology.
+Quality Metrics: Procedure time, withdrawal time 6 min, sedation doses recorded. Saved diverticulosis and polyp data for audit/compliance to national standards.
+(This report demonstrates Medilogik’s endoscopy workflow fields and structured findings.)
+
+**content props dataSource:** Medilogik EMS
+**createdAt:** 2025-10-17T03:44:32.506Z
+**updatedAt:** 2025-10-17T03:44:32.507Z
 
 # Object Record 0
 **objectId:** dashboard-item-1759906300003-single-encounter-1
