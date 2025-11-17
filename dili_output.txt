@@ -16,7 +16,7 @@
     "allergies": [
       "Penicillin (rash)"
     ],
-    "socialHistory": "Drinks ~1-2 beers/day (7-14 units/week). Ex-smoker (quit 2017, 20 pack-year history). Retired carpenter."
+    "socialHistory": "Drinks ~1\n–2 beers/day (7\n–14 units/week); denies bingeing. Smoked ~1 pack/day (35 pack-year history); quit in 2017."
   },
   "medications": {
     "chronicPriorToEvent": [
@@ -24,7 +24,7 @@
       "Folic Acid 5 mg weekly",
       "Lisinopril 10 mg daily"
     ],
-    "initiatedAtAcuteEvent": "Trimethoprim-Sulfamethoxazole 800/160 mg BID (started 2025-06-15, ended 2025-06-25)"
+    "initiatedAtAcuteEvent": "Trimethoprim-Sulfamethoxazole 800/160 mg BID"
   },
   "keyLaboratoryFindings": {
     "encounterDate": "2025-06-21",
@@ -34,83 +34,74 @@
         "value": "1650 U/L",
         "flag": "H",
         "reference": "7.0 - 56",
-        "note": "↑↑↑ (likely >20x ULN)"
+        "note": "↑↑↑"
       },
       {
         "test": "AST",
         "value": "2100 U/L",
         "flag": "H",
         "reference": "8.0 - 40",
-        "note": "↑↑↑ (likely >20x ULN)"
+        "note": "↑↑↑↑"
       },
       {
         "test": "ALP",
         "value": "350 U/L",
         "flag": "H",
         "reference": "40 - 150",
-        "note": "↑"
+        "note": "↑↑"
       },
       {
         "test": "Total Bilirubin",
         "value": "12.5 mg/dL",
         "flag": "H",
         "reference": "0.2 - 1.2",
-        "note": "↑↑ (likely >3x ULN, jaundice)"
+        "note": "↑↑↑↑"
       },
       {
         "test": "INR",
-        "value": "1.0",
+        "value": "1",
         "flag": "",
         "reference": "0.8 - 1.2",
-        "note": "Normal at presentation, but coagulopathy is a risk."
-      },
-      {
-        "test": "Creatinine",
-        "value": "1.5 mg/dL",
-        "flag": "H",
-        "reference": "0.7 - 1.3",
-        "note": "↑ (Acute Kidney Injury)"
-      },
-      {
-        "test": "Platelets",
-        "value": "165 x10^9/L",
-        "flag": "",
-        "reference": "150 - 450",
-        "note": "Mildly low"
+        "note": "Normal"
       }
     ]
   },
   "diagnosis": {
-    "main": "Drug-Induced Liver Injury (DILI) with Acute Liver Failure",
-    "causality": "Likely DILI from Trimethoprim-Sulfamethoxazole, potentiated by Methotrexate.",
-    "mechanism": "Trimethoprim-Sulfamethoxazole can cause DILI. It is known to interact with Methotrexate by potentially increasing its serum levels and interfering with folate metabolism, leading to synergistic hepatotoxicity. The patient's presentation with jaundice, encephalopathy, and elevated liver enzymes shortly after starting TMP-SMX strongly suggests an idiosyncratic drug reaction. Methotrexate's known hepatotoxicity likely contributed to the severity."
+    "main": "Drug-Induced Liver Injury (DILI) and Methotrexate Toxicity",
+    "causality": "Acute liver injury likely due to TMP-SMX and Methotrexate toxicity. Patient developed jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX while on chronic Methotrexate therapy.",
+    "mechanism": "TMP-SMX can raise free methotrexate levels and impair folate metabolism, potentiating hepatocellular necrosis. Synergistic hepatotoxicity between TMP-SMX and Methotrexate is suspected."
   },
   "differentialDiagnosisTracker": {
     "diagnoses": [
       {
-        "name": "Severe Methotrexate Toxicity",
+        "name": "Drug-Induced Liver Injury (DILI)",
         "status": "PRIMARY",
-        "notes": "Considered a contributing factor and potentiation of DILI."
+        "notes": "Highly probable given timing of TMP-SMX initiation and clinical presentation."
       },
       {
-        "name": "TMP-SMX-induced DILI",
+        "name": "Methotrexate Toxicity",
         "status": "PRIMARY",
-        "notes": "Primary suspected agent based on temporal association."
+        "notes": "Concomitant drug, known hepatotoxic, interacts with TMP-SMX."
       },
       {
         "name": "Acute viral hepatitis",
-        "status": "PENDING",
-        "notes": "Workup pending (HAV IgM, HBsAg/IgM, HCV Ab ordered)."
+        "status": "INVESTIGATE",
+        "notes": "Pending serology."
+      },
+      {
+        "name": "Severe methotrexate toxicity",
+        "status": "INVESTIGATE",
+        "notes": "Pancytopenia and renal injury present; hepatic injury prominent."
       },
       {
         "name": "Acute decompensation of undiagnosed chronic liver disease",
-        "status": "RULED OUT",
-        "notes": "No prior history or signs suggestive of chronic liver disease."
+        "status": "PENDING",
+        "notes": "No prior history, but considered."
       },
       {
         "name": "Sepsis with multiorgan dysfunction",
-        "status": "RULED OUT",
-        "notes": "No fever or hemodynamic instability suggestive of sepsis at presentation."
+        "status": "PENDING",
+        "notes": "No fever or hemodynamic instability reported, but considered in context of ALF."
       }
     ],
     "ruledOut": []

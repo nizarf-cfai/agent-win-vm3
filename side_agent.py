@@ -1134,7 +1134,7 @@ async def generate_patient_report():
 
 def create_diagnosis(payload):
     print("Start create object")
-    url = BASE_URL + "/api/dili-diagnostic"
+    url = BASE_URL + "/api/diagnostic-report"
     payload['zone'] = "dili-analysis-zone"
     with open(f"{config.output_dir}/diagnosis_create_payload.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=4)

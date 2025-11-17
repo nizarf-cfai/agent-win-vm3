@@ -1,76 +1,64 @@
 {
-    "id": "enhanced-todo-1763135888666-jtp7q00fm",
+    "id": "enhanced-todo-1763363651153-uezvp44ox",
     "type": "todo",
-    "x": 6440,
-    "y": -1810,
+    "x": 7020,
+    "y": -1630,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Add Sarah Miller's report to the EHR system and create a follow-up note.",
+    "description": "Create placeholder radiology diagnostic report data for Sarah Miller.",
     "todoData": {
-        "title": "EHR Report Entry",
-        "description": "Add Sarah Miller's report to the EHR system and create a follow-up note.",
+        "title": "Radiology Data Creation for Sarah Miller",
+        "description": "Create placeholder radiology diagnostic report data for Sarah Miller.",
         "todos": [
             {
-                "id": "task-001",
-                "text": "Prepare Sarah Miller's report for EHR entry",
+                "id": "task-1001",
+                "text": "Generate sample patient data",
                 "status": "pending",
-                "agent": "ehr_preparer",
+                "agent": "data_generator",
                 "subTodos": [
                     {
-                        "text": "Locate Sarah Miller's report",
+                        "text": "Create patient record for Sarah Miller",
                         "status": "pending"
                     },
                     {
-                        "text": "Verify report completeness and accuracy",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Format report for EHR system",
+                        "text": "Assign a unique patient UUID",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-002",
-                "text": "Push Sarah Miller's report into EHR system",
+                "id": "task-1002",
+                "text": "Create radiology diagnostic report",
                 "status": "pending",
-                "agent": "ehr_integrator",
+                "agent": "data_generator",
                 "subTodos": [
                     {
-                        "text": "Authenticate with EHR system",
+                        "text": "Set report category to 'Radiology' (LP29684-5)",
                         "status": "pending"
                     },
                     {
-                        "text": "Upload Sarah Miller's report",
+                        "text": "Add essential report details (date, status, code)",
                         "status": "pending"
                     },
                     {
-                        "text": "Confirm successful upload and record ID",
+                        "text": "Link report to Sarah Miller's UUID",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-003",
-                "text": "Create follow-up note regarding Sarah Miller's report",
+                "id": "task-1003",
+                "text": "Simulate data upload to FHIR server",
                 "status": "pending",
-                "agent": "clinical_noter",
+                "agent": "data_simulator",
                 "subTodos": [
                     {
-                        "text": "Determine appropriate note type",
+                        "text": "Prepare POST request payload",
                         "status": "pending"
                     },
                     {
-                        "text": "Draft follow-up note content",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Attach or link report to the note",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Save the note in EHR system",
+                        "text": "Simulate API endpoint interaction",
                         "status": "pending"
                     }
                 ]
@@ -78,6 +66,6 @@
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-14T15:58:08.672Z",
-    "updatedAt": "2025-11-14T15:58:08.672Z"
+    "createdAt": "2025-11-17T07:14:11.159Z",
+    "updatedAt": "2025-11-17T07:14:11.159Z"
 }
