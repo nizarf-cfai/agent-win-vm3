@@ -27,7 +27,7 @@ Your output must strictly follow the schema:
 CORE STRUCTURE RULES
 ----------------------------------------------------
 * All `status` fields must be "pending".
-* `agent` must be a functional role (not a person).
+* `agent` must be one of agents provided in list below.
 * **Every main task must include at least one `subTodo`.**
 * Never output any text outside JSON. No markdown.
 
@@ -55,6 +55,11 @@ If the user request involves **pulling / retrieving / fetching / getting data**:
    - "Set date or sorting filters"
    - "Verify authentication token"
    - "Validate response JSON structure"
+4. Available agents list:
+   - Data Analyst Agent
+   - RAG Agent
+   - Clinical Agent
+   - Consolidator Agent
 
 ----------------------------------------------------
 REQUIRED RETRIEVAL ACTION PATTERN (YOU MUST FOLLOW)
@@ -65,7 +70,7 @@ One main task MUST be exactly in this pattern:
   "id": "task-XXXXX",
   "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5'",
   "status": "pending",
-  "agent": "data_retriever",
+  "agent": "Data Analyst Agent",
   "subTodos": [
     {"text": "Execute HTTP request", "status": "pending"},
     {"text": "Check HTTP status code", "status": "pending"},
@@ -91,7 +96,7 @@ Return:
       "id": "task-48192",
       "text": "Prepare radiology retrieval parameters",
       "status": "pending",
-      "agent": "data_retriever",
+      "agent": "Data Analyst Agent",
       "subTodos": [
         {"text": "Confirm patient UUID", "status": "pending"},
         {"text": "Set category=LP29684-5 for radiology", "status": "pending"},
@@ -104,7 +109,7 @@ Return:
       "id": "task-93127",
       "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2015-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&bodysite=http://snomed.info/sct|416949008&_sort=-date&_count=5'",
       "status": "pending",
-      "agent": "data_retriever",
+      "agent": "Consolidator Agent",
       "subTodos": [
         {"text": "Execute request", "status": "pending"},
         {"text": "Validate HTTP response format", "status": "pending"},

@@ -1,55 +1,55 @@
 {
-    "title": "Radiology Data Creation for Sarah Miller",
-    "description": "Create placeholder radiology diagnostic report data for Sarah Miller.",
+    "title": "Radiology Data Retrieval for Sarah Miller",
+    "description": "Retrieve radiology data for Sarah Miller, including diagnostic reports, with specific filters applied.",
     "todos": [
         {
-            "id": "task-1001",
-            "text": "Generate sample patient data",
+            "id": "task-prep-radiology",
+            "text": "Prepare radiology retrieval parameters for Sarah Miller",
             "status": "pending",
-            "agent": "data_generator",
+            "agent": "Data Analyst Agent",
             "subTodos": [
                 {
-                    "text": "Create patient record for Sarah Miller",
+                    "text": "Determine patient identifier for Sarah Miller",
                     "status": "pending"
                 },
                 {
-                    "text": "Assign a unique patient UUID",
+                    "text": "Set category=LP29684-5 for radiology reports",
+                    "status": "pending"
+                },
+                {
+                    "text": "Apply modality filters (e.g., CT, MRI, X-Ray)",
+                    "status": "pending"
+                },
+                {
+                    "text": "Set status=final for finalized reports",
+                    "status": "pending"
+                },
+                {
+                    "text": "Set date filter (e.g., last 5 years)",
+                    "status": "pending"
+                },
+                {
+                    "text": "Ensure authentication is valid",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "task-1002",
-            "text": "Create radiology diagnostic report",
+            "id": "task-fetch-radiology",
+            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<PATIENT_ID>&category=http://loinc.org|LP29684-5&date=ge2019-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&modality=http://dicom.nema.org/resources/ontology/DCM|X-Ray&status=final&_sort=-date&_count=10'",
             "status": "pending",
-            "agent": "data_generator",
+            "agent": "Consolidator Agent",
             "subTodos": [
                 {
-                    "text": "Set report category to 'Radiology' (LP29684-5)",
+                    "text": "Execute HTTP GET request",
                     "status": "pending"
                 },
                 {
-                    "text": "Add essential report details (date, status, code)",
+                    "text": "Check response HTTP status code",
                     "status": "pending"
                 },
                 {
-                    "text": "Link report to Sarah Miller's UUID",
-                    "status": "pending"
-                }
-            ]
-        },
-        {
-            "id": "task-1003",
-            "text": "Simulate data upload to FHIR server",
-            "status": "pending",
-            "agent": "data_simulator",
-            "subTodos": [
-                {
-                    "text": "Prepare POST request payload",
-                    "status": "pending"
-                },
-                {
-                    "text": "Simulate API endpoint interaction",
+                    "text": "Validate JSON structure of DiagnosticReport entries",
                     "status": "pending"
                 }
             ]

@@ -11,6 +11,13 @@
                 }
             },
             "required": ["query"]
+        },
+        "response": {
+            "type": "ARRAY",
+            "items": {
+                "type": "STRING"
+            },
+            "description": "The detailed query steps or extracted interpretation."
         }
     }
 ]

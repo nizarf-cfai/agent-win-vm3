@@ -28,6 +28,29 @@ model = genai.GenerativeModel(
 )
 
 
+async def get_answer(query :str, conversation_text: str='', context: str=''):
+    if not context:
+        context = await rag_from_json(query, top_k=3)
+    prompt = f"""
+    Answer below user query using available data.
+    User query : {query}
+
+    Chat History : 
+    {conversation_text}
+
+    Context : 
+    {context}
+    """
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT
+    )
+
+    response = model.generate_content(prompt)
+
+    return response.text.strip()
+
 async def chat_agent(chat_history: list[dict]) -> str:
     """
     Chat Agent:

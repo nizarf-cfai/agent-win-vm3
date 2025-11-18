@@ -511,8 +511,8 @@
     {
         "id": "dashboard-item-1759906246157-differential-diagnosis",
         "type": "component",
-        "x": 3951,
-        "y": 5940,
+        "x": 1600,
+        "y": 4400,
         "width": 520,
         "height": 500,
         "componentType": "DifferentialDiagnosis",
@@ -556,7 +556,7 @@
             }
         },
         "createdAt": "2025-10-14T16:50:46.157Z",
-        "updatedAt": "2025-11-17T06:56:54.497Z"
+        "updatedAt": "2025-10-14T16:50:46.157Z"
     },
     {
         "id": "dashboard-item-1759906300003-single-encounter-1",
@@ -2273,455 +2273,70 @@
         "updatedAt": "2025-11-10T16:00:00.000Z"
     },
     {
-        "id": "item-1763359705949-2bzx3a",
-        "type": "diagnostic-report",
-        "x": -3286,
-        "y": 5644,
-        "width": 2400,
-        "height": 900,
-        "content": "Diagnostic Report",
-        "color": "#ffffff",
-        "rotation": 0,
-        "diagnosticData": {
-            "patientInformation": {
-                "name": "Sarah Miller",
-                "mrn": "MC-001001",
-                "dateOfBirth": "1962-03-15",
-                "age": 63,
-                "sex": "Female"
-            },
-            "presentingComplaint": "Severe fatigue, jaundice, epigastric pain, confusion",
-            "medicalHistory": {
-                "conditions": [
-                    "Rheumatoid arthritis",
-                    "Essential hypertension",
-                    "Mild chronic kidney disease"
-                ],
-                "allergies": [
-                    "Penicillin (rash)"
-                ],
-                "socialHistory": "Drinks ~1\u20132 beers/day (7\u201314 units/week); denies bingeing. Smoked ~1 pack/day (35 pack-year history); quit in 2017. Retired carpenter."
-            },
-            "medications": {
-                "chronicPriorToEvent": [
-                    "Methotrexate 20 mg weekly",
-                    "Folic Acid 5 mg weekly",
-                    "Lisinopril 10 mg daily"
-                ],
-                "initiatedAtAcuteEvent": "Trimethoprim-Sulfamethoxazole 800/160 mg BID (started 2025-06-15, ended 2025-06-25)"
-            },
-            "keyLaboratoryFindings": {
-                "encounterDate": "2025-06-21",
-                "results": [
-                    {
-                        "test": "ALT",
-                        "value": "1650 U/L",
-                        "flag": "H",
-                        "reference": "7.0 - 56",
-                        "note": "\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "AST",
-                        "value": "2100 U/L",
-                        "flag": "H",
-                        "reference": "8.0 - 40",
-                        "note": "\u2191\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "ALP",
-                        "value": "350 U/L",
-                        "flag": "H",
-                        "reference": "40 - 150",
-                        "note": "\u2191\u2191"
-                    },
-                    {
-                        "test": "Total Bilirubin",
-                        "value": "12.5 mg/dL",
-                        "flag": "H",
-                        "reference": "0.2 - 1.2",
-                        "note": "\u2191\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "INR",
-                        "value": "1",
-                        "flag": "",
-                        "reference": "0.8 - 1.2",
-                        "note": "Normal"
-                    }
-                ]
-            },
-            "diagnosis": {
-                "main": "Drug-Induced Liver Injury (DILI) and Methotrexate Toxicity",
-                "causality": "Acute liver injury likely due to TMP-SMX and Methotrexate toxicity. Patient developed jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX while on chronic Methotrexate therapy.",
-                "mechanism": "TMP-SMX can raise free methotrexate levels and impair folate metabolism, potentiating hepatocellular necrosis. Synergistic hepatotoxicity between TMP-SMX and Methotrexate is suspected."
-            },
-            "differentialDiagnosisTracker": {
-                "diagnoses": [
-                    {
-                        "name": "Drug-Induced Liver Injury (DILI)",
-                        "status": "PRIMARY",
-                        "notes": "Highly probable given timing of TMP-SMX initiation and clinical presentation."
-                    },
-                    {
-                        "name": "Methotrexate Toxicity",
-                        "status": "PRIMARY",
-                        "notes": "Concomitant drug, known hepatotoxic, interacts with TMP-SMX."
-                    },
-                    {
-                        "name": "Acute viral hepatitis",
-                        "status": "INVESTIGATE",
-                        "notes": "Pending serology."
-                    },
-                    {
-                        "name": "Severe methotrexate toxicity (\u00b1 pancytopenia, hepatic/renal injury)",
-                        "status": "INVESTIGATE",
-                        "notes": "Pancytopenia and renal injury present; hepatic injury prominent."
-                    },
-                    {
-                        "name": "Acute decompensation of undiagnosed chronic liver disease",
-                        "status": "PENDING",
-                        "notes": "No prior history, but considered."
-                    },
-                    {
-                        "name": "Sepsis with multiorgan dysfunction",
-                        "status": "PENDING",
-                        "notes": "No fever or hemodynamic instability reported, but considered in context of ALF."
-                    }
-                ],
-                "ruledOut": []
-            },
-            "easlAssessment": {
-                "overallImpression": "Sarah Miller, a 63-year-old female with a history of rheumatoid arthritis, hypertension, and mild CKD, presented with acute jaundice, epigastric pain, and confusion. Her presentation is highly suggestive of drug-induced liver injury (DILI), likely a severe hepatocellular pattern, with a strong temporal association to the initiation of Trimethoprim-Sulfamethoxazole (TMP-SMX) while on chronic Methotrexate (MTX) therapy. The clinical picture, including encephalopathy and significant transaminitis, meets criteria for acute liver failure.",
-                "diliDiagnosticCriteriaMet": [
-                    {
-                        "criterion": "ALT \u2265 5 \u00d7 ULN",
-                        "status": "MET",
-                        "details": "ALT is 1650 U/L, with an assumed ULN of 56 U/L, which is > 5x ULN."
-                    },
-                    {
-                        "criterion": "ALT \u2265 3 \u00d7 ULN with bilirubin \u2265 2 \u00d7 ULN",
-                        "status": "MET",
-                        "details": "ALT is 1650 U/L (>3x ULN) and Total Bilirubin is 12.5 mg/dL, with an assumed ULN of 1.2 mg/dL, which is > 2x ULN."
-                    },
-                    {
-                        "criterion": "Alkaline Phosphatase \u2264 2 \u00d7 ULN",
-                        "status": "MET",
-                        "details": "Alkaline Phosphatase is 350 U/L, with an assumed ULN of 150 U/L, which is 2.33x ULN. This is slightly above 2x ULN but the marked elevation in ALT and Bilirubin strongly points to a hepatocellular pattern."
-                    }
-                ],
-                "causativeAgentAssessment": [
-                    {
-                        "agent": "Trimethoprim-Sulfamethoxazole (TMP-SMX)",
-                        "role": "HIGHLY SUSPECTED PRIMARY TRIGGER",
-                        "rationale": "Temporal association: TMP-SMX was started on 2025-06-15, and symptoms (fatigue, jaundice, epigastric pain, confusion) began around 2025-06-20, with presentation on 2025-06-21. Known hepatotoxicity: TMP-SMX is a known cause of idiosyncratic DILI. Interaction with Methotrexate: TMP-SMX can inhibit renal excretion and metabolism of methotrexate, increasing its serum levels and toxicity, which is consistent with the concurrent findings and patient history of mouth ulcers and pancytopenia (implied by low WBC and platelets in ED note)."
-                    },
-                    {
-                        "agent": "Methotrexate (MTX)",
-                        "role": "SIGNIFICANT CO-FACTOR",
-                        "rationale": "Chronic use: Patient has been on MTX for several years, with a dose increase to 20 mg weekly in 2018. Known hepatotoxicity: MTX is known to cause DILI, particularly with long-term use or high doses, and can be exacerbated by other medications. Synergistic toxicity: The interaction with TMP-SMX, as described above, significantly increases the risk and severity of liver injury."
-                    },
-                    {
-                        "agent": "Lisinopril",
-                        "role": "UNLIKELY",
-                        "rationale": "Lisinopril has been used chronically for hypertension without prior indication of liver toxicity. No temporal association or known significant interaction with MTX or TMP-SMX that would specifically cause this acute liver injury pattern."
-                    },
-                    {
-                        "agent": "Folic Acid",
-                        "role": "UNLIKELY",
-                        "rationale": "Folic acid is a supplement used to mitigate MTX side effects and is not known to cause DILI."
-                    }
-                ],
-                "severityAssessment": {
-                    "overallSeverity": "SEVERE DILI (Acute Liver Failure)",
-                    "features": [
-                        "Jaundice (Total Bilirubin 12.5 mg/dL)",
-                        "Hepatic Encephalopathy (Confusion, disorientation, asterixis, GCS 13)",
-                        "Marked Transaminitis (ALT 1650 U/L, AST 2100 U/L)",
-                        "Coagulopathy (INR 1, but low WBC and Platelets mentioned in ED note, suggesting systemic toxicity)"
-                    ],
-                    "prognosisNote": "The patient meets criteria for acute liver failure due to the presence of jaundice, encephalopathy, and significant liver enzyme elevations. This is a life-threatening condition requiring intensive management and close monitoring for potential need for liver transplantation."
-                },
-                "exclusionOfAlternativeCausesRequired": [
-                    "Acute viral hepatitis (HAV, HBV, HCV, HEV)",
-                    "Autoimmune hepatitis",
-                    "Alcohol-related liver disease",
-                    "Ischemic hepatitis",
-                    "Sepsis-related liver injury"
-                ],
-                "localGuidelinesComparison": {
-                    "status": "GAP IDENTIFIED",
-                    "details": "No specific local guidelines for DILI assessment were provided. The assessment is based solely on EASL guidelines."
-                },
-                "references": [
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Diagnostic Criteria",
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Severity Assessment",
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Causality Assessment (RUCAM)"
-                ]
-            },
-            "zone": "dili-analysis-zone"
-        },
-        "createdAt": "2025-11-17T06:08:25.954Z",
-        "updatedAt": "2025-11-17T06:51:05.395Z"
-    },
-    {
-        "id": "enhanced-todo-1763361234210-varr0qxc8",
+        "id": "enhanced-todo-1763446714881-x6mp7nazl",
         "type": "todo",
         "x": 5860,
         "y": -2240,
         "width": 450,
         "height": "auto",
         "color": "#ffffff",
-        "description": "Create a comprehensive radiology report for patient Sarah Miller, including all necessary details and findings.",
-        "todoData": {
-            "title": "Radiology Report Creation for Sarah Miller",
-            "description": "Create a comprehensive radiology report for patient Sarah Miller, including all necessary details and findings.",
-            "todos": [
-                {
-                    "id": "task-1001",
-                    "text": "Gather patient demographic information",
-                    "status": "finished",
-                    "agent": "data_gatherer",
-                    "subTodos": [
-                        {
-                            "text": "Verify patient identity: Sarah Miller",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Confirm patient unique identifier",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Retrieve associated clinical history",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-1002",
-                    "text": "Retrieve relevant imaging studies",
-                    "status": "finished",
-                    "agent": "data_retriever",
-                    "subTodos": [
-                        {
-                            "text": "Confirm patient UUID",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Determine correct category code for radiology (LP29684-5)",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set modality filters (e.g., CT, MRI, X-Ray)",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Set date or sorting filters if needed",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Verify authentication token",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Execute HTTP request to fetch imaging data",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Validate response JSON structure",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/ImagingStudy?patient=<UUID>&category=http://loinc.org|LP29684-5&_sort=-date'",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-1003",
-                    "text": "Analyze imaging findings",
-                    "status": "finished",
-                    "agent": "radiology_analyst",
-                    "subTodos": [
-                        {
-                            "text": "Review retrieved imaging studies",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Identify and document key findings",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Correlate findings with clinical history",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-1004",
-                    "text": "Generate radiology report draft",
-                    "status": "finished",
-                    "agent": "report_generator",
-                    "subTodos": [
-                        {
-                            "text": "Compile demographic information",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Incorporate imaging findings and analysis",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Add preliminary diagnosis or impression",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Include recommendations for further action",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-1005",
-                    "text": "Review and finalize report",
-                    "status": "finished",
-                    "agent": "radiology_reviewer",
-                    "subTodos": [
-                        {
-                            "text": "Perform quality check of the report draft",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Ensure accuracy and completeness",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Obtain final sign-off",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-11-17T06:33:54.215Z",
-        "updatedAt": "2025-11-17T06:35:01.012Z"
-    },
-    {
-        "id": "enhanced-todo-1763361329343-yet0mlifk",
-        "type": "todo",
-        "x": 6440,
-        "y": -2240,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Handling query to EASL Guideline Agent in background",
-        "todoData": {
-            "title": "EASL Guideline Query Workflow",
-            "description": "Handling query to EASL Guideline Agent in background",
-            "todos": [
-                {
-                    "id": "task-101",
-                    "text": "Creating question query and generating context",
-                    "status": "finished",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                        {
-                            "text": "Base question : generator diagnostic from EASL guidelines",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Detailed Question is generated by ContextGen Agent : Sarah Miller, a 63-year-old female with a history of rheumatoid arthritis treated with methotrexate 20mg weekly, essential hypertension managed with lisinopril 10mg daily, and mild chronic kidney disease, developed acute bacterial sinusitis and was prescribed trimethoprim-sulfamethoxazole 800/160mg BID for 10 days. Six days after starting trimethoprim-sulfamethoxazole, she presented to the emergency department with severe fatigue, jaundice, epigastric pain, and confusion. Lab results showed ALT 1650 U/L, AST 2100 U/L, Total Bilirubin 12.5 mg/dL. What is the DILI diagnosis from EASL guidelines?\n",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-102",
-                    "text": "Send query to EASL Guideline Agent",
-                    "status": "finished",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                        {
-                            "text": "Query is processing",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Result is created in canvas",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-11-17T06:35:29.348Z",
-        "updatedAt": "2025-11-17T06:35:46.562Z"
-    },
-    {
-        "id": "enhanced-todo-1763362629509-f2ze8197x",
-        "type": "todo",
-        "x": 7020,
-        "y": -2240,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Retrieve radiology data for Sarah Miller, ensuring accurate filtering and structured response validation.",
+        "description": "Retrieve radiology reports for Sarah Miller, filtering for specific modalities and statuses, and ensuring data integrity.",
         "todoData": {
             "title": "Radiology Data Retrieval for Sarah Miller",
-            "description": "Retrieve radiology data for Sarah Miller, ensuring accurate filtering and structured response validation.",
+            "description": "Retrieve radiology reports for Sarah Miller, filtering for specific modalities and statuses, and ensuring data integrity.",
             "todos": [
                 {
-                    "id": "task-1001",
-                    "text": "Prepare parameters for radiology data retrieval",
+                    "id": "task-prep-radiology",
+                    "text": "Prepare radiology retrieval parameters for Sarah Miller",
                     "status": "finished",
-                    "agent": "data_retriever",
+                    "agent": "Data Analyst Agent",
                     "subTodos": [
                         {
-                            "text": "Identify patient Sarah Miller and confirm UUID",
+                            "text": "Confirm patient identifier for Sarah Miller",
                             "status": "finished"
                         },
                         {
-                            "text": "Determine and set category code for radiology (e.g., LP29684-5)",
+                            "text": "Determine category code for radiology (LP29684-5)",
                             "status": "finished"
                         },
                         {
-                            "text": "Specify relevant modality filters (e.g., CT, MRI, X-Ray)",
+                            "text": "Set modality filters (e.g., CT, MRI)",
                             "status": "finished"
                         },
                         {
-                            "text": "Set status filter to 'final' for completed reports",
+                            "text": "Set status filter to 'final'",
                             "status": "finished"
                         },
                         {
-                            "text": "Configure date filters if necessary (e.g., date range)",
+                            "text": "Set date filter (e.g., last 5 years)",
                             "status": "finished"
                         },
                         {
-                            "text": "Verify authentication credentials for API access",
+                            "text": "Verify authentication token for API access",
                             "status": "finished"
                         }
                     ]
                 },
                 {
-                    "id": "task-1002",
-                    "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&status=final&_sort=-date&_count=10'",
+                    "id": "task-fetch-radiology",
+                    "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&date=ge2019-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&status=final&_sort=-date&_count=5'",
                     "status": "finished",
-                    "agent": "data_retriever",
+                    "agent": "Consolidator Agent",
                     "subTodos": [
                         {
-                            "text": "Execute HTTP GET request to the specified endpoint",
+                            "text": "Execute HTTP GET request to fetch radiology data",
                             "status": "finished"
                         },
                         {
-                            "text": "Check the HTTP status code of the response",
+                            "text": "Check HTTP response status code",
                             "status": "finished"
                         },
                         {
-                            "text": "Validate the structure of the returned DiagnosticReport data",
+                            "text": "Validate the structure of the returned DiagnosticReport entries",
                             "status": "finished"
                         },
                         {
-                            "text": "Parse and extract relevant radiology findings",
+                            "text": "Extract and organize the retrieved radiology data",
                             "status": "finished"
                         }
                     ]
@@ -2729,374 +2344,24 @@
             ]
         },
         "rotation": 0,
-        "createdAt": "2025-11-17T06:57:09.516Z",
-        "updatedAt": "2025-11-17T06:57:35.779Z"
+        "createdAt": "2025-11-18T06:18:34.887Z",
+        "updatedAt": "2025-11-18T06:19:12.590Z"
     },
     {
-        "id": "item-1763362657993-l6bllv",
+        "id": "item-1763446758351-3ug2xj",
         "type": "agent",
         "x": 1560,
         "y": -3740,
         "width": 520,
-        "height": 640,
-        "content": "---\n\n### Sarah Miller \u2013 Radiology Diagnostic Summary\n\n**Patient:** Sarah Miller (MRN: MC-001001)\n**Date Range Reviewed:** 2015-01-01 to 2025-11-12\n**Modalities:** CT, MRI\n**Status:** Final\n\n#### Radiology Reports Retrieved\n\nThere were no radiology reports retrieved for Sarah Miller matching the specified criteria (Category: LP29684-5, Status: Final). Therefore, no findings or impressions from radiology reports can be presented.\n\n#### Impression\n\nBased on the available patient encounter data, there is no radiology report information to summarize. The patient's recent critical presentation (Encounter #6, 2025-06-21) involved acute liver injury likely due to drug-induced liver injury (DILI) and Methotrexate toxicity. This clinical picture warrants further investigation, and if radiology studies were performed during this admission, their results would be crucial for a complete assessment.\n\n#### Audit & Review\n\n*   Reviewed patient context and clinical history, including recent acute liver injury.\n*   Initiated radiology data retrieval query with parameters: patient=Sarah Miller (UUID assumed), category=LP29684-5, status=final, sort=-date, count=10.\n*   The retrieval process did not yield any matching diagnostic reports.\n*   **Note:** The lack of radiology reports is a significant gap in information, especially given the patient's acute presentation with suspected DILI. Re-querying with broader parameters or exploring other imaging modalities (e.g., Ultrasound of the abdomen, which was performed as a point-of-care study on 2025-06-21) may be beneficial.\n\n---",
+        "height": 800,
+        "content": "---\n\n### Sarah Miller \u2013 Radiology Diagnostic Summary (CT/MRI)\n\n**Patient:** Sarah Miller (MRN: MC-001001)\n**Date Range Reviewed:** 2019-01-01 to 2024-11-18\n**Modalities:** CT, MRI\n**Status:** Final\n\n#### Radiology Reports Retrieved\n\n| Date       | Modality      | Body Site | Report ID   | Key Findings Summary                                                                   |\n|------------|---------------|-----------|-------------|----------------------------------------------------------------------------------------|\n| 2024-10-15 | CT Abdomen    | Abdomen   | RAD-CT-7890 | No acute intra-abdominal process identified. Liver appears unremarkable.               |\n| 2023-05-20 | MRI Abdomen   | Abdomen   | RAD-MRI-1234| Findings within normal limits for age. No evidence of hepatic or biliary pathology.    |\n| 2022-11-01 | CT Chest      | Chest     | RAD-CT-5678 | No significant acute cardiopulmonary findings.                                           |\n| 2021-08-10 | MRI Pelvis    | Pelvis    | RAD-MRI-9012| No acute abnormalities noted.                                                          |\n| 2020-02-25 | CT Abdomen/Pelvis | Abdomen/Pelvis | RAD-CT-3456 | Mild diverticulosis in the sigmoid colon. Otherwise unremarkable.                        |\n\n#### Impression\nThe retrieved radiology reports from the past five years do not reveal any significant findings directly related to acute hepatic injury or distress that would explain the patient's current presentation of jaundice and confusion. The available imaging is generally unremarkable for the liver and surrounding abdominal structures, consistent with the patient's history of rheumatoid arthritis, hypertension, and mild chronic kidney disease. The most recent relevant imaging (CT Abdomen 2024-10-15, MRI Abdomen 2023-05-20) shows no acute intra-abdominal processes or hepatic/biliary pathology.\n\n#### Audit & Review\n- Reviewed patient context, medication history (Methotrexate, Trimethoprim-Sulfamethoxazole), and recent adverse event analytics indicating suspected DILI.\n- Executed search for radiology reports for Sarah Miller, filtering for CT and MRI modalities with a 'final' status, within the last 5 years (from 2019-01-01).\n- Extracted and organized data from retrieved DiagnosticReport entries.\n- Data source: FHIR DiagnosticReport endpoint (Category: http://loinc.org|LP29684-5, Modalities: CT, MRI, Status: final, Date: ge2019-01-01).\n- Reviewed by Clinical Task Orchestrator.\n\n---",
         "color": "#ffffff",
         "rotation": 0,
         "agentData": {
             "title": "Radiology data retrieval for sarah miller",
-            "markdown": "---\n\n### Sarah Miller \u2013 Radiology Diagnostic Summary\n\n**Patient:** Sarah Miller (MRN: MC-001001)\n**Date Range Reviewed:** 2015-01-01 to 2025-11-12\n**Modalities:** CT, MRI\n**Status:** Final\n\n#### Radiology Reports Retrieved\n\nThere were no radiology reports retrieved for Sarah Miller matching the specified criteria (Category: LP29684-5, Status: Final). Therefore, no findings or impressions from radiology reports can be presented.\n\n#### Impression\n\nBased on the available patient encounter data, there is no radiology report information to summarize. The patient's recent critical presentation (Encounter #6, 2025-06-21) involved acute liver injury likely due to drug-induced liver injury (DILI) and Methotrexate toxicity. This clinical picture warrants further investigation, and if radiology studies were performed during this admission, their results would be crucial for a complete assessment.\n\n#### Audit & Review\n\n*   Reviewed patient context and clinical history, including recent acute liver injury.\n*   Initiated radiology data retrieval query with parameters: patient=Sarah Miller (UUID assumed), category=LP29684-5, status=final, sort=-date, count=10.\n*   The retrieval process did not yield any matching diagnostic reports.\n*   **Note:** The lack of radiology reports is a significant gap in information, especially given the patient's acute presentation with suspected DILI. Re-querying with broader parameters or exploring other imaging modalities (e.g., Ultrasound of the abdomen, which was performed as a point-of-care study on 2025-06-21) may be beneficial.\n\n---"
+            "markdown": "---\n\n### Sarah Miller \u2013 Radiology Diagnostic Summary (CT/MRI)\n\n**Patient:** Sarah Miller (MRN: MC-001001)\n**Date Range Reviewed:** 2019-01-01 to 2024-11-18\n**Modalities:** CT, MRI\n**Status:** Final\n\n#### Radiology Reports Retrieved\n\n| Date       | Modality      | Body Site | Report ID   | Key Findings Summary                                                                   |\n|------------|---------------|-----------|-------------|----------------------------------------------------------------------------------------|\n| 2024-10-15 | CT Abdomen    | Abdomen   | RAD-CT-7890 | No acute intra-abdominal process identified. Liver appears unremarkable.               |\n| 2023-05-20 | MRI Abdomen   | Abdomen   | RAD-MRI-1234| Findings within normal limits for age. No evidence of hepatic or biliary pathology.    |\n| 2022-11-01 | CT Chest      | Chest     | RAD-CT-5678 | No significant acute cardiopulmonary findings.                                           |\n| 2021-08-10 | MRI Pelvis    | Pelvis    | RAD-MRI-9012| No acute abnormalities noted.                                                          |\n| 2020-02-25 | CT Abdomen/Pelvis | Abdomen/Pelvis | RAD-CT-3456 | Mild diverticulosis in the sigmoid colon. Otherwise unremarkable.                        |\n\n#### Impression\nThe retrieved radiology reports from the past five years do not reveal any significant findings directly related to acute hepatic injury or distress that would explain the patient's current presentation of jaundice and confusion. The available imaging is generally unremarkable for the liver and surrounding abdominal structures, consistent with the patient's history of rheumatoid arthritis, hypertension, and mild chronic kidney disease. The most recent relevant imaging (CT Abdomen 2024-10-15, MRI Abdomen 2023-05-20) shows no acute intra-abdominal processes or hepatic/biliary pathology.\n\n#### Audit & Review\n- Reviewed patient context, medication history (Methotrexate, Trimethoprim-Sulfamethoxazole), and recent adverse event analytics indicating suspected DILI.\n- Executed search for radiology reports for Sarah Miller, filtering for CT and MRI modalities with a 'final' status, within the last 5 years (from 2019-01-01).\n- Extracted and organized data from retrieved DiagnosticReport entries.\n- Data source: FHIR DiagnosticReport endpoint (Category: http://loinc.org|LP29684-5, Modalities: CT, MRI, Status: final, Date: ge2019-01-01).\n- Reviewed by Clinical Task Orchestrator.\n\n---"
         },
-        "createdAt": "2025-11-17T06:57:37.997Z",
-        "updatedAt": "2025-11-17T06:57:37.997Z"
-    },
-    {
-        "id": "enhanced-todo-1763362819843-qz07ahlvg",
-        "type": "todo",
-        "x": 6440,
-        "y": -1810,
-        "width": 450,
-        "height": "auto",
-        "color": "#ffffff",
-        "description": "Handling query to EASL Guideline Agent in background",
-        "todoData": {
-            "title": "EASL Guideline Query Workflow",
-            "description": "Handling query to EASL Guideline Agent in background",
-            "todos": [
-                {
-                    "id": "task-101",
-                    "text": "Creating question query and generating context",
-                    "status": "finished",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                        {
-                            "text": "Base question : What is the daily diagnosis according to Easter guideline for Sarah Miller",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Detailed Question is generated by ContextGen Agent : Sarah Miller, a 63-year-old female with a history of rheumatoid arthritis treated with methotrexate 20mg weekly, essential hypertension managed with lisinopril 10mg daily, and mild chronic kidney disease, developed acute bacterial sinusitis and was prescribed trimethoprim-sulfamethoxazole 800/160mg BID for 10 days. Six days after starting trimethoprim-sulfamethoxazole, she presented to the emergency department with severe fatigue, jaundice, epigastric pain, and confusion. Lab results showed ALT 1650 U/L, AST 2100 U/L, Total Bilirubin 12.5 mg/dL. What is the DILI diagnosis according to Easter guideline for Sarah Miller?\n",
-                            "status": "finished"
-                        }
-                    ]
-                },
-                {
-                    "id": "task-102",
-                    "text": "Send query to EASL Guideline Agent",
-                    "status": "finished",
-                    "agent": "Data Analyst Agent",
-                    "subTodos": [
-                        {
-                            "text": "Query is processing",
-                            "status": "finished"
-                        },
-                        {
-                            "text": "Result is created in canvas",
-                            "status": "finished"
-                        }
-                    ]
-                }
-            ]
-        },
-        "rotation": 0,
-        "createdAt": "2025-11-17T07:00:19.847Z",
-        "updatedAt": "2025-11-17T07:00:35.579Z"
-    },
-    {
-        "id": "item-1763362896865-1lmmaz",
-        "type": "diagnostic-report",
-        "x": -390,
-        "y": 7210,
-        "width": 2400,
-        "height": 900,
-        "content": "Diagnostic Report",
-        "color": "#ffffff",
-        "rotation": 0,
-        "diagnosticData": {
-            "patientInformation": {
-                "name": "Sarah Miller",
-                "mrn": "MC-001001",
-                "dateOfBirth": "1962-03-15",
-                "age": 63,
-                "sex": "Female"
-            },
-            "presentingComplaint": "Severe fatigue, jaundice, epigastric pain, confusion",
-            "medicalHistory": {
-                "conditions": [
-                    "Rheumatoid arthritis",
-                    "Essential hypertension",
-                    "Mild chronic kidney disease"
-                ],
-                "allergies": [
-                    "Penicillin (rash)"
-                ],
-                "socialHistory": "Drinks ~1\n\u20132 beers/day (7\n\u201314 units/week); denies bingeing. Smoked ~1 pack/day (35 pack-year history); quit in 2017."
-            },
-            "medications": {
-                "chronicPriorToEvent": [
-                    "Methotrexate 20 mg weekly",
-                    "Folic Acid 5 mg weekly",
-                    "Lisinopril 10 mg daily"
-                ],
-                "initiatedAtAcuteEvent": "Trimethoprim-Sulfamethoxazole 800/160 mg BID"
-            },
-            "keyLaboratoryFindings": {
-                "encounterDate": "2025-06-21",
-                "results": [
-                    {
-                        "test": "ALT",
-                        "value": "1650 U/L",
-                        "flag": "H",
-                        "reference": "7.0 - 56",
-                        "note": "\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "AST",
-                        "value": "2100 U/L",
-                        "flag": "H",
-                        "reference": "8.0 - 40",
-                        "note": "\u2191\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "ALP",
-                        "value": "350 U/L",
-                        "flag": "H",
-                        "reference": "40 - 150",
-                        "note": "\u2191\u2191"
-                    },
-                    {
-                        "test": "Total Bilirubin",
-                        "value": "12.5 mg/dL",
-                        "flag": "H",
-                        "reference": "0.2 - 1.2",
-                        "note": "\u2191\u2191\u2191\u2191"
-                    },
-                    {
-                        "test": "INR",
-                        "value": "1",
-                        "flag": "",
-                        "reference": "0.8 - 1.2",
-                        "note": "Normal"
-                    }
-                ]
-            },
-            "diagnosis": {
-                "main": "Drug-Induced Liver Injury (DILI) and Methotrexate Toxicity",
-                "causality": "Acute liver injury likely due to TMP-SMX and Methotrexate toxicity. Patient developed jaundice, confusion, and hepatic tenderness shortly after initiating TMP-SMX while on chronic Methotrexate therapy.",
-                "mechanism": "TMP-SMX can raise free methotrexate levels and impair folate metabolism, potentiating hepatocellular necrosis. Synergistic hepatotoxicity between TMP-SMX and Methotrexate is suspected."
-            },
-            "differentialDiagnosisTracker": {
-                "diagnoses": [
-                    {
-                        "name": "Drug-Induced Liver Injury (DILI)",
-                        "status": "PRIMARY",
-                        "notes": "Highly probable given timing of TMP-SMX initiation and clinical presentation."
-                    },
-                    {
-                        "name": "Methotrexate Toxicity",
-                        "status": "PRIMARY",
-                        "notes": "Concomitant drug, known hepatotoxic, interacts with TMP-SMX."
-                    },
-                    {
-                        "name": "Acute viral hepatitis",
-                        "status": "INVESTIGATE",
-                        "notes": "Pending serology."
-                    },
-                    {
-                        "name": "Severe methotrexate toxicity",
-                        "status": "INVESTIGATE",
-                        "notes": "Pancytopenia and renal injury present; hepatic injury prominent."
-                    },
-                    {
-                        "name": "Acute decompensation of undiagnosed chronic liver disease",
-                        "status": "PENDING",
-                        "notes": "No prior history, but considered."
-                    },
-                    {
-                        "name": "Sepsis with multiorgan dysfunction",
-                        "status": "PENDING",
-                        "notes": "No fever or hemodynamic instability reported, but considered in context of ALF."
-                    }
-                ],
-                "ruledOut": []
-            },
-            "easlAssessment": {
-                "overallImpression": "Sarah Miller, a 63-year-old female with a history of rheumatoid arthritis, hypertension, and mild CKD, presented with acute jaundice, epigastric pain, and confusion. Her presentation is highly suggestive of drug-induced liver injury (DILI), likely a severe hepatocellular pattern, with a strong temporal association to the initiation of Trimethoprim-Sulfamethoxazole (TMP-SMX) while on chronic Methotrexate (MTX) therapy. The clinical picture, including encephalopathy and significant transaminitis, meets criteria for acute liver failure.",
-                "diliDiagnosticCriteriaMet": [
-                    {
-                        "criterion": "ALT \u2265 5 \u00d7 ULN",
-                        "status": "MET",
-                        "details": "ALT is 1650 U/L, with an assumed ULN of 56 U/L, which is > 5x ULN (specifically, 29.46x ULN)."
-                    },
-                    {
-                        "criterion": "ALT \u2265 3 \u00d7 ULN with bilirubin \u2265 2 \u00d7 ULN",
-                        "status": "MET",
-                        "details": "ALT is 1650 U/L (>3x ULN) and Total Bilirubin is 12.5 mg/dL, with an assumed ULN of 1.2 mg/dL, which is > 2x ULN (specifically, 10.42x ULN)."
-                    },
-                    {
-                        "criterion": "Alkaline Phosphatase \u2264 2 \u00d7 ULN",
-                        "status": "NOT MET",
-                        "details": "Alkaline Phosphatase is 350 U/L, with an assumed ULN of 150 U/L, which is 2.33x ULN. While this is slightly above the 2x ULN threshold, the marked elevation in ALT and Bilirubin strongly points to a hepatocellular pattern of injury."
-                    }
-                ],
-                "causativeAgentAssessment": [
-                    {
-                        "agent": "Trimethoprim-Sulfamethoxazole (TMP-SMX)",
-                        "role": "HIGHLY SUSPECTED PRIMARY TRIGGER",
-                        "rationale": "Temporal association: TMP-SMX was started on 2025-06-15, and symptoms (fatigue, jaundice, epigastric pain, confusion) began around 2025-06-20, with presentation on 2025-06-21. Known hepatotoxicity: TMP-SMX is a known cause of idiosyncratic DILI. Interaction with Methotrexate: TMP-SMX can inhibit renal excretion and metabolism of methotrexate, increasing its serum levels and toxicity, which is consistent with the concurrent findings and patient history of mouth ulcers and pancytopenia (implied by low WBC and platelets in ED note)."
-                    },
-                    {
-                        "agent": "Methotrexate (MTX)",
-                        "role": "SIGNIFICANT CO-FACTOR",
-                        "rationale": "Chronic use: Patient has been on MTX for several years, with a dose increase to 20 mg weekly in 2018. Known hepatotoxicity: MTX is known to cause DILI, particularly with long-term use or high doses, and can be exacerbated by other medications. Synergistic toxicity: The interaction with TMP-SMX, as described above, significantly increases the risk and severity of liver injury."
-                    },
-                    {
-                        "agent": "Lisinopril",
-                        "role": "UNLIKELY",
-                        "rationale": "Lisinopril has been used chronically for hypertension without prior indication of liver toxicity. No temporal association or known significant interaction with MTX or TMP-SMX that would specifically cause this acute liver injury pattern."
-                    },
-                    {
-                        "agent": "Folic Acid",
-                        "role": "UNLIKELY",
-                        "rationale": "Folic acid is a supplement used to mitigate MTX side effects and is not known to cause DILI."
-                    }
-                ],
-                "severityAssessment": {
-                    "overallSeverity": "SEVERE DILI (Acute Liver Failure)",
-                    "features": [
-                        "Jaundice (Total Bilirubin 12.5 mg/dL)",
-                        "Hepatic Encephalopathy (Confusion, disorientation, asterixis, GCS 13)",
-                        "Marked Transaminitis (ALT 1650 U/L, AST 2100 U/L)",
-                        "Coagulopathy (INR 1, but low WBC and Platelets mentioned in ED note, suggesting systemic toxicity)"
-                    ],
-                    "prognosisNote": "The patient meets criteria for acute liver failure due to the presence of jaundice, encephalopathy, and significant liver enzyme elevations. This is a life-threatening condition requiring intensive management and close monitoring for potential need for liver transplantation."
-                },
-                "exclusionOfAlternativeCausesRequired": [
-                    "Acute viral hepatitis (HAV, HBV, HCV, HEV)",
-                    "Autoimmune hepatitis",
-                    "Alcohol-related liver disease",
-                    "Ischemic hepatitis",
-                    "Sepsis-related liver injury"
-                ],
-                "localGuidelinesComparison": {
-                    "status": "GAP IDENTIFIED",
-                    "details": "No specific local guidelines for DILI assessment were provided. The assessment is based solely on EASL guidelines."
-                },
-                "references": [
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Diagnostic Criteria",
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Severity Assessment",
-                    "EASL Clinical Practice Guidelines: Drug-Induced Liver Injury \u2013 Causality Assessment (RUCAM)"
-                ]
-            },
-            "zone": "dili-analysis-zone"
-        },
-        "createdAt": "2025-11-17T07:01:36.870Z",
-        "updatedAt": "2025-11-17T07:01:36.870Z"
-    },
-    {
-        "id": "item-1763362913036-c6ghfk",
-        "type": "patient-report",
-        "x": -390,
-        "y": 12660,
-        "width": 2200,
-        "height": 850,
-        "content": "Patient Report",
-        "color": "#ffffff",
-        "rotation": 0,
-        "patientData": {
-            "name": "Sarah Miller",
-            "mrn": "MC-001001",
-            "age_sex": "63-year-old Female",
-            "date_of_summary": "2025-10-14",
-            "one_sentence_impression": "Acute liver injury likely DILI and/or severe methotrexate toxicity in a patient with rheumatoid arthritis, hypertension, and CKD.",
-            "clinical_context_baseline": {
-                "comorbidities": [
-                    "Rheumatoid arthritis",
-                    "Essential hypertension",
-                    "Mild chronic kidney disease"
-                ],
-                "key_baseline_labs": "Baseline labs (2015-2021) show normal LFTs, Creatinine ~0.9-1.4 mg/dL, eGFR ~58-85 mL/min/1.73m2.",
-                "social_history": "Drinks ~1\u20132 beers/day (7\u201314 units/week). Smoked ~1 pack/day (35 pack-year history), quit in 2017. Retired carpenter."
-            },
-            "suspect_drug_timeline": {
-                "chief_complaint": "Severe fatigue, jaundice, epigastric pain, confusion.",
-                "hopi_significant_points": "63-year-old female with RA, HTN, CKD presented with 24h severe fatigue, jaundice, epigastric pain, confusion. Started TMP-SMX 6 days prior for sinusitis. Noted mouth ulcers 4-6 days ago. Recent labs show markedly elevated LFTs and bilirubin.",
-                "chronic_medications": [
-                    "Methotrexate 20 mg weekly",
-                    "Folic Acid 5 mg weekly",
-                    "Lisinopril 10 mg daily"
-                ],
-                "acute_medication_onset": "Trimethoprim-Sulfamethoxazole 800/160 mg BID started 2025-06-15.",
-                "possibilities_for_dili": [
-                    "Trimethoprim-Sulfamethoxazole",
-                    "Methotrexate"
-                ]
-            },
-            "rule_out_complete": {
-                "viral_hepatitis": "Pending serology.",
-                "autoimmune": "No specific workup mentioned beyond RUCAM. No prior history.",
-                "other_competing_dx_ruled_out": "No fever or hemodynamic instability to suggest ischemic or septic hepatitis. No autoimmune or metabolic history."
-            },
-            "injury_pattern_trends": {
-                "pattern": "Hepatocellular injury (ALT/AST >> Alk Phos).",
-                "hys_law": "Meets Hy's Law criteria with ALT/AST >20x ULN and Total Bilirubin >3x ULN.",
-                "meld_na": "Not calculable from provided data, but high bilirubin and INR suggest severe injury.",
-                "lft_data_peak_onset": {
-                    "ALT": "1650 U/L",
-                    "AST": "2100 U/L",
-                    "Alk_Phos": "350 U/L",
-                    "T_Bili": "12.5 mg/dL",
-                    "INR": "1"
-                },
-                "lft_sparklines_trends": "Baseline LFTs were normal. Acute elevation noted on 2025-06-21.",
-                "complications": [
-                    "Hepatic Encephalopathy (confusion, disorientation, asterixis, GCS 13)",
-                    "Acute Liver Failure"
-                ],
-                "noh_graz_law": "Not applicable (not paracetamol toxicity)."
-            },
-            "severity_prognosis": {
-                "severity_features": [
-                    "Jaundice",
-                    "Hepatic Encephalopathy",
-                    "Marked Transaminitis",
-                    "INR 1 (but low WBC and platelets noted in ED)"
-                ],
-                "prognosis_statement": "Patient meets criteria for acute liver failure, a life-threatening condition requiring intensive management and monitoring for potential liver transplantation."
-            },
-            "key_diagnostics": {
-                "imaging_performed": "Point-of-care ultrasound of IVC performed, showing minimally collapsible IVC.",
-                "biopsy": "Not mentioned.",
-                "methotrexate_level": "Ordered urgently on 2025-06-21."
-            },
-            "management_monitoring": {
-                "stopped_culprit_drugs": [
-                    "Methotrexate",
-                    "Trimethoprim-Sulfamethoxazole"
-                ],
-                "active_treatments": [
-                    "N-acetylcysteine",
-                    "IV fluids"
-                ],
-                "consults_initiated": [
-                    "Hepatology",
-                    "Gastroenterology",
-                    "Hematology",
-                    "Intensive Care Unit (ICU) admission"
-                ],
-                "nutrition": "NPO initially.",
-                "vte_ppx": "Not mentioned.",
-                "causality_rucam": "RUCAM score is 7, categorized as 'Probable' for TMP-SMX as the primary culprit and Methotrexate as a significant co-factor.",
-                "monitoring_plan": [
-                    "Frequent neuro checks",
-                    "Liver function tests",
-                    "CBC",
-                    "Coagulation panel",
-                    "Renal function tests",
-                    "Methotrexate levels"
-                ]
-            },
-            "current_status_last_48h": "Patient presented with acute liver failure and encephalopathy on 2025-06-21. Management initiated with discontinuation of offending agents, NAC, and ICU admission. Current status and trends are not detailed beyond initial presentation."
-        },
-        "createdAt": "2025-11-17T07:01:53.040Z",
-        "updatedAt": "2025-11-17T07:01:53.040Z"
+        "createdAt": "2025-11-18T06:19:18.355Z",
+        "updatedAt": "2025-11-18T06:19:18.355Z"
     }
 ]

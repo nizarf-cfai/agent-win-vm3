@@ -13,6 +13,8 @@ import asyncio
 import random
 import threading
 import httpx
+from chroma_db.chroma_script import rag_from_json
+
 
 
 
@@ -72,8 +74,9 @@ def parse_tool(query):
     return result
 
 
-async def resolve_object_id(query: str, context: str):
-
+async def resolve_object_id(query: str, context: str=""):
+    if not context:
+        context = await rag_from_json(query, top_k=3)
     # Load system prompt
     with open("system_prompts/objectid_parser.md", "r", encoding="utf-8") as f:
         SYSTEM_PROMPT = f.read()
@@ -539,6 +542,72 @@ async def generate_task_obj(query):
         json.dump(task_res, f, ensure_ascii=False, indent=4)
 
     return todo_json, task_res
+
+
+async def generate_todo(query:str):
+    with open("system_prompts/task_generator.md", "r", encoding="utf-8") as f:
+        SYSTEM_PROMPT = f.read()
+
+    RESPONSE_SCHEMA = {
+        "type": "object",
+        "properties": {
+            "title": {"type": "string"},
+            "description": {"type": "string"},
+            "todos": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "text": {"type": "string"},
+                        "status": {"type": "string", "enum": ["pending", "executing", "finished"]},
+                        "agent": {"type": "string"},
+                        "subTodos": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {"type": "string"},
+                                    "status": {"type": "string", "enum": ["pending", "executing", "finished"]}
+                                },
+                                "required": ["text", "status"]
+                            }
+                        }
+                    },
+                    "required": ["id", "text", "status", "agent", "subTodos"]
+                }
+            }
+        },
+        "required": ["title", "description", "todos"]
+    }
+
+    prompt = f"User request:\n{query}\n\nGenerate the task workflow JSON."
+
+    model = genai.GenerativeModel(
+        MODEL,
+        system_instruction=SYSTEM_PROMPT,
+    )
+
+    resp = model.generate_content(
+        prompt,
+        generation_config={
+            "response_mime_type": "application/json",
+            "response_schema": RESPONSE_SCHEMA
+        }
+    )
+    ## Generated todo
+    todo_json = json.loads(resp.text)
+    with open(f"{config.output_dir}/chatmode_todo_generated.json", "w", encoding="utf-8") as f:
+        json.dump(todo_json, f, ensure_ascii=False, indent=4)
+
+
+    ## Create todo object
+    task_res = await canvas_ops.create_todo(todo_json)
+
+    with open(f"{config.output_dir}/chatmode_todo_object_response.json", "w", encoding="utf-8") as f:
+        json.dump(task_res, f, ensure_ascii=False, indent=4)
+    
+    return task_res
 
 async def generate_task_workflow(query: str):
     with open("system_prompts/task_generator.md", "r", encoding="utf-8") as f:
