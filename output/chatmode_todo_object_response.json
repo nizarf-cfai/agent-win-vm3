@@ -1,116 +1,96 @@
 {
-    "id": "enhanced-todo-1763617325726-6j68ybimx",
+    "id": "enhanced-todo-1763623005926-g7xqwn1zj",
     "type": "todo",
-    "x": 5860,
-    "y": -2240,
+    "x": 6480,
+    "y": -1480,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Prepare and send an update to Sarah Miller's GP and rheumatologists regarding her condition or treatment.",
+    "description": "Retrieve outstanding liver-related investigations for a patient.",
     "todoData": {
-        "title": "Update GP and Rheumatologists on Sarah Miller",
-        "description": "Prepare and send an update to Sarah Miller's GP and rheumatologists regarding her condition or treatment.",
+        "title": "Outstanding Liver Investigations Retrieval",
+        "description": "Retrieve outstanding liver-related investigations for a patient.",
         "todos": [
             {
-                "id": "task-001",
-                "text": "Gather latest clinical information for Sarah Miller",
+                "id": "task-1001",
+                "text": "Prepare liver investigation retrieval parameters",
                 "status": "pending",
                 "agent": "Clinical Agent",
                 "subTodos": [
                     {
-                        "text": "Review patient record for recent updates",
+                        "text": "Identify patient context",
                         "status": "pending"
                     },
                     {
-                        "text": "Identify key findings or changes",
+                        "text": "Determine relevant LOINC codes for liver investigations",
                         "status": "pending"
                     },
                     {
-                        "text": "Summarize information relevant to GP",
+                        "text": "Specify 'outstanding' or 'pending' status filter",
                         "status": "pending"
                     },
                     {
-                        "text": "Summarize information relevant to Rheumatologists",
+                        "text": "Apply date filters if necessary",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Set modality filters if applicable",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-002",
-                "text": "Draft update communication for GP",
+                "id": "task-1002",
+                "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LPxxxx-x&status=entered-in-error&_sort=-date'",
                 "status": "pending",
-                "agent": "Clinical Agent",
+                "agent": "Data Analyst Agent",
                 "subTodos": [
                     {
-                        "text": "Compose clear and concise message for GP",
+                        "text": "Confirm patient UUID",
                         "status": "pending"
                     },
                     {
-                        "text": "Include relevant patient identifiers",
+                        "text": "Determine correct category code for liver investigations",
                         "status": "pending"
                     },
                     {
-                        "text": "Ensure compliance with communication protocols",
+                        "text": "Set status filter for 'outstanding' investigations",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Apply date or sorting filters",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Verify authentication token",
+                        "status": "pending"
+                    },
+                    {
+                        "text": "Validate response JSON structure",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-003",
-                "text": "Draft update communication for Rheumatologists",
+                "id": "task-1003",
+                "text": "Consolidate and summarize outstanding liver investigations",
                 "status": "pending",
-                "agent": "Clinical Agent",
+                "agent": "Consolidator Agent",
                 "subTodos": [
                     {
-                        "text": "Compose detailed message for Rheumatologists",
+                        "text": "Parse retrieved DiagnosticReport data",
                         "status": "pending"
                     },
                     {
-                        "text": "Include specific clinical details and rationale",
+                        "text": "Filter for liver-specific investigation types",
                         "status": "pending"
                     },
                     {
-                        "text": "Ensure compliance with communication protocols",
-                        "status": "pending"
-                    }
-                ]
-            },
-            {
-                "id": "task-004",
-                "text": "Send update to GP",
-                "status": "pending",
-                "agent": "Clinical Agent",
-                "subTodos": [
-                    {
-                        "text": "Identify correct GP contact information",
+                        "text": "Identify and list outstanding reports",
                         "status": "pending"
                     },
                     {
-                        "text": "Transmit drafted message securely",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Confirm receipt if possible",
-                        "status": "pending"
-                    }
-                ]
-            },
-            {
-                "id": "task-005",
-                "text": "Send update to Rheumatologists",
-                "status": "pending",
-                "agent": "Clinical Agent",
-                "subTodos": [
-                    {
-                        "text": "Identify correct Rheumatologist contact information",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Transmit drafted message securely",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Confirm receipt if possible",
+                        "text": "Generate a summary of outstanding investigations",
                         "status": "pending"
                     }
                 ]
@@ -118,6 +98,6 @@
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-20T05:42:06.031Z",
-    "updatedAt": "2025-11-20T05:42:06.031Z"
+    "createdAt": "2025-11-20T07:16:46.234Z",
+    "updatedAt": "2025-11-20T07:16:46.234Z"
 }

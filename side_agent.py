@@ -1225,8 +1225,14 @@ def create_report(payload):
     print("Start create object")
     url = BASE_URL + "/api/patient-report"
     payload['zone'] = "patient-report-zone"
+    with open(f"{config.output_dir}/report_create_payload.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=4)
     response = requests.post(url, json=payload)
     print(response.status_code)
+    data = response.json()
+
+    with open(f"{config.output_dir}/report_create_response.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
 async def create_patient_report():
     diagnosis_content = await generate_patient_report()
@@ -1234,6 +1240,26 @@ async def create_patient_report():
     print("Patient report content generated")
 
     create_report(diagnosis_content)
+
+def create_legal(payload):
+    print("Start legal object")
+    url = BASE_URL + "/api/legal-compliance"
+
+    with open(f"{config.output_dir}/legal_create_payload.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=4)
+    response = requests.post(url, json=payload)
+    print(response.status_code)
+    data = response.json()
+
+    with open(f"{config.output_dir}/legal_create_response.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+
+async def create_legal_doc():
+    with open("output/legal_object.json", "r", encoding="utf-8") as f:
+        legal_payload = json.load(f)
+
+    create_legal(legal_payload)
 
 # start_time = time.time()
 

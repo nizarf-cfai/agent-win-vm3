@@ -77,39 +77,6 @@
 **createdAt:** 2025-10-14T16:16:23.245Z
 **updatedAt:** 2025-10-14T16:16:23.245Z
 
-# Object Record 28
-**objectId:** dashboard-item-1763619740994-scheduling-panel
-**type:** component
-**componentType:** SchedulingPanel
-**description:** Integrated scheduling and investigation ordering panel
-**content title:** Care Coordination & Scheduling
-**content component:** SchedulingPanel
-**content props patientId:** SM43850603
-**content props currentStatus:** Post-Acute Discharge (Stable)
-**content props schedulingContext nextAvailableSlot date:** 2025-12-15T09:30:00
-**content props schedulingContext nextAvailableSlot provider:** Dr. R. Sharma (Hepatology) & Dr. R. Hall (Rheumatology)
-**content props schedulingContext nextAvailableSlot clinicType:** Joint Liver/Rheum Complexity Clinic
-**content props schedulingContext nextAvailableSlot location:** Outpatient Zone C, Room 12
-**content props schedulingContext nextAvailableSlot wait time:** ~4 weeks
-**content props schedulingContext outstandingInvestigations 0 id:** INV-FS-001
-**content props schedulingContext outstandingInvestigations 0 name:** Transient Elastography (Fibroscan)
-**content props schedulingContext outstandingInvestigations 0 status:** Pending Request
-**content props schedulingContext outstandingInvestigations 0 priority:** Routine (6-month post-injury check)
-**content props schedulingContext outstandingInvestigations 0 notes:** Assess for residual fibrosis following June 2025 DILI event
-**content props schedulingContext outstandingInvestigations 1 id:** INV-VS-002
-**content props schedulingContext outstandingInvestigations 1 name:** Confirmatory Viral Serology (Repeat)
-**content props schedulingContext outstandingInvestigations 1 status:** Pending Request
-**content props schedulingContext outstandingInvestigations 1 priority:** Routine
-**content props schedulingContext outstandingInvestigations 1 notes:** Final exclusion of occult viral hepatitis
-**content props schedulingContext bookingAction status:** Confirmed
-**content props schedulingContext bookingAction lastUpdated:** 2025-11-20T10:05:00Z
-**content props schedulingContext bookingAction actionsTaken 0:** Slot secured: 2025-12-15 @ 09:30
-**content props schedulingContext bookingAction actionsTaken 1:** Fibroscan request generated (Accession #FS-251215-09)
-**content props schedulingContext bookingAction actionsTaken 2:** Invitation letter generated and sent via Patient Portal
-**content props schedulingContext bookingAction correspondencePreview:** Dear Sarah Miller, your follow-up appointment for Liver Function Review has been scheduled for December 15, 2025...
-**createdAt:** 2025-11-20T06:22:21.297Z
-**updatedAt:** 2025-11-20T06:22:21.297Z
-
 # Object Record 1
 **objectId:** dashboard-item-1759906076097-medication-timeline
 **type:** component
@@ -228,6 +195,58 @@
 **createdAt:** 2025-10-14T16:47:56.098Z
 **updatedAt:** 2025-11-18T09:15:31.732Z
 
+# Object Record 24
+**objectId:** dashboard-item-hepato-referal-decline
+**type:** button
+**buttonText:** Decline Hepatologist Referral
+**buttonIcon:** 
+**buttonColor:** #F44336
+**buttonAction:** declineHepato
+**showHandles:** True
+**handlePosition:** left
+**draggable:** False
+**createdAt:** 2025-11-10T16:00:00.000Z
+**updatedAt:** 2025-11-10T16:00:00.000Z
+
+# Object Record 3
+**objectId:** dashboard-item-1759906300004-single-encounter-4
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #4 - Outpatient
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 4
+**content props encounter meta visit type:** Outpatient
+**content props encounter meta date time:** 2024-06-03T11:30:55
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** Unknown
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Initiation of Methotrexate for Rheumatoid Arthritis management.
+**content props encounter chief complaint:** Initiation of Disease-Modifying Anti-Rheumatic Drug (DMARD) - Methotrexate (MTX) for Rheumatoid Arthritis (RA) management.
+**content props encounter hpi:** Sarah Miller presents for the initiation of Methotrexate treatment for RA. She reports her joint pain has been stable but remains a significant source of discomfort, affecting her daily activities. A thorough review of her medical history, medication adherence, and lifestyle was conducted. The patient confirms receipt and comprehension of the Methotrexate informational leaflet, indicating understanding of the treatment regimen and potential adverse effects. The decision to commence Methotrexate was made following normalization of liver function tests (LFTs) as of May 6, 2024. The patient reiterated understanding of the importance of strict compliance with the monitoring schedule due to the severe hepatotoxicity risk associated with Methotrexate.
+**content props encounter physical exam general:** Vital Signs: BP 138/86 mmHg (sitting), HR 80 bpm, RR 15/min, Temp 36.7°C, SpO₂ 98% on room air. Anthropometrics: Weight 84 kg (BMI 31.2 kg/m²). Weight stable compared with early May.
+**content props encounter physical exam msk:** 
+**content props encounter physical exam other systems:** 
+**content props encounter plan investigations labs 0:** LFTs every six weeks
+**content props encounter plan investigations labs 1:** Full Blood Count (FBC) every six weeks
+**content props encounter plan management follow up:** First LFT/FBC evaluation scheduled for July 15, 2024. Regular monitoring every six weeks for the next 6 months. Patient to contact clinic immediately if severe nausea, vomiting, or jaundice occur.
+**content props encounter plan management medications started 0 dose:** 7.5mg
+**content props encounter plan management medications started 0 frequency:** once weekly
+**content props encounter plan management medications started 0 name:** Methotrexate
+**content props encounter plan management medications started 0 route:** orally
+**content props encounter plan management medications started 1 dose:** 5mg
+**content props encounter plan management medications started 1 frequency:** weekly
+**content props encounter plan management medications started 1 name:** Folic Acid
+**content props encounter plan management medications started 1 route:** orally
+**content props encounter reason for visit:** Initiation of Methotrexate for Rheumatoid Arthritis management.
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 4
+**content props dataSource:** Medilogik
+**createdAt:** 2025-10-15T08:00:00.000Z
+**updatedAt:** 2025-10-15T08:00:00.000Z
+
 # Object Record 0
 **objectId:** dashboard-item-1759906300003-single-encounter-1
 **type:** component
@@ -308,46 +327,6 @@
 **content props dataSource:** Nervecentre
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
-
-# Object Record 6
-**objectId:** dashboard-item-1759906300004-single-encounter-7
-**type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #7 - Inpatient Hepatology Ward B
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 7
-**content props encounter meta visit type:** Inpatient
-**content props encounter meta date time:** 2024-08-15T10:00:48
-**content props encounter meta provider name:** Dr. R. Sharma
-**content props encounter meta provider specialty:** Consultant Hepatologist
-**content props encounter meta ui risk color:** yellow
-**content props encounter assessment impression:** Severe Drug-Induced Liver Injury (DILI) secondary to Methotrexate, with a RUCAM score of 9/10, indicating a high likelihood of causation. No features of Acute-on-Chronic Liver Failure (ACLF). Underlying Metabolic Associated Steatotic Hepatitis (MASH).
-**content props encounter chief complaint:** Severe Drug-Induced Liver Injury (DILI)
-**content props encounter hpi:** The patient is reviewed on Day 3 of her hospital admission following severe DILI. Methotrexate was stopped immediately upon recognizing it as the causative agent. Sarah remains significantly jaundiced; however, nausea has shown slight improvement since admission. Vital neurological signs include a stable Glasgow Coma Scale (GCS) score of 15, with no evidence of hepatic encephalopathy (HE); absence of asterixis or cognitive impairment. The ALT level, though elevated at 420 U/L, is beginning to decline, suggesting a positive response to the cessation of Methotrexate. Crucially, the INR remains stable at 1.1, indicating preserved liver synthetic function. These clinical findings collectively confirm a diagnosis of severe, cholestatic DILI in a patient with underlying Metabolic Associated Steatotic Hepatitis (MASH), markedly susceptible to hepatotoxic insults.
-**content props encounter physical exam general:** Sarah exhibits pronounced jaundice, evidenced by a total bilirubin level of 190 μmol/L. Despite this, she appears alert and reports moderate comfort under current care measures. Vital Signs (ward review): BP 128/82 mmHg, HR 96 bpm, RR 16/min, Temp 37.0°C, SpO₂ 97% on room air. Anthropometrics: Weight 81 kg (BMI 30.1 kg/m²). No significant interval weight change since admission.
-**content props encounter physical exam msk:** 
-**content props encounter physical exam other systems:** CNS Examination: She is fully oriented, demonstrating no neurological deficits. GCS remains a reassuring 15 with negative neurological signs including asterixis, tremor, and speech abnormalities. Cardio/Pulmonary: Vital signs are stable with no indications of fluid overload, pulmonary distress, or hepatorenal syndrome. Abdominal Examination: The abdomen is soft and non-tender. The liver edge is not easily palpable due to Sarah's body habitus, yet no tenderness is detected upon examination.
-**content props encounter plan investigations imaging 0:** Fibroscan in three months
-**content props encounter plan investigations labs 0:** Daily INR evaluations until ALT levels fall below 150 U/L
-**content props encounter plan investigations labs 1:** Neurological assessments every four hours
-**content props encounter plan management follow up:** Arrange a Fibroscan (Liver Stiffness Measurement) in three months to assess fibrosis arising from chronic MASH and the acute DILI event. Coordinate with Rheumatology for the initiation of a non-hepatotoxic DMARD alternative, such as Hydroxychloroquine or a biologic, to manage RA without compromising liver health.
-**content props encounter plan management medications started 0 dose:** 500mg
-**content props encounter plan management medications started 0 frequency:** twice daily
-**content props encounter plan management medications started 0 name:** Ursodeoxycholic Acid (UDCA)
-**content props encounter plan management medications started 0 route:** 
-**content props encounter plan management medications started 1 dose:** 
-**content props encounter plan management medications started 1 frequency:** 
-**content props encounter plan management medications started 1 name:** Folic Acid
-**content props encounter plan management medications started 1 route:** 
-**content props encounter reason for visit:** Review on Day 3 of hospital admission following severe DILI.
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 43
-**content props encounterIndex:** 7
-**content props dataSource:** Nervecentre
-**createdAt:** 2025-10-14T16:55:00.004Z
-**updatedAt:** 2025-10-14T16:55:00.004Z
 
 # Object Record 2
 **objectId:** dashboard-item-1759906300004-single-encounter-3
@@ -551,245 +530,199 @@
 **createdAt:** 2025-11-17T12:00:00.000Z
 **updatedAt:** 2025-11-17T12:00:00.000Z
 
-# Object Record 16
-**objectId:** raw-nervecentre-encounter-3
+# Object Record 7
+**objectId:** raw-medilogik-ems-colonoscopy
 **type:** component
 **componentType:** RawClinicalNote
-**description:** Nervecentre Encounter 3 - Critical Inpatient Alert with Highlights
-**content title:** Nervecentre - Encounter 3
+**description:** Medilogik DMARD Safety Monitoring with Highlights
+**content title:** Medilogik - Outpatient
 **content component:** RawClinicalNote
-**content props encounterNumber:** 7
-**content props date:** 2024-09-02
+**content props encounterNumber:** 4
+**content props date:** 2024-06-03
 **content props visitType:** Outpatient
-**content props provider:** Dr. K. Hussain
-**content props specialty:** AMU SHO
+**content props provider:** Dr. P. Stevens
+**content props specialty:** MRCGP
 **content props rawText:** 
-### **Nervecentre**
-
-**Module:** Laboratory Alerting, Inpatient Monitoring & Early Warning Scores
-**Event Type:** *Critical LFT Alert + AMU Deterioration Observation Trigger*
-**Location:** Acute Medical Unit (AMU) – Bed 12
-
----
-
-## **1. Alert Event Summary**
-
-* **System Alert ID:** NC-LFT-20240902-009
-
-* **Patient:** **Sarah Miller** (MRN: SM43850603, 43F)
-
-* **Linked Encounter:**
-
-  * Admission Type: **Emergency – Medical**
-  * Date & Time: **2024-09-02 @ 18:22**
-  * Admitting Clinician: **Dr. K. Hussain (AMU SHO)**
-  * Responsible Consultant: **Dr. A. Bennett (Gastroenterology)**
-
-* **Clinical Presentation:**
-
-  * Nausea, reduced appetite, right upper quadrant discomfort
-  * Recent MTX cessation after abnormal LFTs
-  * Query **Methotrexate-related DILI vs MASLD flare**
+**Medilogik**
+**Task Group:** DMARD Safety Monitoring & Patient Engagement Workflow
+**Created By:** Dr. P. Stevens, MD, MRCGP
+**Date Created:** 2024-06-03
+**Priority:** **High**
+**Status:** Active
+**Task ID:** **MTX_MONITOR_SM_01_RECUR**
+**Associated Encounter:** Outpatient – Methotrexate Initiation Consultation
 
 ---
 
-## **2. Trigger Details – Critical LFT Alarm**
+## **1. Task Description (Expanded)**
 
-### **Primary Trigger Rule:**
-
-* **Rule 4.7 – ALT ≥ 5 × ULN OR significant rise since last test.**
-* **ALT: 242 U/L** (ULN 40 → **6.05 × ULN**)
-* **AST: 198 U/L (H)**
-* **ALP: 130 U/L (upper-normal)**
-* **GGT: 165 U/L (H)**
-* **Total Bilirubin: 26 μmol/L (mild elevation)**
-* **Direct Bilirubin: 8 μmol/L**
-* **INR: 1.2 (upper-normal, no synthetic failure)**
-* **Albumin: 39 g/L (normal)**
-* **Platelets: 212 × 10⁹/L**
-
-### **Pattern of Injury:**
-
-* **Marked hepatocellular injury**
-* Mild bilirubin elevation (not cholestatic)
-* No acute liver failure criteria
-
-### **Severity Level:**
-
-* **Level 4 – Critical Alert (Inpatient)**
-* Requires **review within 30 minutes**
-
-### **Medication Linkage:**
-
-* MTX stopped 2 weeks ago
-* Patient on **prednisolone 10 mg** for RA flare
-* PRN paracetamol (flagged for dosing review)
+“Establish a comprehensive Methotrexate (MTX) monitoring workflow for Sarah Miller following initiation of 7.5 mg weekly MTX therapy for Rheumatoid Arthritis.
+The objective is to ensure safe continuation of MTX, early detection of hepatotoxicity, cytopenias, or intolerance, and reinforcement of adherence to patient education and safety-netting protocols.”
 
 ---
 
-## **3. Early Warning Score (NEWS2) Trigger**
+# **2. Monitoring Schedule (Detailed)**
 
-* **NEWS2 Score:** **4** (Yellow)
+### **Initial Post-Initiation Assessment**
 
-  * HR 108
-  * RR 20
-  * Temp 37.8°C
-  * SpO₂ 98% RA
-  * BP 122/78
-* Trigger: “**Physiological change + abnormal blood tests → senior review required**”
+* **Due Date:** **2024-07-15**
+* **Tests Required:**
 
-### **Observation Alert ID:** NC-OBS-20240902-04
+  * Full Liver Function Panel (ALT, AST, ALP, GGT, Bilirubin, INR)
+  * Full Blood Count (FBC)
+* **Purpose:**
 
-Delivered simultaneously with the LFT alert.
-
----
-
-## **4. Distribution & Delivery Log**
-
-**Primary Recipients:**
-
-* Dr. Hussain (Admitting SHO)
-* AMU Registrar (Dr. Maxwell)
-* Gastroenterology On-Call Team
-* Medicines Safety Team (due to previous MTX exposure)
-
-**Secondary Recipients:**
-
-* AMU Nurse in Charge
-* EWS (NEWS2) Monitoring Dashboard
-* Liver Pathway Tracker
-
-### **Delivery Timeline**
-
-1. **18:24:50** – LFTs verified
-2. **18:24:55** – Rule 4.7 fired (ALT 242)
-3. **18:25:00** – Critical alert sent (Level 4)
-4. **18:25:05** – NEWS2 trigger elevated to “Urgent Review”
-5. **18:25:10** – On-call Gastroenterology bleeped automatically
-6. **18:27:14** – Acknowledged by **Dr. Hussain (AMU SHO)**
-7. **18:33:22** – Registrar review documented (Maxwell_J)
+  * Assess early hepatic response to MTX
+  * Detect early cytopenias
+  * Evaluate need for dose adjustment or pause
 
 ---
 
-## **5. Acknowledgment & Escalation Logic**
+### **Ongoing Routine Monitoring**
 
-* **Required Acknowledgement:** Within **30 min**
-* **Status:**
+* **Frequency:** Every **6 weeks**
+* **Duration:** First 6 months (June–December 2024)
+* **Tests at each interval:**
 
-  * **Acknowledged – On time (Dr. Hussain @ 18:27)**
+  * **LFT**
+  * **FBC**
+  * **Renal Profile (U+E)**
+  * **CRP (optional, if RA control uncertain)**
 
-### **Escalation process (auto-triggered but closed):**
+### **Post-6-Month Monitoring**
 
-* **Stage 1 – SHO (5 min)** → Completed
-* **Stage 2 – Registrar (15 min)** → Completed
-* **Stage 3 – Gastro Consultant (manual if worsening)** → Not required
-
-### **Registrar Safety Note:**
-
-“Likely MTX-related hepatocellular injury, improving bilirubin. Keep NBM for abdominal US, order hepatitis serologies, and trend LFTs q12h.”
+* If stable → move to **every 8–12 weeks** per DMARD safety protocol.
 
 ---
 
-## **6. Linked Inpatient Tasks (Automatic)**
+# **3. Medilogik Auto-Alert Configuration**
 
-### **1. NC-TASK-20240902-LFTQ12**
+### **High-Priority Auto-Alerts (Immediate clinician notification)**
 
-* **Title:** “Repeat LFT + INR every 12 hours”
-* **Owner:** AMU Nursing & Phlebotomy
-* **Due:** First repeat at **06:00 (03-Sept)**
-* **Status:** Open
+* **ALT > 2× ULN (>80 U/L)**
+* **AST > 2× ULN**
+* **Platelets < 150 ×10⁹/L**
+* **Neutrophils <1.5 ×10⁹/L**
+* **WBC <3.0 ×10⁹/L**
+* **Bilirubin rising trend across two tests**
 
----
-
-### **2. NC-TASK-20240902-US-LIVER**
-
-* **Title:** “Arrange urgent liver ultrasound”
-* **Owner:** Radiology – Priority Queue
-* **Due:** Within 24h
-* **Status:** Open
-* **Notes:** NBM from midnight.
+**Action Trigger:**
+→ Display interruptive alert in Medilogik clinician inbox
+→ Flag patient chart with **“DMARD Safety Alert – Review Required”**
 
 ---
 
-### **3. NC-TASK-20240902-VIRAL-AUTOIMMUNE-SCREEN**
+### **Moderate-Priority Auto-Alerts**
 
-* **Title:** “Complete full non-invasive liver screen (viral, autoimmune, metabolic)”
-* **Owner:** AMU SHO
-* **Due:** 2024-09-03 @ 14:00
-* **Status:** Open
-* **Pre-populated Notes:**
-
-  * HBV surface antigen
-  * HCV Ab
-  * ANA, ASMA, AMA
-  * Ferritin, transferrin saturation
-  * Coeliac serology
+* **Gradual ALT rise but < 2× ULN**
+* **New macrocytosis**
+* **eGFR decline**
+  → Routed to GP monitoring pool for review within 72 hours.
 
 ---
 
-### **4. NC-TASK-20240902-DILI-REVIEW**
+# **4. Associated Patient Education Tasks**
 
-* **Title:** “Consultant Gastro review for suspected DILI”
-* **Owner:** Dr. Bennett
-* **Due:** Same day (post-ward round)
-* **Status:** Pending Consultant signature
+### **Patient Education Pack Delivery**
 
----
+* Includes:
 
-## **7. Safety & Governance Notes**
-
-* **Policies Applied:**
-
-  * Acute Liver Injury Protocol v4.0
-  * DMARD Monitoring (MTX section)
-  * NEWS2 Escalation Framework
-  * Risk of DILI – high if ALT > 5× ULN
-
-* **System Warnings:**
-
-  * “Recent MTX exposure – evaluate for DILI.”
-  * “Trend LFTs closely; risk of progression without synthetic failure yet.”
-  * “Investigate MASLD overlap given BMI and T2DM.”
-
-* **Audit Trail (Extract):**
-
-  * 18:25 – Alert created
-  * 18:25 – Gastro team notified
-  * 18:27 – SHO acknowledgment
-  * 18:33 – Registrar review documented
-  * 18:34 – LFT-trend monitoring scheduled
+  * MTX Information Leaflet (British Society for Rheumatology standard)
+  * Liver toxicity symptoms sheet
+  * Medication schedule card (MTX + folic acid)
+* Marked as **Completed – Provided in clinic, 2024-06-03**
 
 ---
 
-## **8. Inpatient Liver Monitoring Dashboard Update**
+### **Compliance Check Call**
 
-* **Status:** HIGH RISK – Hepatocellular injury
-* **Next data refresh:** 12-hourly
-* **Outstanding items:**
+* **Scheduled:** 7 days post initiation (2024-06-10)
+* **Purpose:**
 
-  * Ultrasound
-  * Viral/autoimmune screen
-  * Consultant review
-  * LFT trend check
+  * Confirm correct dosing (once weekly only)
+  * Verify folic acid timing
+  * Screen for early side effects
+* Responsible Team: GP Support / Clinical Pharmacist
 
-**content props dataSource:** Nervecentre
-**content props highlights 0 text:** * **ALT: 242 U/L** (ULN 40 → **6.05 × ULN**)
+---
+
+### **Alcohol Intake Advisory**
+
+* Task to review patient’s alcohol intake at each monitoring appointment
+* Documented baseline: “Patient consumes 12 units/week”
+* Goal: Reduce to < 6 units/week for MTX safety
+
+---
+
+# **5. Clinical Safety & Governance Notes**
+
+* MTX initiation authorized based on:
+
+  * ALT normalization (ALT 35)
+  * Negative viral hepatitis screen
+  * Negative autoimmune hepatitis screen
+  * Normal synthetic liver profile
+  * Low Fib-4 (0.9)
+
+* MASLD acknowledged as background risk; enhanced vigilance maintained.
+
+* MTX classified as a **high-risk drug**, requiring strict adherence to monitoring timeline.
+
+* Medilogik will:
+
+  * Log missed tests
+  * Auto-generate overdue notices after 48 hours
+  * Escalate persistent failures to GP clinical lead
+
+---
+
+# **6. Follow-Up & Tracking**
+
+### **Next Steps**
+
+* **Next scheduled test:** 2024-07-15
+* **Next clinician review:** Early August appointment already booked
+* **Rheumatology liaison:** If RA control insufficient at 12 weeks, Medilogik flags GP to consider rheumatology review
+
+### **Dashboard Integration**
+
+Medilogik integrates with the practice DMARD dashboard:
+
+* Displays latest LFT/FBC trends
+* Risk colour-coding (Green → Amber → Red)
+* Task completion metrics
+
+Sarah is currently classified as:
+**Amber – New MTX Start (requires intensified monitoring)**
+
+---
+
+**content props dataSource:** Medilogik
+**content props highlights 0 text:** ALT > 2× ULN (>80 U/L)
 **content props highlights 0 color:** red
-**content props highlights 1 text:** AST: 198 U/L (H)
+**content props highlights 1 text:** AST > 2× ULN
 **content props highlights 1 color:** red
-**content props highlights 2 text:** GGT: 165 U/L (H)
+**content props highlights 2 text:** Bilirubin rising trend across two tests
 **content props highlights 2 color:** red
-**content props highlights 3 text:** Total Bilirubin: 26 μmol/L (mild elevation)
+**content props highlights 3 text:** Gradual ALT rise but < 2× ULN
 **content props highlights 3 color:** yellow
-**content props highlights 4 text:** Marked hepatocellular injury
-**content props highlights 4 color:** red
-**content props highlights 5 text:** Level 4 – Critical Alert (Inpatient)
-**content props highlights 5 color:** red
-**content props highlights 6 text:** Risk of DILI – high if ALT > 5× ULN
-**content props highlights 6 color:** red
-**content props highlights 7 text:** Recent MTX exposure – evaluate for DILI.
-**content props highlights 7 color:** red
-**content props highlights 8 text:** Trend LFTs closely; risk of progression without synthetic failure yet.
-**content props highlights 8 color:** red
-**createdAt:** 2025-11-17T14:00:00.000Z
-**updatedAt:** 2025-11-17T14:00:00.000Z
+**content props highlights 4 text:** Patient consumes 12 units/week
+**content props highlights 4 color:** yellow
+**content props highlights 5 text:** * MTX initiation authorized based on:
+
+  * ALT normalization (ALT 35)
+**content props highlights 5 color:** green
+**content props highlights 6 text:** Negative viral hepatitis screen
+**content props highlights 6 color:** green
+**content props highlights 7 text:** Negative autoimmune hepatitis screen
+**content props highlights 7 color:** green
+**content props highlights 8 text:** Normal synthetic liver profile
+**content props highlights 8 color:** green
+**content props highlights 9 text:** Low Fib-4 (0.9)
+**content props highlights 9 color:** green
+**content props highlights 10 text:** MASLD acknowledged as background risk; enhanced vigilance maintained.
+**content props highlights 10 color:** yellow
+**content props highlights 11 text:** * MTX classified as a **high-risk drug**, requiring strict adherence to monitoring timeline.
+**content props highlights 11 color:** yellow
+**createdAt:** 2025-11-17T15:00:00.000Z
+**updatedAt:** 2025-11-17T15:00:00.000Z

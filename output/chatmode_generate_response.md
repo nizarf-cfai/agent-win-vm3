@@ -1,29 +1,27 @@
 ---
 
-### Sarah Miller – Radiology Diagnostic Summary
+### Sarah Miller – Outstanding Liver Investigations Summary
 
-**Patient:** Sarah Miller (MRN: MC-001001)
-**Date Range Reviewed:** 2019-01-01 to Present
-**Modalities:** CT, MRI, X-Ray
-**Status:** Final
+**Patient:** Sarah Miller
+**MRN:** SM43850603
+**Date of Birth:** 1981-06-03
+**Age:** 43
+**Reviewed Date:** 2025-11-20
 
-#### Radiology Reports Retrieved
+#### Summary of Outstanding Investigations
 
-The following diagnostic reports were retrieved based on the specified criteria:
+The following liver-related investigations are currently outstanding or have been requested but not yet completed, based on the available patient data and the specified retrieval parameters. These are crucial for ongoing monitoring of her recovery from Methotrexate-induced Drug-Induced Liver Injury (DILI) and management of underlying Metabolic Dysfunction-Associated Steatotic Liver Disease (MASLD).
 
-| Date       | Modality | Body Site       | Report ID    | Key Findings Summary                                                                                                                                      |
-|------------|----------|-----------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2023-11-10 | CT Abdomen | Abdomen/Pelvis  | RAD-CT-CT345 | Mild diverticulosis noted in the sigmoid colon. No evidence of acute inflammation or obstruction. Liver demonstrates heterogeneous enhancement, no focal lesions. |
-| 2023-11-10 | X-Ray Chest | Chest           | RAD-XR-CH789 | Mild bibasilar atelectasis. No acute cardiopulmonary process identified.                                                                                      |
-| 2022-07-15 | MRI Abdomen | Liver & Biliary | RAD-MRI-MR112| Liver parenchyma appears normal. No significant biliary dilation or intrahepatic mass. Mild fullness in the gallbladder wall, no stones identified.             |
-
-#### Impression
-Radiological imaging performed within the last five years does not reveal any acute intra-abdominal processes or significant findings related to the patient's current presentation of acute liver injury. The CT and MRI findings are largely stable and consistent with previous evaluations, showing mild diverticulosis and otherwise unremarkable liver parenchyma. There is no evidence of hepatocellular carcinoma, biliary obstruction, or cirrhosis on the reviewed imaging.
+| Investigation Name                      | Status          | Priority | Due Date     | Notes                                                                   |
+| :-------------------------------------- | :-------------- | :------- | :----------- | :---------------------------------------------------------------------- |
+| Transient Elastography (Fibroscan)      | Pending Request | Routine  | 2025-12-15   | To assess for residual fibrosis following the DILI event.               |
+| Confirmatory Viral Serology (Repeat)    | Pending Request | Routine  | Not Specified | Final exclusion of occult viral hepatitis.                              |
 
 #### Audit & Review
-- Reviewed patient context, medication history (including Methotrexate and Trimethoprim-Sulfamethoxazole), and laboratory findings indicating acute liver injury.
-- Executed a search for final, finalized radiology reports (category LP29684-5) for Sarah Miller, filtered by CT, MRI, and X-Ray modalities, with a date range from 2019-01-01 onwards.
-- All retrieved reports were reviewed for consistency with the patient's clinical presentation. The findings from these reports do not directly explain the current acute liver injury but provide baseline information.
-- Data source: FHIR DiagnosticReport endpoint.
+*   **Task Intent:** Retrieve and summarize outstanding liver-related investigations for Sarah Miller.
+*   **Parameters:** Standard parameters for retrieving DiagnosticReports with a category filter for liver investigations and a status filter for "outstanding" or "pending". Date filters were not strictly necessary due to the focus on pending items.
+*   **Data Sources Reviewed:** Electronic Health Record (EHR) data, including clinical notes, lab results, and radiology reports, spanning from March 2024 to November 2025. Specific attention was paid to scheduling and pending investigation requests.
+*   **Review Conducted By:** Clinical Task Orchestrator.
+*   **Date of Review:** 2025-11-20.
 
 ---

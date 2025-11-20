@@ -331,10 +331,10 @@ class AudioOnlyGeminiCable:
             for t in todo_obj.get("todoData", {}).get('todos', []):
                 if 'http:' not in t.get('text'):
                     # status_str += f"TOOL STATUS : Now, the {t.get('agent')} is starting the task: {t.get('text')}.\n"
-                    func_res.append(f"TOOL STATUS : Now, the {t.get('agent')} is starting the task: {t.get('text')}.")
+                    func_res.append(f"{t.get('agent')} is starting the task: {t.get('text')}.")
 
                 for st in t.get('subTodos',[])[:1]:
-                    func_res.append(f"TOOL STATUS : The {t.get('agent')} is executing the task: {st.get('text')}.")
+                    func_res.append(f"{t.get('agent')} is executing the task: {st.get('text')}.")
 
 
             # status_str += f"TOOL STATUS :All tasks are complete. I will now consolidate the results."
