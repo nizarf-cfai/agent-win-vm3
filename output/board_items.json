@@ -3245,10 +3245,10 @@
         "updatedAt": "2025-11-17T18:00:00.000Z"
     },
     {
-        "id": "dashboard-item-1763617711104-scheduling-panel",
+        "id": "dashboard-item-1763619740994-scheduling-panel",
         "type": "component",
-        "x": 6103,
-        "y": -2159,
+        "x": 5860,
+        "y": -2240,
         "width": 600,
         "height": "auto",
         "componentType": "SchedulingPanel",
@@ -3297,7 +3297,7 @@
                 }
             }
         },
-        "createdAt": "2025-11-20T05:48:31.409Z",
-        "updatedAt": "2025-11-20T05:48:38.225Z"
+        "createdAt": "2025-11-20T06:22:21.297Z",
+        "updatedAt": "2025-11-20T06:22:21.297Z"
     }
 ]

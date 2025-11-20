@@ -1,5 +1,5 @@
 {
-    "id": "dashboard-item-1763617711104-scheduling-panel",
+    "id": "dashboard-item-1763619740994-scheduling-panel",
     "type": "component",
     "x": 5860,
     "y": -2240,
@@ -51,6 +51,6 @@
             }
         }
     },
-    "createdAt": "2025-11-20T05:48:31.409Z",
-    "updatedAt": "2025-11-20T05:48:31.409Z"
+    "createdAt": "2025-11-20T06:22:21.297Z",
+    "updatedAt": "2025-11-20T06:22:21.297Z"
 }

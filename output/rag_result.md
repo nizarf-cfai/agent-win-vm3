@@ -77,6 +77,39 @@
 **createdAt:** 2025-10-14T16:16:23.245Z
 **updatedAt:** 2025-10-14T16:16:23.245Z
 
+# Object Record 28
+**objectId:** dashboard-item-1763619740994-scheduling-panel
+**type:** component
+**componentType:** SchedulingPanel
+**description:** Integrated scheduling and investigation ordering panel
+**content title:** Care Coordination & Scheduling
+**content component:** SchedulingPanel
+**content props patientId:** SM43850603
+**content props currentStatus:** Post-Acute Discharge (Stable)
+**content props schedulingContext nextAvailableSlot date:** 2025-12-15T09:30:00
+**content props schedulingContext nextAvailableSlot provider:** Dr. R. Sharma (Hepatology) & Dr. R. Hall (Rheumatology)
+**content props schedulingContext nextAvailableSlot clinicType:** Joint Liver/Rheum Complexity Clinic
+**content props schedulingContext nextAvailableSlot location:** Outpatient Zone C, Room 12
+**content props schedulingContext nextAvailableSlot wait time:** ~4 weeks
+**content props schedulingContext outstandingInvestigations 0 id:** INV-FS-001
+**content props schedulingContext outstandingInvestigations 0 name:** Transient Elastography (Fibroscan)
+**content props schedulingContext outstandingInvestigations 0 status:** Pending Request
+**content props schedulingContext outstandingInvestigations 0 priority:** Routine (6-month post-injury check)
+**content props schedulingContext outstandingInvestigations 0 notes:** Assess for residual fibrosis following June 2025 DILI event
+**content props schedulingContext outstandingInvestigations 1 id:** INV-VS-002
+**content props schedulingContext outstandingInvestigations 1 name:** Confirmatory Viral Serology (Repeat)
+**content props schedulingContext outstandingInvestigations 1 status:** Pending Request
+**content props schedulingContext outstandingInvestigations 1 priority:** Routine
+**content props schedulingContext outstandingInvestigations 1 notes:** Final exclusion of occult viral hepatitis
+**content props schedulingContext bookingAction status:** Confirmed
+**content props schedulingContext bookingAction lastUpdated:** 2025-11-20T10:05:00Z
+**content props schedulingContext bookingAction actionsTaken 0:** Slot secured: 2025-12-15 @ 09:30
+**content props schedulingContext bookingAction actionsTaken 1:** Fibroscan request generated (Accession #FS-251215-09)
+**content props schedulingContext bookingAction actionsTaken 2:** Invitation letter generated and sent via Patient Portal
+**content props schedulingContext bookingAction correspondencePreview:** Dear Sarah Miller, your follow-up appointment for Liver Function Review has been scheduled for December 15, 2025...
+**createdAt:** 2025-11-20T06:22:21.297Z
+**updatedAt:** 2025-11-20T06:22:21.297Z
+
 # Object Record 1
 **objectId:** dashboard-item-1759906076097-medication-timeline
 **type:** component
@@ -194,39 +227,6 @@
 **content props medicationTimeline 8 indication:** Cholestasis/jaundice
 **createdAt:** 2025-10-14T16:47:56.098Z
 **updatedAt:** 2025-11-18T09:15:31.732Z
-
-# Object Record 28
-**objectId:** dashboard-item-1763617711104-scheduling-panel
-**type:** component
-**componentType:** SchedulingPanel
-**description:** Integrated scheduling and investigation ordering panel
-**content title:** Care Coordination & Scheduling
-**content component:** SchedulingPanel
-**content props patientId:** SM43850603
-**content props currentStatus:** Post-Acute Discharge (Stable)
-**content props schedulingContext nextAvailableSlot date:** 2025-12-15T09:30:00
-**content props schedulingContext nextAvailableSlot provider:** Dr. R. Sharma (Hepatology) & Dr. R. Hall (Rheumatology)
-**content props schedulingContext nextAvailableSlot clinicType:** Joint Liver/Rheum Complexity Clinic
-**content props schedulingContext nextAvailableSlot location:** Outpatient Zone C, Room 12
-**content props schedulingContext nextAvailableSlot wait time:** ~4 weeks
-**content props schedulingContext outstandingInvestigations 0 id:** INV-FS-001
-**content props schedulingContext outstandingInvestigations 0 name:** Transient Elastography (Fibroscan)
-**content props schedulingContext outstandingInvestigations 0 status:** Pending Request
-**content props schedulingContext outstandingInvestigations 0 priority:** Routine (6-month post-injury check)
-**content props schedulingContext outstandingInvestigations 0 notes:** Assess for residual fibrosis following June 2025 DILI event
-**content props schedulingContext outstandingInvestigations 1 id:** INV-VS-002
-**content props schedulingContext outstandingInvestigations 1 name:** Confirmatory Viral Serology (Repeat)
-**content props schedulingContext outstandingInvestigations 1 status:** Pending Request
-**content props schedulingContext outstandingInvestigations 1 priority:** Routine
-**content props schedulingContext outstandingInvestigations 1 notes:** Final exclusion of occult viral hepatitis
-**content props schedulingContext bookingAction status:** Confirmed
-**content props schedulingContext bookingAction lastUpdated:** 2025-11-20T10:05:00Z
-**content props schedulingContext bookingAction actionsTaken 0:** Slot secured: 2025-12-15 @ 09:30
-**content props schedulingContext bookingAction actionsTaken 1:** Fibroscan request generated (Accession #FS-251215-09)
-**content props schedulingContext bookingAction actionsTaken 2:** Invitation letter generated and sent via Patient Portal
-**content props schedulingContext bookingAction correspondencePreview:** Dear Sarah Miller, your follow-up appointment for Liver Function Review has been scheduled for December 15, 2025...
-**createdAt:** 2025-11-20T05:48:31.409Z
-**updatedAt:** 2025-11-20T05:48:38.225Z
 
 # Object Record 0
 **objectId:** dashboard-item-1759906300003-single-encounter-1
@@ -390,44 +390,166 @@
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
 
-# Object Record 3
-**objectId:** dashboard-item-1759906300004-single-encounter-4
+# Object Record 14
+**objectId:** raw-nervecentre-encounter-1
 **type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #4 - Outpatient
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 4
-**content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2024-06-03T11:30:55
-**content props encounter meta provider name:** Dr. P. Stevens
-**content props encounter meta provider specialty:** Unknown
-**content props encounter meta ui risk color:** yellow
-**content props encounter assessment impression:** Initiation of Methotrexate for Rheumatoid Arthritis management.
-**content props encounter chief complaint:** Initiation of Disease-Modifying Anti-Rheumatic Drug (DMARD) - Methotrexate (MTX) for Rheumatoid Arthritis (RA) management.
-**content props encounter hpi:** Sarah Miller presents for the initiation of Methotrexate treatment for RA. She reports her joint pain has been stable but remains a significant source of discomfort, affecting her daily activities. A thorough review of her medical history, medication adherence, and lifestyle was conducted. The patient confirms receipt and comprehension of the Methotrexate informational leaflet, indicating understanding of the treatment regimen and potential adverse effects. The decision to commence Methotrexate was made following normalization of liver function tests (LFTs) as of May 6, 2024. The patient reiterated understanding of the importance of strict compliance with the monitoring schedule due to the severe hepatotoxicity risk associated with Methotrexate.
-**content props encounter physical exam general:** Vital Signs: BP 138/86 mmHg (sitting), HR 80 bpm, RR 15/min, Temp 36.7°C, SpO₂ 98% on room air. Anthropometrics: Weight 84 kg (BMI 31.2 kg/m²). Weight stable compared with early May.
-**content props encounter physical exam msk:** 
-**content props encounter physical exam other systems:** 
-**content props encounter plan investigations labs 0:** LFTs every six weeks
-**content props encounter plan investigations labs 1:** Full Blood Count (FBC) every six weeks
-**content props encounter plan management follow up:** First LFT/FBC evaluation scheduled for July 15, 2024. Regular monitoring every six weeks for the next 6 months. Patient to contact clinic immediately if severe nausea, vomiting, or jaundice occur.
-**content props encounter plan management medications started 0 dose:** 7.5mg
-**content props encounter plan management medications started 0 frequency:** once weekly
-**content props encounter plan management medications started 0 name:** Methotrexate
-**content props encounter plan management medications started 0 route:** orally
-**content props encounter plan management medications started 1 dose:** 5mg
-**content props encounter plan management medications started 1 frequency:** weekly
-**content props encounter plan management medications started 1 name:** Folic Acid
-**content props encounter plan management medications started 1 route:** orally
-**content props encounter reason for visit:** Initiation of Methotrexate for Rheumatoid Arthritis management.
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 43
-**content props encounterIndex:** 4
-**content props dataSource:** Medilogik
-**createdAt:** 2025-10-15T08:00:00.000Z
-**updatedAt:** 2025-10-15T08:00:00.000Z
+**componentType:** RawClinicalNote
+**description:** Nervecentre Lab Alert with Highlighted Key Information
+**content title:** Nervecentre - Encounter 1
+**content component:** RawClinicalNote
+**content props encounterNumber:** 1
+**content props date:** 2024-03-05
+**content props visitType:** Outpatient
+**content props provider:** Dr. P. Stevens
+**content props specialty:** MRCGP
+**content props rawText:** ### Nervecentre
+
+**Module:** Laboratory Alerting & Task Management
+**Event Type:** Automated Laboratory Alert – LFT Derangement 
+
+---
+
+#### 1. Alert Event Summary
+
+* **System Alert ID:** NC-LFT-20240305-001
+* **Patient:** Sarah Miller (MRN: SM43850603, DOB: 1981-06-03, Age 43, F) 
+* **Linked Encounter:**
+
+  * Visit Type: Outpatient – General Practice
+  * Date & Time: 2024-03-05 @ 10:15:22 (GMT+01:00)
+  * Clinician: Dr. P. Stevens, MD, MRCGP 
+* **Ordering Provider:** Dr. P. Stevens
+* **Requesting Location:** GP Clinic – Room 3
+
+---
+
+#### 2. Trigger Details
+
+* **Trigger Rule:** Rule ID 4.2 – *ALT ≥ 1.5 × ULN*
+* **Analyte:** Alanine Aminotransferase (ALT)
+* **Result:** 78 U/L (ULN: 40 U/L; 1.95 × ULN) 
+* **Associated LFTs at Time of Alert:** 
+
+  * AST: 55 U/L (H, <35)
+  * ALP: 105 U/L (N, 30–130)
+  * Bilirubin (Total): 12 μmol/L (N, <21)
+  * INR: 1.0 (N, 0.8–1.2)
+  * Platelets: 250 × 10⁹/L (N, 150–400)
+* **Pattern of Injury:** Hepatocellular (AST/ALT ratio ≈ 0.7; no cholestasis)
+* **Alert Level:** Level 2 – Non-Critical, Mandatory Acknowledgment within 72 hours
+* **Severity Banding (System):**
+
+  * ALT 1.5–3 × ULN → *Moderate Elevation*
+  * Bilirubin normal, INR normal → *No acute liver failure criteria*
+
+---
+
+#### 3. Distribution & Delivery Log
+
+* **Primary Recipient:**
+
+  * Dr. P. Stevens (Responsible GP / LFT Ordering Clinician)
+* **Secondary Visibility:**
+
+  * GP Practice LFT Review Pool (Monitoring queue, “GP-LFT-MONITOR”)
+* **Delivery Channels:**
+
+  * Nervecentre mobile app push notification to Dr. Stevens
+  * Medilogik Inbox message (flagged ‘LFT abnormal – review required’)
+  * Alert icon added to Sarah Miller’s digital chart (LFT flag)
+
+**Delivery Timeline:**
+
+1. **2024-03-05 10:17:02** – LFT panel verified in LIS; HL7 message received by Nervecentre.
+2. **2024-03-05 10:17:10** – Rule ID 4.2 fired (ALT 78 U/L ≥ 1.5 × ULN).
+3. **2024-03-05 10:17:15** – Level 2 alert created and queued.
+4. **2024-03-05 10:17:20** – Push notification sent to Dr. Stevens’ device and Medilogik Inbox.
+5. **2024-03-05 10:17:25** – Chart flag updated (amber LFT icon).
+
+---
+
+#### 4. Acknowledgment & Escalation Logic
+
+* **Acknowledgment Requirement:**
+
+  * Alert must be electronically acknowledged by the responsible clinician **within 72 hours** of creation.
+
+* **Current Status:**
+
+  * Acknowledgement: **Pending**
+  * Last System Check: 2024-03-05 18:00 – *No user interaction recorded.*
+
+* **Scheduled Reminders:**
+
+  * **+24 hours (2024-03-06 10:17)** – In-app reminder to Dr. Stevens (planned).
+  * **+48 hours (2024-03-07 10:17)** – Second reminder and addition to GP practice “Unacknowledged LFT” dashboard (planned).
+  * **+72 hours (2024-03-08 10:17)** – If still unacknowledged, auto-escalate to:
+
+    * GP Duty Doctor / Clinical Lead inbox
+    * Practice admin queue: “Follow-up abnormal results – contact clinician”.
+
+* **Escalation Rule:**
+
+  * Rule ID 7.1 – *Unacknowledged Level 2 lab alert >72 h → escalate to on-call / clinical lead.*
+
+---
+
+#### 5. Linked Tasks (Automatic)
+
+1. **Task ID:** NC-TASK-20240305-ALT-REVIEW
+
+   * **Title:** Review abnormal LFT (ALT 78 U/L) and document plan.
+   * **Owner:** Dr. P. Stevens
+   * **Priority:** Medium
+   * **Due Date/Time:** 2024-03-08 10:15 (72h from encounter)
+   * **Completion Status:** Open
+   * **Task Notes (Pre-populated):**
+
+     * “ALT 78 U/L (~1.95 × ULN), hepatocellular pattern, no bilirubin or INR derangement. Consider MASLD, NSAID use, and DMARD candidacy (planned MTX). Document clinical correlation, repeat LFT interval, and DMARD decision.”
+
+2. **Task ID:** NC-TASK-20240305-MASLD-COUNSEL
+
+   * **Title:** Confirm lifestyle counselling & weight-loss plan for suspected MASLD.
+   * **Owner:** GP Practice Nurse / Health Coach (Pool: ‘MASLD-COACH’)
+   * **Priority:** Low
+   * **Due Date/Time:** 2024-03-19 09:00
+   * **Status:** Open
+
+---
+
+#### 6. Safety & Governance Notes
+
+* **Protocol Reference:**
+
+  * Local GP LFT Policy v3.1 – “Any ALT ≥ 1.5 × ULN requires documented review and repeat LFT within 3–6 months, sooner if planning hepatotoxic medication (e.g., Methotrexate).”
+* **Clinical Risk Comment (System):**
+
+  * Flag added: “Planned DMARD (MTX) – ensure LFT trend and chronic liver disease screen BEFORE initiation.”
+* **Audit Trail (Extract):**
+
+  * 2024-03-05 10:17 – Alert generated automatically (System).
+  * 2024-03-05 10:17 – Delivery confirmed to device ‘STEVENS_GP_IPHONE’.
+  * 2024-03-05 10:18 – Chart flag updated (System).
+  * *No user acknowledgment recorded yet.*
+
+
+**content props dataSource:** Nervecentre
+**content props highlights 0 text:** Rule ID 4.2 – *ALT ≥ 1.5 × ULN*
+**content props highlights 0 color:** yellow
+**content props highlights 1 text:** **Result:** 78 U/L (ULN: 40 U/L; 1.95 × ULN)
+**content props highlights 1 color:** yellow
+**content props highlights 2 text:** AST: 55 U/L (H, <35)
+**content props highlights 2 color:** yellow
+**content props highlights 3 text:** Severity Banding (System):
+**content props highlights 3 color:** yellow
+**content props highlights 4 text:** ALT 1.5–3 × ULN → *Moderate Elevation*
+**content props highlights 4 color:** yellow
+**content props highlights 5 text:** Local GP LFT Policy v3.1 – “Any ALT ≥ 1.5 × ULN requires documented review and repeat LFT within 3–6 months, sooner if planning hepatotoxic medication (e.g., Methotrexate).”
+**content props highlights 5 color:** yellow
+**content props highlights 6 text:** Planned DMARD (MTX) – ensure LFT trend and chronic liver disease screen BEFORE initiation.”
+**content props highlights 6 color:** yellow
+**createdAt:** 2025-11-17T12:00:00.000Z
+**updatedAt:** 2025-11-17T12:00:00.000Z
 
 # Object Record 16
 **objectId:** raw-nervecentre-encounter-3

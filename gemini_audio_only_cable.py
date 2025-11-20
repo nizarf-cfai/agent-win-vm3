@@ -303,7 +303,9 @@ class AudioOnlyGeminiCable:
         with open("output/schedule.json", "r", encoding="utf-8") as f:
             schedule_payload = json.load(f)
 
-        await canvas_ops.create_schedule(schedule_payload)
+        response_sched = await canvas_ops.create_schedule(schedule_payload)
+        print("Schedule id :", response_sched.get('id'))
+        await canvas_ops.focus_item(response_sched.get('id'))
         return [
             self.create_func_response(fc, "Schedule is created in Canvas.")
         ]
