@@ -234,23 +234,29 @@ class AudioOnlyGeminiCable:
 
     async def navigate_answer(self,fc,query):
         func_res = []
-        # func_res.append(
-        #     self.create_func_response(fc, f"Sending query to RAG Agent and Data Analyst Agent.Query : '{query}'")
-        # )
 
-        context = await rag_from_json(query, top_k=3)
-        # func_res.append(
-        #     self.create_func_response(fc, f"Clinical agent forming answer on query '{query}'")
-        # )
-        
-        object_id = await side_agent.resolve_object_id(query, context)
+        try:
+            # func_res.append(
+            #     self.create_func_response(fc, f"Sending query to RAG Agent and Data Analyst Agent.Query : '{query}'")
+            # )
 
-        print("OBJECT ID :",object_id)
-        answer = await chat_model.get_answer(query=query, context=context)
+            context = await rag_from_json(query, top_k=3)
+            # func_res.append(
+            #     self.create_func_response(fc, f"Clinical agent forming answer on query '{query}'")
+            # )
+            
+            object_id = await side_agent.resolve_object_id(query, context)
 
-        func_res.append(
-            self.create_func_response(fc, f"Result '{answer}'")
-        )
+            print("OBJECT ID :",object_id)
+            answer = await chat_model.get_answer(query=query, context=context)
+            print("ANSWER :",answer[:200])
+            await self.session.send(input=f"Narrate this : '{answer}'")
+            func_res.append(
+                self.create_func_response(fc, f"'{answer}'")
+            )
+        except Exception as e:
+            print(f"❌ Error in navigate_answer: {e}")
+            
         return func_res
 
     async def create_todo_canvas(self, todo_obj):
@@ -293,7 +299,24 @@ class AudioOnlyGeminiCable:
         await canvas_ops.create_result(agent_res)
         print("  ✅ Analysis completed")
 
+    async def get_schedule(self, fc):
+        with open("output/schedule.json", "r", encoding="utf-8") as f:
+            schedule_payload = json.load(f)
 
+        await canvas_ops.create_schedule(schedule_payload)
+        return [
+            self.create_func_response(fc, "Schedule is created in Canvas.")
+        ]
+
+    async def get_notification(self, fc):
+        payload = {
+            "message" : "Notofication sent to GP and Rheumatologist"
+        }
+
+        await canvas_ops.create_notification(payload)
+        return [
+            self.create_func_response(fc, "Notification is sent.")
+        ]
 
     async def _handle_todo_exec(self,fc,  query):
         """Handle todo execution in the background and provide narration."""
@@ -345,6 +368,8 @@ class AudioOnlyGeminiCable:
 
     async def handle_tool_call(self, tool_call):
         """Handle tool calls from Gemini according to official documentation"""
+        from google.genai import types
+
         try:
             
             # Track function calls
@@ -363,44 +388,70 @@ class AudioOnlyGeminiCable:
                 #############
                 ### NEW MODE
                 #############
+                if function_name == "get_query":
+                    print("RESPOND USER TOOL :", function_name)
 
-                query = arguments.get('query')
-                lower_q = query.lower()
+                    query = arguments.get('query')
+                    lower_q = query.lower()
 
-                tool_res = side_agent.parse_tool(query)
+                    tool_res = side_agent.parse_tool(query)
 
-                if 'easl' in lower_q or 'guideline' in lower_q:
-                    print("EASL TOOL")
+                    if 'easl' in lower_q or 'guideline' in lower_q:
+                        print("EASL TOOL")
 
-                    func_tool = await self.easl_todo(fc, query)
-                    function_responses += func_tool
-                
-                elif tool_res.get('tool') == "navigate_canvas":
-                    print("NAVIGATE TOOL")
-                    func_tool = await self.navigate_answer(fc, query)
-                    function_responses += func_tool
+                        func_tool = await self.easl_todo(fc, query)
+                        function_responses += func_tool
+                        
+                    elif tool_res.get('tool') == "get_easl_answer":
+                        print("EASL TOOL")
+
+                        func_tool = await self.easl_todo(fc, query)
+                        function_responses += func_tool
                     
-                elif tool_res.get('tool') == "get_easl_answer":
-                    print("EASL TOOL")
 
-                    func_tool = await self.easl_todo(fc, query)
-                    function_responses += func_tool
-                
+                    elif tool_res.get('tool') == "generate_task":
+                        print("TASK TOOL")
+                        
+                        func_tool = await self.todo_exec(fc, query)
+                        function_responses += func_tool
 
-                elif tool_res.get('tool') == "generate_task":
-                    print("TASK TOOL")
-                    
-                    func_tool = await self.todo_exec(fc, query)
-                    function_responses += func_tool
+                        # No function_responses are returned from todo_exec now
+                    elif tool_res.get('tool') == "create_schedule":
+                        print("SCHEDULE TOOL")
+                        func_tool = await self.get_schedule(fc)
+                        function_responses += func_tool
 
-                    # No function_responses are returned from todo_exec now
+                    elif tool_res.get('tool') == "send_notification":
+                        print("NOTIFICATION TOOL")
+                        func_tool = await self.get_notification(fc)
+                        function_responses += func_tool
+                    else:
+                        print("GENERAL")
 
-                else:
-                    print("GENERAL")
+                        # asyncio.create_task(self.navigate_answer(fc, query))
+                        # function_responses.append(types.FunctionResponse(
+                        #     id=fc.id,
+                        #     name=fc.name,
+                        #     response={
+                        #         "result" : f"Request is being processed."
+                        #     }
+                        # )
+                        # )
+                        func_tool = await self.navigate_answer(fc, query)
+                        function_responses += func_tool
 
-                    func_tool = await self.navigate_answer(fc, query)
-                    function_responses += func_tool
-
+                elif function_name == "respond_user":
+                    print("RESPOND USER TOOL :", function_name)
+                    print("ARGUMENTS :", arguments)
+                    function_responses.append(types.FunctionResponse(
+                        id=fc.id,
+                        name=fc.name,
+                        response={
+                            "result" : arguments.get('message','')
+                        }
+                    )
+                    )
+                    await self.session.send(input="Narrate this immediately : 'Request is being processed.'")
                 #############
                 #############
 
@@ -459,6 +510,7 @@ class AudioOnlyGeminiCable:
 
     async def _handle_agent_processing(self, action_data, todo_obj):
         """Handle agent processing in background"""
+
         try:
             agent_res = await canvas_ops.get_agent_answer(action_data)
             

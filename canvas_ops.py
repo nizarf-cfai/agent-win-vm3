@@ -173,3 +173,33 @@ async def create_report(payload):
             with open(f"{config.output_dir}/report_create_response.json", "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
             return data
+        
+async def create_schedule(payload):
+    url = BASE_URL + "/api/schedule"
+
+    # response = requests.post(url, json=payload)
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=payload) as response:
+            with open(f"{config.output_dir}/schedule_create_payload.json", "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=4)
+
+            data = await response.json()
+
+            with open(f"{config.output_dir}/schedule_create_response.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+            return data
+        
+async def create_notification(payload):
+    url = BASE_URL + "/api/notification"
+
+    # response = requests.post(url, json=payload)
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=payload) as response:
+            with open(f"{config.output_dir}/notification_create_payload.json", "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=4)
+
+            data = await response.json()
+
+            with open(f"{config.output_dir}/notification_create_response.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+            return data

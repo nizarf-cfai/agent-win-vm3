@@ -1,55 +1,107 @@
 {
-    "title": "Radiology Data Retrieval for Sarah Miller",
-    "description": "Retrieve radiology data for Sarah Miller, including diagnostic reports, with specific filters applied.",
+    "title": "Update GP and Rheumatologists on Sarah Miller",
+    "description": "Prepare and send an update to Sarah Miller's GP and rheumatologists regarding her condition or treatment.",
     "todos": [
         {
-            "id": "task-prep-radiology",
-            "text": "Prepare radiology retrieval parameters for Sarah Miller",
+            "id": "task-001",
+            "text": "Gather latest clinical information for Sarah Miller",
             "status": "pending",
-            "agent": "Data Analyst Agent",
+            "agent": "Clinical Agent",
             "subTodos": [
                 {
-                    "text": "Determine patient identifier for Sarah Miller",
+                    "text": "Review patient record for recent updates",
                     "status": "pending"
                 },
                 {
-                    "text": "Set category=LP29684-5 for radiology reports",
+                    "text": "Identify key findings or changes",
                     "status": "pending"
                 },
                 {
-                    "text": "Apply modality filters (e.g., CT, MRI, X-Ray)",
+                    "text": "Summarize information relevant to GP",
                     "status": "pending"
                 },
                 {
-                    "text": "Set status=final for finalized reports",
-                    "status": "pending"
-                },
-                {
-                    "text": "Set date filter (e.g., last 5 years)",
-                    "status": "pending"
-                },
-                {
-                    "text": "Ensure authentication is valid",
+                    "text": "Summarize information relevant to Rheumatologists",
                     "status": "pending"
                 }
             ]
         },
         {
-            "id": "task-fetch-radiology",
-            "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<PATIENT_ID>&category=http://loinc.org|LP29684-5&date=ge2019-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&modality=http://dicom.nema.org/resources/ontology/DCM|X-Ray&status=final&_sort=-date&_count=10'",
+            "id": "task-002",
+            "text": "Draft update communication for GP",
             "status": "pending",
-            "agent": "Consolidator Agent",
+            "agent": "Clinical Agent",
             "subTodos": [
                 {
-                    "text": "Execute HTTP GET request",
+                    "text": "Compose clear and concise message for GP",
                     "status": "pending"
                 },
                 {
-                    "text": "Check response HTTP status code",
+                    "text": "Include relevant patient identifiers",
                     "status": "pending"
                 },
                 {
-                    "text": "Validate JSON structure of DiagnosticReport entries",
+                    "text": "Ensure compliance with communication protocols",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "id": "task-003",
+            "text": "Draft update communication for Rheumatologists",
+            "status": "pending",
+            "agent": "Clinical Agent",
+            "subTodos": [
+                {
+                    "text": "Compose detailed message for Rheumatologists",
+                    "status": "pending"
+                },
+                {
+                    "text": "Include specific clinical details and rationale",
+                    "status": "pending"
+                },
+                {
+                    "text": "Ensure compliance with communication protocols",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "id": "task-004",
+            "text": "Send update to GP",
+            "status": "pending",
+            "agent": "Clinical Agent",
+            "subTodos": [
+                {
+                    "text": "Identify correct GP contact information",
+                    "status": "pending"
+                },
+                {
+                    "text": "Transmit drafted message securely",
+                    "status": "pending"
+                },
+                {
+                    "text": "Confirm receipt if possible",
+                    "status": "pending"
+                }
+            ]
+        },
+        {
+            "id": "task-005",
+            "text": "Send update to Rheumatologists",
+            "status": "pending",
+            "agent": "Clinical Agent",
+            "subTodos": [
+                {
+                    "text": "Identify correct Rheumatologist contact information",
+                    "status": "pending"
+                },
+                {
+                    "text": "Transmit drafted message securely",
+                    "status": "pending"
+                },
+                {
+                    "text": "Confirm receipt if possible",
                     "status": "pending"
                 }
             ]

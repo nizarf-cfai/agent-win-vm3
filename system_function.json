@@ -1,23 +1,51 @@
 [
-    {
-        "name": "get_query",
-        "description": "Extract detailed use query.",
-        "parameters": {
-            "type": "OBJECT",
-            "properties": {
-                "query": {
-                    "type": "STRING",
-                    "description": "User raw question or command."
-                }
-            },
-            "required": ["query"]
-        },
-        "response": {
-            "type": "ARRAY",
-            "items": {
-                "type": "STRING"
-            },
-            "description": "The detailed query steps or extracted interpretation."
+  {
+    "name": "respond_user",
+    "description": "Generate a brief spoken acknowledgment before tool execution. Used when a medical or patient-related query is detected, prior to executing get_query.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "message": {
+          "type": "STRING",
+          "description": "Short statement to announce intent before executing clinical reasoning or tool. Example: 'Let me review the clinical data.'. English only."
         }
+      },
+      "required": ["message"]
+    },
+    "response": {
+      "type": "OBJECT",
+      "properties": {
+        "spoken_text": {
+          "type": "STRING",
+          "description": "Text that should be verbally spoken prior to tool execution."
+        }
+      }
     }
+  },
+  {
+    "name": "get_query",
+    "description": "Extract detailed structured medical or clinical intent from the user query. Used after respond_user for patient-related requests.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "query": {
+          "type": "STRING",
+          "description": "Exact raw user input related to medical or clinical decision-making."
+        }
+      },
+      "required": ["query"]
+    },
+    "response": {
+      "type": "OBJECT",
+      "properties": {
+        "result": {
+          "type": "ARRAY",
+          "items": {
+            "type": "STRING"
+          },
+          "description": "Structured interpretation of the query or reasoning steps."
+        }
+      }
+    }
+  }
 ]

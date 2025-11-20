@@ -50,6 +50,7 @@ RESOLUTION RULES
    - `dashboard-item-1759906300004-single-encounter-4`
    - `dashboard-item-1759906300004-single-encounter-5`
    - `dashboard-item-1759906300004-single-encounter-6`
+   - `dashboard-item-1759906300004-single-encounter-7`
 
 
 ----------------------------------------------------
