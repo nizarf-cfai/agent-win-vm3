@@ -313,6 +313,26 @@ class AudioOnlyGeminiCable:
         print("  ✅ Analysis completed")
         agent_speak.play_audio_file("audio/result_generated.wav", pya)
 
+    async def get_schedule(self, fc):
+        with open("output/schedule.json", "r", encoding="utf-8") as f:
+            schedule_payload = json.load(f)
+
+        response_sched = await canvas_ops.create_schedule(schedule_payload)
+        print("Schedule id :", response_sched.get('id'))
+        await canvas_ops.focus_item(response_sched.get('id'))
+        return [
+            self.create_func_response(fc, "Schedule is created in Canvas.")
+        ]
+
+    async def get_notification(self, fc):
+        payload = {
+            "message" : "Notofication sent to GP and Rheumatologist"
+        }
+
+        await canvas_ops.create_notification(payload)
+        return [
+            self.create_func_response(fc, "Notification is sent.")
+        ]
 
 
 
@@ -415,6 +435,16 @@ class AudioOnlyGeminiCable:
                     function_responses += func_tool
 
                     # No function_responses are returned from todo_exec now
+
+                elif tool_res.get('tool') == "create_schedule":
+                    print("SCHEDULE TOOL")
+                    func_tool = await self.get_schedule(fc)
+                    function_responses += func_tool
+
+                elif tool_res.get('tool') == "send_notification":
+                    print("NOTIFICATION TOOL")
+                    func_tool = await self.get_notification(fc)
+                    function_responses += func_tool
 
                 else:
                     print("GENERAL")

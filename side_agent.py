@@ -45,7 +45,7 @@ def parse_tool(query):
             },
             "tool": {
                 "type": "STRING",
-                "enum": ["navigate_canvas", "generate_task", "get_easl_answer", "general"],
+                "enum": ["navigate_canvas", "generate_task", "get_easl_answer", "general" ,"send_notification","create_schedule"],
                 "description": "Tool category."
             }
         },
