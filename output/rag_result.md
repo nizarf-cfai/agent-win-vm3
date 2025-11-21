@@ -6,119 +6,115 @@
 **content title:** Medication Timeline
 **content component:** MedicationTimeline
 **content props encounters 0 encounter no:** 1
-**content props encounters 0 date:** 2015-08-10
-**content props encounters 0 type:** Rheumatology Initial Consult
-**content props encounters 0 provider:** Dr. Elizabeth Hayes
-**content props encounters 0 diagnosis:** Seropositive Rheumatoid Arthritis (active)
-**content props encounters 0 medications 0:** Methotrexate 10mg weekly
-**content props encounters 0 medications 1:** Folic Acid 5mg weekly
-**content props encounters 0 notes:** Started MTX therapy with folic acid supplementation
+**content props encounters 0 date:** 2024-03-05
+**content props encounters 0 type:** General Practice
+**content props encounters 0 provider:** Dr. P. Stevens
+**content props encounters 0 diagnosis:** Fatigue; Suboptimally controlled T2DM/HTN; RA stable
+**content props encounters 0 medications 0:** Metformin 1000mg BD
+**content props encounters 0 medications 1:** Ramipril 5mg daily
+**content props encounters 0 medications 2:** Ibuprofen PRN
+**content props encounters 0 medications 3:** Simethicone PRN
+**content props encounters 0 notes:** Initial evaluation; abnormal ALT 78 U/L; lifestyle counselling; HbA1c 58 mmol/mol.
 **content props encounters 1 encounter no:** 2
-**content props encounters 1 date:** 2016-02-20
+**content props encounters 1 date:** 2024-04-01
 **content props encounters 1 type:** General Practice
-**content props encounters 1 provider:** GP
-**content props encounters 1 diagnosis:** Stable RA on MTX
-**content props encounters 1 medications 0:** Methotrexate 10mg weekly
-**content props encounters 1 medications 1:** Folic Acid 5mg weekly
-**content props encounters 1 notes:** Good RA control on MTX 10 mg weekly; no MTX side effects
+**content props encounters 1 provider:** Dr. P. Stevens
+**content props encounters 1 diagnosis:** Review of elevated ALT; suspected MASLD; RA requiring MTX evaluation
+**content props encounters 1 medications 0:** Metformin 1000mg BD
+**content props encounters 1 medications 1:** Ramipril 5mg daily
+**content props encounters 1 medications 2:** Ibuprofen PRN
+**content props encounters 1 medications 3:** Simethicone PRN
+**content props encounters 1 notes:** Deferred Methotrexate; ordered hepatitis/autoimmune/metabolic workup.
 **content props encounters 2 encounter no:** 3
-**content props encounters 2 date:** 2018-09-05
+**content props encounters 2 date:** 2024-05-06
 **content props encounters 2 type:** General Practice
-**content props encounters 2 provider:** GP
-**content props encounters 2 diagnosis:** New essential hypertension; RA stable; plan MTX dose increase
-**content props encounters 2 medications 0:** Methotrexate 20mg weekly
+**content props encounters 2 provider:** Dr. P. Stevens
+**content props encounters 2 diagnosis:** LFT normalization; RA requiring DMARD; MASLD flare resolved
+**content props encounters 2 medications 0:** Methotrexate 7.5mg weekly (planned start 2024-06-03)
 **content props encounters 2 medications 1:** Folic Acid 5mg weekly
-**content props encounters 2 medications 2:** Lisinopril 10mg daily
-**content props encounters 2 notes:** Elevated BP readings 145–155/90–95; MTX increased to 20mg
+**content props encounters 2 medications 2:** Metformin 1000mg BD
+**content props encounters 2 medications 3:** Ramipril 5mg daily
+**content props encounters 2 medications 4:** Ibuprofen PRN
+**content props encounters 2 medications 5:** Simethicone PRN
+**content props encounters 2 notes:** Cleared for MTX; full hepatitis, autoimmune, metabolic workup negative.
 **content props encounters 3 encounter no:** 4
-**content props encounters 3 date:** 2021-03-15
+**content props encounters 3 date:** 2024-06-03
 **content props encounters 3 type:** General Practice
-**content props encounters 3 provider:** GP
-**content props encounters 3 diagnosis:** Stable RA; controlled HTN; mild CKD (stable)
-**content props encounters 3 medications 0:** Methotrexate 20mg weekly
+**content props encounters 3 provider:** Dr. P. Stevens
+**content props encounters 3 diagnosis:** Initiation of Methotrexate therapy for RA
+**content props encounters 3 medications 0:** Methotrexate 7.5mg weekly (started today)
 **content props encounters 3 medications 1:** Folic Acid 5mg weekly
-**content props encounters 3 medications 2:** Lisinopril 10mg daily
-**content props encounters 3 notes:** Overall well; RA controlled on MTX 20 mg; BP controlled
+**content props encounters 3 medications 2:** Metformin 1000mg BD
+**content props encounters 3 medications 3:** Ramipril 5mg daily
+**content props encounters 3 notes:** MTX started; monitoring schedule established (LFT/FBC q6 weeks).
 **content props encounters 4 encounter no:** 5
-**content props encounters 4 date:** 2025-06-15
+**content props encounters 4 date:** 2024-07-15
 **content props encounters 4 type:** General Practice
-**content props encounters 4 provider:** GP
-**content props encounters 4 diagnosis:** Acute bacterial sinusitis; RA/HTN/CKD stable
-**content props encounters 4 medications 0:** Trimethoprim-Sulfamethoxazole 800/160mg BID
-**content props encounters 4 notes:** 5 days nasal congestion, facial pain, headache, green discharge
+**content props encounters 4 provider:** Dr. P. Stevens
+**content props encounters 4 diagnosis:** Severe hepatocellular DILI from Methotrexate; RA symptoms improving
+**content props encounters 4 medications 0:** Methotrexate reduced to 5mg weekly
+**content props encounters 4 medications 1:** Folic Acid 5mg weekly
+**content props encounters 4 medications 2:** Metformin 1000mg BD
+**content props encounters 4 medications 3:** Ramipril 5mg daily
+**content props encounters 4 notes:** ALT 185 U/L (~4.6× ULN); MTX dose reduced (though standard is to stop); hepatology referral placed.
 **content props encounters 5 encounter no:** 6
-**content props encounters 5 date:** 2025-06-21
-**content props encounters 5 type:** Emergency Medicine
-**content props encounters 5 provider:** Dr. Sarah Chen
-**content props encounters 5 diagnosis:** Acute liver injury likely DILI and/or severe methotrexate toxicity
-**content props encounters 5 notes:** Severe fatigue, jaundice, epigastric pain, confusion
-**content props medicationTimeline 0 name:** Methotrexate
-**content props medicationTimeline 0 startDate:** 2015-08-10
-**content props medicationTimeline 0 endDate:** 2018-09-05
-**content props medicationTimeline 0 dose:** 10mg weekly
-**content props medicationTimeline 0 indication:** RA
-**content props medicationTimeline 1 name:** Methotrexate
-**content props medicationTimeline 1 startDate:** 2018-09-05
-**content props medicationTimeline 1 dose:** 20mg weekly
-**content props medicationTimeline 1 indication:** RA
-**content props medicationTimeline 2 name:** Folic Acid
-**content props medicationTimeline 2 startDate:** 2015-08-10
-**content props medicationTimeline 2 dose:** 5mg weekly
-**content props medicationTimeline 2 indication:** MTX supplementation
-**content props medicationTimeline 3 name:** Lisinopril
-**content props medicationTimeline 3 startDate:** 2018-09-05
-**content props medicationTimeline 3 dose:** 10mg daily
-**content props medicationTimeline 3 indication:** Hypertension
-**content props medicationTimeline 4 name:** Trimethoprim-Sulfamethoxazole
-**content props medicationTimeline 4 startDate:** 2025-06-15
-**content props medicationTimeline 4 endDate:** 2025-06-25
-**content props medicationTimeline 4 dose:** 800/160mg BID
-**content props medicationTimeline 4 indication:** Acute bacterial sinusitis
+**content props encounters 5 date:** 2024-08-12
+**content props encounters 5 type:** Emergency Department
+**content props encounters 5 provider:** ED team + handover from Dr. Stevens
+**content props encounters 5 diagnosis:** Severe acute DILI with cholestasis; jaundice; bilirubin 110 μmol/L
+**content props encounters 5 medications 0:** Methotrexate stopped
+**content props encounters 5 medications 1:** N-Acetylcysteine (NAC) IV protocol initiated
+**content props encounters 5 notes:** Urgent hospitalization; ALT 490 U/L (12× ULN); NAC started; admitted to hepatology ward.
+**content props encounters 6 encounter no:** 7
+**content props encounters 6 date:** 2024-08-15
+**content props encounters 6 type:** Inpatient Hepatology
+**content props encounters 6 provider:** Dr. R. Sharma (Consultant Hepatologist)
+**content props encounters 6 diagnosis:** Severe MTX-induced DILI with MASH; improving ALT; worsening jaundice
+**content props encounters 6 medications 0:** NAC protocol (continuing until 2024-08-17)
+**content props encounters 6 medications 1:** Ursodeoxycholic Acid (UDCA) 500mg BID
+**content props encounters 6 medications 2:** Folic Acid (continued)
+**content props encounters 6 notes:** Methotrexate added to permanent contraindication list; ALT decreasing to 420; bilirubin rising to 190.
+**content props medicationTimeline 0 name:** Metformin
+**content props medicationTimeline 0 startDate:** 2019-01-01
+**content props medicationTimeline 0 dose:** 1000mg BD
+**content props medicationTimeline 0 indication:** Type 2 Diabetes Mellitus
+**content props medicationTimeline 1 name:** Ramipril
+**content props medicationTimeline 1 startDate:** 2020-01-01
+**content props medicationTimeline 1 dose:** 5mg daily
+**content props medicationTimeline 1 indication:** Hypertension
+**content props medicationTimeline 2 name:** Ibuprofen
+**content props medicationTimeline 2 startDate:** 2022-01-01
+**content props medicationTimeline 2 dose:** PRN
+**content props medicationTimeline 2 indication:** Rheumatoid arthritis pain
+**content props medicationTimeline 3 name:** Simethicone
+**content props medicationTimeline 3 startDate:** 2024-03-05
+**content props medicationTimeline 3 dose:** PRN
+**content props medicationTimeline 3 indication:** Bloating/gas symptoms
+**content props medicationTimeline 4 name:** Methotrexate
+**content props medicationTimeline 4 startDate:** 2024-06-03
+**content props medicationTimeline 4 endDate:** 2024-07-15
+**content props medicationTimeline 4 dose:** 7.5mg weekly
+**content props medicationTimeline 4 indication:** Rheumatoid Arthritis
+**content props medicationTimeline 5 name:** Methotrexate
+**content props medicationTimeline 5 startDate:** 2024-07-15
+**content props medicationTimeline 5 endDate:** 2024-08-12
+**content props medicationTimeline 5 dose:** 5mg weekly
+**content props medicationTimeline 5 indication:** Rheumatoid Arthritis (dose reduction due to hepatotoxicity)
+**content props medicationTimeline 6 name:** Folic Acid
+**content props medicationTimeline 6 startDate:** 2024-06-03
+**content props medicationTimeline 6 dose:** 5mg weekly
+**content props medicationTimeline 6 indication:** MTX toxicity prophylaxis
+**content props medicationTimeline 7 name:** N-Acetylcysteine (IV)
+**content props medicationTimeline 7 startDate:** 2024-08-12
+**content props medicationTimeline 7 endDate:** 2024-08-17
+**content props medicationTimeline 7 dose:** 3-bag IV protocol
+**content props medicationTimeline 7 indication:** Acute severe DILI
+**content props medicationTimeline 8 name:** Ursodeoxycholic Acid (UDCA)
+**content props medicationTimeline 8 startDate:** 2024-08-15
+**content props medicationTimeline 8 dose:** 500mg BID
+**content props medicationTimeline 8 indication:** Cholestasis/jaundice
 **createdAt:** 2025-10-14T16:47:56.098Z
-**updatedAt:** 2025-10-14T16:47:56.098Z
-
-# Object Record 4
-**objectId:** dashboard-item-1759906246156-lab-chart
-**type:** component
-**componentType:** LabChart
-**description:** 
-**content title:** Lab Trends
-**content component:** LabChart
-**content props encounters 0 encounter no:** 1
-**content props encounters 0 date:** 2015-08-10
-**content props encounters 0 meta ui risk color:** green
-**content props encounters 1 encounter no:** 2
-**content props encounters 1 date:** 2016-02-20
-**content props encounters 1 meta ui risk color:** green
-**content props encounters 2 encounter no:** 3
-**content props encounters 2 date:** 2018-09-05
-**content props encounters 2 meta ui risk color:** green
-**content props encounters 3 encounter no:** 4
-**content props encounters 3 date:** 2021-03-15
-**content props encounters 3 meta ui risk color:** green
-**content props encounters 4 encounter no:** 5
-**content props encounters 4 date:** 2025-06-15
-**content props encounters 4 meta ui risk color:** amber
-**content props encounters 5 encounter no:** 6
-**content props encounters 5 date:** 2025-06-21
-**content props encounters 5 meta ui risk color:** red
-**content props encounters 5 meta event tags 0:** Suspected DILI
-**content props encounters 5 meta event tags 1:** Potential MTX toxicity
-**content props medicationTimeline 0 name:** Methotrexate
-**content props medicationTimeline 0 start:** 2015-08-10
-**content props medicationTimeline 0 dose:** 10mg weekly
-**content props medicationTimeline 1 name:** Methotrexate
-**content props medicationTimeline 1 start:** 2018-09-05
-**content props medicationTimeline 1 dose:** 20mg weekly
-**content props medicationTimeline 2 name:** Lisinopril
-**content props medicationTimeline 2 start:** 2018-09-05
-**content props medicationTimeline 2 dose:** 10mg daily
-**content props medicationTimeline 3 name:** Trimethoprim-Sulfamethoxazole
-**content props medicationTimeline 3 start:** 2025-06-15
-**content props medicationTimeline 3 end:** 2025-06-25
-**content props medicationTimeline 3 dose:** 800/160mg BID
-**createdAt:** 2025-10-14T16:50:46.156Z
-**updatedAt:** 2025-10-14T16:50:46.156Z
+**updatedAt:** 2025-11-18T09:15:31.732Z
 
 # Object Record 0
 **objectId:** dashboard-item-1759853783245-patient-context
@@ -128,263 +124,129 @@
 **content title:** Patient Context
 **content component:** PatientContext
 **content props patientData patient name:** Sarah Miller
-**content props patientData patient date of birth:** 1962-03-15
-**content props patientData patient age:** 63
+**content props patientData patient date of birth:** 1981-06-03
+**content props patientData patient age:** 43
 **content props patientData patient sex:** Female
-**content props patientData patient age at first encounter:** 53
-**content props patientData patient identifiers mrn:** MC-001001
+**content props patientData patient age at first encounter:** 43
+**content props patientData patient identifiers mrn:** SM43850603
 **content props patientData riskLevel:** high
-**content props patientData primaryDiagnosis:** Rheumatoid arthritis
-**content props patientData problem list 0 name:** Rheumatoid arthritis
+**content props patientData primaryDiagnosis:** Severe Drug-Induced Liver Injury (Methotrexate-related)
+**content props patientData problem list 0 name:** Type 2 Diabetes Mellitus
 **content props patientData problem list 0 status:** active
-**content props patientData problem list 1 name:** Essential hypertension
+**content props patientData problem list 1 name:** Essential Hypertension
 **content props patientData problem list 1 status:** active
-**content props patientData problem list 2 name:** Mild chronic kidney disease
+**content props patientData problem list 2 name:** Rheumatoid Arthritis
 **content props patientData problem list 2 status:** active
-**content props patientData medication timeline 0 name:** Methotrexate
-**content props patientData medication timeline 0 dose:** 20 mg
+**content props patientData problem list 3 name:** Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD/MASH)
+**content props patientData problem list 3 status:** active
+**content props patientData problem list 4 name:** Severe Methotrexate-induced Drug-Induced Liver Injury (DILI)
+**content props patientData problem list 4 status:** active
+**content props patientData problem list 5 name:** Acute jaundice episode (2024-08)
+**content props patientData problem list 5 status:** resolved/improving
+**content props patientData medication timeline 0 name:** Metformin
+**content props patientData medication timeline 0 dose:** 1000 mg
 **content props patientData medication timeline 0 route:** PO
-**content props patientData medication timeline 0 frequency:** weekly
-**content props patientData medication timeline 0 start:** 2018-09-05
-**content props patientData medication timeline 1 name:** Folic Acid
+**content props patientData medication timeline 0 frequency:** BD
+**content props patientData medication timeline 0 start:** 2019-01-01
+**content props patientData medication timeline 1 name:** Ramipril
 **content props patientData medication timeline 1 dose:** 5 mg
 **content props patientData medication timeline 1 route:** PO
-**content props patientData medication timeline 1 frequency:** weekly
-**content props patientData medication timeline 1 start:** 2015-08-10
-**content props patientData medication timeline 2 name:** Lisinopril
-**content props patientData medication timeline 2 dose:** 10 mg
+**content props patientData medication timeline 1 frequency:** daily
+**content props patientData medication timeline 1 start:** 2020-01-01
+**content props patientData medication timeline 2 name:** Ibuprofen
+**content props patientData medication timeline 2 dose:** variable
 **content props patientData medication timeline 2 route:** PO
-**content props patientData medication timeline 2 frequency:** daily
-**content props patientData medication timeline 2 start:** 2018-09-05
-**content props patientData medication timeline 3 name:** Trimethoprim-Sulfamethoxazole
-**content props patientData medication timeline 3 dose:** 800/160 mg
+**content props patientData medication timeline 2 frequency:** PRN
+**content props patientData medication timeline 2 start:** 2022-01-01
+**content props patientData medication timeline 3 name:** Simethicone
+**content props patientData medication timeline 3 dose:** standard
 **content props patientData medication timeline 3 route:** PO
-**content props patientData medication timeline 3 frequency:** BID
-**content props patientData medication timeline 3 start:** 2025-06-15
-**content props patientData medication timeline 3 end:** 2025-06-25
-**content props patientData allergies 0:** Penicillin (rash)
+**content props patientData medication timeline 3 frequency:** PRN
+**content props patientData medication timeline 3 start:** 2024-03-05
+**content props patientData medication timeline 4 name:** Methotrexate
+**content props patientData medication timeline 4 dose:** 7.5 mg
+**content props patientData medication timeline 4 route:** PO
+**content props patientData medication timeline 4 frequency:** weekly
+**content props patientData medication timeline 4 start:** 2024-06-03
+**content props patientData medication timeline 4 end:** 2024-08-12
+**content props patientData medication timeline 5 name:** Folic Acid
+**content props patientData medication timeline 5 dose:** 5 mg
+**content props patientData medication timeline 5 route:** PO
+**content props patientData medication timeline 5 frequency:** weekly
+**content props patientData medication timeline 5 start:** 2024-06-03
+**content props patientData medication timeline 6 name:** Methotrexate (dose reduced)
+**content props patientData medication timeline 6 dose:** 5 mg
+**content props patientData medication timeline 6 route:** PO
+**content props patientData medication timeline 6 frequency:** weekly
+**content props patientData medication timeline 6 start:** 2024-07-15
+**content props patientData medication timeline 6 end:** 2024-08-12
+**content props patientData medication timeline 7 name:** N-Acetylcysteine (NAC IV)
+**content props patientData medication timeline 7 dose:** 3-bag protocol
+**content props patientData medication timeline 7 route:** IV
+**content props patientData medication timeline 7 frequency:** one-time protocol
+**content props patientData medication timeline 7 start:** 2024-08-12
+**content props patientData medication timeline 7 end:** 2024-08-17
+**content props patientData medication timeline 8 name:** Ursodeoxycholic Acid (UDCA)
+**content props patientData medication timeline 8 dose:** 500 mg
+**content props patientData medication timeline 8 route:** PO
+**content props patientData medication timeline 8 frequency:** BID
+**content props patientData medication timeline 8 start:** 2024-08-15
+**content props patientData allergies 0:** Methotrexate (severe DILI – permanent contraindication)
 **createdAt:** 2025-10-14T16:16:23.245Z
 **updatedAt:** 2025-10-14T16:16:23.245Z
 
-# Object Record 4
-**objectId:** dashboard-item-1759906300004-single-encounter-5
-**type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #5 - Outpatient (Sinusitis)
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 5
-**content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2025-06-15T10:30:00
-**content props encounter meta provider name:** None
-**content props encounter meta provider specialty:** General Practice
-**content props encounter meta ui risk color:** amber
-**content props encounter meta ui flags 0:** New potentially hepatotoxic/interactive drug (TMP-SMX) started while on MTX
-**content props encounter reason for visit:** Sinusitis symptoms
-**content props encounter chief complaint:** Facial pain, congestion, purulent nasal discharge
-**content props encounter hpi:** 5 days nasal congestion, facial pain, headache, green discharge; worse bending forward; afebrile; RA controlled; adherent to meds; requests antibiotics.
-**content props encounter medications prior 0 name:** Methotrexate
-**content props encounter medications prior 0 dose:** 20 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** weekly with Folic Acid next day
-**content props encounter medications prior 1 name:** Lisinopril
-**content props encounter medications prior 1 dose:** 10 mg
-**content props encounter medications prior 1 route:** PO
-**content props encounter medications prior 1 frequency:** daily
-**content props encounter medications prior 2 name:** Paracetamol
-**content props encounter medications prior 2 dose:** None
-**content props encounter medications prior 2 route:** PO
-**content props encounter medications prior 2 frequency:** PRN
-**content props encounter physical exam general:** NAD
-**content props encounter physical exam ent:** Maxillary tenderness; congested nasal mucosa with mucopurulent discharge; oropharynx clear
-**content props encounter physical exam vitals:** BP 135/85, HR 72, RR 16, Temp 37.0°C
-**content props encounter assessment impression:** Acute bacterial sinusitis; RA/HTN/CKD stable
-**content props encounter plan management medications started 0 name:** Trimethoprim-Sulfamethoxazole
-**content props encounter plan management medications started 0 dose:** 800/160 mg
-**content props encounter plan management medications started 0 route:** PO
-**content props encounter plan management medications started 0 frequency:** BID
-**content props encounter plan management medications started 0 duration days:** 10
-**content props encounter plan management education 0:** Potential side effects of TMP-SMX
-**content props encounter plan management education 1:** Seek care if symptoms worsen or new symptoms develop
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 4
-**content props dataSource:** BigHand
-**createdAt:** 2025-10-15T08:00:00.000Z
-**updatedAt:** 2025-10-15T08:00:00.000Z
-
-# Object Record 16
-**objectId:** raw-bighand-dictation-chen-2025
-**type:** component
-**componentType:** RawClinicalNote
-**description:** BigHand dictation from Dr. Sarah Chen (Emergency)
-**content title:** BigHand - Dr. Chen Dictation
-**content component:** RawClinicalNote
-**content props encounterNumber:** 6
-**content props date:** 2025-06-21
-**content props visitType:** Emergency Medicine
-**content props provider:** Dr. Sarah Chen
-**content props specialty:** Emergency Medicine
-**content props rawText:** BigHand Dictation (Transcribed Notes)
-Dictation – Dr. Sarah Chen (Emergency), 2025-06-21:
-"Patient is a 63-year-old man with a history of rheumatoid arthritis and hypertension, presenting with one day of jaundice, confusion, and epigastric pain. He started trimethoprim-sulfamethoxazole 6 days ago. Labs show acute liver failure with AST/ALT ~ 1500, INR elevated, and pancytopenia (WBC and platelets very low). Differential includes methotrexate toxicity versus TMP-SMX hepatotoxicity. Admitting to ICU. Orders: admit to ICU, start IV fluids and N-acetylcysteine, urgent labs including CBC, CMP, coags, hepatitis panel, toxicology, and abdominal ultrasound. Consult GI and hematology."
-(BigHand would queue each dictation for transcription and signature, and track completion of related tasks.)
-**content props dataSource:** BigHand Dictation
-**createdAt:** 2025-10-17T12:00:00.000Z
-**updatedAt:** 2025-10-17T12:00:00.000Z
-
-# Object Record 1
-**objectId:** dashboard-item-1759906300004-single-encounter-2
-**type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #2 - Outpatient Review
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 2
-**content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2016-02-20T09:30:00
-**content props encounter meta provider name:** None
-**content props encounter meta provider specialty:** General Practice
-**content props encounter meta ui risk color:** green
-**content props encounter reason for visit:** Routine MTX monitoring and RA review
-**content props encounter chief complaint:** Routine medication monitoring; RA follow-up
-**content props encounter hpi:** Good RA control on MTX 10 mg weekly; no MTX side effects; occasional joint aches; adherent to MTX and folic acid; no new concerns.
-**content props encounter medications prior 0 name:** Methotrexate
-**content props encounter medications prior 0 dose:** 10 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** weekly
-**content props encounter medications prior 1 name:** Folic Acid
-**content props encounter medications prior 1 dose:** 5 mg
-**content props encounter medications prior 1 route:** PO
-**content props encounter medications prior 1 frequency:** weekly
-**content props encounter medications prior 2 name:** Paracetamol
-**content props encounter medications prior 2 dose:** None
-**content props encounter medications prior 2 route:** PO
-**content props encounter medications prior 2 frequency:** PRN
-**content props encounter physical exam general:** Well; no jaundice
-**content props encounter physical exam msk:** No active synovitis; mild residual hand deformities
-**content props encounter physical exam vitals:** BP 132/80, HR 70, RR 16, Temp 36.7°C
-**content props encounter assessment impression:** Stable RA on MTX
-**content props encounter plan investigations labs 0:** CBC
-**content props encounter plan investigations labs 1:** LFTs
-**content props encounter plan investigations labs 2:** Renal function (Creatinine, eGFR)
-**content props encounter plan management education 0:** Continue Methotrexate 10 mg weekly and Folic Acid 5 mg weekly
-**content props encounter plan management education 1:** Strict alcohol avoidance while on MTX
-**content props encounter plan management education 2:** Smoking cessation encouraged; referral offered
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 1
-**content props dataSource:** Medilogik
-**createdAt:** 2025-10-15T08:00:00.000Z
-**updatedAt:** 2025-10-15T08:00:00.000Z
-
-# Object Record 2
-**objectId:** dashboard-item-1759906300004-single-encounter-3
-**type:** component
-**componentType:** SingleEncounterDocument
-**description:** 
-**content title:** Encounter #3 - Outpatient (Elevated BP)
-**content component:** SingleEncounterDocument
-**content props encounter encounter no:** 3
-**content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2018-09-05T10:00:00
-**content props encounter meta provider name:** None
-**content props encounter meta provider specialty:** General Practice
-**content props encounter meta ui risk color:** green
-**content props encounter reason for visit:** Routine review; elevated blood pressure
-**content props encounter chief complaint:** Raised BP readings at home
-**content props encounter hpi:** BP 145–155/90–95; asymptomatic. RA well-controlled on MTX 10 mg but specialist advised increase to 20 mg for mild flares. Quit smoking in 2017; continues 1–2 beers/day.
-**content props encounter medications prior 0 name:** Methotrexate
-**content props encounter medications prior 0 dose:** 10 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** weekly
-**content props encounter medications prior 1 name:** Folic Acid
-**content props encounter medications prior 1 dose:** 5 mg
-**content props encounter medications prior 1 route:** PO
-**content props encounter medications prior 1 frequency:** weekly
-**content props encounter medications prior 2 name:** Paracetamol
-**content props encounter medications prior 2 dose:** None
-**content props encounter medications prior 2 route:** PO
-**content props encounter medications prior 2 frequency:** PRN
-**content props encounter physical exam general:** Well
-**content props encounter physical exam vitals:** BP 148/92, HR 72, RR 16, Temp 36.8°C
-**content props encounter physical exam cvs:** Normal S1/S2, no murmurs
-**content props encounter physical exam msk:** No active synovitis
-**content props encounter assessment impression:** New essential hypertension; RA stable; plan MTX dose increase
-**content props encounter plan investigations labs 0:** CBC
-**content props encounter plan investigations labs 1:** LFTs
-**content props encounter plan investigations labs 2:** Creatinine
-**content props encounter plan investigations labs 3:** eGFR
-**content props encounter plan management medications started 0 name:** Lisinopril
-**content props encounter plan management medications started 0 dose:** 10 mg
-**content props encounter plan management medications started 0 route:** PO
-**content props encounter plan management medications started 0 frequency:** daily
-**content props encounter plan management medications started 1 name:** Methotrexate
-**content props encounter plan management medications started 1 dose:** 20 mg
-**content props encounter plan management medications started 1 route:** PO
-**content props encounter plan management medications started 1 frequency:** weekly
-**content props encounter plan management education 0:** Lisinopril side effects (e.g., cough); monitor BP regularly
-**content props encounter plan management education 1:** Reinforce alcohol moderation with higher MTX dose
-**content props encounter plan management education 2:** Continue Folic Acid the day after MTX
-**content props patient name:** Sarah Miller
-**content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 2
-**content props dataSource:** Viper
-**createdAt:** 2025-10-15T08:00:00.000Z
-**updatedAt:** 2025-10-15T08:00:00.000Z
+# Object Record 14
+**objectId:** subzone-vueexplore
+**type:** zone
+**data label:** VueExplore Imaging Data
+**data color:** #3b82f6
+**data handlePosition:** top
+**style background:** linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.12) 100%)
+**style border:** 2px solid #3b82f6
+**style borderRadius:** 12px
+**style pointerEvents:** none
+**draggable:** False
+**selectable:** False
+**zIndex:** -2
+**createdAt:** 2025-11-17T16:00:00.000Z
+**updatedAt:** 2025-11-17T16:00:00.000Z
 
 # Object Record 3
 **objectId:** dashboard-item-1759906300004-single-encounter-4
 **type:** component
 **componentType:** SingleEncounterDocument
 **description:** 
-**content title:** Encounter #4 - Outpatient (Chronic Review)
+**content title:** Encounter #4 - Outpatient
 **content component:** SingleEncounterDocument
 **content props encounter encounter no:** 4
 **content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2021-03-15T09:00:00
-**content props encounter meta provider name:** None
-**content props encounter meta provider specialty:** General Practice
-**content props encounter meta ui risk color:** green
-**content props encounter reason for visit:** Routine chronic disease review (RA, HTN)
-**content props encounter chief complaint:** Routine follow-up for RA/HTN
-**content props encounter hpi:** Overall well; RA controlled on MTX 20 mg; BP controlled on Lisinopril; occasional low back pain; eGFR mildly declined but stable; continues 1–2 beers/day.
-**content props encounter medications prior 0 name:** Methotrexate
-**content props encounter medications prior 0 dose:** 20 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** weekly
-**content props encounter medications prior 1 name:** Folic Acid
-**content props encounter medications prior 1 dose:** 5 mg
-**content props encounter medications prior 1 route:** PO
-**content props encounter medications prior 1 frequency:** weekly (next day after MTX)
-**content props encounter medications prior 2 name:** Lisinopril
-**content props encounter medications prior 2 dose:** 10 mg
-**content props encounter medications prior 2 route:** PO
-**content props encounter medications prior 2 frequency:** daily
-**content props encounter medications prior 3 name:** Paracetamol
-**content props encounter medications prior 3 dose:** None
-**content props encounter medications prior 3 route:** PO
-**content props encounter medications prior 3 frequency:** PRN
-**content props encounter physical exam general:** Fit/well
-**content props encounter physical exam vitals:** BP 130/82, HR 68, RR 16, Temp 36.7°C
-**content props encounter physical exam msk:** No synovitis
-**content props encounter physical exam abdomen:** Soft, non-tender
-**content props encounter assessment impression:** Stable RA; controlled HTN; chronic mild low back pain; mild CKD (stable)
-**content props encounter plan investigations labs 0:** CBC
-**content props encounter plan investigations labs 1:** LFTs
-**content props encounter plan investigations labs 2:** Creatinine
-**content props encounter plan investigations labs 3:** eGFR
-**content props encounter plan management education 0:** Continue MTX 20 mg weekly, Folic Acid 5 mg weekly, Lisinopril 10 mg daily
-**content props encounter plan management education 1:** Hydration importance with CKD and ACE inhibitor
-**content props encounter plan management education 2:** Alcohol moderation reinforced
+**content props encounter meta date time:** 2024-06-03T11:30:55
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** Unknown
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Initiation of Methotrexate for Rheumatoid Arthritis management.
+**content props encounter chief complaint:** Initiation of Disease-Modifying Anti-Rheumatic Drug (DMARD) - Methotrexate (MTX) for Rheumatoid Arthritis (RA) management.
+**content props encounter hpi:** Sarah Miller presents for the initiation of Methotrexate treatment for RA. She reports her joint pain has been stable but remains a significant source of discomfort, affecting her daily activities. A thorough review of her medical history, medication adherence, and lifestyle was conducted. The patient confirms receipt and comprehension of the Methotrexate informational leaflet, indicating understanding of the treatment regimen and potential adverse effects. The decision to commence Methotrexate was made following normalization of liver function tests (LFTs) as of May 6, 2024. The patient reiterated understanding of the importance of strict compliance with the monitoring schedule due to the severe hepatotoxicity risk associated with Methotrexate.
+**content props encounter physical exam general:** Vital Signs: BP 138/86 mmHg (sitting), HR 80 bpm, RR 15/min, Temp 36.7°C, SpO₂ 98% on room air. Anthropometrics: Weight 84 kg (BMI 31.2 kg/m²). Weight stable compared with early May.
+**content props encounter physical exam msk:** 
+**content props encounter physical exam other systems:** 
+**content props encounter plan investigations labs 0:** LFTs every six weeks
+**content props encounter plan investigations labs 1:** Full Blood Count (FBC) every six weeks
+**content props encounter plan management follow up:** First LFT/FBC evaluation scheduled for July 15, 2024. Regular monitoring every six weeks for the next 6 months. Patient to contact clinic immediately if severe nausea, vomiting, or jaundice occur.
+**content props encounter plan management medications started 0 dose:** 7.5mg
+**content props encounter plan management medications started 0 frequency:** once weekly
+**content props encounter plan management medications started 0 name:** Methotrexate
+**content props encounter plan management medications started 0 route:** orally
+**content props encounter plan management medications started 1 dose:** 5mg
+**content props encounter plan management medications started 1 frequency:** weekly
+**content props encounter plan management medications started 1 name:** Folic Acid
+**content props encounter plan management medications started 1 route:** orally
+**content props encounter reason for visit:** Initiation of Methotrexate for Rheumatoid Arthritis management.
 **content props patient name:** Sarah Miller
 **content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 3
-**content props dataSource:** ICE
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 4
+**content props dataSource:** Medilogik
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
 
@@ -393,39 +255,197 @@ Dictation – Dr. Sarah Chen (Emergency), 2025-06-21:
 **type:** component
 **componentType:** SingleEncounterDocument
 **description:** 
-**content title:** Encounter #1 - Initial Consult
+**content title:** Encounter #1 - Outpatient Visit
 **content component:** SingleEncounterDocument
 **content props encounter encounter no:** 1
 **content props encounter meta visit type:** Outpatient
-**content props encounter meta date time:** 2015-08-10T11:00:00
-**content props encounter meta provider name:** Dr. Elizabeth Hayes
-**content props encounter meta provider specialty:** Rheumatology (Initial Consult)
-**content props encounter meta ui risk color:** green
-**content props encounter reason for visit:** Initial rheumatology consult
-**content props encounter chief complaint:** Bilateral joint pain and swelling.
-**content props encounter hpi:** 53-year-old retired carpenter with 6 months progressive symmetrical small-joint pain/swelling (hands/feet), morning stiffness >60 min, fatigue, limited NSAID relief.
-**content props encounter medications prior 0 name:** Ibuprofen
-**content props encounter medications prior 0 dose:** 200 mg
-**content props encounter medications prior 0 route:** PO
-**content props encounter medications prior 0 frequency:** PRN
-**content props encounter medications prior 0 indication:** Joint pain
-**content props encounter physical exam general:** Fatigued but comfortable, NAD
-**content props encounter physical exam msk:** Bilateral swelling/tenderness MCPs 2-3, PIPs 2-3, MTPs 2-3; synovitis; reduced grip
-**content props encounter assessment impression:** Seropositive Rheumatoid Arthritis (active)
-**content props encounter assessment differential 0:** Psoriatic Arthritis
-**content props encounter assessment differential 1:** Systemic Lupus Erythematosus
-**content props encounter plan investigations labs 0:** RF
-**content props encounter plan investigations labs 1:** Anti-CCP
-**content props encounter plan investigations labs 2:** CBC
-**content props encounter plan investigations labs 3:** LFTs
-**content props encounter plan management medications started 0 name:** Methotrexate
-**content props encounter plan management medications started 0 dose:** 10 mg
-**content props encounter plan management medications started 0 route:** PO
-**content props encounter plan management medications started 0 frequency:** weekly
+**content props encounter meta date time:** 2024-03-05T10:15:22Z
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** General Practice
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Suboptimal control of T2DM/HTN, Chronic Fatigue Syndrome possibly related to MASLD. Diabetes control is poor with HbA1c at 58 mmol/mol, indicating long-standing hyperglycaemia and need for therapeutic adjustment.
+**content props encounter assessment differential 0:** T2DM suboptimal control
+**content props encounter assessment differential 1:** Hypertension suboptimal control
+**content props encounter assessment differential 2:** Chronic Fatigue Syndrome
+**content props encounter assessment differential 3:** MASLD
+**content props encounter chief complaint:** Increased fatigue over the past 4-5 months
+**content props encounter hpi:** Sarah Miller, a 43-year-old administrative assistant, presents with debilitating fatigue affecting work performance. She averages 6.5 hours of non-restorative sleep per night and experiences RA-related discomfort, particularly in the right wrist. She takes Ibuprofen 4-5 times per week for pain and chemically-induced frequent bloating. HbA1c from today’s labs is 58 mmol/mol, confirming persistently weak glycaemic control which may be contributing to fatigue and metabolic strain.
+**content props encounter medications prior 0 name:** Metformin
+**content props encounter medications prior 0 route:** Oral, unknown dose, BD frequency, for T2DM
+**content props encounter medications prior 1 name:** Ramipril
+**content props encounter medications prior 1 route:** Oral, 5mg, OD frequency, for Hypertension
+**content props encounter medications prior 2 name:** Ibuprofen
+**content props encounter medications prior 2 route:** Oral, unknown dose, taken 4-5 times per week for RA pain
+**content props encounter medications prior 3 name:** Simethicone
+**content props encounter medications prior 3 route:** Oral, unknown dose, unknown frequency, for bloating
+**content props encounter physical exam general:** Appears non-toxic and well-perfused.
+**content props encounter physical exam msk:** Mild effusion in right MCP joint 3, mild pain on movement.
+**content props encounter physical exam other systems:** Vital Signs: BP 146/92 mmHg (sitting), HR 82 bpm, RR 16/min, Temp 36.8°C, SpO₂ 99% on room air. Anthropometrics: Height 1.64 m, Weight 86 kg (BMI 32.0 kg/m²; class I obesity). Weight reported as broadly stable over the past 12 months. Skin/Sclera: Anicteric sclerae; no chronic liver disease stigmata. Abdomen: Soft, lax, normal liver span, no tenderness. Diabetes: Persistent hyperglycaemia suspected based on elevated HbA1c and obesity.
+**content props encounter plan investigations labs 0:** Complete LFTs
+**content props encounter plan investigations labs 1:** HbA1c
+**content props encounter plan investigations labs 2:** Consider future intensification of diabetes therapy if HbA1c remains > 53 mmol/mol
+**content props encounter plan management follow up:** Follow-up in 4 weeks to evaluate LFTs and MTX eligibility.
+**content props encounter reason for visit:** Increased fatigue
 **content props patient name:** Sarah Miller
 **content props patient sex:** Female
-**content props patient age at first encounter:** 53
-**content props encounterIndex:** 0
-**content props dataSource:** Nervecentre
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 1
+**content props dataSource:** Electronic Health Record
 **createdAt:** 2025-10-14T16:55:00.003Z
 **updatedAt:** 2025-10-14T16:55:00.003Z
+
+# Object Record 1
+**objectId:** dashboard-item-1759906300004-single-encounter-2
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #2 - Outpatient
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 2
+**content props encounter meta visit type:** Outpatient
+**content props encounter meta date time:** 2024-04-01T15:00:45
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** Unknown
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Elevated ALT of 78 U/L, concerning for hepatocellular inflammation, potentially related to Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD). Methotrexate initiation deferred pending further investigation.
+**content props encounter assessment differential 0:** Hepatocellular inflammation
+**content props encounter assessment differential 1:** Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD)
+**content props encounter assessment differential 2:** Viral Hepatitis
+**content props encounter assessment differential 3:** Autoimmune Hepatitis
+**content props encounter assessment differential 4:** Hemochromatosis
+**content props encounter assessment differential 5:** Alpha-1-Antitrypsin Deficiency
+**content props encounter chief complaint:** Review of abnormal liver function tests and planning for rheumatoid arthritis treatment.
+**content props encounter hpi:** Patient reports making small changes to diet and activity since the last visit, with an approximate 0.5–1 kg weight loss. The elevated ALT of 78 U/L was reviewed. Potential Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD) was discussed as a contributing factor. Patient was educated on the significance of these results and the potential risk for liver injury if starting Methotrexate without further clearance.
+**content props encounter physical exam general:** Vital Signs: BP 142/90 mmHg (sitting), HR 80 bpm, RR 16/min, Temp 36.7°C, SpO₂ 99% on room air. Anthropometrics: Weight 85.5 kg (BMI 31.8 kg/m²).
+**content props encounter physical exam msk:** 
+**content props encounter physical exam other systems:** 
+**content props encounter plan investigations labs 0:** HBsAg
+**content props encounter plan investigations labs 1:** HCV Ab
+**content props encounter plan investigations labs 2:** ANA
+**content props encounter plan investigations labs 3:** ASMA
+**content props encounter plan investigations labs 4:** Ferritin
+**content props encounter plan investigations labs 5:** TIBC
+**content props encounter plan investigations labs 6:** Full liver panel
+**content props encounter plan management follow up:** Return for follow-up in 4 weeks to review investigation results. Continued monitoring and lifestyle modifications advised.
+**content props encounter reason for visit:** Review of abnormal liver function tests and planning for rheumatoid arthritis treatment.
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 2
+**content props dataSource:** BigHand
+**createdAt:** 2025-10-15T08:00:00.000Z
+**updatedAt:** 2025-10-15T08:00:00.000Z
+
+# Object Record 2
+**objectId:** dashboard-item-1759906300004-single-encounter-3
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #3 - Outpatient Follow-up
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 3
+**content props encounter meta visit type:** Outpatient
+**content props encounter meta date time:** 2024-05-06T09:00:10
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** Unknown
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Follow-up regarding normalization of liver function tests and initiation of Methotrexate for rheumatoid arthritis management. Normalization of LFTs with ALT at 35 U/L. Negative workup for chronic liver conditions. Likely transient elevation possibly related to MASLD. Cleared for Methotrexate initiation.
+**content props encounter assessment differential 0:** Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD)
+**content props encounter assessment differential 1:** Acute self-limiting liver episode
+**content props encounter chief complaint:** Follow-up regarding normalization of liver function tests (LFTs) and potential initiation of Methotrexate for rheumatoid arthritis management.
+**content props encounter hpi:** Since the previous review, Sarah reports increased adherence to dietary advice and gentle walking most days, noting a ~1.5 kg weight loss since March. Comprehensive hepatitis workup (viral, autoimmune, metabolic) returned negative. ALT has decreased to 35 U/L, suggesting transient elevation. Patient is considered low-risk for MTX initiation.
+**content props encounter physical exam general:** Vital Signs: BP 140/88 mmHg (sitting), HR 78 bpm, RR 15/min, Temp 36.6°C, SpO₂ 99% on room air.
+**content props encounter physical exam msk:** 
+**content props encounter physical exam other systems:** Anthropometrics: Weight 84 kg (BMI 31.2 kg/m²).
+**content props encounter plan investigations labs 0:** LFTs every 6 weeks
+**content props encounter plan investigations labs 1:** FBC every 6 weeks
+**content props encounter plan management follow up:** Follow-up appointment set for early August to review treatment response, adherence to monitoring, and adjust plan. Instructed to begin Methotrexate on 2024-06-03. Emphasized adherence to strict 6-weekly monitoring schedule.
+**content props encounter plan management medications started 0 dose:** 7.5mg
+**content props encounter plan management medications started 0 frequency:** weekly
+**content props encounter plan management medications started 0 name:** Methotrexate
+**content props encounter plan management medications started 0 route:** Unknown
+**content props encounter plan management medications started 1 dose:** 5mg
+**content props encounter plan management medications started 1 frequency:** weekly
+**content props encounter plan management medications started 1 name:** Folic acid
+**content props encounter plan management medications started 1 route:** Unknown
+**content props encounter reason for visit:** Follow-up for liver function tests and rheumatoid arthritis management.
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 3
+**content props dataSource:** Electronic Health Record
+**createdAt:** 2025-10-15T08:00:00.000Z
+**updatedAt:** 2025-10-15T08:00:00.000Z
+
+# Object Record 5
+**objectId:** dashboard-item-1759906300004-single-encounter-6
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #6 - Urgent Review
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 6
+**content props encounter meta visit type:** Emergency Department (ED)
+**content props encounter meta date time:** 2024-08-12T14:00:00
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** General Practitioner
+**content props encounter meta ui risk color:** red
+**content props encounter assessment impression:** Severe, Acute Drug-Induced Liver Injury (DILI) with developing cholestasis.
+**content props encounter assessment differential 0:** Mechanical obstruction (e.g., choledocholithiasis)
+**content props encounter chief complaint:** Urgent review for new onset jaundice, dark urine, and constant, severe nausea leading to anorexia.
+**content props encounter hpi:** Patient presented with new onset jaundice, dark urine, and severe nausea leading to anorexia. Initial ED vital signs: BP 132/88 mmHg (sitting), HR 102 bpm, RR 18/min, Temp 37.3°C, SpO₂ 97% on room air. Weight 81.5 kg (BMI 30.3 kg/m²). Patient reported significant weight loss of approximately 4.5 kg over the past 4–6 weeks due to nausea and anorexia. Jaundice noted upon waking, dark urine observed. Symptoms are severe and persistent. Laboratory analysis revealed significantly elevated ALT levels and bilirubin of 110 μmol/L, indicating severe cholestasis. INR was stable at 1.1.
+**content props encounter medications prior 0 name:** Methotrexate
+**content props encounter medications prior 0 route:** Oral
+**content props encounter physical exam general:** Jaundice noted. Patient appears anorectic.
+**content props encounter plan investigations imaging 0:** USG Abdomen Complete - STAT (Accession Number: USG-240812-001). Report indicates severe MASH/MASLD, no mechanical obstruction. Impression: Severe hepatocellular DILI superimposed on advanced chronic liver disease (MASH).
+**content props encounter plan investigations labs 0:** ALT levels elevated
+**content props encounter plan investigations labs 1:** Bilirubin levels elevated to 110 μmol/L
+**content props encounter plan investigations labs 2:** INR stable at 1.1
+**content props encounter plan management follow up:** Close follow-up post-hospital discharge to reassess liver function and re-evaluate RA treatment plan, considering contraindication for future Methotrexate use.
+**content props encounter plan management medications started 0 name:** N-acetylcysteine (NAC)
+**content props encounter plan management medications started 0 route:** IV Infusion (3-bag protocol, 85kg weight)
+**content props encounter reason for visit:** New onset jaundice, dark urine, severe nausea, and anorexia, concerning for acute liver injury.
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 1
+**content props dataSource:** ICE/VueExplore
+**createdAt:** 2025-10-14T16:55:00.004Z
+**updatedAt:** 2025-10-14T16:55:00.004Z
+
+# Object Record 4
+**objectId:** dashboard-item-1759906300004-single-encounter-5
+**type:** component
+**componentType:** SingleEncounterDocument
+**description:** 
+**content title:** Encounter #5 - Outpatient
+**content component:** SingleEncounterDocument
+**content props encounter encounter no:** 5
+**content props encounter meta visit type:** Outpatient
+**content props encounter meta date time:** 2024-07-15T14:00:30
+**content props encounter meta provider name:** Dr. P. Stevens
+**content props encounter meta provider specialty:** Rheumatology
+**content props encounter meta ui risk color:** yellow
+**content props encounter assessment impression:** Methotrexate-induced Drug-Induced Liver Injury (DILI) presenting with elevated ALT (185 U/L, 4.6x ULN), with new intermittent nausea and increased fatigue. Rheumatoid arthritis symptoms are improving on Methotrexate. Diabetes control has deteriorated with HbA1c rising to 60 mmol/mol, signalling worsening glycaemia during MTX therapy and possible contribution to fatigue.
+**content props encounter assessment differential 0:** Methotrexate-induced Drug-Induced Liver Injury (DILI)
+**content props encounter assessment differential 1:** Underlying MASLD risk factors
+**content props encounter chief complaint:** Routine Methotrexate (MTX) monitoring. Reports of new intermittent nausea and increased fatigue.
+**content props encounter hpi:** Sarah Miller, a 43-year-old female, presents for routine Methotrexate monitoring. She reports ~1 kg unintentional weight loss over the past month, attributed to reduced appetite and intermittent nausea, primarily in the evenings. No vomiting or diarrhea. Fatigue levels have returned to pre-MTX initiation severity. Rheumatoid arthritis symptoms have significantly improved with diminished joint pain and increased daily function since starting Methotrexate. Recent labs show ALT elevated to 185 U/L (4.6x ULN). HbA1c has worsened to 60 mmol/mol, indicating declining diabetes control despite weight loss.
+**content props encounter physical exam general:** Vital Signs: BP 144/92 mmHg (sitting), HR 88 bpm, RR 16/min, Temp 36.8°C, SpO₂ 98% on room air.
+**content props encounter physical exam msk:** Joint pain has diminished.
+**content props encounter physical exam other systems:** Weight 83 kg (BMI 30.8 kg/m²). Despite some weight reduction, diabetes control is worsening with higher HbA1c and increased metabolic fatigue.
+**content props encounter plan investigations labs 0:** Repeat liver function tests in four weeks
+**content props encounter plan investigations labs 1:** HbA1c monitoring recommended due to recent deterioration
+**content props encounter plan management follow up:** Follow up in four weeks. Advised to remain vigilant for any worsening of symptoms or new signs of liver dysfunction such as jaundice, further exacerbated fatigue, or darker urine. Ensure adherence to adjusted Methotrexate regimen. Attend Hepatology consultation.
+**content props encounter plan management medications started 0 dose:** 5mg
+**content props encounter plan management medications started 0 frequency:** weekly
+**content props encounter plan management medications started 0 name:** Methotrexate
+**content props encounter plan management medications started 0 route:** 
+**content props encounter reason for visit:** Routine Methotrexate monitoring and management of new symptoms of nausea and fatigue, and elevated liver enzymes.
+**content props patient name:** Sarah Miller
+**content props patient sex:** Female
+**content props patient age at first encounter:** 43
+**content props encounterIndex:** 5
+**content props dataSource:** Nervecentre
+**createdAt:** 2025-10-15T08:00:00.000Z
+**updatedAt:** 2025-10-15T08:00:00.000Z

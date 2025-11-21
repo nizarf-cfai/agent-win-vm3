@@ -9,7 +9,7 @@
             "agent": "Data Analyst Agent",
             "subTodos": [
                 {
-                    "text": "Base question : What is the DILI diagnosis according to EASL guidelines for Sarah Miller",
+                    "text": "Base question : What is the daily diagnosis according to EASL guideline for Sarah Miller",
                     "status": "executing"
                 },
                 {

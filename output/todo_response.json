@@ -1,7 +1,7 @@
 {
-    "id": "enhanced-todo-1763694044100-h0082z13y",
+    "id": "enhanced-todo-1763703219605-9yes2luk0",
     "type": "todo",
-    "x": 6440,
+    "x": 6330,
     "y": -2240,
     "width": 450,
     "height": "auto",
@@ -18,7 +18,7 @@
                 "agent": "Data Analyst Agent",
                 "subTodos": [
                     {
-                        "text": "Base question : What is the DILI diagnosis according to EASL guidelines for Sarah Miller",
+                        "text": "Base question : What is the daily diagnosis according to EASL guideline for Sarah Miller",
                         "status": "executing"
                     },
                     {
@@ -46,6 +46,6 @@
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-21T03:00:44.105Z",
-    "updatedAt": "2025-11-21T03:00:44.105Z"
+    "createdAt": "2025-11-21T05:33:39.913Z",
+    "updatedAt": "2025-11-21T05:33:39.913Z"
 }
