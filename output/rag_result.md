@@ -166,26 +166,6 @@
 **createdAt:** 2025-10-14T16:16:23.245Z
 **updatedAt:** 2025-10-14T16:16:23.245Z
 
-# Object Record 16
-**objectId:** raw-bighand-dictation-chen-2025
-**type:** component
-**componentType:** RawClinicalNote
-**description:** BigHand dictation from Dr. Sarah Chen (Emergency)
-**content title:** BigHand - Dr. Chen Dictation
-**content component:** RawClinicalNote
-**content props encounterNumber:** 6
-**content props date:** 2025-06-21
-**content props visitType:** Emergency Medicine
-**content props provider:** Dr. Sarah Chen
-**content props specialty:** Emergency Medicine
-**content props rawText:** BigHand Dictation (Transcribed Notes)
-Dictation – Dr. Sarah Chen (Emergency), 2025-06-21:
-"Patient is a 63-year-old man with a history of rheumatoid arthritis and hypertension, presenting with one day of jaundice, confusion, and epigastric pain. He started trimethoprim-sulfamethoxazole 6 days ago. Labs show acute liver failure with AST/ALT ~ 1500, INR elevated, and pancytopenia (WBC and platelets very low). Differential includes methotrexate toxicity versus TMP-SMX hepatotoxicity. Admitting to ICU. Orders: admit to ICU, start IV fluids and N-acetylcysteine, urgent labs including CBC, CMP, coags, hepatitis panel, toxicology, and abdominal ultrasound. Consult GI and hematology."
-(BigHand would queue each dictation for transcription and signature, and track completion of related tasks.)
-**content props dataSource:** BigHand Dictation
-**createdAt:** 2025-10-17T12:00:00.000Z
-**updatedAt:** 2025-10-17T12:00:00.000Z
-
 # Object Record 4
 **objectId:** dashboard-item-1759906300004-single-encounter-5
 **type:** component
@@ -233,6 +213,26 @@ Dictation – Dr. Sarah Chen (Emergency), 2025-06-21:
 **content props dataSource:** BigHand
 **createdAt:** 2025-10-15T08:00:00.000Z
 **updatedAt:** 2025-10-15T08:00:00.000Z
+
+# Object Record 16
+**objectId:** raw-bighand-dictation-chen-2025
+**type:** component
+**componentType:** RawClinicalNote
+**description:** BigHand dictation from Dr. Sarah Chen (Emergency)
+**content title:** BigHand - Dr. Chen Dictation
+**content component:** RawClinicalNote
+**content props encounterNumber:** 6
+**content props date:** 2025-06-21
+**content props visitType:** Emergency Medicine
+**content props provider:** Dr. Sarah Chen
+**content props specialty:** Emergency Medicine
+**content props rawText:** BigHand Dictation (Transcribed Notes)
+Dictation – Dr. Sarah Chen (Emergency), 2025-06-21:
+"Patient is a 63-year-old man with a history of rheumatoid arthritis and hypertension, presenting with one day of jaundice, confusion, and epigastric pain. He started trimethoprim-sulfamethoxazole 6 days ago. Labs show acute liver failure with AST/ALT ~ 1500, INR elevated, and pancytopenia (WBC and platelets very low). Differential includes methotrexate toxicity versus TMP-SMX hepatotoxicity. Admitting to ICU. Orders: admit to ICU, start IV fluids and N-acetylcysteine, urgent labs including CBC, CMP, coags, hepatitis panel, toxicology, and abdominal ultrasound. Consult GI and hematology."
+(BigHand would queue each dictation for transcription and signature, and track completion of related tasks.)
+**content props dataSource:** BigHand Dictation
+**createdAt:** 2025-10-17T12:00:00.000Z
+**updatedAt:** 2025-10-17T12:00:00.000Z
 
 # Object Record 1
 **objectId:** dashboard-item-1759906300004-single-encounter-2

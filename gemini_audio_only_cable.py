@@ -20,6 +20,8 @@ import chat_model
 import side_agent
 from google.genai import types
 import helper_model
+import agent_speak
+
 
 from chroma_db.chroma_script import rag_from_json, get_easl_answer_async
 from dotenv import load_dotenv
@@ -53,6 +55,13 @@ with open("system_prompt.md", "r", encoding="utf-8") as f:
 with open("system_function.json", "r", encoding="utf-8") as f:
     FUNCTION_DECLARATIONS = json.load(f)
 
+fill_words = [
+    "audio/allright.wav",
+    "audio/give_second.wav",
+    "audio/hmm_interesting.wav",
+    "audio/let_me_think.wav",
+    "audio/okay.wav",
+]
 
 CONFIG = {
     "response_modalities": ["AUDIO"],
@@ -237,6 +246,9 @@ class AudioOnlyGeminiCable:
         # func_res.append(
         #     self.create_func_response(fc, f"Sending query to RAG Agent and Data Analyst Agent.Query : '{query}'")
         # )
+        ## Random fill word
+        random_fill = random.choice(fill_words)
+        agent_speak.play_audio_file(random_fill, pya)
 
         context = await rag_from_json(query, top_k=3)
         # func_res.append(
@@ -246,6 +258,10 @@ class AudioOnlyGeminiCable:
         object_id = await side_agent.resolve_object_id(query, context)
 
         print("OBJECT ID :",object_id)
+        ## Random fill word
+        random_fill = random.choice(fill_words)
+        agent_speak.play_audio_file(random_fill, pya)
+
         answer = await chat_model.get_answer(query=query, context=context)
 
         func_res.append(
@@ -281,6 +297,8 @@ class AudioOnlyGeminiCable:
 
 
         todo_data = todo_obj.get("todoData", {})
+        agent_speak.play_audio_file("audio/consolidate_result.wav", pya)
+
         data = await side_agent.generate_response(todo_data)
 
         agent_res = {
@@ -291,7 +309,10 @@ class AudioOnlyGeminiCable:
             agent_res['title'] = todo_data.get('title', '').lower().replace("to do", "Result").capitalize()
         
         await canvas_ops.create_result(agent_res)
+
         print("  ✅ Analysis completed")
+        agent_speak.play_audio_file("audio/result_generated.wav", pya)
+
 
 
 
@@ -364,6 +385,11 @@ class AudioOnlyGeminiCable:
                 ### NEW MODE
                 #############
 
+                ## Random fill word
+                random_fill = random.choice(fill_words)
+                agent_speak.play_audio_file(random_fill, pya)
+
+
                 query = arguments.get('query')
                 lower_q = query.lower()
 
@@ -373,11 +399,6 @@ class AudioOnlyGeminiCable:
                     print("EASL TOOL")
 
                     func_tool = await self.easl_todo(fc, query)
-                    function_responses += func_tool
-                
-                elif tool_res.get('tool') == "navigate_canvas":
-                    print("NAVIGATE TOOL")
-                    func_tool = await self.navigate_answer(fc, query)
                     function_responses += func_tool
                     
                 elif tool_res.get('tool') == "get_easl_answer":

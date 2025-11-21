@@ -1,24 +1,24 @@
 {
-    "id": "enhanced-todo-1763447214928-tmccgyuug",
+    "id": "enhanced-todo-1763693985802-kpxih3m6j",
     "type": "todo",
     "x": 5860,
     "y": -2240,
     "width": 450,
     "height": "auto",
     "color": "#ffffff",
-    "description": "Retrieve radiology data for Sarah Miller, including diagnostic reports, with specific filters applied.",
+    "description": "Retrieve radiology data for Sarah Miller, filtering by relevant parameters and ensuring data integrity.",
     "todoData": {
-        "title": "Radiology Data Retrieval for Sarah Miller",
-        "description": "Retrieve radiology data for Sarah Miller, including diagnostic reports, with specific filters applied.",
+        "title": "Sarah Miller Radiology Data Retrieval",
+        "description": "Retrieve radiology data for Sarah Miller, filtering by relevant parameters and ensuring data integrity.",
         "todos": [
             {
-                "id": "task-prep-radiology",
-                "text": "Prepare radiology retrieval parameters for Sarah Miller",
+                "id": "task-prepare-rad-data",
+                "text": "Prepare radiology data retrieval parameters for Sarah Miller",
                 "status": "pending",
                 "agent": "Data Analyst Agent",
                 "subTodos": [
                     {
-                        "text": "Determine patient identifier for Sarah Miller",
+                        "text": "Identify patient Sarah Miller's UUID",
                         "status": "pending"
                     },
                     {
@@ -26,39 +26,35 @@
                         "status": "pending"
                     },
                     {
-                        "text": "Apply modality filters (e.g., CT, MRI, X-Ray)",
+                        "text": "Define modality filters (e.g., CT, MRI, X-Ray)",
                         "status": "pending"
                     },
                     {
-                        "text": "Set status=final for finalized reports",
+                        "text": "Specify status filter (e.g., final)",
                         "status": "pending"
                     },
                     {
-                        "text": "Set date filter (e.g., last 5 years)",
-                        "status": "pending"
-                    },
-                    {
-                        "text": "Ensure authentication is valid",
+                        "text": "Apply date range and sorting preferences",
                         "status": "pending"
                     }
                 ]
             },
             {
-                "id": "task-fetch-radiology",
-                "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<PATIENT_ID>&category=http://loinc.org|LP29684-5&date=ge2019-01-01&modality=http://dicom.nema.org/resources/ontology/DCM|CT&modality=http://dicom.nema.org/resources/ontology/DCM|MRI&modality=http://dicom.nema.org/resources/ontology/DCM|X-Ray&status=final&_sort=-date&_count=10'",
+                "id": "task-fetch-rad-data",
+                "text": "curl -X GET 'https://api.bedfordshirehospitals.nhs.uk/fhir-prd/r4/DiagnosticReport?patient=<UUID>&category=http://loinc.org|LP29684-5&status=final&_sort=-date'",
                 "status": "pending",
                 "agent": "Consolidator Agent",
                 "subTodos": [
                     {
-                        "text": "Execute HTTP GET request",
+                        "text": "Execute HTTP GET request with constructed URL",
                         "status": "pending"
                     },
                     {
-                        "text": "Check response HTTP status code",
+                        "text": "Validate the HTTP response status code",
                         "status": "pending"
                     },
                     {
-                        "text": "Validate JSON structure of DiagnosticReport entries",
+                        "text": "Parse and validate the structure of the returned DiagnosticReport resources",
                         "status": "pending"
                     }
                 ]
@@ -66,6 +62,6 @@
         ]
     },
     "rotation": 0,
-    "createdAt": "2025-11-18T06:26:54.933Z",
-    "updatedAt": "2025-11-18T06:26:54.933Z"
+    "createdAt": "2025-11-21T02:59:45.807Z",
+    "updatedAt": "2025-11-21T02:59:45.807Z"
 }
