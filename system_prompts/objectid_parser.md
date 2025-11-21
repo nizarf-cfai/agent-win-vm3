@@ -44,13 +44,13 @@ RESOLUTION RULES
    - `dashboard-item-1759906246155-lab-table`
    - `dashboard-item-1759906246156-lab-chart`
    - `dashboard-item-1759906246157-differential-diagnosis`
-   - `dashboard-item-1759906300003-single-encounter-1`
+   - `dashboard-item-1759906300003-single-encounter-1` (first encounter)
    - `dashboard-item-1759906300004-single-encounter-2`
    - `dashboard-item-1759906300004-single-encounter-3`
    - `dashboard-item-1759906300004-single-encounter-4`
    - `dashboard-item-1759906300004-single-encounter-5`
    - `dashboard-item-1759906300004-single-encounter-6`
-   - `dashboard-item-1759906300004-single-encounter-7`
+   - `dashboard-item-1759906300004-single-encounter-7`(latest encounter)
 
 
 ----------------------------------------------------
