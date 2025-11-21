@@ -94,3 +94,11 @@ async def gen_report(payload: dict):
     return {
         "status" : "done"
     }
+
+@app.post("/generate_legal")
+async def gen_report(payload: dict):
+    print("Start legal")
+    await side_agent.create_legal_doc()
+    return {
+        "status" : "done"
+    }

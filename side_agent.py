@@ -1235,6 +1235,33 @@ async def create_patient_report():
 
     create_report(diagnosis_content)
 
+
+async def create_legal(payload):
+    print("Start legal object")
+    url = BASE_URL + "/api/legal-compliance"
+    import aiohttp
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=payload) as response:
+            with open(f"{config.output_dir}/notification_create_payload.json", "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=4)
+
+            data = await response.json()
+
+            with open(f"{config.output_dir}/notification_create_response.json", "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+            return data
+
+
+async def create_legal_doc():
+    with open("output/legal_object.json", "r", encoding="utf-8") as f:
+        legal_payload = json.load(f)
+
+    await create_legal(legal_payload)
+
+
+
+
+
 # start_time = time.time()
 
 # # query = "Pull radiology data for Sarah Miller"
